@@ -35,7 +35,9 @@ const Navbar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50 w-full bg-[#232a36]/95 backdrop-blur shadow-lg">
       <div className="max-w-7xl w-full mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Left: Nav links */}
+        {/* Left: Name */}
+        <span className="text-2xl md:text-2xl font-extrabold text-gray-100 tracking-tight mr-8">Alex Kozik</span>
+        {/* Nav links */}
         <div className="hidden md:flex gap-2 flex-1">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.href;
@@ -57,8 +59,6 @@ const Navbar: React.FC = () => {
             );
           })}
         </div>
-        {/* Right: Name */}
-        <span className="text-2xl md:text-2xl font-extrabold text-gray-100 tracking-tight ml-8">Alex Kozik</span>
         {/* Hamburger for mobile */}
         <button
           className="md:hidden p-3 rounded-lg hover:bg-[#2d3748]/70 transition ml-2"
