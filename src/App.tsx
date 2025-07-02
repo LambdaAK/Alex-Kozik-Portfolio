@@ -2,6 +2,7 @@ import './App.css'
 import Navbar from './Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
+import { FaLinkedin, FaEnvelope, FaGithub } from 'react-icons/fa';
 
 // About Me Card Component
 const AboutMeCard = () => (

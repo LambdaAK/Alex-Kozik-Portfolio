@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { FaLinkedin, FaEnvelope, FaGithub } from 'react-icons/fa';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -59,6 +60,18 @@ const Navbar: React.FC = () => {
             );
           })}
         </div>
+        {/* Social icons on desktop */}
+        <div className="hidden md:flex gap-3 items-center ml-6">
+          <a href="https://linkedin.com/in/alex-kozik" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <FaLinkedin className="text-blue-400 hover:text-blue-500" size={24} />
+          </a>
+          <a href="mailto:alex.kozik@yahoo.com" aria-label="Email">
+            <FaEnvelope className="text-blue-200 hover:text-blue-300" size={24} />
+          </a>
+          <a href="https://github.com/LambdaAK" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <FaGithub className="text-gray-300 hover:text-white" size={24} />
+          </a>
+        </div>
         {/* Hamburger for mobile */}
         <button
           className="md:hidden p-3 rounded-lg hover:bg-[#2d3748]/70 transition ml-2"
@@ -96,6 +109,18 @@ const Navbar: React.FC = () => {
                 </Link>
               );
             })}
+            {/* Social icons on mobile */}
+            <div className="flex gap-4 items-center justify-start mt-6 ml-1">
+              <a href="https://linkedin.com/in/alex-kozik" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <FaLinkedin className="text-blue-400 hover:text-blue-500" size={28} />
+              </a>
+              <a href="mailto:alex.kozik@yahoo.com" aria-label="Email">
+                <FaEnvelope className="text-blue-200 hover:text-blue-300" size={28} />
+              </a>
+              <a href="https://github.com/LambdaAK" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <FaGithub className="text-gray-300 hover:text-white" size={28} />
+              </a>
+            </div>
           </div>
         </div>
       )}
