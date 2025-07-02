@@ -1,6 +1,7 @@
 import './App.css'
 import Navbar from './Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
 
 // About Me Card Component
 const AboutMeCard = () => (
@@ -22,7 +23,11 @@ const AboutMeCard = () => (
         <span role="img" aria-label="About">👤</span> About Me
       </h2>
       <p className="mb-2 text-xl">
-        Hi! I'm Alex, and welcome to my portfolio. Here you can find information about my background, experience, and projects. I love building cool things, whether that's a website, an app, or something else entirely. When I'm not coding, I'm probably exploring new tech, reading, or enjoying the outdoors.
+      Hi! I’m Alex, a first-generation college student studying CS and math at Cornell University.
+      
+      I'm passionate about machine learning and software engineering.
+
+      I’m always eager to learn, collaborate, and take on new challenges—both in and out of the classroom.
       </p>
       {/* Add more about you here if desired */}
     </div>
@@ -98,72 +103,85 @@ const educationData = [
 const EducationSection = () => (
   <div className="flex flex-col gap-8 items-center justify-center min-h-[70vh]">
     <h2 className="text-4xl font-bold text-gray-100 mb-4">Education</h2>
-    {educationData.map((edu, idx) => (
-      <div
-        key={edu.name}
-        className="w-full max-w-4xl bg-[#232a36] rounded-3xl shadow-xl p-10 flex flex-col items-center gap-6 border border-[#232a36]/60"
-      >
-        {/* Header: Centered logo and school name */}
-        <div className="flex flex-col items-center mb-6 w-full">
-          <div className="w-28 h-28 rounded-xl overflow-hidden bg-neutral-800 flex items-center justify-center border-2 border-blue-400 mb-2">
-            <img
-              src={edu.logo}
-              alt={edu.name + ' logo'}
-              className="object-contain w-full h-full"
-            />
+    {educationData.map((edu, idx) => {
+      const [showCourses, setShowCourses] = useState(false);
+      return (
+        <div
+          key={edu.name}
+          className="w-full max-w-4xl bg-[#232a36] rounded-3xl shadow-xl p-10 flex flex-col items-center gap-6 border border-[#232a36]/60"
+        >
+          {/* Header: Centered logo and school name */}
+          <div className="flex flex-col items-center mb-6 w-full">
+            <div className="w-36 h-36 rounded-xl overflow-hidden flex items-center justify-center mb-2">
+              <img
+                src={edu.logo}
+                alt={edu.name + ' logo'}
+                className="object-contain w-full h-full"
+              />
+            </div>
+            <span className="text-2xl font-extrabold text-gray-100 text-center mt-2">{edu.name}</span>
           </div>
-          <span className="text-2xl font-extrabold text-gray-100 text-center mt-2">{edu.name}</span>
+          {/* Details below header */}
+          <div className="flex-1 text-gray-300 w-full">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
+              <span className="text-xl font-bold text-gray-100 block">{edu.degree}</span>
+              <span className="text-lg text-blue-300 block">{edu.major}</span>
+            </div>
+            <div className="flex gap-6 mb-2 text-gray-400 text-lg items-center">
+              <span>{edu.gpa}</span>
+              <span className="text-lg text-gray-300">{edu.date}</span>
+            </div>
+            <div>
+              <button
+                className="mt-2 mb-2 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition font-semibold"
+                onClick={() => setShowCourses((prev) => !prev)}
+              >
+                {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
+              </button>
+              {showCourses && (
+                <div>
+                  <span className="font-semibold text-gray-200">Relevant Courses:</span>
+                  {edu.name === 'Cornell University' ? (
+                    <div className="ml-4 mt-1">
+                      <span className="font-semibold text-blue-300">CS:</span>
+                      <ul className="list-disc list-inside ml-4">
+                        {edu.courses.slice(0, 13).map((course) => (
+                          <li key={course}>{course}</li>
+                        ))}
+                      </ul>
+                      <span className="font-semibold text-blue-300">Math:</span>
+                      <ul className="list-disc list-inside ml-4">
+                        {edu.courses.slice(13, 21).map((course) => (
+                          <li key={course}>{course}</li>
+                        ))}
+                      </ul>
+                      <span className="font-semibold text-blue-300">Econ:</span>
+                      <ul className="list-disc list-inside ml-4">
+                        {edu.courses.slice(21, 23).map((course) => (
+                          <li key={course}>{course}</li>
+                        ))}
+                      </ul>
+                      <span className="font-semibold text-blue-300">Other:</span>
+                      <ul className="list-disc list-inside ml-4">
+                        {edu.courses.slice(23).map((course) => (
+                          <li key={course}>{course}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <ul className="list-disc list-inside ml-4 mt-1">
+                      {edu.courses.map((course) => (
+                        <li key={course}>{course}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-        {/* Details below header */}
-        <div className="flex-1 text-gray-300 w-full">
-          <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
-            <span className="text-xl font-bold text-gray-100 block">{edu.degree}</span>
-            <span className="text-lg text-blue-300 block">{edu.major}</span>
-          </div>
-          <div className="flex gap-6 mb-2 text-gray-400 text-lg items-center">
-            <span>{edu.gpa}</span>
-            <span className="text-lg text-gray-300">{edu.date}</span>
-          </div>
-          <div>
-            <span className="font-semibold text-gray-200">Relevant Courses:</span>
-            {edu.name === 'Cornell University' ? (
-              <div className="ml-4 mt-1">
-                <span className="font-semibold text-blue-300">CS:</span>
-                <ul className="list-disc list-inside ml-4">
-                  {edu.courses.slice(0, 13).map((course) => (
-                    <li key={course}>{course}</li>
-                  ))}
-                </ul>
-                <span className="font-semibold text-blue-300">Math:</span>
-                <ul className="list-disc list-inside ml-4">
-                  {edu.courses.slice(13, 21).map((course) => (
-                    <li key={course}>{course}</li>
-                  ))}
-                </ul>
-                <span className="font-semibold text-blue-300">Econ:</span>
-                <ul className="list-disc list-inside ml-4">
-                  {edu.courses.slice(21, 23).map((course) => (
-                    <li key={course}>{course}</li>
-                  ))}
-                </ul>
-                <span className="font-semibold text-blue-300">Other:</span>
-                <ul className="list-disc list-inside ml-4">
-                  {edu.courses.slice(23).map((course) => (
-                    <li key={course}>{course}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <ul className="list-disc list-inside ml-4 mt-1">
-                {edu.courses.map((course) => (
-                  <li key={course}>{course}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
-    ))}
+      );
+    })}
   </div>
 );
 
