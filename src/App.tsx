@@ -351,7 +351,167 @@ const ExperienceSection = () => (
   </div>
 );
 
-const Projects = () => <div className="py-8">Projects Page</div>;
+// Projects Data
+const projects = [
+  {
+    name: "Portfolio Website",
+    description: "This portfolio website",
+    tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
+    github: null,
+    demo: null,
+    image: null,
+    highlights: [
+      "Modern, responsive design with dark mode",
+      "Sticky navbar and smooth navigation",
+      "Animated transitions with Framer Motion",
+      "Showcases education, experience, and projects"
+    ]
+  },
+  {
+    name: "AlgoSandbox",
+    description: "Interactive platform for visualizing and experimenting with classic algorithms and data structures. Designed for students, educators, and developers to learn and teach algorithms in an engaging way.",
+    tech: ["React", "TypeScript", "Vite", "CSS", "JavaScript", "Netlify"],
+    github: "https://github.com/LambdaAK/AlgoSandbox",
+    demo: null,
+    image: null,
+    highlights: [
+      "Visualizes sorting, searching, and data structure algorithms with real-time animations.",
+      "Tag-based filtering and search for algorithms.",
+      "Responsive, dark-themed UI for a modern learning experience.",
+      "Used by students and educators for teaching and self-study."
+    ]
+  },
+  {
+    name: "C-Torch",
+    description: "High-performance math and machine learning library supporting numerical methods, multivariate calculus, and linear algebra. Includes 15+ ML models and RL agents.",
+    tech: ["C++", "Machine Learning", "Numerical Methods"],
+    github: "https://github.com/LambdaAK/c-torch",
+    demo: null,
+    image: null, // Add image path if available
+    highlights: [
+      "Achieved 26x performance speedup through compiler optimizations and low-level memory management.",
+      "Implemented DQN and Policy Gradient agents with 97%+ win rates in autonomous gameplay.",
+      "Implemented neural networks and kernel SVMs, achieving 99%+ accuracy on classification tasks."
+    ]
+  },
+  {
+    name: "LambdaScript",
+    description: "Custom functional programming language with a performant interpreter, type inference, and core language features.",
+    tech: ["TypeScript", "OCaml", "Jest", "OUnit"],
+    github: "https://github.com/LambdaAK/lambdascript",
+    demo: null,
+    image: null,
+    highlights: [
+      "50% performance improvement over Python.",
+      "Pattern matching, algebraic data types, and polymorphic types.",
+      "Designed parser and type inference algorithm to validate programs and provide developer feedback."
+    ]
+  },
+  {
+    name: "HabitStack",
+    description: "Full-stack habit tracking application with OAuth2, monthly calendar interface, and real-time goal management.",
+    tech: ["React", "TypeScript", "Express.js", "Firebase", "Vite", "SASS"],
+    github: null,
+    demo: null,
+    image: null,
+    highlights: [
+      "Developed TypeScript APIs and Express.js backend integrated with Firebase for seamless data persistence.",
+      "Implemented live chat functionality using database connections, enabling low-latency communication between users."
+    ]
+  },
+  {
+    name: "CritterWorld",
+    description: "Evolving artificial life simulator with JavaFX GUI and custom programming language for organism behavior.",
+    tech: ["Java", "JavaFX", "SceneBuilder", "Gradle", "JUnit"],
+    github: null,
+    demo: null,
+    image: null,
+    highlights: [
+      "Built JavaFX GUI with multithreading to visualize real-time interactions and evolution of virtual organisms.",
+      "Implemented custom programming language with AST parser and interpreter to model organism behavior and mutations.",
+      "Developed pathfinding algorithms including A* and Dijkstra's for intelligent organism navigation."
+    ]
+  },
+  {
+    name: "Visual Attention Image Captioning",
+    description: "Show, Attend, Tell implementation: attention-based image captioning model with superior METEOR scores.",
+    tech: ["PyTorch", "Python", "Deep Learning"],
+    github: null,
+    demo: null,
+    image: null,
+    highlights: [
+      "Built soft and hard attention mechanisms with REINFORCE and backpropagation for stochastic/deterministic attention.",
+      "Developed encoder-decoder architecture using ResNet-50 and LSTM with attention visualization."
+    ]
+  },
+];
+
+// Projects Section Component
+const Projects = () => (
+  <div className="flex flex-col items-center justify-center min-h-[70vh] w-full">
+    <h2 className="text-4xl font-bold text-gray-100 mb-8">Projects</h2>
+    <div className="flex flex-col gap-10 w-full max-w-4xl">
+      {projects.map((project) => (
+        <div
+          key={project.name}
+          className="bg-[#232a36] rounded-3xl shadow-xl p-8 flex flex-col md:flex-row items-center gap-8 border border-[#232a36]/60"
+        >
+          {/* Project image/logo on the left */}
+          <div className="flex-shrink-0 flex items-center justify-center w-36 h-36 rounded-xl overflow-hidden bg-neutral-100 mb-4 md:mb-0">
+            {project.image ? (
+              <img src={project.image} alt={project.name + ' logo'} className="object-contain w-full h-full" />
+            ) : (
+              <span className="text-2xl text-gray-700 font-bold">{project.name[0]}</span>
+            )}
+          </div>
+          {/* Details on the right */}
+          <div className="flex-1 text-gray-300 w-full">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
+              <h3 className="text-2xl font-bold text-gray-100 mr-2">{project.name}</h3>
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:underline text-lg font-medium md:ml-4"
+                >
+                  GitHub
+                </a>
+              )}
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-400 hover:underline text-lg font-medium md:ml-4"
+                >
+                  Live Demo
+                </a>
+              )}
+            </div>
+            <p className="text-gray-300 mb-2">{project.description}</p>
+            <div className="flex flex-wrap gap-2 mb-2">
+              {project.tech.map((tech) => (
+                <span
+                  key={tech}
+                  className="bg-blue-900/40 text-blue-200 px-3 py-1 rounded-full text-xs font-medium border border-blue-800"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <ul className="list-disc list-inside ml-4 mt-2 text-gray-400 text-sm">
+              {project.highlights.map((h, i) => (
+                <li key={i}>{h}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
 const Education = () => <EducationSection />;
 const Experience = () => <ExperienceSection />;
 const Resume = () => <div className="py-8">Resume Page</div>;
