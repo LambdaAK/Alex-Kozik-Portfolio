@@ -23,11 +23,11 @@ const AboutMeCard = () => (
         <span role="img" aria-label="About">👤</span> About Me
       </h2>
       <p className="mb-2 text-xl">
-      Hi! I’m Alex, a first-generation college student studying CS and math at Cornell University.
+      Hi! I'm Alex, a first-generation college student studying CS and math at Cornell University.
       
       I'm passionate about machine learning and software engineering.
 
-      I’m always eager to learn, collaborate, and take on new challenges—both in and out of the classroom.
+      4I'm always eager to learn, collaborate, and take on new challenges—both in and out of the classroom.
       </p>
       {/* Add more about you here if desired */}
     </div>
@@ -185,9 +185,175 @@ const EducationSection = () => (
   </div>
 );
 
+// Experience Section Component
+const experienceData = [
+  {
+    company: 'Salesforce',
+    logo: '/Salesforce.com_logo.svg.png',
+    position: 'Software Engineer Intern',
+    duration: 'June 2025 - August 2025',
+    description: [
+      'Implementing custom formula field functionality in Salesforce Data Cloud using Java, SQL, and Apache Spark.',
+      'Developing UI in React and TypeScript with REST API for metadata explorer, enabling users to browse data schemas.'
+    ],
+  },
+  {
+    company: 'CMSX',
+    logo: '/CMSX-logo.svg',
+    positions: [
+      {
+        title: 'Frontend Engineering Lead',
+        duration: 'Jan 2024 – Present',
+        description: [
+          'Lead frontend team by designing project architectures, reviewing PRs, and interviewing candidates.',
+          'Architected and built the student-facing frontend in React/TS, enhancing user experience and code maintainability.',
+        ],
+      },
+      {
+        title: 'Full Stack Engineer',
+        duration: 'Aug 2023 – Dec 2023',
+        description: [
+          "Implemented APIs with serializable data structures for secure communication between frontend and backend.",
+          "Maintained Cornell's official CS course management system, used by 10,000+ students in 100,000+ line codebase.",
+        ],
+      },
+    ],
+  },
+  {
+    company: 'Cornell Generative AI',
+    logo: '/generative_ai_at_cornell_logo.jpeg',
+    position: 'AI/ML Engineer',
+    duration: 'January 2024 - Present',
+    description: [
+      'Developed AI agent for QuickFi automating insurance certificate validation and compliance verification processes.',
+      'Built frontend and vector database for ClassGPT, enabling professors to create AI tutors for course-specific content.',
+      'Manage cross-functional project teams and coordinate development workflows for multiple AI-driven applications.'
+    ],
+  },
+  {
+    company: 'Carnegie Mellon University, S3D',
+    logo: '/S3D.jpeg',
+    position: 'Software Engineer and Research Intern',
+    duration: 'May 2024 - August 2024',
+    description: [
+      'Worked on the interpreter for SASyLF, a programming language for writing proofs, implementing core features in Java.',
+      'Created a modular testing framework using Python to automate unit tests and integration tests, ensuring code reliability.',
+      'Implemented a polymorphic module system for SASyLF, providing type-safe code reuse similar to Java generics for classes.'
+    ],
+  },
+  {
+    company: 'Cornell Bowers CIS',
+    logo: '/cornell-logo.png',
+    mainTitle: 'Teaching Assistant',
+    subroles: [
+      {
+        course: 'CS 3780/5780 - Machine Learning',
+        duration: 'Spring 2025, Fall 2025',
+        description: [
+          'Recipient of the CS Course Staff Award for providing exceptional service to students (awarded to less than 10% of TAs).',
+          'Led office hours, assisted with assignments, and supported students in learning core ML concepts.',
+          'Debugged code and graded assessments in Python.'
+        ],
+      },
+      {
+        course: 'CS 4820/5820 - Analysis of Algorithms',
+        duration: 'Fall 2024',
+        description: [
+          'Held office hours and provided guidance on algorithmic problem solving and assignments.',
+          'Graded assignments and exams, and helped students understand complex algorithmic concepts.',
+        ],
+      },
+      {
+        course: 'CS 3110 - Data Structures & Functional Programming',
+        duration: 'Fall 2023, Spring 2024',
+        description: [
+          'Assisted students with functional programming and data structures assignments.',
+          'Led office hours, debugged code in OCaml, and graded coursework.',
+        ],
+      },
+    ],
+  },
+];
+
+const ExperienceSection = () => (
+  <div className="flex flex-col gap-8 items-center justify-center min-h-[70vh]">
+    <h2 className="text-4xl font-bold text-gray-100 mb-4">Experience</h2>
+    {experienceData.map((exp, idx) => (
+      <div
+        key={exp.company + (exp.position || exp.mainTitle || '')}
+        className="w-full max-w-4xl bg-[#232a36] rounded-3xl shadow-xl p-10 flex flex-col md:flex-row items-center gap-10 border border-[#232a36]/60"
+      >
+        {/* Logo on the left */}
+        <div className="flex-shrink-0 flex flex-col items-center md:items-start mb-4 md:mb-0">
+          <div className="w-28 h-28 rounded-xl overflow-hidden flex items-center justify-center mb-2">
+            <img
+              src={exp.logo}
+              alt={exp.company + ' logo'}
+              className="object-contain w-full h-full"
+            />
+          </div>
+        </div>
+        {/* Details on the right */}
+        <div className="flex-1 text-gray-300 w-full">
+          <span className="text-2xl font-extrabold text-gray-100 block mb-1">{exp.company}</span>
+          {/* Special rendering for mainTitle/subroles (TA) */}
+          {exp.mainTitle && exp.subroles ? (
+            <div className="mb-2">
+              <span className="text-xl font-bold text-blue-200 block mb-2">{exp.mainTitle}</span>
+              <div className="flex flex-col gap-4">
+                {exp.subroles.map((sub, i) => (
+                  <div key={sub.course + sub.duration} className="mb-1 ml-2 border-l-2 border-blue-800 pl-4">
+                    <div className="flex flex-col md:flex-row md:items-center gap-2 mb-1">
+                      <span className="text-lg font-semibold text-blue-100 block">{sub.course}</span>
+                      <span className="text-md text-blue-300 block md:ml-4">{sub.duration}</span>
+                    </div>
+                    <ul className="list-disc list-inside ml-4 mt-1">
+                      {sub.description.map((item, j) => (
+                        <li key={j}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : exp.positions ? (
+            <div className="flex flex-col gap-4">
+              {exp.positions.map((pos, i) => (
+                <div key={pos.title + pos.duration} className="mb-2">
+                  <div className="flex flex-col md:flex-row md:items-center gap-2 mb-1">
+                    <span className="text-xl font-bold text-blue-200 block">{pos.title}</span>
+                    <span className="text-md text-blue-300 block md:ml-4">{pos.duration}</span>
+                  </div>
+                  <ul className="list-disc list-inside ml-4 mt-1">
+                    {pos.description.map((item, j) => (
+                      <li key={j}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <>
+              <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
+                <span className="text-xl font-bold text-blue-200 block">{exp.position}</span>
+                <span className="text-md text-blue-300 block md:ml-4">{exp.duration}</span>
+              </div>
+              <ul className="list-disc list-inside ml-4 mt-2">
+                {Array.isArray(exp.description) && exp.description.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
 const Projects = () => <div className="py-8">Projects Page</div>;
 const Education = () => <EducationSection />;
-const Experience = () => <div className="py-8">Experience Page</div>;
+const Experience = () => <ExperienceSection />;
 const Resume = () => <div className="py-8">Resume Page</div>;
 const Contact = () => <div className="py-8">Contact Page</div>;
 
