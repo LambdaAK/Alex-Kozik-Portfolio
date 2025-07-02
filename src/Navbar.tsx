@@ -7,7 +7,6 @@ const navLinks = [
   { name: 'Projects', href: '/projects' },
   { name: 'Education', href: '/education' },
   { name: 'Experience', href: '/experience' },
-  { name: 'Resume', href: '/resume' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -59,6 +58,15 @@ const Navbar: React.FC = () => {
               </Link>
             );
           })}
+          {/* Resume download button */}
+          <a
+            href="/Alex_Kozik_Resume.pdf"
+            download
+            className="px-6 py-4 rounded-3xl font-medium transition text-2xl text-gray-300 hover:bg-[#2d3748]/70 hover:text-white ml-2"
+            style={{ border: 'none', outline: 'none', cursor: 'pointer' }}
+          >
+            Resume
+          </a>
         </div>
         {/* Social icons on desktop */}
         <div className="hidden md:flex gap-3 items-center ml-6">
@@ -109,6 +117,21 @@ const Navbar: React.FC = () => {
                 </Link>
               );
             })}
+            {/* Resume download button for mobile */}
+            <button
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/resume.pdf';
+                link.download = 'Alex_Kozik_Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+              className="px-4 py-3 rounded-xl font-medium text-lg transition text-gray-300 hover:bg-[#2d3748]/70 hover:text-white mt-2"
+              style={{ border: 'none', outline: 'none', cursor: 'pointer', background: 'none' }}
+            >
+              Resume
+            </button>
             {/* Social icons on mobile */}
             <div className="flex gap-4 items-center justify-start mt-6 ml-1">
               <a href="https://linkedin.com/in/alex-kozik" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">

@@ -515,7 +515,6 @@ const Projects = () => (
 
 const Education = () => <EducationSection />;
 const Experience = () => <ExperienceSection />;
-const Resume = () => <div className="py-8">Resume Page</div>;
 const Contact = () => <div className="py-8">Contact Page</div>;
 
 function App() {
@@ -529,7 +528,6 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/education" element={<Education />} />
             <Route path="/experience" element={<Experience />} />
-            <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
