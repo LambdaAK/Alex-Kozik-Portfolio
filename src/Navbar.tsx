@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'Home', href: '#' },
-  { name: 'Projects', href: '#' },
-  { name: 'Education', href: '#' },
-  { name: 'Experience', href: '#' },
-  { name: 'Resume', href: '#' },
-  { name: 'Contact', href: '#' },
+  { name: 'Home', href: '/' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Education', href: '/education' },
+  { name: 'Experience', href: '/experience' },
+  { name: 'Resume', href: '/resume' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 const Navbar: React.FC = () => {
@@ -36,13 +37,14 @@ const Navbar: React.FC = () => {
         <span className="text-xl font-bold text-blue-400">Alex Kozik</span>
         <div className="hidden md:flex gap-6">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="text-gray-200 hover:text-blue-400 transition font-medium"
+              onClick={() => setMenuOpen(false)}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
         {/* Hamburger for mobile */}
@@ -64,14 +66,14 @@ const Navbar: React.FC = () => {
         >
           <div className="flex flex-col gap-4 px-6 py-6">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="text-gray-200 hover:text-blue-400 transition font-medium text-lg"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
