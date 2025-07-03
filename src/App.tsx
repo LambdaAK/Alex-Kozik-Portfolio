@@ -1,12 +1,10 @@
 import './App.css'
-import Navbar from './Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
-import { FaLinkedin, FaEnvelope, FaGithub } from 'react-icons/fa';
+import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 // About Me Card Component
 const AboutMeCard = () => (
-  <div className="mx-auto mt-12 max-w-4xl rounded-3xl bg-[#232a36] shadow-xl p-8 flex flex-col md:flex-row items-center gap-8 border border-[#232a36]/60">
+  <div className="w-full max-w-4xl rounded-3xl bg-[#232a36] shadow-xl p-8 flex flex-col md:flex-row items-center gap-8 border border-[#232a36]/60">
     {/* Profile Picture */}
     <div className="flex-shrink-0">
       <div className="w-128 h-128 rounded-2xl border-4 border-blue-400 overflow-hidden bg-neutral-800 flex items-center justify-center">
@@ -24,20 +22,14 @@ const AboutMeCard = () => (
         <span role="img" aria-label="About">👤</span> About Me
       </h2>
       <p className="mb-2 text-xl">
-      Hi! I'm Alex, a first-generation college student studying CS and math at Cornell University.
-      
-      I'm passionate about machine learning and software engineering.
+        Hi! I'm Alex, a first-generation college student studying CS and math at Cornell University.
+        
+        I'm passionate about machine learning and software engineering.
 
-      4I'm always eager to learn, collaborate, and take on new challenges—both in and out of the classroom.
+        I'm always eager to learn, collaborate, and take on new challenges—both in and out of the classroom.
       </p>
       {/* Add more about you here if desired */}
     </div>
-  </div>
-);
-
-const Home = () => (
-  <div className="flex flex-col items-center justify-center min-h-[70vh]">
-    <AboutMeCard />
   </div>
 );
 
@@ -513,25 +505,47 @@ const Projects = () => (
   </div>
 );
 
-const Education = () => <EducationSection />;
-const Experience = () => <ExperienceSection />;
-const Contact = () => <div className="py-8">Contact Page</div>;
-
 function App() {
   return (
-    <div className="min-h-screen bg-neutral-900 text-white">
-      <Router>
-        <Navbar />
-        <main className="max-w-6xl mx-auto px-4 py-8">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-      </Router>
+    <div className="min-h-screen bg-[#181A20] text-[#E5E7EB]">
+      <div className="flex flex-col gap-24 max-w-5xl mx-auto px-4 pb-24">
+        <section id="about">
+          <div className="relative w-full min-h-screen">
+            {/* Header section - absolutely positioned */}
+            <div className="absolute top-8 left-0 right-0 z-10 flex flex-col items-center">
+              <span className="text-5xl font-extrabold text-[#00D9FF] tracking-tight mb-2">Alex Kozik</span>
+              <div className="flex gap-4">
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="px-6 py-3 bg-[#00D9FF] text-[#181A20] rounded-lg font-bold text-lg shadow-lg hover:bg-cyan-400 transition"
+                >
+                  Download Resume
+                </a>
+                <a href="https://linkedin.com/in/alex-kozik" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <FaLinkedin className="text-[#00D9FF] hover:text-cyan-400" size={32} />
+                </a>
+                <a href="mailto:alex.kozik@yahoo.com" aria-label="Email">
+                  <FaEnvelope className="text-[#00D9FF] hover:text-cyan-400" size={32} />
+                </a>
+              </div>
+            </div>
+            {/* Perfectly centered About Me Card */}
+            <div className="absolute inset-0 flex items-center justify-center px-4">
+              <AboutMeCard />
+            </div>
+          </div>
+        </section>
+        <section id="education">
+          <EducationSection />
+        </section>
+        <section id="experience">
+          <ExperienceSection />
+        </section>
+        <section id="projects">
+          <Projects />
+        </section>
+      </div>
     </div>
   );
 }
