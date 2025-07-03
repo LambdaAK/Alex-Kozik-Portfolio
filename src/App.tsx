@@ -8,7 +8,7 @@ const AboutMeCard = () => (
   <div className="w-full max-w-4xl rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl p-8 flex flex-col md:flex-row items-center gap-8 border border-white/20 transition-transform duration-300 hover:scale-[1.02]">
     {/* Profile Picture */}
     <div className="flex-shrink-0">
-      <div className="w-128 h-128 rounded-2xl border-4 border-blue-400 overflow-hidden bg-neutral-800 flex items-center justify-center">
+      <div className="w-128 h-128 rounded-2xl overflow-hidden bg-neutral-800 flex items-center justify-center shadow-lg">
         {/* Replace src with your image */}
         <img
           src="/kozik.jpg"
@@ -529,6 +529,15 @@ function Navbar() {
               className="px-5 py-2 rounded-full bg-white/10 text-white font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              onClick={e => {
+                if (link.href.startsWith('#')) {
+                  e.preventDefault();
+                  const el = document.querySelector(link.href);
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }
+              }}
             >
               {link.name}
             </a>
