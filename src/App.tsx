@@ -1,10 +1,11 @@
 import './App.css'
 import React, { useState } from 'react';
 import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import Starfield from './Starfield';
 
 // About Me Card Component
 const AboutMeCard = () => (
-  <div className="w-full max-w-4xl rounded-3xl bg-[#232a36] shadow-xl p-8 flex flex-col md:flex-row items-center gap-8 border border-[#232a36]/60">
+  <div className="w-full max-w-4xl rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl p-8 flex flex-col md:flex-row items-center gap-8 border border-white/20 transition-transform duration-300 hover:scale-[1.02]">
     {/* Profile Picture */}
     <div className="flex-shrink-0">
       <div className="w-128 h-128 rounded-2xl border-4 border-blue-400 overflow-hidden bg-neutral-800 flex items-center justify-center">
@@ -101,7 +102,7 @@ const EducationSection = () => (
       return (
         <div
           key={edu.name}
-          className="w-full max-w-4xl bg-[#232a36] rounded-3xl shadow-xl p-10 flex flex-col items-center gap-6 border border-[#232a36]/60"
+          className="w-full max-w-4xl bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-10 flex flex-col items-center gap-6 border border-white/20 transition-transform duration-300 hover:scale-[1.02]"
         >
           {/* Header: Centered logo and school name */}
           <div className="flex flex-col items-center mb-6 w-full">
@@ -274,7 +275,7 @@ const ExperienceSection = () => (
     {experienceData.map((exp, idx) => (
       <div
         key={exp.company + (exp.position || exp.mainTitle || '')}
-        className="w-full max-w-4xl bg-[#232a36] rounded-3xl shadow-xl p-10 flex flex-col md:flex-row items-center gap-10 border border-[#232a36]/60"
+        className="w-full max-w-4xl bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-10 flex flex-col md:flex-row items-center gap-10 border border-white/20 transition-transform duration-300 hover:scale-[1.02]"
       >
         {/* Logo on the left */}
         <div className="flex-shrink-0 flex flex-col items-center md:items-start mb-4 md:mb-0">
@@ -447,7 +448,7 @@ const Projects = () => (
       {projects.map((project) => (
         <div
           key={project.name}
-          className="bg-[#232a36] rounded-3xl shadow-xl p-8 flex flex-col md:flex-row items-center gap-8 border border-[#232a36]/60"
+          className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 flex flex-col md:flex-row items-center gap-8 border border-white/20 transition-transform duration-300 hover:scale-[1.02]"
         >
           {/* Project image/logo on the left */}
           <div className="flex-shrink-0 flex items-center justify-center w-36 h-36 rounded-xl overflow-hidden bg-neutral-100 mb-4 md:mb-0">
@@ -505,33 +506,64 @@ const Projects = () => (
   </div>
 );
 
+function Navbar() {
+  return (
+    <nav className="w-full flex items-center justify-between px-8 py-4 fixed top-0 left-0 z-20 bg-white/5 backdrop-blur-md border-b border-white/10">
+      {/* Logo */}
+      <div className="font-extrabold text-2xl text-white drop-shadow-lg tracking-tight select-none">
+        Alex Kozik
+      </div>
+      {/* Nav Links */}
+      <ul className="flex gap-4 md:gap-6">
+        {[
+          { name: 'Home', href: '#about' },
+          { name: 'Projects', href: '#projects' },
+          { name: 'Education', href: '#education' },
+          { name: 'Experience', href: '#experience' },
+          { name: 'Resume', href: '/resume.pdf', download: true },
+        ].map((link) => (
+          <li key={link.name}>
+            <a
+              href={link.href}
+              {...(link.download ? { download: true } : {})}
+              className="px-5 py-2 rounded-full bg-white/10 text-white font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              {link.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+      {/* Social Icons */}
+      <div className="flex gap-3">
+        <a href="https://linkedin.com/in/alex-kozik" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:text-cyan-300 transition shadow-md backdrop-blur-md">
+          <FaLinkedin size={22} />
+        </a>
+        <a href="mailto:alex.kozik@yahoo.com" aria-label="Email"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:text-cyan-300 transition shadow-md backdrop-blur-md">
+          <FaEnvelope size={22} />
+        </a>
+        <a href="/resume.pdf" download aria-label="Resume"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:text-cyan-300 transition shadow-md backdrop-blur-md">
+          <span className="font-bold text-lg">CV</span>
+        </a>
+      </div>
+    </nav>
+  );
+}
+
 function App() {
   return (
-    <div className="min-h-screen bg-[#181A20] text-[#E5E7EB]">
-      <div className="flex flex-col gap-24 max-w-5xl mx-auto px-4 pb-24">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-[#181A20] to-indigo-950 text-[#E5E7EB] relative overflow-x-hidden">
+      <Starfield />
+      <Navbar />
+      <div className="flex flex-col gap-24 max-w-5xl mx-auto px-4 pb-24 relative z-10">
         <section id="about">
-          <div className="relative w-full min-h-screen">
-            {/* Header section - absolutely positioned */}
-            <div className="absolute top-8 left-0 right-0 z-10 flex flex-col items-center">
-              <span className="text-5xl font-extrabold text-[#00D9FF] tracking-tight mb-2">Alex Kozik</span>
-              <div className="flex gap-4">
-                <a
-                  href="/resume.pdf"
-                  download
-                  className="px-6 py-3 bg-[#00D9FF] text-[#181A20] rounded-lg font-bold text-lg shadow-lg hover:bg-cyan-400 transition"
-                >
-                  Download Resume
-                </a>
-                <a href="https://linkedin.com/in/alex-kozik" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <FaLinkedin className="text-[#00D9FF] hover:text-cyan-400" size={32} />
-                </a>
-                <a href="mailto:alex.kozik@yahoo.com" aria-label="Email">
-                  <FaEnvelope className="text-[#00D9FF] hover:text-cyan-400" size={32} />
-                </a>
-              </div>
-            </div>
-            {/* Perfectly centered About Me Card */}
-            <div className="absolute inset-0 flex items-center justify-center px-4">
+          <div className="relative w-full h-screen">
+            {/* AboutMeCard centered accounting for navbar */}
+            <div className="absolute inset-0 flex items-center justify-center px-4" style={{ top: '80px' }}>
               <AboutMeCard />
             </div>
           </div>
@@ -549,5 +581,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App
