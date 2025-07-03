@@ -1,7 +1,7 @@
 import './App.css'
 import React, { useState } from 'react';
 import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import Starfield from './Starfield';
+import CanvasStarfield from './Starfield';
 
 // About Me Card Component
 const AboutMeCard = () => (
@@ -557,7 +557,7 @@ function Navbar() {
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-[#181A20] to-indigo-950 text-[#E5E7EB] relative overflow-x-hidden">
-      <Starfield />
+      <CanvasStarfield />
       <Navbar />
       <div className="flex flex-col gap-24 max-w-5xl mx-auto px-4 pb-24 relative z-10">
         <section id="about">
