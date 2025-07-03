@@ -93,7 +93,6 @@ const educationData = [
     ],
   },
 ];
-
 const EducationSection = () => (
   <div className="flex flex-col gap-8 items-center justify-center min-h-[70vh]">
     <h2 className="text-4xl font-bold text-gray-100 mb-4">Education</h2>
@@ -105,7 +104,7 @@ const EducationSection = () => (
           className="w-full max-w-4xl bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-10 flex flex-col items-center gap-6 border border-white/20 transition-transform duration-300 hover:scale-[1.02]"
         >
           {/* Header: Centered logo and school name */}
-          <div className="flex flex-col items-center mb-6 w-full">
+          <div className="flex flex-col items-center mb-2 w-full">
             <div className="w-36 h-36 rounded-xl overflow-hidden flex items-center justify-center mb-2">
               <img
                 src={edu.logo}
@@ -113,7 +112,7 @@ const EducationSection = () => (
                 className="object-contain w-full h-full"
               />
             </div>
-            <span className="text-2xl font-extrabold text-gray-100 text-center mt-2">{edu.name}</span>
+            <span className="text-2xl font-extrabold text-gray-100 text-center">{edu.name}</span>
           </div>
           {/* Details below header */}
           <div className="flex-1 text-gray-300 w-full">
@@ -381,7 +380,7 @@ const projects = [
     tech: ["C++", "Machine Learning", "Numerical Methods"],
     github: "https://github.com/LambdaAK/c-torch",
     demo: null,
-    image: null, // Add image path if available
+    image: "/C torch logo.png",
     highlights: [
       "Achieved 26x performance speedup through compiler optimizations and low-level memory management.",
       "Implemented DQN and Policy Gradient agents with 97%+ win rates in autonomous gameplay.",
@@ -394,7 +393,7 @@ const projects = [
     tech: ["TypeScript", "OCaml", "Jest", "OUnit"],
     github: "https://github.com/LambdaAK/lambdascript",
     demo: null,
-    image: null,
+    image: "/LambdaScript logo.png",
     highlights: [
       "50% performance improvement over Python.",
       "Pattern matching, algebraic data types, and polymorphic types.",
@@ -544,10 +543,6 @@ function Navbar() {
         <a href="mailto:alex.kozik@yahoo.com" aria-label="Email"
           className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:text-cyan-300 transition shadow-md backdrop-blur-md">
           <FaEnvelope size={22} />
-        </a>
-        <a href="/resume.pdf" download aria-label="Resume"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:text-cyan-300 transition shadow-md backdrop-blur-md">
-          <span className="font-bold text-lg">CV</span>
         </a>
       </div>
     </nav>
