@@ -440,70 +440,110 @@ const projects = [
 ];
 
 // Projects Section Component
-const Projects = () => (
-  <div className="flex flex-col items-center justify-center min-h-[70vh] w-full">
-    <h2 className="text-4xl font-bold text-gray-100 mb-8">Projects</h2>
-    <div className="flex flex-col gap-10 w-full max-w-4xl">
-      {projects.map((project) => (
-        <div
-          key={project.name}
-          className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 flex flex-col md:flex-row items-center gap-8 border border-white/20 transition-transform duration-300 hover:scale-[1.02]"
-        >
-          {/* Project image/logo on the left */}
-          <div className="flex-shrink-0 flex items-center justify-center w-36 h-36 rounded-xl overflow-hidden bg-neutral-100 mb-4 md:mb-0">
-            {project.image ? (
-              <img src={project.image} alt={project.name + ' logo'} className="object-contain w-full h-full" />
-            ) : (
-              <span className="text-2xl text-gray-700 font-bold">{project.name[0]}</span>
-            )}
-          </div>
-          {/* Details on the right */}
-          <div className="flex-1 text-gray-300 w-full">
-            <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
-              <h3 className="text-2xl font-bold text-gray-100 mr-2">{project.name}</h3>
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:underline text-lg font-medium md:ml-4"
-                >
-                  GitHub
-                </a>
-              )}
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-green-400 hover:underline text-lg font-medium md:ml-4"
-                >
-                  Live Demo
-                </a>
+const Projects = () => {
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (name: string) => {
+    setExpanded((prev) => ({ ...prev, [name]: !prev[name] }));
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[70vh] w-full">
+      <h2 className="text-4xl font-bold text-gray-100 mb-8">Projects</h2>
+      <div className="flex flex-col gap-10 w-full max-w-4xl">
+        {projects.map((project) => (
+          <div
+            key={project.name}
+            className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 flex flex-col md:flex-row items-center gap-8 border border-white/20 transition-transform duration-300 hover:scale-[1.02]"
+          >
+            {/* Project image/logo on the left */}
+            <div className="flex-shrink-0 flex items-center justify-center">
+              <div
+                className="w-28 h-28 rounded-2xl flex items-center justify-center mb-4 md:mb-0"
+                style={{
+                  background: project.image ? 'none' : 'linear-gradient(135deg, #ffb347 0%, #ffcc33 100%)',
+                  boxShadow: project.image ? undefined : '0 4px 24px 0 rgba(255, 186, 0, 0.15)'
+                }}
+              >
+                {project.image ? (
+                  <img src={project.image} alt={project.name + ' logo'} className="object-contain w-full h-full rounded-2xl" />
+                ) : (
+                  <span className="text-5xl font-extrabold text-white select-none">
+                    {project.name[0]}
+                  </span>
+                )}
+              </div>
+            </div>
+            {/* Details on the right */}
+            <div className="flex-1 text-gray-300 w-full flex flex-col gap-2">
+              <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
+                <h3 className="text-3xl font-extrabold text-gray-100 flex items-center gap-2">
+                  {project.name}
+                  {project.name === 'C-Torch' && (
+                    <span className="ml-1 text-2xl" role="img" aria-label="fire">🔥</span>
+                  )}
+                </h3>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-1 rounded-full bg-white/10 text-gray-200 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 transition text-base flex items-center gap-2"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.867 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.529 2.341 1.088 2.91.832.092-.646.35-1.088.636-1.339-2.221-.253-4.555-1.111-4.555-4.944 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.699 1.028 1.592 1.028 2.683 0 3.842-2.337 4.687-4.566 4.936.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.135 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                    </svg>
+                    GitHub
+                  </a>
+                )}
+              </div>
+              <p className="text-gray-300 mb-2 text-lg">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mb-2">
+                {project.tech.map((tech) => (
+                  <span
+                    key={tech}
+                    className="bg-white/10 text-blue-200 px-3 py-1 rounded-full text-xs font-medium border border-white/20 shadow-sm"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              {/* Collapsible highlights section */}
+              {project.highlights && project.highlights.length > 0 && (
+                <>
+                  <button
+                    className="mt-2 mb-2 px-5 py-2 rounded-full bg-white/10 text-white font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 w-max"
+                    onClick={() => toggleExpand(project.name)}
+                  >
+                    {expanded[project.name] ? 'Show Less' : 'Show More'}
+                  </button>
+                  {expanded[project.name] && (
+                    <div className="flex flex-col gap-3 mt-2">
+                      {project.highlights.map((h, i) => (
+                        <div
+                          key={i}
+                          className="bg-white/5 border border-white/10 rounded-2xl px-5 py-3 text-base text-gray-200 shadow-inner"
+                          dangerouslySetInnerHTML={{
+                            __html: h.replace(/(\d+x performance speedup|\d+%\+ win rates|\d+%\+ accuracy|performance speedup|win rates|accuracy)/g, (match) => {
+                              if (match.includes('speedup')) return `<span class=\"text-orange-400 font-bold\">${match}</span>`;
+                              if (match.includes('win rates')) return `<span class=\"text-pink-400 font-bold\">${match}</span>`;
+                              if (match.includes('accuracy')) return `<span class=\"text-blue-400 font-bold\">${match}</span>`;
+                              return match;
+                            })
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
             </div>
-            <p className="text-gray-300 mb-2">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mb-2">
-              {project.tech.map((tech) => (
-                <span
-                  key={tech}
-                  className="bg-blue-900/40 text-blue-200 px-3 py-1 rounded-full text-xs font-medium border border-blue-800"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <ul className="list-disc list-inside ml-4 mt-2 text-gray-400 text-sm">
-              {project.highlights.map((h, i) => (
-                <li key={i}>{h}</li>
-              ))}
-            </ul>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 function Navbar() {
   return (
