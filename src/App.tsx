@@ -8,7 +8,7 @@ const AboutMeCard = () => (
   <div className="w-full max-w-4xl rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl p-8 flex flex-col md:flex-row items-center gap-8 border border-white/20 transition-transform duration-300 hover:scale-[1.02]">
     {/* Profile Picture */}
     <div className="flex-shrink-0">
-      <div className="w-128 h-128 rounded-2xl border-4 border-blue-400 overflow-hidden bg-neutral-800 flex items-center justify-center">
+      <div className="w-128 h-128 rounded-2xl overflow-hidden bg-neutral-800 flex items-center justify-center">
         {/* Replace src with your image */}
         <img
           src="/kozik.jpg"
@@ -126,7 +126,7 @@ const EducationSection = () => (
             </div>
             <div>
               <button
-                className="mt-2 mb-2 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition font-semibold"
+                className="mt-2 mb-2 px-5 py-2 rounded-full bg-white/10 text-white font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
                 onClick={() => setShowCourses((prev) => !prev)}
               >
                 {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
@@ -295,7 +295,7 @@ const ExperienceSection = () => (
               <span className="text-xl font-bold text-blue-200 block mb-2">{exp.mainTitle}</span>
               <div className="flex flex-col gap-4">
                 {exp.subroles.map((sub, i) => (
-                  <div key={sub.course + sub.duration} className="mb-1 ml-2 border-l-2 border-blue-800 pl-4">
+                  <div key={sub.course + sub.duration} className="mb-1 ml-2 pl-4">
                     <div className="flex flex-col md:flex-row md:items-center gap-2 mb-1">
                       <span className="text-lg font-semibold text-blue-100 block">{sub.course}</span>
                       <span className="text-md text-blue-300 block md:ml-4">{sub.duration}</span>
