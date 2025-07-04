@@ -279,79 +279,94 @@ const ExperienceSection = () => (
       {experienceData.map((exp, idx) => (
         <div
           key={exp.company + (exp.position || exp.mainTitle || '')}
-          className="w-full flex flex-row items-stretch bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200"
+          className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
         >
-          {/* Logo on the left */}
-          <div className="flex items-center justify-center min-w-[120px] max-w-[160px] bg-white/20 rounded-l-2xl p-4">
-            <img
-              src={exp.logo}
-              alt={exp.company + ' logo'}
-              className="object-contain w-24 h-16 rounded-2xl"
-            />
-          </div>
-          {/* Details on the right */}
-          <div className="flex-1 flex flex-col justify-between p-5 gap-2">
-            <div className="flex flex-row items-start justify-between flex-wrap gap-2">
-              <div>
-                <span className="text-lg font-bold text-gray-100 block leading-tight">
-                  {exp.company}
-                  {" - "}
-                  <span className="text-base font-medium text-gray-200">{exp.position || exp.mainTitle || (exp.positions && exp.positions[0]?.title) || ''}</span>
+          <div className="flex flex-row items-start gap-6">
+            {/* Logo section */}
+            <div className="flex items-center justify-center w-20 h-20 rounded-xl flex-shrink-0">
+              <img
+                src={exp.logo}
+                alt={exp.company + ' logo'}
+                className="object-contain w-16 h-16 rounded-lg"
+              />
+            </div>
+            
+            {/* Content section */}
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-100 leading-tight">
+                    {exp.company}
+                    {(exp.position || exp.mainTitle || (exp.positions && exp.positions[0]?.title)) && (
+                      <span className="text-lg font-medium text-gray-200 ml-2">
+                        - {exp.position || exp.mainTitle || (exp.positions && exp.positions[0]?.title)}
+                      </span>
+                    )}
+                  </h3>
+                </div>
+                <span className="text-sm text-gray-400 font-medium whitespace-nowrap">
+                  {exp.duration || (exp.positions && exp.positions[0]?.duration) || ''}
                 </span>
               </div>
-              <span className="text-sm text-gray-400 font-medium whitespace-nowrap mt-1">{
-                exp.duration || (exp.positions && exp.positions[0]?.duration) || ''
-              }</span>
+              
+              {/* Subroles or positions (for TA or multi-role) */}
+              {exp.mainTitle && exp.subroles ? (
+                <div className="flex flex-col gap-4">
+                  {exp.subroles.map((sub, i) => (
+                    <div key={sub.course + sub.duration} className="border-l-2 border-cyan-400/30 pl-4">
+                      <div className="flex flex-row items-center gap-2 mb-2">
+                        <span className="text-base font-semibold text-gray-100">{sub.course}</span>
+                        <span className="text-sm text-blue-300 font-medium">{sub.duration}</span>
+                      </div>
+                      <ul className="space-y-1 text-gray-300 text-sm">
+                        {sub.description.map((item, j) => (
+                          <li key={j} className="flex items-start gap-2">
+                            <span className="text-cyan-400 mt-1.5 w-1 h-1 bg-cyan-400 rounded-full flex-shrink-0"></span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ) : exp.positions ? (
+                <div className="flex flex-col gap-4">
+                  {exp.positions.map((pos, i) => (
+                    <div key={pos.title + pos.duration} className="border-l-2 border-cyan-400/30 pl-4">
+                      <div className="flex flex-row items-center gap-2 mb-2">
+                        <span className="text-base font-semibold text-gray-100">{pos.title}</span>
+                        <span className="text-sm text-blue-300 font-medium">{pos.duration}</span>
+                      </div>
+                      <ul className="space-y-1 text-gray-300 text-sm">
+                        {pos.description.map((item, j) => (
+                          <li key={j} className="flex items-start gap-2">
+                            <span className="text-cyan-400 mt-1.5 w-1 h-1 bg-cyan-400 rounded-full flex-shrink-0"></span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                Array.isArray(exp.description) && (
+                  <ul className="space-y-1 text-gray-300 text-sm">
+                    {exp.description.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-cyan-400 mt-1.5 w-1 h-1 bg-cyan-400 rounded-full flex-shrink-0"></span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )
+              )}
             </div>
-            {/* Subroles or positions (for TA or multi-role) */}
-            {exp.mainTitle && exp.subroles ? (
-              <div className="flex flex-col gap-2 mt-1">
-                {exp.subroles.map((sub, i) => (
-                  <div key={sub.course + sub.duration} className="mb-1">
-                    <div className="flex flex-row items-center gap-2 mb-1">
-                      <span className="text-base font-bold text-gray-100 block">{exp.company}</span>
-                      <span className="text-sm font-medium text-gray-200 block">- {sub.course}</span>
-                      <span className="text-xs text-blue-300 block">{sub.duration}</span>
-                    </div>
-                    <ul className="list-disc list-inside ml-4 text-gray-300 text-sm">
-                      {sub.description.map((item, j) => (
-                        <li key={j}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            ) : exp.positions ? (
-              <div className="flex flex-col gap-2 mt-1">
-                {exp.positions.map((pos, i) => (
-                  <div key={pos.title + pos.duration} className="mb-1">
-                    <div className="flex flex-row items-center gap-2 mb-1">
-                      <span className="text-base font-bold text-gray-100 block">{exp.company}</span>
-                      <span className="text-sm font-medium text-gray-200 block">- {pos.title}</span>
-                      <span className="text-xs text-blue-300 block">{pos.duration}</span>
-                    </div>
-                    <ul className="list-disc list-inside ml-4 text-gray-300 text-sm">
-                      {pos.description.map((item, j) => (
-                        <li key={j}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <ul className="list-disc list-inside ml-4 text-gray-300 text-sm mt-1">
-                {Array.isArray(exp.description) && exp.description.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
-            )}
           </div>
         </div>
       ))}
     </div>
   </div>
 );
-
 // Projects Data
 const projects = [
   {
