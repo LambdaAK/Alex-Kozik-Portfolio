@@ -366,7 +366,7 @@ const projects = [
     tech: ["React", "TypeScript", "Vite", "CSS", "JavaScript", "Netlify"],
     github: "https://github.com/LambdaAK/AlgoSandbox",
     demo: null,
-    image: null,
+    image: "/algosandbox logo.png",
     highlights: [
       "Visualizes sorting, searching, and data structure algorithms with real-time animations.",
       "Tag-based filtering and search for algorithms.",
@@ -406,7 +406,7 @@ const projects = [
     tech: ["React", "TypeScript", "Express.js", "Firebase", "Vite", "SASS"],
     github: null,
     demo: null,
-    image: null,
+    image: "/Habit stack logo.png",
     highlights: [
       "Developed TypeScript APIs and Express.js backend integrated with Firebase for seamless data persistence.",
       "Implemented live chat functionality using database connections, enabling low-latency communication between users."
@@ -418,7 +418,7 @@ const projects = [
     tech: ["Java", "JavaFX", "SceneBuilder", "Gradle", "JUnit"],
     github: null,
     demo: null,
-    image: null,
+    image: "/critterworld logo.png",
     highlights: [
       "Built JavaFX GUI with multithreading to visualize real-time interactions and evolution of virtual organisms.",
       "Implemented custom programming language with AST parser and interpreter to model organism behavior and mutations.",
@@ -431,7 +431,7 @@ const projects = [
     tech: ["PyTorch", "Python", "Deep Learning"],
     github: null,
     demo: null,
-    image: null,
+    image: "/image captioning logo.png",
     highlights: [
       "Built soft and hard attention mechanisms with REINFORCE and backpropagation for stochastic/deterministic attention.",
       "Developed encoder-decoder architecture using ResNet-50 and LSTM with attention visualization."
