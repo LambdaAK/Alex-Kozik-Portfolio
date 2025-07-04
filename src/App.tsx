@@ -446,6 +446,8 @@ const projects = [
     ]
   },
 ];
+// Projects Section Component
+// Projects Section Component
 
 // Projects Section Component
 const Projects = () => (
@@ -455,52 +457,62 @@ const Projects = () => (
       {projects.map((project) => (
         <div
           key={project.name}
-          className="w-full flex flex-row items-stretch bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200"
+          className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
         >
-          {/* Logo on the left */}
-          <div className="flex items-center justify-center min-w-[120px] max-w-[160px] bg-white/20 rounded-l-2xl p-4">
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={project.name + ' logo'}
-                className="object-contain w-24 h-16 rounded-2xl"
-              />
-            ) : (
-              <span className="text-5xl font-extrabold text-white select-none">
-                {project.name[0]}
-              </span>
-            )}
-          </div>
-          {/* Details on the right */}
-          <div className="flex-1 flex flex-col justify-between p-5 gap-2">
-            <div className="flex flex-row items-start justify-between flex-wrap gap-2">
-              <div>
-                <span className="text-lg font-bold text-gray-100 block leading-tight">
-                  {project.name}
+          <div className="flex flex-row items-start gap-6">
+            {/* Logo section */}
+            <div className="flex items-center justify-center w-20 h-20 rounded-xl flex-shrink-0">
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={project.name + ' logo'}
+                  className="object-contain w-16 h-16 rounded-lg"
+                />
+              ) : (
+                <span className="text-2xl font-extrabold text-white select-none">
+                  {project.name[0]}
                 </span>
-                <span className="block text-blue-300 text-base font-medium mt-1">
-                  {project.tech && project.tech.join(', ')}
-                </span>
-              </div>
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-1 rounded-full bg-white/10 text-gray-200 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 transition text-base flex items-center gap-2"
-                >
-                  GitHub
-                </a>
               )}
             </div>
-            <p className="text-gray-300 mb-2 text-lg">{project.description}</p>
-            {project.highlights && project.highlights.length > 0 && (
-              <ul className="list-disc list-inside ml-4 text-gray-300 text-sm mt-1">
-                {project.highlights.map((h, i) => (
-                  <li key={i}>{h}</li>
-                ))}
-              </ul>
-            )}
+            
+            {/* Content section */}
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-100 leading-tight">
+                    {project.name}
+                  </h3>
+                  <p className="text-blue-300 text-base font-medium mt-1">
+                    {project.tech && project.tech.join(', ')}
+                  </p>
+                </div>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 rounded-full bg-white/10 text-gray-200 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 transition text-sm flex items-center gap-2"
+                  >
+                    GitHub
+                  </a>
+                )}
+              </div>
+              
+              <p className="text-gray-300 mb-3 text-base leading-relaxed">
+                {project.description}
+              </p>
+              
+              {project.highlights && project.highlights.length > 0 && (
+                <ul className="space-y-1 text-gray-300 text-sm">
+                  {project.highlights.map((h, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-cyan-400 mt-1.5 w-1 h-1 bg-cyan-400 rounded-full flex-shrink-0"></span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </div>
       ))}
