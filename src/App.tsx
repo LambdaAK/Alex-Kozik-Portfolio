@@ -370,34 +370,6 @@ const ExperienceSection = () => (
 // Projects Data
 const projects = [
   {
-    name: "Portfolio Website",
-    description: "This portfolio website",
-    tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
-    github: null,
-    demo: null,
-    image: null,
-    highlights: [
-      "Modern, responsive design with dark mode",
-      "Sticky navbar and smooth navigation",
-      "Animated transitions with Framer Motion",
-      "Showcases education, experience, and projects"
-    ]
-  },
-  {
-    name: "AlgoSandbox",
-    description: "Interactive platform for visualizing and experimenting with classic algorithms and data structures. Designed for students, educators, and developers to learn and teach algorithms in an engaging way.",
-    tech: ["React", "TypeScript", "Vite", "CSS", "JavaScript", "Netlify"],
-    github: "https://github.com/LambdaAK/AlgoSandbox",
-    demo: null,
-    image: "/algosandbox logo.png",
-    highlights: [
-      "Visualizes sorting, searching, and data structure algorithms with real-time animations.",
-      "Tag-based filtering and search for algorithms.",
-      "Responsive, dark-themed UI for a modern learning experience.",
-      "Used by students and educators for teaching and self-study."
-    ]
-  },
-  {
     name: "C-Torch",
     description: "High-performance math and machine learning library supporting numerical methods, multivariate calculus, and linear algebra. Includes 15+ ML models and RL agents.",
     tech: ["C++", "Machine Learning", "Numerical Methods"],
@@ -424,10 +396,23 @@ const projects = [
     ]
   },
   {
+    name: "Visual Attention Image Captioning",
+    description: "Show, Attend, Tell implementation: attention-based image captioning model with superior METEOR scores.",
+    tech: ["PyTorch", "Python", "Deep Learning"],
+    github: "https://github.com/LambdaAK/CS-4782-Final-Project",
+    demo: null,
+    image: "/image captioning logo.png",
+    highlights: [
+      "Built soft and hard attention mechanisms with REINFORCE and backpropagation for stochastic/deterministic attention.",
+      "Developed encoder-decoder architecture using ResNet-50 and LSTM with attention visualization."
+    ]
+  },
+
+  {
     name: "HabitStack",
     description: "Full-stack habit tracking application with OAuth2, monthly calendar interface, and real-time goal management.",
     tech: ["React", "TypeScript", "Express.js", "Firebase", "Vite", "SASS"],
-    github: null,
+    github: "https://github.com/LambdaAK/HabitStack",
     demo: null,
     image: "/Habit stack logo.png",
     highlights: [
@@ -435,6 +420,22 @@ const projects = [
       "Implemented live chat functionality using database connections, enabling low-latency communication between users."
     ]
   },
+
+  {
+    name: "AlgoSandbox",
+    description: "Interactive platform for visualizing and experimenting with classic algorithms and data structures. Designed for students, educators, and developers to learn and teach algorithms in an engaging way.",
+    tech: ["React", "TypeScript", "Vite", "CSS", "JavaScript", "Netlify"],
+    github: "https://github.com/LambdaAK/AlgoSandbox",
+    demo: null,
+    image: "/algosandbox logo.png",
+    highlights: [
+      "Visualizes sorting, searching, and data structure algorithms with real-time animations.",
+      "Tag-based filtering and search for algorithms.",
+      "Responsive, dark-themed UI for a modern learning experience.",
+      "Used by students and educators for teaching and self-study."
+    ]
+  },
+
   {
     name: "CritterWorld",
     description: "Evolving artificial life simulator with JavaFX GUI and custom programming language for organism behavior.",
@@ -448,23 +449,17 @@ const projects = [
       "Developed pathfinding algorithms including A* and Dijkstra's for intelligent organism navigation."
     ]
   },
+
   {
-    name: "Visual Attention Image Captioning",
-    description: "Show, Attend, Tell implementation: attention-based image captioning model with superior METEOR scores.",
-    tech: ["PyTorch", "Python", "Deep Learning"],
-    github: null,
+    name: "Portfolio Website",
+    description: "This portfolio website",
+    tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/LambdaAK/Alex-Kozik-Portfolio",
     demo: null,
-    image: "/image captioning logo.png",
-    highlights: [
-      "Built soft and hard attention mechanisms with REINFORCE and backpropagation for stochastic/deterministic attention.",
-      "Developed encoder-decoder architecture using ResNet-50 and LSTM with attention visualization."
-    ]
+    image: null
   },
 ];
-// Projects Section Component
-// Projects Section Component
 
-// Projects Section Component
 const Projects = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
     <h2 className="text-3xl font-bold text-gray-100 mb-3">Projects</h2>
