@@ -457,7 +457,7 @@ const projects = [
     ]
   },
   {
-    name: "CourseSphere - Transformer-powered course recommendation system",
+    name: "CourseSphere - LLM-powered course recommendation system",
     description: "AI-powered assistant for Cornell students that matches users to courses and professors based on their academic interests, backgrounds, and goals. Aggregates course and professor data for quick, informed decisions.",
     tech: ["TypeScript", "Python", "Jupyter Notebook", "SCSS", "Pinecone"],
     github: "https://github.com/LambdaAK/CourseSphere",
