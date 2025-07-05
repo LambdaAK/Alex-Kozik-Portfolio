@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import Starfield from './Starfield';
 
@@ -97,7 +97,7 @@ const EducationSection = () => (
   <div className="flex flex-col gap-2 items-center justify-center">
     <h2 className="text-3xl font-bold text-gray-100 mb-3">Education</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
-      {educationData.map((edu, idx) => {
+      {educationData.map((edu) => {
         const [showCourses, setShowCourses] = useState(false);
         return (
           <div
@@ -276,7 +276,7 @@ const ExperienceSection = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
     <h2 className="text-3xl font-bold text-gray-100 mb-3">Experience</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
-      {experienceData.map((exp, idx) => (
+      {experienceData.map((exp) => (
         <div
           key={exp.company + (exp.position || exp.mainTitle || '')}
           className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
@@ -312,7 +312,7 @@ const ExperienceSection = () => (
               {/* Subroles or positions (for TA or multi-role) */}
               {exp.mainTitle && exp.subroles ? (
                 <div className="flex flex-col gap-4">
-                  {exp.subroles.map((sub, i) => (
+                  {exp.subroles.map((sub) => (
                     <div key={sub.course + sub.duration} className="border-l-2 border-cyan-400/30 pl-4">
                       <div className="flex flex-row items-center gap-2 mb-2">
                         <span className="text-base font-semibold text-gray-100">{sub.course}</span>
@@ -331,7 +331,7 @@ const ExperienceSection = () => (
                 </div>
               ) : exp.positions ? (
                 <div className="flex flex-col gap-4">
-                  {exp.positions.map((pos, i) => (
+                  {exp.positions.map((pos) => (
                     <div key={pos.title + pos.duration} className="border-l-2 border-cyan-400/30 pl-4">
                       <div className="flex flex-row items-center gap-2 mb-2">
                         <span className="text-base font-semibold text-gray-100">{pos.title}</span>
