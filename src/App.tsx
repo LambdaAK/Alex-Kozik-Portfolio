@@ -20,16 +20,16 @@ const AboutMeCard = () => (
     {/* Content */}
     <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
       {/* Greeting */}
-      <div className="text-lg sm:text-xl font-medium text-white/80 mb-1 flex items-center gap-2">
+      <div className="text-lg sm:text-xl font-medium text-gray-700 mb-1 flex items-center gap-2">
         <span role="img" aria-label="wave">👋</span> Hello, I'm
       </div>
       {/* Name */}
-      <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-1">Alex</h1>
+      <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-1">Alex</h1>
       {/* Subtitle */}
-      <div className="text-xl sm:text-2xl font-semibold text-blue-200 mb-4">Software/ML Engineer</div>
+      <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4">Software/ML Engineer</div>
       {/* Intro Paragraph */}
-      <p className="text-base sm:text-lg text-white/80 max-w-xl mb-6">
-        I am a <span className="text-blue-300 font-semibold">first-generation college student</span> studying <span className="text-purple-300 font-semibold">computer science</span> and <span className="text-purple-300 font-semibold">mathematics</span> at <span className='text-red-400 font-semibold'>Cornell</span>, specializing in <span className="text-purple-300 font-semibold">machine learning</span> and <span className="text-purple-300 font-semibold">software engineering</span>.<br /><br />
+      <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6">
+        I am a <span className="text-blue-600 font-semibold">first-generation college student</span> studying <span className="text-purple-600 font-semibold">computer science</span> and <span className="text-purple-600 font-semibold">mathematics</span> at <span className='text-red-600 font-semibold'>Cornell</span>, specializing in <span className="text-purple-600 font-semibold">machine learning</span> and <span className="text-purple-600 font-semibold">software engineering</span>.<br /><br />
         In my free time, I enjoy working on personal projects, working out, and reading.<br /><br />
         Welcome to my website!
       </p>
@@ -38,14 +38,14 @@ const AboutMeCard = () => (
         <a
           href="/resume.pdf"
           download
-          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-100 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
           <span className="text-lg">📄</span>
           View Resume
         </a>
         <a
           href="mailto:alex.kozik@yahoo.com"
-          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-100 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
           <FaEnvelope size={18} />
           Get in Touch
@@ -54,7 +54,7 @@ const AboutMeCard = () => (
           href="https://github.com/LambdaAK"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-100 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
           <FaGithub size={18} />
           GitHub
@@ -63,7 +63,7 @@ const AboutMeCard = () => (
           href="https://linkedin.com/in/alex-kozik"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-100 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
           <FaLinkedin size={18} />
           LinkedIn
@@ -136,7 +136,7 @@ const educationData = [
 ];
 const EducationSection = () => (
   <div className="flex flex-col gap-2 items-center justify-center">
-    <h2 className="text-3xl font-bold text-gray-100 mb-3">Education</h2>
+    <h2 className="text-3xl font-bold text-gray-800 mb-3">Education</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
       {educationData.map((edu) => {
         const [showCourses, setShowCourses] = useState(false);
@@ -157,17 +157,17 @@ const EducationSection = () => (
             <div className="flex-1 flex flex-col justify-between p-5 gap-2">
               <div className="flex flex-row items-start justify-between flex-wrap gap-2">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-100 leading-tight">
+                  <h3 className="text-xl font-bold text-gray-800 leading-tight">
                     {edu.degree} - {edu.name}
                   </h3>
-                  <span className="block text-blue-300 text-base font-medium mt-1">{edu.major}</span>
+                  <span className="block text-blue-500 text-base font-medium mt-1">{edu.major}</span>
                 </div>
-                <span className="text-sm text-gray-400 font-medium whitespace-nowrap mt-1">{edu.date}</span>
+                <span className="text-sm text-gray-600 font-medium whitespace-nowrap mt-1">{edu.date}</span>
               </div>
               <div className="flex flex-row items-center gap-4 mt-1">
-                <span className="text-base text-gray-400">{edu.gpa}</span>
+                <span className="text-base text-gray-600">{edu.gpa}</span>
                 <button
-                  className="px-4 py-1.5 rounded-full bg-white/10 text-white font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
+                  className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
                   onClick={() => setShowCourses((prev) => !prev)}
                 >
                   {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
@@ -175,36 +175,36 @@ const EducationSection = () => (
               </div>
               {showCourses && (
                 <div className="mt-2">
-                  <span className="font-semibold text-gray-200">Relevant Courses:</span>
+                  <span className="font-semibold text-gray-700">Relevant Courses:</span>
                   {edu.name === 'Cornell University' ? (
                     <div className="ml-3 mt-1">
-                      <span className="font-semibold text-blue-300">CS:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-300 text-sm">
+                      <span className="font-semibold text-blue-500">CS:</span>
+                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
                         {edu.courses.slice(0, 13).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
-                      <span className="font-semibold text-blue-300">Math:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-300 text-sm">
+                      <span className="font-semibold text-blue-500">Math:</span>
+                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
                         {edu.courses.slice(13, 21).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
-                      <span className="font-semibold text-blue-300">Econ:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-300 text-sm">
+                      <span className="font-semibold text-blue-500">Econ:</span>
+                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
                         {edu.courses.slice(21, 23).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
-                      <span className="font-semibold text-blue-300">Other:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-300 text-sm">
+                      <span className="font-semibold text-blue-500">Other:</span>
+                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
                         {edu.courses.slice(23).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
                     </div>
                   ) : (
-                    <ul className="list-disc list-inside ml-3 mt-1 text-gray-300 text-sm">
+                    <ul className="list-disc list-inside ml-3 mt-1 text-gray-600 text-sm">
                       {edu.courses.map((course) => (
                         <li key={course}>{course}</li>
                       ))}
@@ -303,7 +303,7 @@ const experienceData = [
 
 const ExperienceSection = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
-    <h2 className="text-3xl font-bold text-gray-100 mb-3">Experience</h2>
+    <h2 className="text-3xl font-bold text-gray-800 mb-3">Experience</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
       {experienceData.map((exp) => (
         <div
@@ -324,16 +324,16 @@ const ExperienceSection = () => (
             <div className="flex-1 min-w-0">
               <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-100 leading-tight">
+                  <h3 className="text-xl font-bold text-gray-800 leading-tight">
                     {exp.company}
                     {(exp.position || exp.mainTitle) && (
-                      <span className="text-lg font-medium text-gray-200 ml-2">
+                      <span className="text-lg font-medium text-gray-700 ml-2">
                         - {exp.position || exp.mainTitle}
                       </span>
                     )}
                   </h3>
                 </div>
-                <span className="text-sm text-gray-400 font-medium whitespace-nowrap">
+                <span className="text-sm text-gray-600 font-medium whitespace-nowrap">
                   {exp.duration || ''}
                 </span>
               </div>
@@ -344,13 +344,14 @@ const ExperienceSection = () => (
                   {exp.subroles.map((sub) => (
                     <div key={sub.course + sub.duration} className="border-l-2 border-cyan-400/30 pl-4">
                       <div className="flex flex-row items-center gap-2 mb-2">
-                        <span className="text-base font-semibold text-gray-100">{sub.course}</span>
-                        <span className="text-sm text-blue-300 font-medium">{sub.duration}</span>
+                        <span className="text-base font-semibold text-gray-800">{sub.course}</span>
+                        <span className="text-sm text-blue-500 font-medium">{sub.duration}</span>
+                        <span className="text-sm text-blue-600 font-medium">{sub.duration}</span>
                       </div>
-                      <ul className="space-y-1 text-gray-300 text-sm">
+                      <ul className="space-y-1 text-gray-600 text-sm">
                         {sub.description.map((item, j) => (
                           <li key={j} className="flex items-start gap-2">
-                            <span className="text-cyan-400 mt-1.5 w-1 h-1 bg-cyan-400 rounded-full flex-shrink-0"></span>
+                            <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -360,10 +361,10 @@ const ExperienceSection = () => (
                 </div>
               ) : (
                 Array.isArray(exp.description) && (
-                  <ul className="space-y-1 text-gray-300 text-sm">
+                  <ul className="space-y-1 text-gray-600 text-sm">
                     {exp.description.map((item, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="text-cyan-400 mt-1.5 w-1 h-1 bg-cyan-400 rounded-full flex-shrink-0"></span>
+                        <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -468,7 +469,7 @@ const projects = [
 
 const Projects = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
-    <h2 className="text-3xl font-bold text-gray-100 mb-3">Projects</h2>
+    <h2 className="text-3xl font-bold text-gray-800 mb-3">Projects</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
       {projects.map((project) => (
         <div
@@ -485,7 +486,7 @@ const Projects = () => (
                   className="object-contain w-16 h-16 rounded-lg"
                 />
               ) : (
-                <span className="text-2xl font-extrabold text-white select-none">
+                <span className="text-2xl font-extrabold text-gray-800 select-none">
                   {project.name[0]}
                 </span>
               )}
@@ -495,10 +496,10 @@ const Projects = () => (
             <div className="flex-1 min-w-0">
               <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-100 leading-tight">
+                  <h3 className="text-xl font-bold text-gray-800 leading-tight">
                     {project.name}
                   </h3>
-                  <p className="text-blue-300 text-base font-medium mt-1">
+                  <p className="text-blue-600 text-base font-medium mt-1">
                     {project.tech && project.tech.join(', ')}
                   </p>
                 </div>
@@ -507,22 +508,23 @@ const Projects = () => (
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-full bg-white/10 text-gray-200 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 transition text-sm flex items-center gap-2"
+                    className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
                   >
+                    <FaGithub size={18} />
                     GitHub
                   </a>
                 )}
               </div>
               
-              <p className="text-gray-300 mb-3 text-base leading-relaxed">
+              <p className="text-gray-600 mb-3 text-base leading-relaxed">
                 {project.description}
               </p>
               
               {project.highlights && project.highlights.length > 0 && (
-                <ul className="space-y-1 text-gray-300 text-sm">
+                <ul className="space-y-1 text-gray-600 text-sm">
                   {project.highlights.map((h, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-cyan-400 mt-1.5 w-1 h-1 bg-cyan-400 rounded-full flex-shrink-0"></span>
+                      <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
                       <span>{h}</span>
                     </li>
                   ))}
@@ -579,7 +581,7 @@ const SpaceThemedScrollIndicator = () => {
             : 'opacity-0 transform translate-y-2 pointer-events-none'
         }`}
       >
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 animate-pulse border border-blue-400/30">
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-gray-800 px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 animate-pulse border border-blue-400/30">
           <Mouse size={16} />
           <span className="text-sm font-medium">Scroll to explore my portfolio</span>
           <ArrowDown size={16} className="animate-bounce" />

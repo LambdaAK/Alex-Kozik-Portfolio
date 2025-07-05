@@ -38,7 +38,7 @@ const Starfield: React.FC = () => {
       {shootingStars}
       <style>{`
         .starfield-bg {
-          background: linear-gradient(135deg, #181A20 0%, #232a36 60%, #312e81 100%);
+          background: linear-gradient(135deg, #fce7f3 0%, #dbeafe 60%, #f3e8ff 100%);
         }
         .twinkle {
           animation: twinkle 2s infinite;
@@ -66,4 +66,4 @@ const Starfield: React.FC = () => {
   );
 };
 
-export default Starfield; 
+export default Starfield;
