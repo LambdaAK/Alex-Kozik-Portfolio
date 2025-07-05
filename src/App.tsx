@@ -458,13 +458,28 @@ const projects = [
     ]
   },
   {
+    name: "CourseSphere - Transformer-powered course recommendation system",
+    description: "AI-powered assistant for Cornell students that matches users to courses and professors based on their academic interests, backgrounds, and goals. Aggregates course and professor data for quick, informed decisions.",
+    tech: ["TypeScript", "Python", "Jupyter Notebook", "SCSS", "Pinecone"],
+    github: "https://github.com/LambdaAK/CourseSphere",
+    demo: null,
+    image: null,
+    highlights: [
+      "Matches students to courses and professors based on academic interests and goals.",
+      "Aggregates course and professor data for quick, informed decisions.",
+      "Uses Pinecone, a vector database, for fast and intelligent course matching.",
+      "Features a modern, user-friendly frontend for a seamless experience.",
+      "Database includes 19k courses and 8k faculty."
+    ]
+  },
+  {
     name: "Portfolio Website",
     description: "This portfolio website",
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/LambdaAK/Alex-Kozik-Portfolio",
     demo: null,
     image: null
-  },
+  }
 ];
 
 const Projects = () => (
