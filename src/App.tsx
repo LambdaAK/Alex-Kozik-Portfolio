@@ -146,12 +146,9 @@ const EducationSection = () => (
             <div className="flex-1 flex flex-col justify-between p-5 gap-2">
               <div className="flex flex-row items-start justify-between flex-wrap gap-2">
                 <div>
-                  <span className="text-lg font-bold text-gray-100 block leading-tight">
-                    {edu.degree}
-                    {edu.name && (
-                      <span className="text-gray-400 font-semibold"> @ {edu.name}</span>
-                    )}
-                  </span>
+                  <h3 className="text-xl font-bold text-gray-100 leading-tight">
+                    {edu.degree} - {edu.name}
+                  </h3>
                   <span className="block text-blue-300 text-base font-medium mt-1">{edu.major}</span>
                 </div>
                 <span className="text-sm text-gray-400 font-medium whitespace-nowrap mt-1">{edu.date}</span>
@@ -229,17 +226,13 @@ const experienceData = [
   {
     company: 'CMSX',
     logo: '/CMSX-logo.svg',
-    positions: [
-      {
-        title: 'Frontend Lead, Vice President, Fullstack Engineer',
-        duration: 'Aug 2023 – Present',
-        description: [
-          'Maintain Cornell\'s course management system, used by 10,000+ students in 100,000+ line codebase.',
-          'Lead frontend team by designing project architectures, reviewing PRs, and interviewing candidates.',
-          'Architected and built the student-facing frontend in React/TS, implementing a component architecture and state management to reduce loading times by 90% from the previous implementation.',
-          'Implemented APIs with serializable data structures, enabling secure communication between frontend and backend while improving developer velocity through enhanced code modularity and reusability.'
-        ],
-      },
+    position: 'Frontend Lead, Vice President, Fullstack Engineer',
+    duration: 'Aug 2023 – Present',
+    description: [
+      "Maintain Cornell's course management system, used by 10,000+ students in 100,000+ line codebase.",
+      'Lead frontend team by designing project architectures, reviewing PRs, and interviewing candidates.',
+      'Architected and built the student-facing frontend in React/TS, implementing a component architecture and state management to reduce loading times by 90% from the previous implementation.',
+      'Implemented APIs with serializable data structures, enabling secure communication between frontend and backend while improving developer velocity through enhanced code modularity and reusability.'
     ],
   },
   {
@@ -256,7 +249,7 @@ const experienceData = [
   {
     company: 'Cornell Generative AI',
     logo: '/generative_ai_at_cornell_logo.jpeg',
-    position: 'AI/ML Engineer & Project Manager',
+    position: 'Artificial Intelligence/Machine Learning Engineer',
     duration: 'Feb 2025 - Present',
     description: [
       'Developed AI agent for QuickFi, a commercial lending technology company, automating insurance certificate validation and compliance verification processes, reducing operational costs.',
@@ -322,19 +315,19 @@ const ExperienceSection = () => (
                 <div>
                   <h3 className="text-xl font-bold text-gray-100 leading-tight">
                     {exp.company}
-                    {(exp.position || exp.mainTitle || (exp.positions && exp.positions[0]?.title)) && (
+                    {(exp.position || exp.mainTitle) && (
                       <span className="text-lg font-medium text-gray-200 ml-2">
-                        - {exp.position || exp.mainTitle || (exp.positions && exp.positions[0]?.title)}
+                        - {exp.position || exp.mainTitle}
                       </span>
                     )}
                   </h3>
                 </div>
                 <span className="text-sm text-gray-400 font-medium whitespace-nowrap">
-                  {exp.duration || (exp.positions && exp.positions[0]?.duration) || ''}
+                  {exp.duration || ''}
                 </span>
               </div>
               
-              {/* Subroles or positions (for TA or multi-role) */}
+              {/* Subroles (for TA positions) */}
               {exp.mainTitle && exp.subroles ? (
                 <div className="flex flex-col gap-4">
                   {exp.subroles.map((sub) => (
@@ -345,25 +338,6 @@ const ExperienceSection = () => (
                       </div>
                       <ul className="space-y-1 text-gray-300 text-sm">
                         {sub.description.map((item, j) => (
-                          <li key={j} className="flex items-start gap-2">
-                            <span className="text-cyan-400 mt-1.5 w-1 h-1 bg-cyan-400 rounded-full flex-shrink-0"></span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              ) : exp.positions ? (
-                <div className="flex flex-col gap-4">
-                  {exp.positions.map((pos) => (
-                    <div key={pos.title + pos.duration} className="border-l-2 border-cyan-400/30 pl-4">
-                      <div className="flex flex-row items-center gap-2 mb-2">
-                        <span className="text-base font-semibold text-gray-100">{pos.title}</span>
-                        <span className="text-sm text-blue-300 font-medium">{pos.duration}</span>
-                      </div>
-                      <ul className="space-y-1 text-gray-300 text-sm">
-                        {pos.description.map((item, j) => (
                           <li key={j} className="flex items-start gap-2">
                             <span className="text-cyan-400 mt-1.5 w-1 h-1 bg-cyan-400 rounded-full flex-shrink-0"></span>
                             <span>{item}</span>
