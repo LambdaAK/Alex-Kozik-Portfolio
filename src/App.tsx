@@ -1,6 +1,7 @@
 import './App.css'
 import { useState } from 'react';
 import Starfield from './Starfield';
+import { FaEnvelope } from 'react-icons/fa';
 
 // About Me Card Component
 const AboutMeCard = () => (
@@ -21,14 +22,32 @@ const AboutMeCard = () => (
       <h2 className="text-4xl font-bold mb-4 flex items-center gap-2">
         <span role="img" aria-label="About">👤</span> About Me
       </h2>
-      <p className="mb-2 text-xl">
+      <p className="mb-6 text-xl">
         Hi! I'm Alex, a first-generation college student studying CS and math at Cornell University.
         
         I'm passionate about machine learning and software engineering.
 
         I'm always eager to learn, collaborate, and take on new challenges—both in and out of the classroom.
       </p>
-      {/* Add more about you here if desired */}
+      
+      {/* Contact Buttons */}
+      <div className="flex flex-wrap gap-3">
+        <a
+          href="mailto:alex.kozik@yahoo.com"
+          className="px-4 py-2 rounded-xl bg-white/5 text-gray-200 font-medium backdrop-blur-sm border border-white/10 shadow-sm transition-all duration-200 hover:bg-white/10 hover:text-white hover:border-white/20 hover:scale-[1.02] focus:outline-none focus:ring-1 focus:ring-white/30 flex items-center gap-2 text-sm"
+        >
+          <FaEnvelope size={14} />
+          Email
+        </a>
+        <a
+          href="/resume.pdf"
+          download
+          className="px-4 py-2 rounded-xl bg-white/5 text-gray-200 font-medium backdrop-blur-sm border border-white/10 shadow-sm transition-all duration-200 hover:bg-white/10 hover:text-white hover:border-white/20 hover:scale-[1.02] focus:outline-none focus:ring-1 focus:ring-white/30 flex items-center gap-2 text-sm"
+        >
+          <span className="text-xs">📄</span>
+          Resume/CV
+        </a>
+      </div>
     </div>
   </div>
 );
