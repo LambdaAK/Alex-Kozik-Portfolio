@@ -1,7 +1,8 @@
 import './App.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Starfield from './Starfield';
 import { FaEnvelope } from 'react-icons/fa';
+import { Mouse, ArrowDown } from 'lucide-react';
 
 // About Me Card Component
 const AboutMeCard = () => (
@@ -52,17 +53,7 @@ const AboutMeCard = () => (
   </div>
 );
 
-// Scroll Indicator Component
-const ScrollIndicator = () => (
-  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <div className="flex flex-col items-center text-white/60">
-      <span className="text-sm font-medium mb-2">Scroll to explore</span>
-      <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
-        <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
-      </div>
-    </div>
-  </div>
-);
+
 
 // Education Section Component
 const educationData = [
@@ -524,19 +515,74 @@ const Projects = () => (
     </div>
   </div>
 );
+const SpaceThemedScrollIndicator = () => {
+  const [scrollState, setScrollState] = useState({
+    canScrollDown: false,
+    hasScrolled: false
+  });
+
+  const checkScrollability = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = window.innerHeight;
+    
+    const canScrollDown = scrollTop + clientHeight < scrollHeight - 10; // Small buffer
+    const hasScrolled = scrollTop > 50; // Consider "scrolled" after 50px
+
+    setScrollState({
+      canScrollDown,
+      hasScrolled
+    });
+  };
+
+  useEffect(() => {
+    // Check on mount
+    checkScrollability();
+    
+    // Add scroll listener
+    window.addEventListener('scroll', checkScrollability);
+    window.addEventListener('resize', checkScrollability); // Also check on resize
+    
+    return () => {
+      window.removeEventListener('scroll', checkScrollability);
+      window.removeEventListener('resize', checkScrollability);
+    };
+  }, []);
+
+  return (
+    <>
+      {/* Initial Scroll Hint - Only show when user hasn't scrolled yet */}
+      <div 
+        className={`fixed top-6 right-6 z-50 transition-all duration-500 ${
+          !scrollState.hasScrolled && scrollState.canScrollDown
+            ? 'opacity-100 transform translate-y-0' 
+            : 'opacity-0 transform translate-y-2 pointer-events-none'
+        }`}
+      >
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 animate-pulse border border-blue-400/30">
+          <Mouse size={16} />
+          <span className="text-sm font-medium">Scroll to explore my portfolio</span>
+          <ArrowDown size={16} className="animate-bounce" />
+        </div>
+      </div>
+    </>
+  );
+};
 
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-[#181A20] to-indigo-950 text-[#E5E7EB] relative overflow-x-hidden">
       <Starfield />
+      <SpaceThemedScrollIndicator />
       <div className="flex flex-col gap-16 max-w-5xl mx-auto px-4 pb-24 relative z-10">
         <section id="about">
-          <div className="relative w-full h-screen">
-            {/* AboutMeCard centered */}
-            <div className="absolute inset-0 flex items-center justify-center px-4">
+          <div className="relative w-full h-screen pb-24 sm:pb-32 xl:pb-40 flex flex-col">
+            {/* AboutMeCard centered accounting for navbar */}
+            <div className="flex-1 flex items-center justify-center px-4" style={{ paddingTop: '80px' }}>
               <AboutMeCard />
             </div>
-            <ScrollIndicator />
+
+            
           </div>
         </section>
         
