@@ -237,7 +237,7 @@ const experienceData = [
   {
     company: 'CMSX',
     logo: '/CMSX-logo.svg',
-    position: 'Frontend Lead, Vice President, Fullstack Engineer',
+    position: 'Frontend Team Lead, Vice President, Fullstack Engineer',
     duration: 'Aug 2023 – Present',
     description: [
       "Maintain Cornell's course management system, used by 10,000+ students in 100,000+ line codebase.",
