@@ -34,6 +34,18 @@ const AboutMeCard = () => (
   </div>
 );
 
+// Scroll Indicator Component
+const ScrollIndicator = () => (
+  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <div className="flex flex-col items-center text-white/60">
+      <span className="text-sm font-medium mb-2">Scroll to explore</span>
+      <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
+        <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+);
+
 // Education Section Component
 const educationData = [
   
@@ -534,22 +546,26 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-[#181A20] to-indigo-950 text-[#E5E7EB] relative overflow-x-hidden">
       <Starfield />
-      <div className="flex flex-col gap-8 max-w-5xl mx-auto px-4 pb-24 relative z-10">
+      <div className="flex flex-col gap-16 max-w-5xl mx-auto px-4 pb-24 relative z-10">
         <section id="about">
           <div className="relative w-full h-screen">
             {/* AboutMeCard centered */}
             <div className="absolute inset-0 flex items-center justify-center px-4">
               <AboutMeCard />
             </div>
+            <ScrollIndicator />
           </div>
         </section>
-        <section id="education">
+        
+        <section id="education" className="pt-8">
           <EducationSection />
         </section>
-        <section id="experience">
+        
+        <section id="experience" className="pt-8">
           <ExperienceSection />
         </section>
-        <section id="projects">
+        
+        <section id="projects" className="pt-8">
           <Projects />
         </section>
       </div>
