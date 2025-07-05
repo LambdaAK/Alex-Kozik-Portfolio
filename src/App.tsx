@@ -345,8 +345,7 @@ const ExperienceSection = () => (
                     <div key={sub.course + sub.duration} className="border-l-2 border-cyan-400/30 pl-4">
                       <div className="flex flex-row items-center gap-2 mb-2">
                         <span className="text-base font-semibold text-gray-800">{sub.course}</span>
-                        <span className="text-sm text-blue-500 font-medium">{sub.duration}</span>
-                        <span className="text-sm text-blue-600 font-medium">{sub.duration}</span>
+                        <span className="text-sm text-blue-700 font-medium">{sub.duration}</span>
                       </div>
                       <ul className="space-y-1 text-gray-600 text-sm">
                         {sub.description.map((item, j) => (
