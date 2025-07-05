@@ -530,60 +530,15 @@ const Projects = () => (
   </div>
 );
 
-function Navbar() {
-  return (
-    <nav className="w-full flex items-center justify-between px-8 py-4 fixed top-0 left-0 z-20 bg-white/5 backdrop-blur-md border-b border-white/10">
-      {/* Logo */}
-      <div className="font-extrabold text-2xl text-white drop-shadow-lg tracking-tight select-none">
-        Alex Kozik
-      </div>
-      {/* Nav Links */}
-      <ul className="flex gap-4 md:gap-6">
-        {[
-          { name: 'Home', href: '#about' },
-          { name: 'Projects', href: '#projects' },
-          { name: 'Education', href: '#education' },
-          { name: 'Experience', href: '#experience' },
-          { name: 'Resume', href: '/resume.pdf', download: true },
-        ].map((link) => (
-          <li key={link.name}>
-            <a
-              href={link.href}
-              {...(link.download ? { download: true } : {})}
-              className="px-5 py-2 rounded-full bg-white/10 text-white font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40"
-              target={link.href.startsWith('http') ? '_blank' : undefined}
-              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            >
-              {link.name}
-            </a>
-          </li>
-        ))}
-      </ul>
-      {/* Social Icons */}
-      <div className="flex gap-3">
-        <a href="https://linkedin.com/in/alex-kozik" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:text-cyan-300 transition shadow-md backdrop-blur-md">
-          <FaLinkedin size={22} />
-        </a>
-        <a href="mailto:alex.kozik@yahoo.com" aria-label="Email"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:text-cyan-300 transition shadow-md backdrop-blur-md">
-          <FaEnvelope size={22} />
-        </a>
-      </div>
-    </nav>
-  );
-}
-
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-[#181A20] to-indigo-950 text-[#E5E7EB] relative overflow-x-hidden">
       <Starfield />
-      <Navbar />
       <div className="flex flex-col gap-8 max-w-5xl mx-auto px-4 pb-24 relative z-10">
         <section id="about">
           <div className="relative w-full h-screen">
-            {/* AboutMeCard centered accounting for navbar */}
-            <div className="absolute inset-0 flex items-center justify-center px-4" style={{ top: '80px' }}>
+            {/* AboutMeCard centered */}
+            <div className="absolute inset-0 flex items-center justify-center px-4">
               <AboutMeCard />
             </div>
           </div>
@@ -601,6 +556,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App
