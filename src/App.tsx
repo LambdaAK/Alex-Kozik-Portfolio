@@ -9,7 +9,7 @@ const AboutMeCard = () => (
   <div className="w-full max-w-4xl mx-auto rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center md:items-center border border-white/20">
     {/* Profile Picture */}
     <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto mb-4 md:mb-0 md:mr-8">
-      <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center border-4 border-white/20">
+      <div className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center border-4 border-white/20">
         <img
           src="/kozik.jpg"
           alt="Profile"
@@ -18,7 +18,7 @@ const AboutMeCard = () => (
       </div>
     </div>
     {/* Content */}
-    <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+    <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-4">
       {/* Greeting */}
       <div className="text-lg sm:text-xl font-medium text-gray-700 mb-1 flex items-center gap-2">
         <span role="img" aria-label="wave">👋</span> Hello, I'm
@@ -34,18 +34,18 @@ const AboutMeCard = () => (
         Welcome to my website!
       </p>
       {/* Buttons */}
-      <div className="flex flex-row gap-4 mt-2 flex-wrap">
+      <div className="flex flex-row gap-2 sm:gap-4 mt-2 flex-wrap">
         <a
           href="/resume.pdf"
           download
-          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
           <span className="text-lg">📄</span>
           View Resume
         </a>
         <a
           href="mailto:alex.kozik@yahoo.com"
-          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
           <FaEnvelope size={18} />
           Get in Touch
@@ -54,7 +54,7 @@ const AboutMeCard = () => (
           href="https://github.com/LambdaAK"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
           <FaGithub size={18} />
           GitHub
@@ -63,7 +63,7 @@ const AboutMeCard = () => (
           href="https://linkedin.com/in/alex-kozik"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
           <FaLinkedin size={18} />
           LinkedIn
