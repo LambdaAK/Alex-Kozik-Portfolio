@@ -126,7 +126,7 @@ const EducationSection = () => (
             className="w-full flex flex-row items-stretch bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200"
           >
             {/* Logo on the left */}
-            <div className="flex items-center justify-center min-w-[120px] max-w-[160px] bg-white/20 rounded-l-2xl p-4">
+            <div className="flex items-center justify-center min-w-[120px] max-w-[160px] rounded-l-2xl p-4">
               <img
                 src={edu.logo}
                 alt={edu.name + ' logo'}
