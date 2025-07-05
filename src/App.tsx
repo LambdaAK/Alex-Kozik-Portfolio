@@ -26,7 +26,7 @@ const AboutMeCard = () => (
       {/* Name */}
       <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-1">Alex</h1>
       {/* Subtitle */}
-      <div className="text-xl sm:text-2xl font-semibold text-blue-200 mb-4">CS & Math Student at Cornell</div>
+      <div className="text-xl sm:text-2xl font-semibold text-blue-200 mb-4">Software/ML Engineer</div>
       {/* Intro Paragraph */}
       <p className="text-base sm:text-lg text-white/80 max-w-xl mb-6">
         I'm a <span className="text-blue-300 font-semibold">first-generation college student</span> passionate about building the future with <span className="text-purple-300 font-semibold">machine learning</span> and <span className="text-purple-300 font-semibold">software engineering</span>. I transform complex problems into elegant solutions and love collaborating on projects that make a real impact.
