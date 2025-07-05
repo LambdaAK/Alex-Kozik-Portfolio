@@ -1,6 +1,5 @@
 import './App.css'
 import { useState } from 'react';
-import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import Starfield from './Starfield';
 
 // About Me Card Component
