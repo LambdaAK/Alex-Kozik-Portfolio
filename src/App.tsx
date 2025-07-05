@@ -218,10 +218,12 @@ const experienceData = [
     company: 'Salesforce',
     logo: '/Salesforce.com_logo.svg.png',
     position: 'Software Engineer Intern',
-    duration: 'June 2025 - August 2025',
+    duration: 'May 2025 - Aug 2025',
     description: [
-      'Implementing custom formula field functionality in Salesforce Data Cloud using Java, SQL, and Apache Spark.',
-      'Developing UI in React and TypeScript with REST API for metadata explorer, enabling users to browse data schemas.'
+      'Develop custom virtual formula field functionality in Salesforce Data Cloud, empowering customers to create dynamic data transformations without code and enabling self-service analytics capabilities.',
+      'Build scalable backend services using Java and Apache Spark for formula computations on distributed metadata services, enabling processing that scales automatically with customer data volume.',
+      'Implement REST API endpoints with robust error handling and validation, providing developers with reliable programmatic access to formula field operations and reducing integration complexity.',
+      'Create intuitive React and TypeScript frontend interface that simplifies virtual formula field creation and data exploration, dramatically improving user experience and accelerating customer onboarding.'
     ],
   },
   {
@@ -229,43 +231,36 @@ const experienceData = [
     logo: '/CMSX-logo.svg',
     positions: [
       {
-        title: 'Frontend Engineering Lead',
-        duration: 'Jan 2024 – Present',
+        title: 'Frontend Lead, Vice President, Fullstack Engineer',
+        duration: 'Aug 2023 – Present',
         description: [
+          'Maintain Cornell\'s course management system, used by 10,000+ students in 100,000+ line codebase.',
           'Lead frontend team by designing project architectures, reviewing PRs, and interviewing candidates.',
-          'Architected and built the student-facing frontend in React/TS, enhancing user experience and code maintainability.',
+          'Architected and built the student-facing frontend in React/TS, implementing a component architecture and state management to reduce loading times by 90% from the previous implementation.',
+          'Implemented APIs with serializable data structures, enabling secure communication between frontend and backend while improving developer velocity through enhanced code modularity and reusability.'
         ],
       },
-      {
-        title: 'Full Stack Engineer',
-        duration: 'Aug 2023 – Dec 2023',
-        description: [
-          "Implemented APIs with serializable data structures for secure communication between frontend and backend.",
-          "Maintained Cornell's official CS course management system, used by 10,000+ students in 100,000+ line codebase.",
-        ],
-      },
+    ],
+  },
+  {
+    company: 'Carnegie Mellon University',
+    logo: '/S3D.jpeg',
+    position: 'Software Engineer and Research Intern',
+    duration: 'May 2024 - August 2024',
+    description: [
+      'Worked on the interpreter for SASyLF, a language for writing proofs, implementing core features in Java.',
+      'Implemented a polymorphic type system for SASyLF, similar to Java generics, enabling type-safe code reuse and significantly reducing duplication in proofs by allowing abstraction over multiple data types.',
+      'Created a modular testing framework using Python to automate integration tests, ensuring reliability.'
     ],
   },
   {
     company: 'Cornell Generative AI',
     logo: '/generative_ai_at_cornell_logo.jpeg',
-    position: 'AI/ML Engineer',
-    duration: 'January 2024 - Present',
+    position: 'AI/ML Engineer & Project Manager',
+    duration: 'Feb 2025 - Present',
     description: [
-      'Developed AI agent for QuickFi automating insurance certificate validation and compliance verification processes.',
-      'Built frontend and vector database for ClassGPT, enabling professors to create AI tutors for course-specific content.',
-      'Manage cross-functional project teams and coordinate development workflows for multiple AI-driven applications.'
-    ],
-  },
-  {
-    company: 'Carnegie Mellon University, S3D',
-    logo: '/S3D.jpeg',
-    position: 'Software Engineer and Research Intern',
-    duration: 'May 2024 - August 2024',
-    description: [
-      'Worked on the interpreter for SASyLF, a programming language for writing proofs, implementing core features in Java.',
-      'Created a modular testing framework using Python to automate unit tests and integration tests, ensuring code reliability.',
-      'Implemented a polymorphic module system for SASyLF, providing type-safe code reuse similar to Java generics for classes.'
+      'Developed AI agent for QuickFi, a commercial lending technology company, automating insurance certificate validation and compliance verification processes, reducing operational costs.',
+      'Built frontend and vector database for ClassGPT, enabling professors to create AI tutors for classes.'
     ],
   },
   {
@@ -274,28 +269,28 @@ const experienceData = [
     mainTitle: 'Teaching Assistant',
     subroles: [
       {
-        course: 'CS 3780/5780 - Machine Learning',
-        duration: 'Spring 2025, Fall 2025',
+        course: 'CS 3780/5780 - Introduction to Machine Learning',
+        duration: 'Jan 2025 - Present',
         description: [
-          'Recipient of the CS Course Staff Award for providing exceptional service to students (awarded to less than 10% of TAs).',
-          'Led office hours, assisted with assignments, and supported students in learning core ML concepts.',
-          'Debugged code and graded assessments in Python.'
+          'Topics Covered: Clustering algorithms, PCA, MLE/MAP, regression, optimization algorithms, SVM, kernelization, ERM, decision trees, ensemble methods, neural networks, CNNs, generative AI, and AI ethics.',
+          'Held office hours helping students with homework assignments and programming projects, graded assignments and exams, and proctored exams.'
         ],
       },
       {
-        course: 'CS 4820/5820 - Analysis of Algorithms',
-        duration: 'Fall 2024',
+        course: 'CS 4820/5820 - Introduction to Analysis of Algorithms',
+        duration: 'Aug 2024 - Dec 2024',
         description: [
-          'Held office hours and provided guidance on algorithmic problem solving and assignments.',
-          'Graded assignments and exams, and helped students understand complex algorithmic concepts.',
+          'Topics Covered: Greedy algorithms, dynamic programming, network flow, divide and conquer algorithms, NP hardness, approximation algorithms, computability, and cryptography.',
+          'Held office hours helping students with homework assignments and programming projects, graded assignments and exams, and proctored exams.'
         ],
       },
       {
-        course: 'CS 3110 - Data Structures & Functional Programming',
-        duration: 'Fall 2023, Spring 2024',
+        course: 'CS 3110 - Data Structures and Functional Programming',
+        duration: 'Aug 2023 - May 2024',
         description: [
-          'Assisted students with functional programming and data structures assignments.',
-          'Led office hours, debugged code in OCaml, and graded coursework.',
+          'Topics Covered: OCaml programming, polymorphism, models of evaluation, functors, mutability, logic, concurrency, data structures, lambda calculus.',
+          'Awarded the CS course staff award for outstanding service to students.',
+          'Held office hours helping students with homework assignments and programming projects, lead weekly recitations, graded assignments and exams, and proctored exams.'
         ],
       },
     ],
@@ -400,86 +395,82 @@ const ExperienceSection = () => (
 // Projects Data
 const projects = [
   {
-    name: "C-Torch",
-    description: "High-performance math and machine learning library supporting numerical methods, multivariate calculus, and linear algebra. Includes 15+ ML models and RL agents.",
-    tech: ["C++", "Machine Learning", "Numerical Methods"],
+    name: "C-Torch - Artificial Intelligence/Machine Learning Library",
+    description: "High-performance math library supporting numerical methods, calculus, and linear algebra. Includes 15+ ML models and RL agents.",
+    tech: ["C++"],
     github: "https://github.com/LambdaAK/c-torch",
     demo: null,
     image: "/C torch logo.png",
     highlights: [
-      "Achieved 26x performance speedup through compiler optimizations and low-level memory management.",
-      "Implemented DQN and Policy Gradient agents with 97%+ win rates in autonomous gameplay.",
-      "Implemented neural networks and kernel SVMs, achieving 99%+ accuracy on classification tasks."
+      "Developed a high-performance math library supporting numerical methods, calculus, and linear algebra.",
+      "Implemented 15+ ML models, such as neural networks, achieving 99%+ accuracy on classification tasks.",
+      "Implemented DQN and Policy Gradient agents achieving 97%+ win rates in autonomous gameplay.",
+      "Achieved 26x performance speedup through compiler optimizations and parallelization techniques."
     ]
   },
   {
-    name: "LambdaScript",
+    name: "LambdaScript - Custom Programming Language",
     description: "Custom functional programming language with a performant interpreter, type inference, and core language features.",
     tech: ["TypeScript", "OCaml", "Jest", "OUnit"],
     github: "https://github.com/LambdaAK/lambdascript",
     demo: null,
     image: "/LambdaScript logo.png",
     highlights: [
-      "50% performance improvement over Python.",
-      "Pattern matching, algebraic data types, and polymorphic types.",
-      "Designed parser and type inference algorithm to validate programs and provide developer feedback."
+      "Built interpreter for custom programming language, achieving 50% speed improvement over Python.",
+      "Designed parser and type inference algorithm to validate programs and provide developer feedback.",
+      "Implemented core language features including pattern matching, functions, and polymorphism."
     ]
   },
   {
-    name: "Visual Attention Image Captioning",
-    description: "Show, Attend, Tell implementation: attention-based image captioning model with superior METEOR scores.",
-    tech: ["PyTorch", "Python", "Deep Learning"],
-    github: "https://github.com/LambdaAK/CS-4782-Final-Project",
-    demo: null,
-    image: "/image captioning logo.png",
-    highlights: [
-      "Built soft and hard attention mechanisms with REINFORCE and backpropagation for stochastic/deterministic attention.",
-      "Developed encoder-decoder architecture using ResNet-50 and LSTM with attention visualization."
-    ]
-  },
-
-  {
-    name: "HabitStack",
+    name: "HabitStack - Habit Tracking Application",
     description: "Full-stack habit tracking application with OAuth2, monthly calendar interface, and real-time goal management.",
-    tech: ["React", "TypeScript", "Express.js", "Firebase", "Vite", "SASS"],
+    tech: ["React", "TypeScript", "JavaScript", "SASS", "Express.js", "Firebase", "Vite"],
     github: "https://github.com/LambdaAK/HabitStack",
     demo: null,
     image: "/Habit stack logo.png",
     highlights: [
-      "Developed TypeScript APIs and Express.js backend integrated with Firebase for seamless data persistence.",
-      "Implemented live chat functionality using database connections, enabling low-latency communication between users."
+      "Built full-stack habit tracking application with OAuth2, calendar interface, and goal management.",
+      "Developed TypeScript APIs and Express.js backend integrated with Firebase for seamless persistence.",
+      "Implemented live chat functionality using database connections, enabling low-latency communication."
     ]
   },
-
   {
-    name: "AlgoSandbox",
-    description: "Interactive platform for visualizing and experimenting with classic algorithms and data structures. Designed for students, educators, and developers to learn and teach algorithms in an engaging way.",
-    tech: ["React", "TypeScript", "Vite", "CSS", "JavaScript", "Netlify"],
-    github: "https://github.com/LambdaAK/AlgoSandbox",
-    demo: null,
-    image: "/algosandbox logo.png",
-    highlights: [
-      "Visualizes sorting, searching, and data structure algorithms with real-time animations.",
-      "Tag-based filtering and search for algorithms.",
-      "Responsive, dark-themed UI for a modern learning experience.",
-      "Used by students and educators for teaching and self-study."
-    ]
-  },
-
-  {
-    name: "CritterWorld",
+    name: "CritterWorld - Evolving Artificial Life Simulator",
     description: "Evolving artificial life simulator with JavaFX GUI and custom programming language for organism behavior.",
     tech: ["Java", "JavaFX", "SceneBuilder", "Gradle", "JUnit"],
     github: null,
     demo: null,
     image: "/critterworld logo.png",
     highlights: [
-      "Built JavaFX GUI with multithreading to visualize real-time interactions and evolution of virtual organisms.",
-      "Implemented custom programming language with AST parser and interpreter to model organism behavior and mutations.",
-      "Developed pathfinding algorithms including A* and Dijkstra's for intelligent organism navigation."
+      "Built JavaFX GUI app to visualize real-time interactions and evolution of virtual organisms.",
+      "Implemented custom programming language with parser and interpreter to model organism behavior.",
+      "Developed pathfinding algorithms including A* and Dijkstra's for organism navigation."
     ]
   },
-
+  {
+    name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
+    description: "Show, Attend, Tell implementation: attention-based image captioning model with superior METEOR scores.",
+    tech: ["PyTorch", "Python"],
+    github: "https://github.com/LambdaAK/CS-4782-Final-Project",
+    demo: null,
+    image: "/image captioning logo.png",
+    highlights: [
+      "Implemented attention-based image captioning model with superior METEOR scores vs. original paper.",
+      "Built soft and hard attention mechanisms with REINFORCE and backpropagation for training.",
+      "Developed encoder-decoder architecture using ResNet-50 and LSTM with attention visualization."
+    ]
+  },
+  {
+    name: "AlgoSandbox - Interactive Algorithm Visualizer",
+    description: "Interactive platform for visualizing and experimenting with classic algorithms and data structures. Designed for students, educators, and developers to learn and teach algorithms in an engaging way.",
+    tech: ["React", "TypeScript", "Vite", "CSS", "JavaScript", "Netlify"],
+    github: "https://github.com/LambdaAK/AlgoSandbox",
+    demo: null,
+    image: "/algosandbox logo.png",
+    highlights: [
+      "Built interactive platform for visualizing classic algorithms and data structures with real-time animations."
+    ]
+  },
   {
     name: "Portfolio Website",
     description: "This portfolio website",
