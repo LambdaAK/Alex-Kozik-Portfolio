@@ -1,7 +1,7 @@
 import './App.css'
 import { useEffect, useState } from 'react';
 import Starfield from './Starfield';
-import { FaEnvelope } from 'react-icons/fa';
+import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Mouse, ArrowDown } from 'lucide-react';
 
 // About Me Card Component
@@ -34,7 +34,7 @@ const AboutMeCard = () => (
         Welcome to my website!
       </p>
       {/* Buttons */}
-      <div className="flex flex-row gap-4 mt-2">
+      <div className="flex flex-row gap-4 mt-2 flex-wrap">
         <a
           href="/resume.pdf"
           download
@@ -49,6 +49,24 @@ const AboutMeCard = () => (
         >
           <FaEnvelope size={18} />
           Get in Touch
+        </a>
+        <a
+          href="https://github.com/LambdaAK"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-100 transition text-base backdrop-blur-md"
+        >
+          <FaGithub size={18} />
+          GitHub
+        </a>
+        <a
+          href="https://linkedin.com/in/alex-kozik"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-100 transition text-base backdrop-blur-md"
+        >
+          <FaLinkedin size={18} />
+          LinkedIn
         </a>
       </div>
     </div>
