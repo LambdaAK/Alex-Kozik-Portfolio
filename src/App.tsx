@@ -462,7 +462,7 @@ const projects = [
     tech: ["TypeScript", "Python", "Jupyter Notebook", "SCSS", "Pinecone"],
     github: "https://github.com/LambdaAK/CourseSphere",
     demo: null,
-    image: null,
+    image: "/CourseSphere logo.png",
     highlights: [
       "Matches students to courses and professors based on academic interests and goals.",
       "Aggregates course and professor data for quick, informed decisions.",
