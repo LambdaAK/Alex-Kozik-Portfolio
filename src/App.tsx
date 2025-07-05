@@ -6,11 +6,10 @@ import { Mouse, ArrowDown } from 'lucide-react';
 
 // About Me Card Component
 const AboutMeCard = () => (
-  <div className="w-full max-w-4xl rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl p-8 flex flex-col md:flex-row items-center gap-8 border border-white/20 transition-transform duration-300 hover:scale-[1.02]">
+  <div className="w-full max-w-4xl mx-auto rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center md:items-center border border-white/20">
     {/* Profile Picture */}
-    <div className="flex-shrink-0">
-      <div className="w-128 h-128 rounded-2xl overflow-hidden bg-neutral-800 flex items-center justify-center">
-        {/* Replace src with your image */}
+    <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto mb-4 md:mb-0 md:mr-8">
+      <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center border-4 border-white/20">
         <img
           src="/kozik.jpg"
           alt="Profile"
@@ -18,35 +17,36 @@ const AboutMeCard = () => (
         />
       </div>
     </div>
-    {/* About Me Section */}
-    <div className="flex-1 text-gray-300">
-      <h2 className="text-4xl font-bold mb-4 flex items-center gap-2">
-        <span role="img" aria-label="About">👤</span> About Me
-      </h2>
-      <p className="mb-6 text-xl">
-        Hi! I'm Alex, a first-generation college student studying CS and math at Cornell University.
-        
-        I'm passionate about machine learning and software engineering.
-
-        I'm always eager to learn, collaborate, and take on new challenges—both in and out of the classroom.
+    {/* Content */}
+    <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+      {/* Greeting */}
+      <div className="text-lg sm:text-xl font-medium text-white/80 mb-1 flex items-center gap-2">
+        <span role="img" aria-label="wave">👋</span> Hello, I'm
+      </div>
+      {/* Name */}
+      <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-1">Alex</h1>
+      {/* Subtitle */}
+      <div className="text-xl sm:text-2xl font-semibold text-blue-200 mb-4">CS & Math Student at Cornell</div>
+      {/* Intro Paragraph */}
+      <p className="text-base sm:text-lg text-white/80 max-w-xl mb-6">
+        I'm a <span className="text-blue-300 font-semibold">first-generation college student</span> passionate about building the future with <span className="text-purple-300 font-semibold">machine learning</span> and <span className="text-purple-300 font-semibold">software engineering</span>. I transform complex problems into elegant solutions and love collaborating on projects that make a real impact.
       </p>
-      
-      {/* Contact Buttons */}
-      <div className="flex flex-wrap gap-3">
+      {/* Buttons */}
+      <div className="flex flex-row gap-4 mt-2">
         <a
           href="/resume.pdf"
           download
-          className="px-4 py-2 rounded-xl bg-white/5 text-gray-200 font-medium backdrop-blur-sm border border-white/10 shadow-sm transition-all duration-200 hover:bg-white/10 hover:text-white hover:border-white/20 hover:scale-[1.02] focus:outline-none focus:ring-1 focus:ring-white/30 flex items-center gap-2 text-sm"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-100 transition text-base backdrop-blur-md"
         >
-          <span className="text-xs">📄</span>
-          Resume/CV
+          <span className="text-lg">📄</span>
+          View Resume
         </a>
         <a
           href="mailto:alex.kozik@yahoo.com"
-          className="px-4 py-2 rounded-xl bg-white/5 text-gray-200 font-medium backdrop-blur-sm border border-white/10 shadow-sm transition-all duration-200 hover:bg-white/10 hover:text-white hover:border-white/20 hover:scale-[1.02] focus:outline-none focus:ring-1 focus:ring-white/30 flex items-center gap-2 text-sm"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-100 transition text-base backdrop-blur-md"
         >
-          <FaEnvelope size={14} />
-          Email
+          <FaEnvelope size={18} />
+          Get in Touch
         </a>
       </div>
     </div>
