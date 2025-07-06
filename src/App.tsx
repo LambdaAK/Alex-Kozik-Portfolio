@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Starfield from './Starfield';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Mouse, ArrowDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 // About Me Card Component
 const AboutMeCard = () => (
@@ -154,6 +155,7 @@ const EducationSection = () => (
                   </h3>
                   <span className="block text-blue-500 text-base font-medium mt-1">{edu.major}</span>
                 </div>
+                <span className="text-sm text-gray-600 font-medium whitespace-nowrap mt-1">{edu.date}</span>
               </div>
               <div className="flex flex-row items-center gap-4 mt-1">
                 <span className="text-base text-gray-600">{edu.gpa}</span>
@@ -598,31 +600,53 @@ const SpaceThemedScrollIndicator = () => {
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-[#181A20] to-indigo-950 text-[#E5E7EB] relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-blue-100 to-pink-300 text-gray-800 relative overflow-x-hidden">
       <Starfield />
       <SpaceThemedScrollIndicator />
       <div className="flex flex-col gap-16 max-w-5xl mx-auto px-4 pb-24 relative z-10">
         <section id="about">
           <div className="relative w-full h-screen pb-24 sm:pb-32 xl:pb-40 flex flex-col">
-            {/* AboutMeCard centered accounting for navbar */}
             <div className="flex-1 flex items-center justify-center px-4" style={{ paddingTop: '80px' }}>
-              <AboutMeCard />
+              <motion.div
+                initial={{ x: -100, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                viewport={{ once: false, amount: 0.2 }}
+              >
+                <AboutMeCard />
+              </motion.div>
             </div>
-
-            
           </div>
         </section>
-        
         <section id="education" className="pt-8">
-          <EducationSection />
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <EducationSection />
+          </motion.div>
         </section>
-        
         <section id="experience" className="pt-8">
-          <ExperienceSection />
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <ExperienceSection />
+          </motion.div>
         </section>
-        
         <section id="projects" className="pt-8">
-          <Projects />
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <Projects />
+          </motion.div>
         </section>
       </div>
     </div>
