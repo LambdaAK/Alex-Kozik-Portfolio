@@ -155,7 +155,6 @@ const EducationSection = () => (
                   </h3>
                   <span className="block text-blue-500 text-base font-medium mt-1">{edu.major}</span>
                 </div>
-                <span className="text-sm text-gray-600 font-medium whitespace-nowrap mt-1">{edu.date}</span>
               </div>
               <div className="flex flex-row items-center gap-4 mt-1">
                 <span className="text-base text-gray-600">{edu.gpa}</span>
