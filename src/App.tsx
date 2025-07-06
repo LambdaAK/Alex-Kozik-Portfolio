@@ -10,7 +10,7 @@ const AboutMeCard = () => (
   <div className="w-full max-w-4xl mx-auto rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center md:items-center border border-white/20">
     {/* Profile Picture */}
     <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto mb-4 md:mb-0 md:mr-8">
-      <div className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center border-4 border-white/20">
+      <div className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center">
         <img
           src="/kozik.jpg"
           alt="Profile"
@@ -30,7 +30,7 @@ const AboutMeCard = () => (
       <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4">Software/ML Engineer</div>
       {/* Intro Paragraph */}
       <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6">
-        I am a first-generation college student studying computer science and mathematics at Cornell, specializing in <span className="text-purple-600 font-semibold">machine learning</span> and <span className="text-purple-600 font-semibold">software engineering</span>.<br /><br />
+        I am a <span className="font-bold">first-generation</span> college student studying computer science and mathematics at <span className="text-red-500 font-semibold">Cornell</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.<br /><br />
         In my free time, I enjoy working on personal projects, working out, and reading.<br /><br />
         Welcome to my website!
       </p>
