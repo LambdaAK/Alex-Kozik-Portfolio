@@ -477,7 +477,7 @@ const projects = [
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/LambdaAK/Alex-Kozik-Portfolio",
     demo: null,
-    image: null
+    image: "/ak logo.png"
   }
 ];
 
