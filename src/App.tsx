@@ -610,7 +610,6 @@ function App() {
                 initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
-                viewport={{ once: false, amount: 0.2 }}
               >
                 <AboutMeCard />
               </motion.div>
@@ -622,7 +621,6 @@ function App() {
             initial={{ x: -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            viewport={{ once: false, amount: 0.2 }}
           >
             <EducationSection />
           </motion.div>
@@ -632,7 +630,6 @@ function App() {
             initial={{ x: -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            viewport={{ once: false, amount: 0.2 }}
           >
             <ExperienceSection />
           </motion.div>
@@ -642,7 +639,6 @@ function App() {
             initial={{ x: -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            viewport={{ once: false, amount: 0.2 }}
           >
             <Projects />
           </motion.div>
