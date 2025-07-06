@@ -36,19 +36,20 @@ const AboutMeCard = () => (
       {/* Buttons */}
       <div className="flex flex-row gap-2 sm:gap-4 mt-2 flex-wrap">
         <a
-          href="/resume.pdf"
-          download
+          href="https://linkedin.com/in/alex-kozik"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
-          <span className="text-lg">📄</span>
-          View Resume
+          <FaLinkedin size={18} />
+          LinkedIn
         </a>
         <a
-          href="mailto:alex.kozik@yahoo.com"
+          href="mailto:alex.kozik3141@gmail.com"
           className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
         >
           <FaEnvelope size={18} />
-          Get in Touch
+          Email
         </a>
         <a
           href="https://github.com/LambdaAK"
@@ -58,15 +59,6 @@ const AboutMeCard = () => (
         >
           <FaGithub size={18} />
           GitHub
-        </a>
-        <a
-          href="https://linkedin.com/in/alex-kozik"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
-        >
-          <FaLinkedin size={18} />
-          LinkedIn
         </a>
       </div>
     </div>
@@ -162,7 +154,6 @@ const EducationSection = () => (
                   </h3>
                   <span className="block text-blue-500 text-base font-medium mt-1">{edu.major}</span>
                 </div>
-                <span className="text-sm text-gray-600 font-medium whitespace-nowrap mt-1">{edu.date}</span>
               </div>
               <div className="flex flex-row items-center gap-4 mt-1">
                 <span className="text-base text-gray-600">{edu.gpa}</span>
@@ -247,6 +238,16 @@ const experienceData = [
     ],
   },
   {
+    company: 'Cornell Generative AI',
+    logo: '/generative_ai_at_cornell_logo.jpeg',
+    position: 'Artificial Intelligence/Machine Learning Engineer',
+    duration: 'Jan 2025 - Present',
+    description: [
+      'Developed AI agent for QuickFi, a commercial lending technology company, automating insurance certificate validation and compliance verification processes, reducing operational costs.',
+      'Built frontend and vector database for ClassGPT, enabling professors to create AI tutors for classes.'
+    ],
+  },
+  {
     company: 'Carnegie Mellon University',
     logo: '/S3D.jpeg',
     position: 'Software Engineer and Research Intern',
@@ -255,16 +256,6 @@ const experienceData = [
       'Worked on the interpreter for SASyLF, a language for writing proofs, implementing core features in Java.',
       'Implemented a polymorphic type system for SASyLF, similar to Java generics, enabling type-safe code reuse and significantly reducing duplication in proofs by allowing abstraction over multiple data types.',
       'Created a modular testing framework using Python to automate integration tests, ensuring reliability.'
-    ],
-  },
-  {
-    company: 'Cornell Generative AI',
-    logo: '/generative_ai_at_cornell_logo.jpeg',
-    position: 'Artificial Intelligence/Machine Learning Engineer',
-    duration: 'Jan 2025 - Present',
-    description: [
-      'Developed AI agent for QuickFi, a commercial lending technology company, automating insurance certificate validation and compliance verification processes, reducing operational costs.',
-      'Built frontend and vector database for ClassGPT, enabling professors to create AI tutors for classes.'
     ],
   },
   {
