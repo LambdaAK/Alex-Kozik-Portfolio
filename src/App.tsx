@@ -29,7 +29,7 @@ const AboutMeCard = () => (
       <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4">Software/ML Engineer</div>
       {/* Intro Paragraph */}
       <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6">
-        I am a <span className="text-blue-600 font-semibold">first-generation college student</span> studying <span className="text-purple-600 font-semibold">computer science</span> and <span className="text-purple-600 font-semibold">mathematics</span> at <span className='text-red-600 font-semibold'>Cornell</span>, specializing in <span className="text-purple-600 font-semibold">machine learning</span> and <span className="text-purple-600 font-semibold">software engineering</span>.<br /><br />
+        I am a first-generation college student studying computer science and mathematics at Cornell, specializing in <span className="text-purple-600 font-semibold">machine learning</span> and <span className="text-purple-600 font-semibold">software engineering</span>.<br /><br />
         In my free time, I enjoy working on personal projects, working out, and reading.<br /><br />
         Welcome to my website!
       </p>
