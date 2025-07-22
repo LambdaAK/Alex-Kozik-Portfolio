@@ -463,6 +463,20 @@ const projects = [
     ]
   },
   {
+    name: "BanditBot - Multi-Armed Bandit Algorithm Library",
+    description: "A comprehensive library for simulating and benchmarking Multi-Armed Bandit (MAB) algorithms, including Epsilon-Greedy, UCB, Thompson Sampling, neural network-based contextual bandits, and more. Designed for research, teaching, and practical experimentation.",
+    tech: ["Python", "NumPy", "Matplotlib"],
+    github: "https://github.com/LambdaAK/BanditBot",
+    demo: null,
+    image: "/BanditBot.png",
+    highlights: [
+      "Implements classic and advanced MAB algorithms: Epsilon-Greedy, UCB, Thompson Sampling, Softmax, and neural network-based contextual bandits.",
+      "Provides a flexible simulation environment for comparing algorithm performance on custom bandit problems.",
+      "Includes visualization tools for reward distributions, regret, and action selection over time.",
+      "Well-documented and modular codebase, ideal for both research and teaching applications."
+    ]
+  },
+  {
     name: "HabitStack - Habit Tracking Application",
     description: "Full-stack habit tracking application with OAuth2, monthly calendar interface, and real-time goal management.",
     tech: ["React", "TypeScript", "JavaScript", "SASS", "Express.js", "Firebase", "Vite"],
