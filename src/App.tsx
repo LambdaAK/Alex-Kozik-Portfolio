@@ -66,8 +66,6 @@ const AboutMeCard = () => (
   </div>
 );
 
-
-
 // Education Section Component
 const educationData = [
   
@@ -433,8 +431,8 @@ const ExperienceSection = () => (
     </div>
   </div>
 );
-// Projects Data
-const projects = [
+// Categorized Projects Data
+const machineLearningProjects = [
   {
     name: "C-Torch - Artificial Intelligence/Machine Learning Library",
     description: "High-performance math library supporting numerical methods, calculus, and linear algebra. Includes 15+ ML models and RL agents.",
@@ -450,19 +448,6 @@ const projects = [
     ]
   },
   {
-    name: "LambdaScript - Custom Programming Language",
-    description: "Custom functional programming language with a performant interpreter, type inference, and core language features.",
-    tech: ["TypeScript", "OCaml", "Jest", "OUnit"],
-    github: "https://github.com/LambdaAK/lambdascript",
-    demo: null,
-    image: "/LambdaScript logo.png",
-    highlights: [
-      "Built interpreter for custom programming language, achieving 50% speed improvement over Python.",
-      "Designed parser and type inference algorithm to validate programs and provide developer feedback.",
-      "Implemented core language features including pattern matching, functions, and polymorphism."
-    ]
-  },
-  {
     name: "BanditBot - Multi-Armed Bandit Algorithm Library",
     description: "A comprehensive library for simulating and benchmarking Multi-Armed Bandit (MAB) algorithms, including Epsilon-Greedy, UCB, Thompson Sampling, neural network-based contextual bandits, and more. Designed for research, teaching, and practical experimentation.",
     tech: ["Python", "NumPy", "Matplotlib"],
@@ -474,6 +459,50 @@ const projects = [
       "Provides a flexible simulation environment for comparing algorithm performance on custom bandit problems.",
       "Includes visualization tools for reward distributions, regret, and action selection over time.",
       "Well-documented and modular codebase, ideal for both research and teaching applications."
+    ]
+  },
+  {
+    name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
+    description: "Show, Attend, Tell implementation: attention-based image captioning model with superior METEOR scores.",
+    tech: ["PyTorch", "Python"],
+    github: "https://github.com/LambdaAK/CS-4782-Final-Project",
+    demo: null,
+    image: "/image captioning logo.png",
+    highlights: [
+      "Implemented attention-based image captioning model with superior METEOR scores vs. original paper.",
+      "Built soft and hard attention mechanisms with REINFORCE and backpropagation for training.",
+      "Developed encoder-decoder architecture using ResNet-50 and LSTM with attention visualization."
+    ]
+  },
+  {
+    name: "CourseSphere - LLM-powered course recommendation system",
+    description: "AI-powered assistant for Cornell students that matches users to courses and professors based on their academic interests, backgrounds, and goals. Aggregates course and professor data for quick, informed decisions.",
+    tech: ["TypeScript", "Python", "Jupyter Notebook", "SCSS", "Pinecone"],
+    github: "https://github.com/LambdaAK/CourseSphere",
+    demo: null,
+    image: "/CourseSphere logo.png",
+    highlights: [
+      "Matches students to courses and professors based on academic interests and goals.",
+      "Aggregates course and professor data for quick, informed decisions.",
+      "Uses Pinecone, a vector database, for fast and intelligent course matching.",
+      "Features a modern, user-friendly frontend for a seamless experience.",
+      "Database includes 19k courses and 8k faculty."
+    ]
+  }
+];
+
+const softwareEngineeringProjects = [
+  {
+    name: "LambdaScript - Custom Programming Language",
+    description: "Custom functional programming language with a performant interpreter, type inference, and core language features.",
+    tech: ["TypeScript", "OCaml", "Jest", "OUnit"],
+    github: "https://github.com/LambdaAK/lambdascript",
+    demo: null,
+    image: "/LambdaScript logo.png",
+    highlights: [
+      "Built interpreter for custom programming language, achieving 50% speed improvement over Python.",
+      "Designed parser and type inference algorithm to validate programs and provide developer feedback.",
+      "Implemented core language features including pattern matching, functions, and polymorphism."
     ]
   },
   {
@@ -503,19 +532,6 @@ const projects = [
     ]
   },
   {
-    name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
-    description: "Show, Attend, Tell implementation: attention-based image captioning model with superior METEOR scores.",
-    tech: ["PyTorch", "Python"],
-    github: "https://github.com/LambdaAK/CS-4782-Final-Project",
-    demo: null,
-    image: "/image captioning logo.png",
-    highlights: [
-      "Implemented attention-based image captioning model with superior METEOR scores vs. original paper.",
-      "Built soft and hard attention mechanisms with REINFORCE and backpropagation for training.",
-      "Developed encoder-decoder architecture using ResNet-50 and LSTM with attention visualization."
-    ]
-  },
-  {
     name: "AlgoSandbox - Interactive Algorithm Visualizer",
     description: "Interactive platform for visualizing and experimenting with classic algorithms and data structures. Designed for students, educators, and developers to learn and teach algorithms in an engaging way.",
     tech: ["React", "TypeScript", "Vite", "CSS", "JavaScript", "Netlify"],
@@ -524,21 +540,6 @@ const projects = [
     image: "/algosandbox logo.png",
     highlights: [
       "Built interactive platform for visualizing classic algorithms and data structures with real-time animations."
-    ]
-  },
-  {
-    name: "CourseSphere - LLM-powered course recommendation system",
-    description: "AI-powered assistant for Cornell students that matches users to courses and professors based on their academic interests, backgrounds, and goals. Aggregates course and professor data for quick, informed decisions.",
-    tech: ["TypeScript", "Python", "Jupyter Notebook", "SCSS", "Pinecone"],
-    github: "https://github.com/LambdaAK/CourseSphere",
-    demo: null,
-    image: "/CourseSphere logo.png",
-    highlights: [
-      "Matches students to courses and professors based on academic interests and goals.",
-      "Aggregates course and professor data for quick, informed decisions.",
-      "Uses Pinecone, a vector database, for fast and intelligent course matching.",
-      "Features a modern, user-friendly frontend for a seamless experience.",
-      "Database includes 19k courses and 8k faculty."
     ]
   },
   {
@@ -554,122 +555,151 @@ const projects = [
 const Projects = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
     <h2 className="text-3xl font-bold text-gray-800 mb-3">Projects</h2>
-    <div className="flex flex-col gap-4 w-full max-w-5xl">
-      {projects.map((project) => (
-        <div
-          key={project.name}
-          className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
-        >
-          {/* Desktop layout (md and up) */}
-          <div className="hidden md:flex flex-row items-start gap-6">
-            {/* Logo section */}
-            <div className="flex items-center justify-center w-20 h-20 rounded-xl flex-shrink-0">
-              {project.image ? (
-                <img
-                  src={project.image}
-                  alt={project.name + ' logo'}
-                  className="object-contain w-16 h-16 rounded-lg"
-                />
-              ) : (
-                <span className="text-2xl font-extrabold text-gray-800 select-none">
-                  {project.name[0]}
-                </span>
-              )}
-            </div>
-            {/* Content section */}
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
-                <div>
-                  <h3 className="text-xl font-bold text-gray-800 leading-tight">
-                    {project.name}
-                  </h3>
-                  <p className="text-blue-600 text-base font-medium mt-1">
-                    {project.tech && project.tech.join(', ')}
-                  </p>
-                </div>
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
-                  >
-                    <FaGithub size={18} />
-                    GitHub
-                  </a>
-                )}
-              </div>
-              <p className="text-gray-600 mb-3 text-base leading-relaxed">
-                {project.description}
-              </p>
-              {project.highlights && project.highlights.length > 0 && (
-                <ul className="space-y-1 text-gray-600 text-sm">
-                  {project.highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
-          {/* Mobile layout (xs and sm) */}
-          <div className="md:hidden flex flex-col">
-            {/* Top section: Logo, name, and tech */}
-            <div className="flex flex-row items-center gap-4 mb-4">
-              <div className="flex items-center justify-center w-16 h-16 rounded-xl flex-shrink-0">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.name + ' logo'}
-                    className="object-contain w-12 h-12 rounded-lg"
-                  />
-                ) : (
-                  <span className="text-xl font-extrabold text-gray-800 select-none">
-                    {project.name[0]}
-                  </span>
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-bold text-gray-800 leading-tight">
-                  {project.name}
-                </h3>
-                <p className="text-blue-600 text-sm font-medium mt-1">
-                  {project.tech && project.tech.join(', ')}
-                </p>
-              </div>
-            </div>
-            {/* GitHub button */}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mb-3 w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
-              >
-                <FaGithub size={18} />
-                GitHub
-              </a>
-            )}
-            {/* Description */}
-            <p className="text-gray-600 mb-3 text-base leading-relaxed">
-              {project.description}
-            </p>
-            {/* Highlights */}
-            {project.highlights && project.highlights.length > 0 && (
-              <ul className="space-y-1 text-gray-600 text-sm">
-                {project.highlights.map((h, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">Primarily independent work, done in my own time.</p>
+    <div className="flex flex-col gap-8 w-full max-w-5xl">
+      <div>
+        <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">ML/AI Projects</h3>
+        <div className="flex flex-col gap-4">
+          {machineLearningProjects.map((project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
         </div>
-      ))}
+      </div>
+      <div>
+        <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">Software Engineering Projects</h3>
+        <div className="flex flex-col gap-4">
+          {softwareEngineeringProjects.map((project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+// Define a Project type for type safety
+interface Project {
+  name: string;
+  description: string;
+  tech: string[];
+  github?: string | null;
+  demo?: string | null;
+  image?: string | null;
+  highlights?: string[];
+}
+
+// Extracted project card rendering for reuse
+const ProjectCard = ({ project }: { project: Project }) => (
+  <div
+    className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
+  >
+    {/* Desktop layout (md and up) */}
+    <div className="hidden md:flex flex-row items-start gap-6">
+      {/* Logo section */}
+      <div className="flex items-center justify-center w-20 h-20 rounded-xl flex-shrink-0">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.name + ' logo'}
+            className="object-contain w-16 h-16 rounded-lg"
+          />
+        ) : (
+          <span className="text-2xl font-extrabold text-gray-800 select-none">
+            {project.name[0]}
+          </span>
+        )}
+      </div>
+      {/* Content section */}
+      <div className="flex-1 min-w-0">
+        <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
+          <div>
+            <h3 className="text-xl font-bold text-gray-800 leading-tight">
+              {project.name}
+            </h3>
+            <p className="text-blue-600 text-base font-medium mt-1">
+              {project.tech && project.tech.join(', ')}
+            </p>
+          </div>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+            >
+              <FaGithub size={18} />
+              GitHub
+            </a>
+          )}
+        </div>
+        <p className="text-gray-600 mb-3 text-base leading-relaxed">
+          {project.description}
+        </p>
+        {project.highlights && project.highlights.length > 0 && (
+          <ul className="space-y-1 text-gray-600 text-sm">
+            {project.highlights.map((h: string, i: number) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+    {/* Mobile layout (xs and sm) */}
+    <div className="md:hidden flex flex-col">
+      {/* Top section: Logo, name, and tech */}
+      <div className="flex flex-row items-center gap-4 mb-4">
+        <div className="flex items-center justify-center w-16 h-16 rounded-xl flex-shrink-0">
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={project.name + ' logo'}
+              className="object-contain w-12 h-12 rounded-lg"
+            />
+          ) : (
+            <span className="text-xl font-extrabold text-gray-800 select-none">
+              {project.name[0]}
+            </span>
+          )}
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-bold text-gray-800 leading-tight">
+            {project.name}
+          </h3>
+          <p className="text-blue-600 text-sm font-medium mt-1">
+            {project.tech && project.tech.join(', ')}
+          </p>
+        </div>
+      </div>
+      {/* GitHub button */}
+      {project.github && (
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mb-3 w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+        >
+          <FaGithub size={18} />
+          GitHub
+        </a>
+      )}
+      {/* Description */}
+      <p className="text-gray-600 mb-3 text-base leading-relaxed">
+        {project.description}
+      </p>
+      {/* Highlights */}
+      {project.highlights && project.highlights.length > 0 && (
+        <ul className="space-y-1 text-gray-600 text-sm">
+          {project.highlights.map((h: string, i: number) => (
+            <li key={i} className="flex items-start gap-2">
+              <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+              <span>{h}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   </div>
 );
