@@ -448,6 +448,20 @@ const machineLearningProjects = [
     ]
   },
   {
+    name: "CoinBot - Reinforcement Learning 2D Navigation Bot",
+    description: "A reinforcement learning agent that navigates a 2D world using Q-learning and Deep Q-Networks (DQN). CoinBot learns optimal movement strategies through trial and error, demonstrating core RL concepts with real-time learning visualizations.",
+    tech: ["Python", "PyTorch", "NumPy", "Matplotlib"],
+    github: "https://github.com/LambdaAK/CoinBot", // Add your GitHub link here if available
+    demo: null, // Add your demo link here if available
+    image: "/CoinBot Logo Design.png",
+    highlights: [
+      "Implements both tabular Q-learning and DQN for 2D navigation tasks.",
+      "Visualizes agent learning progress and policy evolution in real time.",
+      "Supports custom reward structures, DQN state representations, and environment configurations.",
+      "Achieved 100% success rate after training."
+    ]
+  },
+  {
     name: "BanditBot - Multi-Armed Bandit Algorithm Library",
     description: "A comprehensive library for simulating and benchmarking Multi-Armed Bandit (MAB) algorithms, including Epsilon-Greedy, UCB, Thompson Sampling, neural network-based contextual bandits, and more. Designed for research, teaching, and practical experimentation.",
     tech: ["Python", "NumPy", "Matplotlib"],
