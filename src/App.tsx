@@ -462,6 +462,21 @@ const machineLearningProjects = [
     ]
   },
   {
+    name: "Snake DQN - AI Snake Game Agent",
+    description: "A Deep Q-Network (DQN) reinforcement learning implementation for the classic Snake game. Features an AI agent that learns optimal strategies through 29-dimensional state representation, intelligent reward functions, and anti-looping mechanisms. The agent achieves scores of 20-40+ points through sophisticated spatial reasoning and strategic planning.",
+    tech: ["Python", "PyTorch", "NumPy", "Matplotlib"],
+    github: "https://github.com/LambdaAK/Snake",
+    demo: null, // Add your demo link here if available
+    image: "/new-snake-logo.png",
+    highlights: [
+      "Implements DQN with 4-layer neural network for Snake game navigation.",
+      "Uses 29-dimensional state representation including danger detection and spatial awareness.",
+      "Features intelligent reward functions and anti-looping mechanisms for optimal performance.",
+      "Achieves scores of 20-40+ points through strategic planning and spatial reasoning.",
+      "Includes interactive testing modes and comprehensive training visualization."
+    ]
+  },
+  {
     name: "BanditBot - Multi-Armed Bandit Algorithm Library",
     description: "A comprehensive library for simulating and benchmarking Multi-Armed Bandit (MAB) algorithms, including Epsilon-Greedy, UCB, Thompson Sampling, neural network-based contextual bandits, and more. Designed for research, teaching, and practical experimentation.",
     tech: ["Python", "NumPy", "Matplotlib"],
