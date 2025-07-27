@@ -448,6 +448,19 @@ const machineLearningProjects = [
     ]
   },
   {
+    name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
+    description: "A deep learning model that automatically generates descriptive captions for images using visual attention. Implements the Show, Attend, Tell architecture and achieves superior METEOR scores.",
+    tech: ["PyTorch", "Python"],
+    github: "https://github.com/LambdaAK/CS-4782-Final-Project",
+    demo: null,
+    image: "/image captioning logo.png",
+    highlights: [
+      "Developed a model that generates natural language captions for images using attention-based mechanisms.",
+      "Implemented both soft and hard visual attention with REINFORCE and backpropagation for effective training.",
+      "Built an encoder-decoder architecture with ResNet-50 and LSTM, including attention visualization to interpret model focus."
+    ]
+  },
+  {
     name: "CoinBot - Reinforcement Learning 2D Navigation Bot",
     description: "A reinforcement learning agent that navigates a 2D world using Q-learning and Deep Q-Networks (DQN). CoinBot learns optimal movement strategies through trial and error, demonstrating core RL concepts with real-time learning visualizations.",
     tech: ["Python", "PyTorch", "NumPy", "Matplotlib"],
@@ -488,19 +501,6 @@ const machineLearningProjects = [
       "Provides a flexible simulation environment for comparing algorithm performance on custom bandit problems.",
       "Includes visualization tools for reward distributions, regret, and action selection over time.",
       "Well-documented and modular codebase, ideal for both research and teaching applications."
-    ]
-  },
-  {
-    name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
-    description: "Show, Attend, Tell implementation: attention-based image captioning model with superior METEOR scores.",
-    tech: ["PyTorch", "Python"],
-    github: "https://github.com/LambdaAK/CS-4782-Final-Project",
-    demo: null,
-    image: "/image captioning logo.png",
-    highlights: [
-      "Implemented attention-based image captioning model with superior METEOR scores vs. original paper.",
-      "Built soft and hard attention mechanisms with REINFORCE and backpropagation for training.",
-      "Developed encoder-decoder architecture using ResNet-50 and LSTM with attention visualization."
     ]
   },
   {
