@@ -2,7 +2,7 @@ import './App.css'
 import { useEffect, useState } from 'react';
 import Starfield from './Starfield';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
-import { Mouse, ArrowDown } from 'lucide-react';
+import { Mouse, ArrowDown, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // About Me Card Component
@@ -618,120 +618,164 @@ interface Project {
 }
 
 // Extracted project card rendering for reuse
-const ProjectCard = ({ project }: { project: Project }) => (
-  <div
-    className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
-  >
-    {/* Desktop layout (md and up) */}
-    <div className="hidden md:flex flex-row items-start gap-6">
-      {/* Logo section */}
-      <div className="flex items-center justify-center w-20 h-20 rounded-xl flex-shrink-0">
-        {project.image ? (
-          <img
-            src={project.image}
-            alt={project.name + ' logo'}
-            className="object-contain w-16 h-16 rounded-lg"
-          />
-        ) : (
-          <span className="text-2xl font-extrabold text-gray-800 select-none">
-            {project.name[0]}
-          </span>
-        )}
-      </div>
-      {/* Content section */}
-      <div className="flex-1 min-w-0">
-        <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
-          <div>
-            <h3 className="text-xl font-bold text-gray-800 leading-tight">
-              {project.name}
-            </h3>
-            <p className="text-blue-600 text-base font-medium mt-1">
-              {project.tech && project.tech.join(', ')}
-            </p>
-          </div>
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
-            >
-              <FaGithub size={18} />
-              GitHub
-            </a>
-          )}
-        </div>
-        <p className="text-gray-600 mb-3 text-base leading-relaxed">
-          {project.description}
-        </p>
-        {project.highlights && project.highlights.length > 0 && (
-          <ul className="space-y-1 text-gray-600 text-sm">
-            {project.highlights.map((h: string, i: number) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
-                <span>{h}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
-    {/* Mobile layout (xs and sm) */}
-    <div className="md:hidden flex flex-col">
-      {/* Top section: Logo, name, and tech */}
-      <div className="flex flex-row items-center gap-4 mb-4">
-        <div className="flex items-center justify-center w-16 h-16 rounded-xl flex-shrink-0">
+const ProjectCard = ({ project }: { project: Project }) => {
+  const [showHighlights, setShowHighlights] = useState(false);
+
+  return (
+    <div
+      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
+    >
+      {/* Desktop layout (md and up) */}
+      <div className="hidden md:flex flex-row items-start gap-6">
+        {/* Logo section */}
+        <div className="flex items-center justify-center w-20 h-20 rounded-xl flex-shrink-0">
           {project.image ? (
             <img
               src={project.image}
               alt={project.name + ' logo'}
-              className="object-contain w-12 h-12 rounded-lg"
+              className="object-contain w-16 h-16 rounded-lg"
             />
           ) : (
-            <span className="text-xl font-extrabold text-gray-800 select-none">
+            <span className="text-2xl font-extrabold text-gray-800 select-none">
               {project.name[0]}
             </span>
           )}
         </div>
+        {/* Content section */}
         <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-bold text-gray-800 leading-tight">
-            {project.name}
-          </h3>
-          <p className="text-blue-600 text-sm font-medium mt-1">
-            {project.tech && project.tech.join(', ')}
+          <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
+            <div>
+              <h3 className="text-xl font-bold text-gray-800 leading-tight">
+                {project.name}
+              </h3>
+              <p className="text-blue-600 text-base font-medium mt-1">
+                {project.tech && project.tech.join(', ')}
+              </p>
+            </div>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+              >
+                <FaGithub size={18} />
+                GitHub
+              </a>
+            )}
+          </div>
+          <p className="text-gray-600 mb-3 text-base leading-relaxed">
+            {project.description}
           </p>
+          {project.highlights && project.highlights.length > 0 && (
+            <div>
+              <button
+                onClick={() => setShowHighlights(!showHighlights)}
+                className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors mb-2"
+              >
+                {showHighlights ? (
+                  <>
+                    <ChevronUp size={16} />
+                    See less
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown size={16} />
+                    See more
+                  </>
+                )}
+              </button>
+              {showHighlights && (
+                <ul className="space-y-1 text-gray-600 text-sm">
+                  {project.highlights.map((h: string, i: number) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
         </div>
       </div>
-      {/* GitHub button */}
-      {project.github && (
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mb-3 w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
-        >
-          <FaGithub size={18} />
-          GitHub
-        </a>
-      )}
-      {/* Description */}
-      <p className="text-gray-600 mb-3 text-base leading-relaxed">
-        {project.description}
-      </p>
-      {/* Highlights */}
-      {project.highlights && project.highlights.length > 0 && (
-        <ul className="space-y-1 text-gray-600 text-sm">
-          {project.highlights.map((h: string, i: number) => (
-            <li key={i} className="flex items-start gap-2">
-              <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
-      )}
+      {/* Mobile layout (xs and sm) */}
+      <div className="md:hidden flex flex-col">
+        {/* Top section: Logo, name, and tech */}
+        <div className="flex flex-row items-center gap-4 mb-4">
+          <div className="flex items-center justify-center w-16 h-16 rounded-xl flex-shrink-0">
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.name + ' logo'}
+                className="object-contain w-12 h-12 rounded-lg"
+              />
+            ) : (
+              <span className="text-xl font-extrabold text-gray-800 select-none">
+                {project.name[0]}
+              </span>
+            )}
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-bold text-gray-800 leading-tight">
+              {project.name}
+            </h3>
+            <p className="text-blue-600 text-sm font-medium mt-1">
+              {project.tech && project.tech.join(', ')}
+            </p>
+          </div>
+        </div>
+        {/* GitHub button */}
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-3 w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+          >
+            <FaGithub size={18} />
+            GitHub
+          </a>
+        )}
+        {/* Description */}
+        <p className="text-gray-600 mb-3 text-base leading-relaxed">
+          {project.description}
+        </p>
+        {/* Highlights */}
+        {project.highlights && project.highlights.length > 0 && (
+          <div>
+            <button
+              onClick={() => setShowHighlights(!showHighlights)}
+              className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors mb-2"
+            >
+              {showHighlights ? (
+                <>
+                  <ChevronUp size={16} />
+                  See less
+                </>
+              ) : (
+                <>
+                  <ChevronDown size={16} />
+                  See more
+                </>
+              )}
+            </button>
+            {showHighlights && (
+              <ul className="space-y-1 text-gray-600 text-sm">
+                {project.highlights.map((h: string, i: number) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 const SpaceThemedScrollIndicator = () => {
   const [scrollState, setScrollState] = useState({
     canScrollDown: false,
