@@ -585,10 +585,10 @@ const Projects = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
     <h2 className="text-3xl font-bold text-gray-800 mb-3">Projects</h2>
     <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">Primarily independent work, done in my own time.</p>
-    <div className="flex flex-col gap-8 w-full max-w-5xl">
+    <div className="flex flex-col gap-8 w-full max-w-6xl">
       <div>
         <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">ML/AI Projects</h3>
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {machineLearningProjects.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}
@@ -596,7 +596,7 @@ const Projects = () => (
       </div>
       <div>
         <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">Software Engineering Projects</h3>
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {softwareEngineeringProjects.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}
