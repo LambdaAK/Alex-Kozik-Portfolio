@@ -537,16 +537,16 @@ const softwareEngineeringProjects = [
   },
   {
     name: "TriageForce - AI-Powered Disaster Relief Platform",
-    description: "Automated resource allocation for disaster relief using Agentic AI. Built with Salesforce Agentforce to automate resource matching and logistics for AidBridge Connect, reducing supply waste from 70% to near-zero and cutting response time from 5 days to real-time processing.",
+    description: "Automated disaster relief resource allocation via Agentic AI and Salesforce Agentforce, drastically cutting waste and achieving real-time response.",
     tech: ["Salesforce Agentforce", "Salesforce Data Cloud", "Salesforce Service Cloud"],
     github: "https://github.com/LambdaAK/agent-hackathon",
     demo: null,
     image: "/Salesforce.com_logo.svg.png",
     highlights: [
+      "Placed as finalist in Salesforce Agentforce Virtual Hackathon - built in 1 day during Salesforce internship.",
       "Leveraged 5 specialized Salesforce Agentforce agents to automate entire disaster relief workflow.",
       "Designed and implemented a sophisticated, user-friendly interface for real-time disaster relief coordination.",
-      "Scaled operations for 25-person team managing global disaster relief with 5,000+ product types.",
-      "Placed as finalist in Salesforce Agentforce Virtual Hackathon - built in 1 day during Salesforce internship."
+      "Scaled operations for 25-person team managing global disaster relief with 5,000+ product types."
     ]
   },
   {
