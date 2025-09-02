@@ -227,11 +227,11 @@ const experienceData = [
   {
     company: 'CMSX',
     logo: '/CMSX-logo.svg',
-    position: 'Frontend Team Lead, Vice President, Fullstack Engineer',
+    position: 'Software Engineering Lead & President',
     duration: 'Aug 2023 – Present',
     description: [
       "Maintain Cornell's course management system, used by 10,000+ students in 100,000+ line codebase.",
-      'Lead frontend team by designing project architectures, reviewing PRs, and interviewing candidates.',
+      'Lead team by designing project architectures, reviewing PRs, and interviewing candidates.',
       'Architected and built the student-facing frontend in React/TS, implementing a component architecture and state management to reduce loading times by 90% from the previous implementation.',
       'Implemented APIs with serializable data structures, enabling secure communication between frontend and backend while improving developer velocity through enhanced code modularity and reusability.',
       'Implemented the project team website to showcase team members, projects, and achievements.'
