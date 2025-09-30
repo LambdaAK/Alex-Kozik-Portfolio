@@ -227,7 +227,7 @@ const experienceData = [
     ],
   },
   {
-    company: 'Cornell CMSX',
+    company: 'Cornell Course Management System',
     logo: '/CMSX-logo.svg',
     mainTitle: 'Software Engineer',
     subroles: [
