@@ -227,16 +227,42 @@ const experienceData = [
     ],
   },
   {
-    company: 'CMSX',
+    company: 'Cornell CMSX',
     logo: '/CMSX-logo.svg',
-    position: 'Software Engineering Lead & President',
-    duration: 'Aug 2023 – Present',
-    description: [
-      "Maintain Cornell's course management system, used by 10,000+ students in 100,000+ line codebase.",
-      'Lead team by designing project architectures, reviewing PRs, and interviewing candidates.',
-      'Architected and built the student-facing frontend in React/TS, implementing a component architecture and state management to reduce loading times by 90% from the previous implementation.',
-      'Implemented APIs with serializable data structures, enabling secure communication between frontend and backend while improving developer velocity through enhanced code modularity and reusability.',
-      'Implemented the project team website to showcase team members, projects, and achievements.'
+    mainTitle: 'Software Engineer',
+    subroles: [
+      {
+        course: 'President & Software Engineering Lead',
+        duration: 'Aug 2025 - Present',
+        description: [
+          "Maintain Cornell's official CS course management system, used by 10,000+ students, ensuring efficiency and reliability.",
+          "Oversee operations on the team, including project management, architecture decisions, team coordination, recruitment, and onboarding",
+          "Received several A+s of academic research credit through intensive technical work on the team",
+          "Lead a team of developers in rewriting our JSP website in React, modernizing the platform and enhancing responsiveness."
+        ],
+      },
+      {
+        course: 'Vice-President & Frontend Engineering Lead',
+        duration: 'Aug 2024 - Aug 2025',
+        description: [
+   
+          'Mentored junior developers and conducted code reviews',
+          'Lead the recruitment process',
+          'Migrated CMSX from Redux to a component-level state system, creating a scalable foundation for future development.',
+          'Designed 10+ APIs and serializable data structures, allowing secure data transfer between the backend and frontend.',
+          'Implemented the student-facing frontend using MUI component library, offering phenomenal user experience and reliability.'
+        ],
+      },
+      {
+        course: 'Full Stack Engineer',
+        duration: 'Aug 2023 - Aug 2024',
+        description: [
+  
+          'Worked on both frontend and backend components using React, TypeScript, and Java',
+         
+          'Implemented a parser for CSVs in Java and UI in JSP, enabling professors to grant assignment extensions via file upload.'
+        ],
+      },
     ],
   },
   {
