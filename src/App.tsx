@@ -90,7 +90,7 @@ const educationData = [
       'CS 4820 - Analysis of Algorithms (A)',
       'CS 4998 x 2 - Team Projects (A+, A+)',
       'CS 4999 x 2 - Independent Reading and Research (A+, A+)',
-      'CS 6783 - Machine Learning Theory',
+      'CS 6783 - Machine Learning Theory/Reinforcement Learning',
       'CS 7190 x 2 - PL Sem (SX, SX)',
       'AP Computer Science A',
       // Math
