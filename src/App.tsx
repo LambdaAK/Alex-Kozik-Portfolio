@@ -90,6 +90,7 @@ const educationData = [
       'CS 4820 - Analysis of Algorithms (A)',
       'CS 4998 x 2 - Team Projects (A+, A+)',
       'CS 4999 x 2 - Independent Reading and Research (A+, A+)',
+      'CS 6783 - Machine Learning Theory',
       'CS 7190 x 2 - PL Sem (SX, SX)',
       'AP Computer Science A',
       // Math
@@ -97,6 +98,7 @@ const educationData = [
       'MATH 2220 - Multivariable Calculus (A-)',
       'MATH 3110 - Real Analysis (A+)',
       'MATH 3360 - Applicable Algebra (A+)',
+      'MATH 4220 - Applied Complex Analysis',
       'MATH 4310 - Advanced Linear Algebra (A+)',
       'MATH 4710 - Probability Theory (A)',
       'AP Calculus AB/BC',
@@ -170,25 +172,25 @@ const EducationSection = () => (
                     <div className="ml-3 mt-1">
                       <span className="font-semibold text-blue-500">CS:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(0, 13).map((course) => (
+                        {edu.courses.slice(0, 15).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
                       <span className="font-semibold text-blue-500">Math:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(13, 21).map((course) => (
+                        {edu.courses.slice(15, 24).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
                       <span className="font-semibold text-blue-500">Econ:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(21, 23).map((course) => (
+                        {edu.courses.slice(24, 26).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
                       <span className="font-semibold text-blue-500">Other:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(23).map((course) => (
+                        {edu.courses.slice(26).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
