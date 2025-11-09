@@ -12,9 +12,10 @@ const AboutMeCard = () => (
     <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto mb-4 md:mb-0 md:mr-8">
       <div className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center">
         <img
-          src="/kozik.jpg"
+          src="/kozik4.PNG"
           alt="Profile"
-          className="object-cover object-center w-full h-full"
+          className="object-cover w-full h-full"
+          style={{ objectPosition: '45% 52%', transform: 'scale(1.05)' }}
         />
       </div>
     </div>
