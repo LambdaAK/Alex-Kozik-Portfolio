@@ -2,7 +2,7 @@ import './App.css'
 import { useEffect, useState } from 'react';
 import Starfield from './Starfield';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
-import { Mouse, ArrowDown, ChevronDown, ChevronUp } from 'lucide-react';
+import { Mouse, ArrowDown, ChevronDown, ChevronUp, FileText, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // About Me Card Component
@@ -650,6 +650,245 @@ const Projects = () => (
   </div>
 );
 
+// Technical Papers/Documents Section
+interface TechnicalPaper {
+  title: string;
+  authors?: string;
+  date?: string;
+  description: string;
+  link?: string | null;
+  pdf?: string | null;
+  venue?: string;
+  tags?: string[];
+  image?: string | null;
+}
+
+const technicalPapersData: TechnicalPaper[] = [
+  {
+    title: "Voting-Based Multi-Agent Bandits",
+    description: "A research paper exploring multi-armed bandit algorithms in multi-agent systems using voting mechanisms. My final project for CS 6783 - Machine Learning Theory.",
+    pdf: "/Voting-Based Multi-Agent Bandits.pdf",
+    tags: ["Reinforcement Learning", "Multi-Armed Bandits", "Multi-Agent Systems"]
+  },
+  {
+    title: "Show, Attend, Tell: Visual Attention for Image Captioning",
+    description: "Technical report on implementing the Show, Attend, Tell architecture for generating descriptive captions for images using visual attention mechanisms.",
+    pdf: "/ShowAttendTell Report.pdf",
+    image: "/image captioning logo.png",
+    tags: ["Deep Learning", "Computer Vision", "Natural Language Processing", "Attention Mechanisms"]
+  },
+  {
+    title: "Low-Level Learning",
+    description: "A technical document on low-level learning approaches and methodologies. My project for CS 4701 - Practicum in Artificial Intelligence. We implemented the C-Torch library in C++, a high-performance machine learning library supporting numerical methods, calculus, linear algebra, and 15+ ML models.",
+    pdf: "/Low-Level Learning.pdf",
+    image: "/C torch logo.png",
+    tags: ["Machine Learning", "C++", "Deep Learning", "Neural Networks", "Reinforcement Learning"]
+  }
+];
+
+const TechnicalPapersSection = () => (
+  <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
+    <h2 className="text-3xl font-bold text-gray-800 mb-3">Papers</h2>
+    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">
+      Research papers, technical documents, and academic writings.
+    </p>
+    <div className="flex flex-col gap-4 w-full max-w-5xl">
+      {technicalPapersData.length > 0 ? (
+        technicalPapersData.map((paper, index) => (
+          <PaperCard key={index} paper={paper} />
+        ))
+      ) : (
+        <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-8 text-center">
+          <FileText className="mx-auto mb-4 text-gray-400" size={48} />
+          <p className="text-gray-600 text-lg">
+            Papers and documents will appear here. Add them to the <code className="bg-white/10 px-2 py-1 rounded">technicalPapersData</code> array in App.tsx.
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+);
+
+const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
+  return (
+    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6">
+      {/* Desktop layout (md and up) */}
+      <div className="hidden md:flex flex-row items-start gap-6">
+        {/* Icon/Image section */}
+        <div className="flex items-center justify-center w-16 h-16 rounded-xl flex-shrink-0">
+          {paper.image ? (
+            <img
+              src={paper.image}
+              alt={paper.title + ' logo'}
+              className="object-contain w-16 h-16 rounded-lg"
+            />
+          ) : (
+            <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 w-16 h-16 rounded-xl flex items-center justify-center">
+              <FileText className="text-purple-600" size={28} />
+            </div>
+          )}
+        </div>
+        
+        {/* Content section */}
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
+            <div className="flex-1">
+              <h3 className="text-xl font-bold text-gray-800 leading-tight mb-1">
+                {paper.title}
+              </h3>
+              {paper.authors && (
+                <p className="text-gray-600 text-sm mb-1">
+                  {paper.authors}
+                </p>
+              )}
+              <div className="flex flex-row items-center gap-3 flex-wrap mt-2">
+                {paper.venue && (
+                  <span className="text-blue-600 text-sm font-medium">
+                    {paper.venue}
+                  </span>
+                )}
+                {paper.date && (
+                  <span className="text-gray-500 text-sm">
+                    {paper.date}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="flex gap-2">
+              {paper.pdf && (
+                <a
+                  href={paper.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2"
+                >
+                  <FileText size={16} />
+                  PDF
+                </a>
+              )}
+              {paper.link && (
+                <a
+                  href={paper.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+                >
+                  <ExternalLink size={16} />
+                  Link
+                </a>
+              )}
+            </div>
+          </div>
+          <p className="text-gray-600 mb-3 text-base leading-relaxed">
+            {paper.description}
+          </p>
+          {paper.tags && paper.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-3">
+              {paper.tags.map((tag, i) => (
+                <span
+                  key={i}
+                  className="px-3 py-1 rounded-full bg-white/10 text-gray-700 text-xs font-medium border border-white/20"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile layout (xs and sm) */}
+      <div className="md:hidden flex flex-col">
+        {/* Top section: Icon/Image, title, and links */}
+        <div className="flex flex-row items-start gap-4 mb-4">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl flex-shrink-0">
+            {paper.image ? (
+              <img
+                src={paper.image}
+                alt={paper.title + ' logo'}
+                className="object-contain w-12 h-12 rounded-lg"
+              />
+            ) : (
+              <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 w-12 h-12 rounded-xl flex items-center justify-center">
+                <FileText className="text-purple-600" size={20} />
+              </div>
+            )}
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1">
+              {paper.title}
+            </h3>
+            {paper.authors && (
+              <p className="text-gray-600 text-xs mb-1">
+                {paper.authors}
+              </p>
+            )}
+            <div className="flex flex-row items-center gap-2 flex-wrap mt-1">
+              {paper.venue && (
+                <span className="text-blue-600 text-xs font-medium">
+                  {paper.venue}
+                </span>
+              )}
+              {paper.date && (
+                <span className="text-gray-500 text-xs">
+                  {paper.date}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+        
+        {/* Links */}
+        {(paper.pdf || paper.link) && (
+          <div className="flex gap-2 mb-3">
+            {paper.pdf && (
+              <a
+                href={paper.pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-xs flex items-center gap-2"
+              >
+                <FileText size={14} />
+                PDF
+              </a>
+            )}
+            {paper.link && (
+              <a
+                href={paper.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-xs flex items-center gap-2"
+              >
+                <ExternalLink size={14} />
+                Link
+              </a>
+            )}
+          </div>
+        )}
+        
+        {/* Description */}
+        <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+          {paper.description}
+        </p>
+        
+        {/* Tags */}
+        {paper.tags && paper.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {paper.tags.map((tag, i) => (
+              <span
+                key={i}
+                className="px-2 py-1 rounded-full bg-white/10 text-gray-700 text-xs font-medium border border-white/20"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // Define a Project type for type safety
 interface Project {
   name: string;
@@ -909,6 +1148,15 @@ function App() {
             transition={{ duration: 0.4, ease: 'easeOut' }}
           >
             <ExperienceSection />
+          </motion.div>
+        </section>
+        <section id="papers" className="pt-8">
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            <TechnicalPapersSection />
           </motion.div>
         </section>
         <section id="projects" className="pt-8">
