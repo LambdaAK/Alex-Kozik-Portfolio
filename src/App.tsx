@@ -75,42 +75,32 @@ const educationData = [
     logo: '/cornell-logo.png',
     degree: "Bachelor of Arts, Honors",
     major: 'Double Major: Computer Science & Mathematics',
-    gpa: 'GPA: 4.1/4.0 (Top 1%)',
+    gpa: 'GPA: 4.11/4.3 (top 1%)',
     date: 'Aug 2022 - May 2026',
     courses: [
       // CS
-      'CS 2112 - Honors Object Oriented Design and Data Structures (A)',
+      'CS 2112 - Honors OOP & Data Structures (A)',
       'CS 2800 - Discrete Math (A-)',
       'CS 3110 - Data Structures and Functional Programming (A)',
-      'CS 3410 - Computer System Organization and Programming (A)',
+      'CS 3410 - Computer Systems Organization (A)',
       'CS 4110 - Programming Languages and Logics (A+)',
       'CS 4414 - Systems Programming (A)',
       'CS 4701 - AI Practicum (A+)',
       'CS 4780 - Machine Learning (A+)',
       'CS 4782 - Deep Learning (A+)',
       'CS 4820 - Analysis of Algorithms (A)',
-      'CS 4998 x 2 - Team Projects (A+, A+)',
+      'CS 4998 x 3 - Team Projects (A+, A+, A+)',
       'CS 4999 x 2 - Independent Reading and Research (A+, A+)',
-      'CS 6783 - Machine Learning Theory/Reinforcement Learning',
-      'CS 7190 x 2 - PL Sem (SX, SX)',
-      'AP Computer Science A',
+      'CS 6783* - Machine Learning Theory (A)',
+      'CS 7190* x 2 - Seminar in PL/Compilers',
       // Math
       'MATH 2210 - Linear Algebra (A)',
       'MATH 2220 - Multivariable Calculus (A-)',
       'MATH 3110 - Real Analysis (A+)',
       'MATH 3360 - Applicable Algebra (A+)',
-      'MATH 4220 - Applied Complex Analysis',
+      'MATH 4220 - Complex Analysis (A+)',
       'MATH 4310 - Advanced Linear Algebra (A+)',
-      'MATH 4710 - Probability Theory (A)',
-      'AP Calculus AB/BC',
-      'AP Stats',
-      // Econ
-      'ECON 1120 - Macroeconomics (A)',
-      'AP Microeconomics',
-      // Other
-      'AP Phys C',
-      'AP Chem',
-      'AP Bio',
+      'MATH 4710 - Probability (A)',
     ],
   },
   {
@@ -118,13 +108,17 @@ const educationData = [
     logo: '/cs-south-logo.png',
     degree: 'High School Diploma',
     major: 'STEM Focus',
-    gpa: 'GPA: 4.32/4.0',
+    gpa: 'GPA: 4.32/4.0, Summa Cum Laude',
     date: '2018-2022',
     courses: [
+      'AP Calculus AB',
       'AP Calculus BC',
+      'AP Statistics',
       'AP Physics C',
-      'AP Computer Science',
       'AP Chemistry',
+      'AP Biology',
+      'AP Computer Science A',
+      'AP Microeconomics',
     ],
   },
 ];
@@ -171,27 +165,19 @@ const EducationSection = () => (
                   <span className="font-semibold text-gray-700">Relevant Courses:</span>
                   {edu.name === 'Cornell University' ? (
                     <div className="ml-3 mt-1">
+                      <div className="text-gray-500 text-xs mb-2 italic">
+                        <div>* = Graduate course</div>
+                        <div>x n = taken n times</div>
+                      </div>
                       <span className="font-semibold text-blue-500">CS:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(0, 15).map((course) => (
+                        {edu.courses.slice(0, 14).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
                       <span className="font-semibold text-blue-500">Math:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(15, 24).map((course) => (
-                          <li key={course}>{course}</li>
-                        ))}
-                      </ul>
-                      <span className="font-semibold text-blue-500">Econ:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(24, 26).map((course) => (
-                          <li key={course}>{course}</li>
-                        ))}
-                      </ul>
-                      <span className="font-semibold text-blue-500">Other:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(26).map((course) => (
+                        {edu.courses.slice(14, 21).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
