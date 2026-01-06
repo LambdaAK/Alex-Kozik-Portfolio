@@ -465,7 +465,7 @@ const machineLearningProjects = [
   },
   {
     name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
-    description: "A deep learning model that automatically generates descriptive captions for images using visual attention. Implements the Show, Attend, Tell architecture and achieves superior METEOR scores.",
+    description: "A deep learning model that automatically generates descriptive captions for images using visual attention. Implements the Show, Attend, Tell architecture and achieves superior METEOR scores. Final project for CS 4782 - Deep Learning.",
     tech: ["PyTorch", "Python"],
     github: "https://github.com/LambdaAK/CS-4782-Final-Project",
     demo: null,
@@ -658,7 +658,7 @@ const technicalPapersData: TechnicalPaper[] = [
   },
   {
     title: "Show, Attend, Tell: Visual Attention for Image Captioning",
-    description: "Technical report on implementing the Show, Attend, Tell architecture for generating descriptive captions for images using visual attention mechanisms.",
+    description: "Technical report on implementing the Show, Attend, Tell architecture for generating descriptive captions for images using visual attention mechanisms. Final project for CS 4782 - Deep Learning.",
     pdf: "/ShowAttendTell Report.pdf",
     image: "/image captioning logo.png",
     tags: ["Deep Learning", "Computer Vision", "Natural Language Processing", "Attention Mechanisms"]
