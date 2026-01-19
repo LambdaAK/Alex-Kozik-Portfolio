@@ -657,6 +657,13 @@ const technicalPapersData: TechnicalPaper[] = [
     tags: ["Reinforcement Learning", "Multi-Armed Bandits", "Multi-Agent Systems"]
   },
   {
+    title: "From Redux to Component-level State: Modernizing CMSX Architecture",
+    description: "A comprehensive technical document detailing the migration of Cornell's Course Management System (CMSX) from Redux-facilitated global state to component-level state architecture. I worked on this project from January 2024 to December 2024, receiving academic research credit through CS 4999. This migration yielded a massive improvement in both developer experience and user experience.",
+    pdf: "/From Redux to Component-level State Modernizing CMSX Architecture.pdf",
+    image: "/CMSX-logo.svg",
+    tags: ["React", "TypeScript", "Software Architecture", "State Management", "Frontend Engineering", "Performance Optimization"]
+  },
+  {
     title: "Show, Attend, Tell: Visual Attention for Image Captioning",
     description: "Technical report on implementing the Show, Attend, Tell architecture for generating descriptive captions for images using visual attention mechanisms. Final project for CS 4782 - Deep Learning.",
     pdf: "/ShowAttendTell Report.pdf",
