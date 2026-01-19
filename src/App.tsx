@@ -447,8 +447,21 @@ const ExperienceSection = () => (
     </div>
   </div>
 );
-// Categorized Projects Data
-const machineLearningProjects = [
+// Featured Projects Data
+const featuredProjects = [
+  {
+    name: "LambdaScript - Custom Programming Language",
+    description: "Custom functional programming language with a performant interpreter, type inference, and core language features.",
+    tech: ["TypeScript", "OCaml", "Jest", "OUnit"],
+    github: "https://github.com/LambdaAK/lambdascript",
+    demo: null,
+    image: "/LambdaScript logo.png",
+    highlights: [
+      "Built interpreter for custom programming language, achieving 50% speed improvement over Python.",
+      "Designed parser and type inference algorithm to validate programs and provide developer feedback.",
+      "Implemented core language features including pattern matching, functions, and polymorphism."
+    ]
+  },
   {
     name: "C-Torch - Artificial Intelligence/Machine Learning Library",
     description: "High-performance math library supporting numerical methods, calculus, and linear algebra. Includes 15+ ML models and RL agents.",
@@ -456,13 +469,18 @@ const machineLearningProjects = [
     github: "https://github.com/LambdaAK/c-torch",
     demo: null,
     image: "/C torch logo.png",
+    paper: "/Low-Level Learning.pdf",
     highlights: [
       "Developed a high-performance math library supporting numerical methods, calculus, and linear algebra.",
       "Implemented 15+ ML models, such as neural networks, achieving 99%+ accuracy on classification tasks.",
       "Implemented DQN and Policy Gradient agents achieving 97%+ win rates in autonomous gameplay.",
       "Achieved 26x performance speedup through compiler optimizations and parallelization techniques."
     ]
-  },
+  }
+];
+
+// Categorized Projects Data
+const machineLearningProjects = [
   {
     name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
     description: "A deep learning model that automatically generates descriptive captions for images using visual attention. Implements the Show, Attend, Tell architecture and achieves superior METEOR scores. Final project for CS 4782 - Deep Learning.",
@@ -470,6 +488,7 @@ const machineLearningProjects = [
     github: "https://github.com/LambdaAK/CS-4782-Final-Project",
     demo: null,
     image: "/image captioning logo.png",
+    paper: "/ShowAttendTell Report.pdf",
     highlights: [
       "Developed a model that generates natural language captions for images using attention-based mechanisms.",
       "Implemented both soft and hard visual attention with REINFORCE and backpropagation for effective training.",
@@ -538,19 +557,6 @@ const machineLearningProjects = [
 
 const softwareEngineeringProjects = [
   {
-    name: "LambdaScript - Custom Programming Language",
-    description: "Custom functional programming language with a performant interpreter, type inference, and core language features.",
-    tech: ["TypeScript", "OCaml", "Jest", "OUnit"],
-    github: "https://github.com/LambdaAK/lambdascript",
-    demo: null,
-    image: "/LambdaScript logo.png",
-    highlights: [
-      "Built interpreter for custom programming language, achieving 50% speed improvement over Python.",
-      "Designed parser and type inference algorithm to validate programs and provide developer feedback.",
-      "Implemented core language features including pattern matching, functions, and polymorphism."
-    ]
-  },
-  {
     name: "TriageForce - AI-Powered Disaster Relief Platform",
     description: "Automated disaster relief resource allocation via Agentic AI and Salesforce Agentforce, drastically cutting waste and achieving real-time response.",
     tech: ["Salesforce Agentforce", "Salesforce Data Cloud", "Salesforce Service Cloud"],
@@ -617,7 +623,21 @@ const Projects = () => (
     <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">Primarily independent work, done in my own time.</p>
     <div className="flex flex-col gap-8 w-full max-w-6xl">
       <div>
+        <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">Featured Projects</h3>
+        <p className="text-gray-600 text-center mb-4 max-w-2xl mx-auto">
+          My most substantial projects.
+        </p>
+        <div className="flex flex-col gap-4">
+          {featuredProjects.map((project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
+        </div>
+      </div>
+      <div>
         <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">ML/AI Projects</h3>
+        <p className="text-gray-600 text-center mb-4 max-w-2xl mx-auto">
+          Deep learning, reinforcement learning, and AI-powered applications.
+        </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {machineLearningProjects.map((project) => (
             <ProjectCard key={project.name} project={project} />
@@ -626,6 +646,9 @@ const Projects = () => (
       </div>
       <div>
         <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">Software Engineering Projects</h3>
+        <p className="text-gray-600 text-center mb-4 max-w-2xl mx-auto">
+          Full-stack applications and more.
+        </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {softwareEngineeringProjects.map((project) => (
             <ProjectCard key={project.name} project={project} />
@@ -654,6 +677,7 @@ const technicalPapersData: TechnicalPaper[] = [
     title: "Voting-Based Multi-Agent Bandits",
     description: "A research paper exploring multi-armed bandit algorithms in multi-agent systems using voting mechanisms. My final project for CS 6783 - Machine Learning Theory.",
     pdf: "/Voting-Based Multi-Agent Bandits.pdf",
+    image: "/bandits.png",
     tags: ["Reinforcement Learning", "Multi-Armed Bandits", "Multi-Agent Systems"]
   },
   {
@@ -664,18 +688,18 @@ const technicalPapersData: TechnicalPaper[] = [
     tags: ["React", "TypeScript", "Software Architecture", "State Management", "Frontend Engineering", "Performance Optimization"]
   },
   {
-    title: "Show, Attend, Tell: Visual Attention for Image Captioning",
-    description: "Technical report on implementing the Show, Attend, Tell architecture for generating descriptive captions for images using visual attention mechanisms. Final project for CS 4782 - Deep Learning.",
-    pdf: "/ShowAttendTell Report.pdf",
-    image: "/image captioning logo.png",
-    tags: ["Deep Learning", "Computer Vision", "Natural Language Processing", "Attention Mechanisms"]
-  },
-  {
     title: "Low-Level Learning",
     description: "A technical document on low-level learning approaches and methodologies. My project for CS 4701 - Practicum in Artificial Intelligence. We implemented the C-Torch library in C++, a high-performance machine learning library supporting numerical methods, calculus, linear algebra, and 15+ ML models.",
     pdf: "/Low-Level Learning.pdf",
     image: "/C torch logo.png",
     tags: ["Machine Learning", "C++", "Deep Learning", "Neural Networks", "Reinforcement Learning"]
+  },
+  {
+    title: "Show, Attend, Tell: Visual Attention for Image Captioning",
+    description: "Technical report on implementing the Show, Attend, Tell architecture for generating descriptive captions for images using visual attention mechanisms. Final project for CS 4782 - Deep Learning.",
+    pdf: "/ShowAttendTell Report.pdf",
+    image: "/image captioning logo.png",
+    tags: ["Deep Learning", "Computer Vision", "Natural Language Processing", "Attention Mechanisms"]
   }
 ];
 
@@ -891,6 +915,8 @@ interface Project {
   demo?: string | null;
   image?: string | null;
   highlights?: string[];
+  whyFavorite?: string;
+  paper?: string | null;
 }
 
 // Extracted project card rendering for reuse
@@ -928,17 +954,30 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 {project.tech && project.tech.join(', ')}
               </p>
             </div>
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
-              >
-                <FaGithub size={18} />
-                GitHub
-              </a>
-            )}
+            <div className="flex gap-2">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+                >
+                  <FaGithub size={18} />
+                  GitHub
+                </a>
+              )}
+              {project.paper && (
+                <a
+                  href={project.paper}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2"
+                >
+                  <FileText size={16} />
+                  Paper
+                </a>
+              )}
+            </div>
           </div>
           <p className="text-gray-600 mb-3 text-base leading-relaxed">
             {project.description}
@@ -1001,17 +1040,32 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </p>
           </div>
         </div>
-        {/* GitHub button */}
-        {project.github && (
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mb-3 w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
-          >
-            <FaGithub size={18} />
-            GitHub
-          </a>
+        {/* GitHub and Paper buttons */}
+        {(project.github || project.paper) && (
+          <div className="flex gap-2 mb-3">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+              >
+                <FaGithub size={18} />
+                GitHub
+              </a>
+            )}
+            {project.paper && (
+              <a
+                href={project.paper}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2"
+              >
+                <FileText size={16} />
+                Paper
+              </a>
+            )}
+          </div>
         )}
         {/* Description */}
         <p className="text-gray-600 mb-3 text-base leading-relaxed">
