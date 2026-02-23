@@ -482,6 +482,21 @@ const featuredProjects = [
 // Categorized Projects Data
 const machineLearningProjects = [
   {
+    name: "dX - Math & ML Lab",
+    description: "Client-side web app for stochastic processes, probability, and machine learning. Features SDEs, Markov chains, bandits, LLN/CLT, RL algorithms, regression, and clustering—all with interactive visualizations running in the browser.",
+    tech: ["Math", "TypeScript", "React"],
+    github: "https://github.com/LambdaAK/dX",
+    demo: "https://dxlab.netlify.app/",
+    image: "/dX.png",
+    highlights: [
+      "Implements stochastic differential equations with Euler-Maruyama and RK4 integration methods.",
+      "Features discrete and continuous-time Markov chains with transition matrix visualization.",
+      "Includes multi-armed bandit algorithms (Epsilon-Greedy, UCB, Thompson Sampling) and RL algorithms.",
+      "Provides supervised learning models (linear/logistic regression) and clustering (K-means, DBSCAN, KNN).",
+      "All simulations, fitting, and numerical methods run entirely in the browser—no backend required."
+    ]
+  },
+  {
     name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
     description: "A deep learning model that automatically generates descriptive captions for images using visual attention. Implements the Show, Attend, Tell architecture and achieves superior METEOR scores. Final project for CS 4782 - Deep Learning.",
     tech: ["PyTorch", "Python"],
@@ -966,6 +981,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   GitHub
                 </a>
               )}
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2"
+                >
+                  <ExternalLink size={16} />
+                  Demo
+                </a>
+              )}
               {project.paper && (
                 <a
                   href={project.paper}
@@ -1040,8 +1066,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </p>
           </div>
         </div>
-        {/* GitHub and Paper buttons */}
-        {(project.github || project.paper) && (
+        {/* GitHub, Demo, and Paper buttons */}
+        {(project.github || project.demo || project.paper) && (
           <div className="flex gap-2 mb-3">
             {project.github && (
               <a
@@ -1052,6 +1078,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
               >
                 <FaGithub size={18} />
                 GitHub
+              </a>
+            )}
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2"
+              >
+                <ExternalLink size={16} />
+                Demo
               </a>
             )}
             {project.paper && (

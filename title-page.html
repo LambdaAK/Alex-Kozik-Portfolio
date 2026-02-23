@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Redux to Component-level State: Modernizing CMSX Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .title-page {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 80px 60px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .title-page::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 60px;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .author {
+            font-size: 28px;
+            color: #4a5568;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .date {
+            font-size: 20px;
+            color: #718096;
+            font-weight: 400;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            margin: 40px auto;
+            border-radius: 2px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                height: 100vh;
+            }
+
+            .title-page {
+                box-shadow: none;
+                border: none;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+
+        /* Alternative minimalist style - uncomment to use */
+        /*
+        body {
+            background: #f7fafc;
+        }
+
+        .title-page {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 0;
+        }
+
+        h1 {
+            color: #1a202c;
+        }
+
+        .subtitle {
+            color: #4a5568;
+        }
+        */
+    </style>
+</head>
+<body>
+    <div class="title-page">
+        <div class="subtitle">Technical Document</div>
+        <h1>From Redux to Component-level State:<br>Modernizing CMSX Architecture</h1>
+        <div class="decorative-line"></div>
+        <div class="author">Alex Kozik</div>
+        <div class="date">December 19th, 2024</div>
+    </div>
+</body>
+</html>
