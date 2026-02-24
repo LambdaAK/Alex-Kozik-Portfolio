@@ -1,8 +1,9 @@
 import './App.css'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Starfield from './Starfield';
+import Navbar from './Navbar';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
-import { Mouse, ArrowDown, ChevronDown, ChevronUp, FileText, ExternalLink, Award, Microscope, Code, Users, Star, GraduationCap, Heart } from 'lucide-react';
+import { ChevronDown, ChevronUp, FileText, ExternalLink, Award, Microscope, Code, Users, Star, GraduationCap, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // About Me Card Component
@@ -1281,66 +1282,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
     </div>
   );
 };
-const SpaceThemedScrollIndicator = () => {
-  const [scrollState, setScrollState] = useState({
-    canScrollDown: false,
-    hasScrolled: false
-  });
-
-  const checkScrollability = () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight;
-    const clientHeight = window.innerHeight;
-    
-    const canScrollDown = scrollTop + clientHeight < scrollHeight - 10; // Small buffer
-    const hasScrolled = scrollTop > 50; // Consider "scrolled" after 50px
-
-    setScrollState({
-      canScrollDown,
-      hasScrolled
-    });
-  };
-
-  useEffect(() => {
-    // Check on mount
-    checkScrollability();
-    
-    // Add scroll listener
-    window.addEventListener('scroll', checkScrollability);
-    window.addEventListener('resize', checkScrollability); // Also check on resize
-    
-    return () => {
-      window.removeEventListener('scroll', checkScrollability);
-      window.removeEventListener('resize', checkScrollability);
-    };
-  }, []);
-
-  return (
-    <>
-      {/* Initial Scroll Hint - Only show when user hasn't scrolled yet */}
-      <div 
-        className={`fixed top-6 right-6 z-50 transition-all duration-500 ${
-          !scrollState.hasScrolled && scrollState.canScrollDown
-            ? 'opacity-100 transform translate-y-0' 
-            : 'opacity-0 transform translate-y-2 pointer-events-none'
-        }`}
-      >
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-gray-800 px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 animate-pulse border border-blue-400/30">
-          <Mouse size={16} />
-          <span className="text-sm font-medium">Scroll to explore my portfolio</span>
-          <ArrowDown size={16} className="animate-bounce" />
-        </div>
-      </div>
-    </>
-  );
-};
 
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-blue-100 to-pink-300 text-gray-800 relative overflow-x-hidden">
+      <Navbar />
       <Starfield />
-      <SpaceThemedScrollIndicator />
-      <div className="flex flex-col gap-16 max-w-5xl mx-auto px-4 pb-24 relative z-10">
+      <div className="flex flex-col gap-16 max-w-5xl mx-auto px-4 pb-24 relative z-10 pt-16">
         <section id="about">
           <div className="relative w-full h-screen pb-24 sm:pb-32 xl:pb-40 flex flex-col">
             <div className="flex-1 flex items-center justify-center px-4" style={{ paddingTop: '80px' }}>

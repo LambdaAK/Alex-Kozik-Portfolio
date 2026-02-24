@@ -1,19 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { FaLinkedin, FaEnvelope, FaGithub } from 'react-icons/fa';
+import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Education', href: '/education' },
-  { name: 'Experience', href: '/experience' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'About', href: '#about' },
+  { name: 'Education', href: '#education' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Awards', href: '#awards' },
+  { name: 'Papers', href: '#papers' },
+  { name: 'Projects', href: '#projects' },
 ];
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('about');
   const menuRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -32,132 +33,186 @@ const Navbar: React.FC = () => {
     };
   }, [menuOpen]);
 
+  // Track active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navLinks.map(link => link.href.substring(1));
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      const navbarHeight = 50; // Navbar height + some padding
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setMenuOpen(false);
+  };
+
   return (
-    <nav className="sticky top-0 z-50 w-full bg-[#232a36]/95 backdrop-blur shadow-lg">
-      <div className="max-w-7xl w-full mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-lg shadow-md border-b border-white/20">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         {/* Left: Name */}
-        <span className="text-2xl md:text-2xl font-extrabold text-gray-100 tracking-tight mr-8">Alex Kozik</span>
-        {/* Nav links */}
-        <div className="hidden md:flex gap-2 flex-1">
+        <button
+          onClick={() => scrollToSection('#about')}
+          className="text-xl md:text-2xl font-extrabold text-gray-800 tracking-tight hover:text-blue-600 transition"
+        >
+          Alex Kozik
+        </button>
+
+        {/* Desktop Nav links */}
+        <div className="hidden md:flex gap-1 items-center">
           {navLinks.map((link) => {
-            const isActive = location.pathname === link.href;
+            const isActive = activeSection === link.href.substring(1);
             return (
-              <Link
+              <button
                 key={link.name}
-                to={link.href}
+                onClick={() => scrollToSection(link.href)}
                 className={
-                  'px-6 py-4 rounded-3xl font-medium transition text-2xl ' +
+                  'px-4 py-2 rounded-lg font-medium transition text-sm ' +
                   (isActive
-                    ? 'bg-[#2d3748] text-white shadow-lg'
-                    : 'text-gray-300 hover:bg-[#2d3748]/70 hover:text-white')
+                    ? 'bg-blue-500/10 text-blue-600'
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600')
                 }
-                onClick={() => setMenuOpen(false)}
-                style={{ border: 'none', outline: 'none' }}
               >
                 {link.name}
-              </Link>
+              </button>
             );
           })}
-          {/* Resume download button */}
-          <a
-            href="/Alex_Kozik_Resume.pdf"
-            download
-            className="px-6 py-4 rounded-3xl font-medium transition text-2xl text-gray-300 hover:bg-[#2d3748]/70 hover:text-white ml-2"
-            style={{ border: 'none', outline: 'none', cursor: 'pointer' }}
-          >
-            Resume
-          </a>
         </div>
+
         {/* Social icons on desktop */}
-        <div className="hidden md:flex gap-3 items-center ml-6">
-          <a href="https://linkedin.com/in/alex-kozik" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <FaLinkedin className="text-blue-400 hover:text-blue-500" size={24} />
+        <div className="hidden md:flex gap-3 items-center">
+          <a 
+            href="https://linkedin.com/in/alex-kozik" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="LinkedIn"
+            className="text-gray-600 hover:text-blue-600 transition"
+          >
+            <FaLinkedin size={20} />
           </a>
-          <a href="mailto:alex.kozik@yahoo.com" aria-label="Email">
-            <FaEnvelope className="text-blue-200 hover:text-blue-300" size={24} />
+          <a 
+            href="mailto:alex.kozik3141@gmail.com" 
+            aria-label="Email"
+            className="text-gray-600 hover:text-blue-600 transition"
+          >
+            <FaEnvelope size={20} />
           </a>
-          <a href="https://github.com/LambdaAK" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <FaGithub className="text-gray-300 hover:text-white" size={24} />
+          <a 
+            href="https://github.com/LambdaAK" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="GitHub"
+            className="text-gray-600 hover:text-blue-600 transition"
+          >
+            <FaGithub size={20} />
           </a>
         </div>
+
         {/* Hamburger for mobile */}
         <button
-          className="md:hidden p-3 rounded-lg hover:bg-[#2d3748]/70 transition ml-2"
-          aria-label="Open menu"
+          className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
+          aria-label="Toggle menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <svg className="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          {menuOpen ? (
+            <X className="w-6 h-6 text-gray-800" />
+          ) : (
+            <Menu className="w-6 h-6 text-gray-800" />
+          )}
         </button>
       </div>
-      {/* Dropdown menu for mobile */}
+
+      {/* Mobile dropdown menu */}
       {menuOpen && (
         <div
           ref={menuRef}
-          className="md:hidden absolute left-0 top-0 w-full bg-[#232a36] shadow-lg animate-dropdown rounded-b-2xl"
+          className="md:hidden absolute left-0 right-0 top-full bg-white/95 backdrop-blur-lg shadow-lg border-b border-white/20 animate-dropdown"
         >
-          <div className="flex flex-col gap-2 px-6 py-6">
+          <div className="flex flex-col gap-1 px-4 py-4">
             {navLinks.map((link) => {
-              const isActive = location.pathname === link.href;
+              const isActive = activeSection === link.href.substring(1);
               return (
-                <Link
+                <button
                   key={link.name}
-                  to={link.href}
+                  onClick={() => scrollToSection(link.href)}
                   className={
-                    'px-4 py-3 rounded-xl font-medium text-lg transition ' +
+                    'px-4 py-3 rounded-lg font-medium text-base text-left transition ' +
                     (isActive
-                      ? 'bg-[#2d3748] text-white shadow-sm'
-                      : 'text-gray-300 hover:bg-[#2d3748]/70 hover:text-white')
+                      ? 'bg-blue-500/10 text-blue-600'
+                      : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600')
                   }
-                  onClick={() => setMenuOpen(false)}
-                  style={{ border: 'none', outline: 'none' }}
                 >
                   {link.name}
-                </Link>
+                </button>
               );
             })}
-            {/* Resume download button for mobile */}
-            <button
-              onClick={() => {
-                const link = document.createElement('a');
-                link.href = '/resume.pdf';
-                link.download = 'Alex_Kozik_Resume.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}
-              className="px-4 py-3 rounded-xl font-medium text-lg transition text-gray-300 hover:bg-[#2d3748]/70 hover:text-white mt-2"
-              style={{ border: 'none', outline: 'none', cursor: 'pointer', background: 'none' }}
-            >
-              Resume
-            </button>
+            
             {/* Social icons on mobile */}
-            <div className="flex gap-4 items-center justify-start mt-6 ml-1">
-              <a href="https://linkedin.com/in/alex-kozik" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <FaLinkedin className="text-blue-400 hover:text-blue-500" size={28} />
+            <div className="flex gap-4 items-center justify-start mt-4 ml-2">
+              <a 
+                href="https://linkedin.com/in/alex-kozik" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="LinkedIn"
+                className="text-gray-600 hover:text-blue-600 transition"
+              >
+                <FaLinkedin size={24} />
               </a>
-              <a href="mailto:alex.kozik@yahoo.com" aria-label="Email">
-                <FaEnvelope className="text-blue-200 hover:text-blue-300" size={28} />
+              <a 
+                href="mailto:alex.kozik3141@gmail.com" 
+                aria-label="Email"
+                className="text-gray-600 hover:text-blue-600 transition"
+              >
+                <FaEnvelope size={24} />
               </a>
-              <a href="https://github.com/LambdaAK" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <FaGithub className="text-gray-300 hover:text-white" size={28} />
+              <a 
+                href="https://github.com/LambdaAK" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="GitHub"
+                className="text-gray-600 hover:text-blue-600 transition"
+              >
+                <FaGithub size={24} />
               </a>
             </div>
           </div>
         </div>
       )}
+
       <style>{`
         @keyframes dropdown {
-          0% { transform: translateY(-100%); opacity: 0; }
+          0% { transform: translateY(-10px); opacity: 0; }
           100% { transform: translateY(0); opacity: 1; }
         }
         .animate-dropdown {
-          animation: dropdown 0.25s ease;
+          animation: dropdown 0.2s ease;
         }
       `}</style>
     </nav>
   );
 };
 
-export default Navbar; 
+export default Navbar;
