@@ -92,8 +92,8 @@ const Navbar: React.FC = () => {
                 className={
                   'px-4 py-2 rounded-lg font-medium transition text-sm ' +
                   (isActive
-                    ? 'bg-blue-500/10 text-blue-600 dark:bg-orange-500/20 dark:text-orange-300'
-                    : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-orange-300')
+                    ? 'bg-blue-500/10 text-blue-600 dark:bg-gray-900 dark:text-gray-100 dark:border-b-2 dark:border-orange-400'
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-100')
                 }
               >
                 {link.name}

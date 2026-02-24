@@ -30,7 +30,7 @@ const AboutMeCard = () => (
       {/* Name */}
       <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-1 dark:text-gray-100">Alex</h1>
       {/* Subtitle */}
-      <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 dark:text-orange-400">Software/ML Engineer</div>
+      <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 dark:text-orange-300">Software/ML Engineer</div>
       {/* Intro Paragraph */}
       <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6 dark:text-gray-300">
         I am a <span className="font-bold">first-generation</span> college student studying computer science and mathematics at <span className="text-red-500 font-semibold">Cornell</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.<br /><br />
@@ -43,14 +43,14 @@ const AboutMeCard = () => (
           href="https://linkedin.com/in/alex-kozik"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-orange-400"
         >
           <FaLinkedin size={18} />
           LinkedIn
         </a>
         <a
           href="mailto:alex.kozik3141@gmail.com"
-          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-orange-400"
         >
           <FaEnvelope size={18} />
           Email
@@ -59,7 +59,7 @@ const AboutMeCard = () => (
           href="https://github.com/LambdaAK"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-orange-400"
         >
           <FaGithub size={18} />
           GitHub
@@ -150,7 +150,7 @@ const EducationSection = () => (
                   <h3 className="text-xl font-bold text-gray-800 leading-tight dark:text-gray-100">
                     {edu.degree} - {edu.name}
                   </h3>
-                  <span className="block text-blue-500 text-base font-medium mt-1 dark:text-orange-400">{edu.major}</span>
+                  <span className="block text-blue-500 text-base font-medium mt-1 dark:text-blue-300">{edu.major}</span>
                 </div>
               </div>
               <div className="flex flex-row items-center gap-4 mt-1">
@@ -171,13 +171,13 @@ const EducationSection = () => (
                         <div>* = Graduate course</div>
                         <div>x n = taken n times</div>
                       </div>
-                      <span className="font-semibold text-blue-500 dark:text-orange-400">CS:</span>
+                      <span className="font-semibold text-blue-500 dark:text-blue-300">CS:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm dark:text-gray-300">
                         {edu.courses.slice(0, 14).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
-                      <span className="font-semibold text-blue-500 dark:text-orange-400">Math:</span>
+                      <span className="font-semibold text-blue-500 dark:text-blue-300">Math:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm dark:text-gray-300">
                         {edu.courses.slice(14, 21).map((course) => (
                           <li key={course}>{course}</li>
@@ -354,12 +354,12 @@ const ExperienceSection = () => (
                     <div key={sub.course + sub.duration} className="border-l-2 border-cyan-400/30 pl-4">
                       <div className="flex flex-row items-center gap-2 mb-2">
                         <span className="text-base font-semibold text-gray-800 dark:text-gray-100">{sub.course}</span>
-                        <span className="text-sm text-blue-700 font-medium dark:text-orange-300">{sub.duration}</span>
+                        <span className="text-sm text-blue-700 font-medium dark:text-blue-300">{sub.duration}</span>
                       </div>
                       <ul className="space-y-1 text-gray-600 text-sm dark:text-gray-300">
                         {sub.description.map((item, j) => (
                           <li key={j} className="flex items-start gap-2">
-                            <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0 dark:text-orange-400 dark:bg-orange-400"></span>
+                            <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -417,12 +417,12 @@ const ExperienceSection = () => (
                     <div key={sub.course + sub.duration} className="border-l-2 border-cyan-400/30 pl-4">
               <div className="flex flex-row items-center gap-2 mb-2">
                         <span className="text-base font-semibold text-gray-800 dark:text-gray-100">{sub.course}</span>
-                        <span className="text-sm text-blue-700 font-medium dark:text-orange-300">{sub.duration}</span>
+                        <span className="text-sm text-blue-700 font-medium dark:text-blue-300">{sub.duration}</span>
                       </div>
                       <ul className="space-y-1 text-gray-600 text-sm dark:text-gray-300">
                         {sub.description.map((item, j) => (
                           <li key={j} className="flex items-start gap-2">
-                            <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0 dark:text-orange-400 dark:bg-orange-400"></span>
+                            <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -846,7 +846,7 @@ const AwardCard = ({ award }: { award: Award }) => {
               {award.date}
             </span>
           </div>
-          <p className="text-blue-600 text-sm font-medium mb-2 dark:text-orange-400">
+          <p className="text-blue-600 text-sm font-medium mb-2 dark:text-blue-300">
             {award.organization}
           </p>
           <p className="text-gray-600 text-sm leading-relaxed dark:text-gray-300">
@@ -915,7 +915,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
               )}
               <div className="flex flex-row items-center gap-3 flex-wrap mt-2">
                 {paper.venue && (
-                  <span className="text-blue-600 text-sm font-medium dark:text-orange-400">
+                  <span className="text-blue-600 text-sm font-medium dark:text-blue-300">
                     {paper.venue}
                   </span>
                 )}
@@ -996,8 +996,8 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
               </p>
             )}
             <div className="flex flex-row items-center gap-2 flex-wrap mt-1">
-              {paper.venue && (
-                <span className="text-blue-600 text-xs font-medium dark:text-orange-400">
+            {paper.venue && (
+              <span className="text-blue-600 text-xs font-medium dark:text-blue-300">
                   {paper.venue}
                 </span>
               )}
@@ -1105,7 +1105,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               <h3 className="text-xl font-bold text-gray-800 leading-tight dark:text-gray-100">
                 {project.name}
               </h3>
-              <p className="text-blue-600 text-base font-medium mt-1 dark:text-orange-400">
+              <p className="text-blue-600 text-base font-medium mt-1 dark:text-blue-300">
                 {project.tech && project.tech.join(', ')}
               </p>
             </div>
@@ -1115,7 +1115,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-orange-400"
                 >
                   <FaGithub size={18} />
                   GitHub
@@ -1126,7 +1126,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-orange-400"
                 >
                   <ExternalLink size={16} />
                   Demo
@@ -1137,7 +1137,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   href={project.paper}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-orange-400"
                 >
                   <FileText size={16} />
                   Paper
@@ -1201,7 +1201,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <h3 className="text-lg font-bold text-gray-800 leading-tight dark:text-gray-100">
               {project.name}
             </h3>
-            <p className="text-blue-600 text-sm font-medium mt-1 dark:text-orange-400">
+            <p className="text-blue-600 text-sm font-medium mt-1 dark:text-blue-300">
               {project.tech && project.tech.join(', ')}
             </p>
           </div>
@@ -1214,7 +1214,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
+                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-orange-400"
               >
                 <FaGithub size={18} />
                 GitHub
@@ -1225,7 +1225,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
+                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-orange-400"
               >
                 <ExternalLink size={16} />
                 Demo
@@ -1236,7 +1236,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 href={project.paper}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
+                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-orange-400"
               >
                 <FileText size={16} />
                 Paper

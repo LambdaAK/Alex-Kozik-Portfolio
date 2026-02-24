@@ -41,9 +41,9 @@ const Starfield: React.FC = () => {
           background: linear-gradient(135deg, #fce7f3 0%, #dbeafe 60%, #f3e8ff 100%);
         }
         .dark .starfield-bg {
-          background: radial-gradient(circle at top, #f97316 0%, transparent 45%),
-                      radial-gradient(circle at bottom, #ea580c 0%, transparent 55%),
-                      linear-gradient(135deg, #020617 0%, #030712 50%, #020617 100%);
+          background: radial-gradient(circle at top, #0f172a 0%, transparent 45%),
+                      radial-gradient(circle at bottom, #020617 0%, transparent 55%),
+                      linear-gradient(135deg, #020617 0%, #020617 50%, #000814 100%);
         }
         .twinkle {
           animation: twinkle 2s infinite;
