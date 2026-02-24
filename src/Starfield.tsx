@@ -40,6 +40,11 @@ const Starfield: React.FC = () => {
         .starfield-bg {
           background: linear-gradient(135deg, #fce7f3 0%, #dbeafe 60%, #f3e8ff 100%);
         }
+        .dark .starfield-bg {
+          background: radial-gradient(circle at top, #f97316 0%, transparent 45%),
+                      radial-gradient(circle at bottom, #ea580c 0%, transparent 55%),
+                      linear-gradient(135deg, #020617 0%, #030712 50%, #020617 100%);
+        }
         .twinkle {
           animation: twinkle 2s infinite;
         }
@@ -50,7 +55,7 @@ const Starfield: React.FC = () => {
         .shooting-star {
           width: 2px;
           height: 2px;
-          background: linear-gradient(45deg, #fff, transparent);
+          background: linear-gradient(45deg, #f9fafb, transparent);
           border-radius: 50%;
           animation: shoot 3s linear infinite;
           opacity: 0;

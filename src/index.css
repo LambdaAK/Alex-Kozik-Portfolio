@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Ensure Tailwind `dark:` variants are driven by the `.dark` class
+   (toggled on the <html> element via DarkModeProvider), rather than OS preference. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 #root {
     zoom: 0.75
 }

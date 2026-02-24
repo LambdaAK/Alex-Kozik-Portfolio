@@ -2,16 +2,17 @@ import './App.css'
 import { useState } from 'react';
 import Starfield from './Starfield';
 import Navbar from './Navbar';
+import DarkModeToggle from './DarkModeToggle';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { ChevronDown, ChevronUp, FileText, ExternalLink, Award, Microscope, Code, Users, Star, GraduationCap, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // About Me Card Component
 const AboutMeCard = () => (
-  <div className="w-full max-w-4xl mx-auto rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center md:items-center border border-white/20">
+  <div className="w-full max-w-4xl mx-auto rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center md:items-center border border-white/20 dark:bg-gray-900/80 dark:border-gray-700">
     {/* Profile Picture */}
     <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto mb-4 md:mb-0 md:mr-8">
-      <div className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center">
+      <div className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center dark:from-orange-500 dark:to-amber-400">
         <img
           src="/kozik4.PNG"
           alt="Profile"
@@ -23,15 +24,15 @@ const AboutMeCard = () => (
     {/* Content */}
     <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-4">
       {/* Greeting */}
-      <div className="text-lg sm:text-xl font-medium text-gray-700 mb-1 flex items-center gap-2">
+      <div className="text-lg sm:text-xl font-medium text-gray-700 mb-1 flex items-center gap-2 dark:text-gray-300">
         <span role="img" aria-label="wave">👋</span> Hello, I'm
       </div>
       {/* Name */}
-      <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-1">Alex</h1>
+      <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-1 dark:text-gray-100">Alex</h1>
       {/* Subtitle */}
-      <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4">Software/ML Engineer</div>
+      <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4 dark:text-orange-400">Software/ML Engineer</div>
       {/* Intro Paragraph */}
-      <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6">
+      <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6 dark:text-gray-300">
         I am a <span className="font-bold">first-generation</span> college student studying computer science and mathematics at <span className="text-red-500 font-semibold">Cornell</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.<br /><br />
         In my free time, I enjoy working on personal projects, working out, and reading.<br /><br />
         Welcome to my website!
@@ -125,14 +126,14 @@ const educationData = [
 ];
 const EducationSection = () => (
   <div className="flex flex-col gap-2 items-center justify-center">
-    <h2 className="text-3xl font-bold text-gray-800 mb-3">Education</h2>
+    <h2 className="text-3xl font-bold text-gray-800 mb-3 dark:text-gray-100">Education</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
       {educationData.map((edu) => {
         const [showCourses, setShowCourses] = useState(false);
         return (
           <div
             key={edu.name}
-            className="w-full flex flex-row items-stretch bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200"
+            className="w-full flex flex-row items-stretch bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 dark:bg-gray-900/80 dark:border-gray-700"
           >
             {/* Logo on the left */}
             <div className="flex items-center justify-center min-w-[120px] max-w-[160px] rounded-l-2xl p-4">
@@ -146,16 +147,16 @@ const EducationSection = () => (
             <div className="flex-1 flex flex-col justify-between p-5 gap-2">
               <div className="flex flex-row items-start justify-between flex-wrap gap-2">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800 leading-tight">
+                  <h3 className="text-xl font-bold text-gray-800 leading-tight dark:text-gray-100">
                     {edu.degree} - {edu.name}
                   </h3>
-                  <span className="block text-blue-500 text-base font-medium mt-1">{edu.major}</span>
+                  <span className="block text-blue-500 text-base font-medium mt-1 dark:text-orange-400">{edu.major}</span>
                 </div>
               </div>
               <div className="flex flex-row items-center gap-4 mt-1">
-                <span className="text-base text-gray-600">{edu.gpa}</span>
+                <span className="text-base text-gray-600 dark:text-gray-300">{edu.gpa}</span>
                 <button
-                  className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
+                  className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50 dark:focus:ring-orange-400/40"
                   onClick={() => setShowCourses((prev) => !prev)}
                 >
                   {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
@@ -163,28 +164,28 @@ const EducationSection = () => (
               </div>
               {showCourses && (
                 <div className="mt-2">
-                  <span className="font-semibold text-gray-700">Relevant Courses:</span>
+                  <span className="font-semibold text-gray-700 dark:text-gray-200">Relevant Courses:</span>
                   {edu.name === 'Cornell University' ? (
                     <div className="ml-3 mt-1">
-                      <div className="text-gray-500 text-xs mb-2 italic">
+                      <div className="text-gray-500 text-xs mb-2 italic dark:text-gray-400">
                         <div>* = Graduate course</div>
                         <div>x n = taken n times</div>
                       </div>
-                      <span className="font-semibold text-blue-500">CS:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
+                      <span className="font-semibold text-blue-500 dark:text-orange-400">CS:</span>
+                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm dark:text-gray-300">
                         {edu.courses.slice(0, 14).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
-                      <span className="font-semibold text-blue-500">Math:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
+                      <span className="font-semibold text-blue-500 dark:text-orange-400">Math:</span>
+                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm dark:text-gray-300">
                         {edu.courses.slice(14, 21).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
                     </div>
                   ) : (
-                    <ul className="list-disc list-inside ml-3 mt-1 text-gray-600 text-sm">
+                    <ul className="list-disc list-inside ml-3 mt-1 text-gray-600 text-sm dark:text-gray-300">
                       {edu.courses.map((course) => (
                         <li key={course}>{course}</li>
                       ))}
@@ -310,12 +311,12 @@ const experienceData = [
 
 const ExperienceSection = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
-    <h2 className="text-3xl font-bold text-gray-800 mb-3">Experience</h2>
+    <h2 className="text-3xl font-bold text-gray-800 mb-3 dark:text-gray-100">Experience</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
       {experienceData.map((exp) => (
         <div
           key={exp.company + (exp.position || exp.mainTitle || '')}
-          className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
+          className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6 dark:bg-gray-900/80 dark:border-gray-700"
         >
           {/* Desktop layout (md and up) */}
           <div className="hidden md:flex flex-row items-start gap-6">
@@ -332,16 +333,16 @@ const ExperienceSection = () => (
             <div className="flex-1 min-w-0">
               <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800 leading-tight">
+                  <h3 className="text-xl font-bold text-gray-800 leading-tight dark:text-gray-100">
                     {exp.company}
                     {(exp.position || exp.mainTitle) && (
-                      <span className="text-lg font-medium text-gray-700 ml-2">
+                      <span className="text-lg font-medium text-gray-700 ml-2 dark:text-gray-300">
                         - {exp.position || exp.mainTitle}
                       </span>
                     )}
                   </h3>
                 </div>
-                <span className="text-sm text-gray-600 font-medium whitespace-nowrap">
+                <span className="text-sm text-gray-600 font-medium whitespace-nowrap dark:text-gray-400">
                   {exp.duration || ''}
                 </span>
               </div>
@@ -352,13 +353,13 @@ const ExperienceSection = () => (
                   {exp.subroles.map((sub) => (
                     <div key={sub.course + sub.duration} className="border-l-2 border-cyan-400/30 pl-4">
                       <div className="flex flex-row items-center gap-2 mb-2">
-                        <span className="text-base font-semibold text-gray-800">{sub.course}</span>
-                        <span className="text-sm text-blue-700 font-medium">{sub.duration}</span>
+                        <span className="text-base font-semibold text-gray-800 dark:text-gray-100">{sub.course}</span>
+                        <span className="text-sm text-blue-700 font-medium dark:text-orange-300">{sub.duration}</span>
                       </div>
-                      <ul className="space-y-1 text-gray-600 text-sm">
+                      <ul className="space-y-1 text-gray-600 text-sm dark:text-gray-300">
                         {sub.description.map((item, j) => (
                           <li key={j} className="flex items-start gap-2">
-                            <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                            <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0 dark:text-orange-400 dark:bg-orange-400"></span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -368,10 +369,10 @@ const ExperienceSection = () => (
                 </div>
               ) : (
                 Array.isArray(exp.description) && (
-                  <ul className="space-y-1 text-gray-600 text-sm">
+                  <ul className="space-y-1 text-gray-600 text-sm dark:text-gray-300">
                     {exp.description.map((item, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                        <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0 dark:text-orange-400 dark:bg-orange-400"></span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -393,10 +394,10 @@ const ExperienceSection = () => (
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-bold text-gray-800 leading-tight">
+                <h3 className="text-lg font-bold text-gray-800 leading-tight dark:text-gray-100">
                   {exp.company}
                   {(exp.position || exp.mainTitle) && (
-                    <span className="text-base font-medium text-gray-700 ml-2">
+                    <span className="text-base font-medium text-gray-700 ml-2 dark:text-gray-300">
                       - {exp.position || exp.mainTitle}
                     </span>
                   )}
@@ -414,14 +415,14 @@ const ExperienceSection = () => (
                 <div className="flex flex-col gap-4">
                   {exp.subroles.map((sub) => (
                     <div key={sub.course + sub.duration} className="border-l-2 border-cyan-400/30 pl-4">
-                      <div className="flex flex-row items-center gap-2 mb-2">
-                        <span className="text-base font-semibold text-gray-800">{sub.course}</span>
-                        <span className="text-sm text-blue-700 font-medium">{sub.duration}</span>
+              <div className="flex flex-row items-center gap-2 mb-2">
+                        <span className="text-base font-semibold text-gray-800 dark:text-gray-100">{sub.course}</span>
+                        <span className="text-sm text-blue-700 font-medium dark:text-orange-300">{sub.duration}</span>
                       </div>
-                      <ul className="space-y-1 text-gray-600 text-sm">
+                      <ul className="space-y-1 text-gray-600 text-sm dark:text-gray-300">
                         {sub.description.map((item, j) => (
                           <li key={j} className="flex items-start gap-2">
-                            <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                            <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0 dark:text-orange-400 dark:bg-orange-400"></span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -431,10 +432,10 @@ const ExperienceSection = () => (
                 </div>
               ) : (
                 Array.isArray(exp.description) && (
-                  <ul className="space-y-1 text-gray-600 text-sm">
+                  <ul className="space-y-1 text-gray-600 text-sm dark:text-gray-300">
                     {exp.description.map((item, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                        <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0 dark:text-orange-400 dark:bg-orange-400"></span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -635,12 +636,12 @@ const softwareEngineeringProjects = [
 
 const Projects = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
-    <h2 className="text-3xl font-bold text-gray-800 mb-3">Projects</h2>
-    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">Primarily independent work, done in my own time.</p>
+    <h2 className="text-3xl font-bold text-gray-800 mb-3 dark:text-gray-100">Projects</h2>
+    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto dark:text-gray-300">Primarily independent work, done in my own time.</p>
     <div className="flex flex-col gap-8 w-full max-w-6xl">
       <div>
-        <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">Featured Projects</h3>
-        <p className="text-gray-600 text-center mb-4 max-w-2xl mx-auto">
+        <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center dark:text-gray-100">Featured Projects</h3>
+        <p className="text-gray-600 text-center mb-4 max-w-2xl mx-auto dark:text-gray-300">
           My most substantial projects.
         </p>
         <div className="flex flex-col gap-4">
@@ -650,8 +651,8 @@ const Projects = () => (
         </div>
       </div>
       <div>
-        <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">ML/AI Projects</h3>
-        <p className="text-gray-600 text-center mb-4 max-w-2xl mx-auto">
+        <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center dark:text-gray-100">ML/AI Projects</h3>
+        <p className="text-gray-600 text-center mb-4 max-w-2xl mx-auto dark:text-gray-300">
           Deep learning, reinforcement learning, and AI-powered applications.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -661,8 +662,8 @@ const Projects = () => (
         </div>
       </div>
       <div>
-        <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">Software Engineering Projects</h3>
-        <p className="text-gray-600 text-center mb-4 max-w-2xl mx-auto">
+        <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center dark:text-gray-100">Software Engineering Projects</h3>
+        <p className="text-gray-600 text-center mb-4 max-w-2xl mx-auto dark:text-gray-300">
           Full-stack applications and more.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -789,8 +790,8 @@ const awardsData: Award[] = [
 
 const AwardsSection = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
-    <h2 className="text-3xl font-bold text-gray-800 mb-3">Awards & Honors</h2>
-    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">
+    <h2 className="text-3xl font-bold text-gray-800 mb-3 dark:text-gray-100">Awards & Honors</h2>
+    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto dark:text-gray-300">
       Recognition for academic excellence, research, and teaching.
     </p>
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-5xl">
@@ -829,7 +830,7 @@ const AwardCard = ({ award }: { award: Award }) => {
   };
 
   return (
-    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6">
+    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6 dark:bg-gray-900/80 dark:border-gray-700">
       <div className="flex flex-row items-start gap-3">
         {/* Icon */}
         <div className="flex-shrink-0 mt-0.5">
@@ -838,17 +839,17 @@ const AwardCard = ({ award }: { award: Award }) => {
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex flex-row items-start justify-between gap-2 mb-1">
-            <h3 className="text-lg font-bold text-gray-800 leading-tight">
+            <h3 className="text-lg font-bold text-gray-800 leading-tight dark:text-gray-100">
               {award.title}
             </h3>
-            <span className="text-sm text-gray-500 font-medium whitespace-nowrap">
+            <span className="text-sm text-gray-500 font-medium whitespace-nowrap dark:text-gray-400">
               {award.date}
             </span>
           </div>
-          <p className="text-blue-600 text-sm font-medium mb-2">
+          <p className="text-blue-600 text-sm font-medium mb-2 dark:text-orange-400">
             {award.organization}
           </p>
-          <p className="text-gray-600 text-sm leading-relaxed">
+          <p className="text-gray-600 text-sm leading-relaxed dark:text-gray-300">
             {award.description}
           </p>
         </div>
@@ -859,8 +860,8 @@ const AwardCard = ({ award }: { award: Award }) => {
 
 const TechnicalPapersSection = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
-    <h2 className="text-3xl font-bold text-gray-800 mb-3">Papers</h2>
-    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">
+    <h2 className="text-3xl font-bold text-gray-800 mb-3 dark:text-gray-100">Papers</h2>
+    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto dark:text-gray-300">
       Research papers, technical documents, and academic writings.
     </p>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
@@ -869,9 +870,9 @@ const TechnicalPapersSection = () => (
           <PaperCard key={index} paper={paper} />
         ))
       ) : (
-        <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-8 text-center">
-          <FileText className="mx-auto mb-4 text-gray-400" size={48} />
-          <p className="text-gray-600 text-lg">
+        <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-8 text-center dark:bg-gray-900/80 dark:border-gray-700">
+          <FileText className="mx-auto mb-4 text-gray-400 dark:text-gray-300" size={48} />
+          <p className="text-gray-600 text-lg dark:text-gray-300">
             Papers and documents will appear here. Add them to the <code className="bg-white/10 px-2 py-1 rounded">technicalPapersData</code> array in App.tsx.
           </p>
         </div>
@@ -882,7 +883,7 @@ const TechnicalPapersSection = () => (
 
 const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
   return (
-    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6">
+    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6 dark:bg-gray-900/80 dark:border-gray-700">
       {/* Desktop layout (md and up) */}
       <div className="hidden md:flex flex-row items-start gap-6">
         {/* Icon/Image section */}
@@ -904,22 +905,22 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
         <div className="flex-1 min-w-0">
           <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-gray-800 leading-tight mb-1">
+              <h3 className="text-xl font-bold text-gray-800 leading-tight mb-1 dark:text-gray-100">
                 {paper.title}
               </h3>
               {paper.authors && (
-                <p className="text-gray-600 text-sm mb-1">
+                <p className="text-gray-600 text-sm mb-1 dark:text-gray-300">
                   {paper.authors}
                 </p>
               )}
               <div className="flex flex-row items-center gap-3 flex-wrap mt-2">
                 {paper.venue && (
-                  <span className="text-blue-600 text-sm font-medium">
+                  <span className="text-blue-600 text-sm font-medium dark:text-orange-400">
                     {paper.venue}
                   </span>
                 )}
                 {paper.date && (
-                  <span className="text-gray-500 text-sm">
+                  <span className="text-gray-500 text-sm dark:text-gray-400">
                     {paper.date}
                   </span>
                 )}
@@ -931,7 +932,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
                   href={paper.pdf}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
                 >
                   <FileText size={16} />
                   PDF
@@ -942,7 +943,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
                   href={paper.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
                 >
                   <ExternalLink size={16} />
                   Link
@@ -950,7 +951,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
               )}
             </div>
           </div>
-          <p className="text-gray-600 mb-3 text-base leading-relaxed">
+          <p className="text-gray-600 mb-3 text-base leading-relaxed dark:text-gray-300">
             {paper.description}
           </p>
           {paper.tags && paper.tags.length > 0 && (
@@ -958,7 +959,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
               {paper.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 rounded-full bg-white/10 text-gray-700 text-xs font-medium border border-white/20"
+                  className="px-3 py-1 rounded-full bg-white/10 text-gray-700 text-xs font-medium border border-white/20 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700"
                 >
                   {tag}
                 </span>
@@ -986,22 +987,22 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1">
+            <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1 dark:text-gray-100">
               {paper.title}
             </h3>
             {paper.authors && (
-              <p className="text-gray-600 text-xs mb-1">
+              <p className="text-gray-600 text-xs mb-1 dark:text-gray-300">
                 {paper.authors}
               </p>
             )}
             <div className="flex flex-row items-center gap-2 flex-wrap mt-1">
               {paper.venue && (
-                <span className="text-blue-600 text-xs font-medium">
+                <span className="text-blue-600 text-xs font-medium dark:text-orange-400">
                   {paper.venue}
                 </span>
               )}
               {paper.date && (
-                <span className="text-gray-500 text-xs">
+                <span className="text-gray-500 text-xs dark:text-gray-400">
                   {paper.date}
                 </span>
               )}
@@ -1017,7 +1018,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
                 href={paper.pdf}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-xs flex items-center gap-2"
+                className="px-3 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-xs flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
               >
                 <FileText size={14} />
                 PDF
@@ -1028,7 +1029,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
                 href={paper.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-xs flex items-center gap-2"
+                className="px-3 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-xs flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
               >
                 <ExternalLink size={14} />
                 Link
@@ -1038,7 +1039,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
         )}
         
         {/* Description */}
-        <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+        <p className="text-gray-600 mb-3 text-sm leading-relaxed dark:text-gray-300">
           {paper.description}
         </p>
         
@@ -1048,7 +1049,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
             {paper.tags.map((tag, i) => (
               <span
                 key={i}
-                className="px-2 py-1 rounded-full bg-white/10 text-gray-700 text-xs font-medium border border-white/20"
+                className="px-2 py-1 rounded-full bg-white/10 text-gray-700 text-xs font-medium border border-white/20 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700"
               >
                 {tag}
               </span>
@@ -1079,7 +1080,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
   return (
     <div
-      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
+      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6 dark:bg-gray-900/80 dark:border-gray-700"
     >
       {/* Desktop layout (md and up) */}
       <div className="hidden md:flex flex-row items-start gap-6">
@@ -1101,10 +1102,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <div className="flex-1 min-w-0">
           <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
             <div>
-              <h3 className="text-xl font-bold text-gray-800 leading-tight">
+              <h3 className="text-xl font-bold text-gray-800 leading-tight dark:text-gray-100">
                 {project.name}
               </h3>
-              <p className="text-blue-600 text-base font-medium mt-1">
+              <p className="text-blue-600 text-base font-medium mt-1 dark:text-orange-400">
                 {project.tech && project.tech.join(', ')}
               </p>
             </div>
@@ -1114,7 +1115,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
                 >
                   <FaGithub size={18} />
                   GitHub
@@ -1125,7 +1126,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
                 >
                   <ExternalLink size={16} />
                   Demo
@@ -1136,7 +1137,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   href={project.paper}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2"
+                  className="px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
                 >
                   <FileText size={16} />
                   Paper
@@ -1144,7 +1145,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               )}
             </div>
           </div>
-          <p className="text-gray-600 mb-3 text-base leading-relaxed">
+          <p className="text-gray-600 mb-3 text-base leading-relaxed dark:text-gray-300">
             {project.description}
           </p>
           {project.highlights && project.highlights.length > 0 && (
@@ -1166,10 +1167,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 )}
               </button>
               {showHighlights && (
-                <ul className="space-y-1 text-gray-600 text-sm">
+                <ul className="space-y-1 text-gray-600 text-sm dark:text-gray-300">
                   {project.highlights.map((h: string, i: number) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                      <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0 dark:text-orange-400 dark:bg-orange-400"></span>
                       <span>{h}</span>
                     </li>
                   ))}
@@ -1197,10 +1198,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-bold text-gray-800 leading-tight">
+            <h3 className="text-lg font-bold text-gray-800 leading-tight dark:text-gray-100">
               {project.name}
             </h3>
-            <p className="text-blue-600 text-sm font-medium mt-1">
+            <p className="text-blue-600 text-sm font-medium mt-1 dark:text-orange-400">
               {project.tech && project.tech.join(', ')}
             </p>
           </div>
@@ -1213,7 +1214,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2"
+                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
               >
                 <FaGithub size={18} />
                 GitHub
@@ -1224,7 +1225,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2"
+                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-green-400/30 hover:to-blue-500/30 hover:text-green-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
               >
                 <ExternalLink size={16} />
                 Demo
@@ -1235,7 +1236,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 href={project.paper}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2"
+                className="w-fit px-4 py-2 rounded-md bg-white/10 text-gray-700 font-medium border border-white/20 shadow-md backdrop-blur-md hover:bg-gradient-to-r hover:from-purple-400/30 hover:to-blue-500/30 hover:text-purple-700 transition text-sm flex items-center gap-2 dark:bg-gray-800/80 dark:text-gray-100 dark:border-gray-700 dark:hover:from-orange-500/40 dark:hover:to-amber-400/40 dark:hover:text-orange-50"
               >
                 <FileText size={16} />
                 Paper
@@ -1244,7 +1245,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </div>
         )}
         {/* Description */}
-        <p className="text-gray-600 mb-3 text-base leading-relaxed">
+        <p className="text-gray-600 mb-3 text-base leading-relaxed dark:text-gray-300">
           {project.description}
         </p>
         {/* Highlights */}
@@ -1267,10 +1268,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
               )}
             </button>
             {showHighlights && (
-              <ul className="space-y-1 text-gray-600 text-sm">
+            <ul className="space-y-1 text-gray-600 text-sm dark:text-gray-300">
                 {project.highlights.map((h: string, i: number) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                    <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0 dark:text-orange-400 dark:bg-orange-400"></span>
                     <span>{h}</span>
                   </li>
                 ))}
@@ -1285,9 +1286,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-blue-100 to-pink-300 text-gray-800 relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-blue-100 to-pink-300 text-gray-800 relative overflow-x-hidden dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 dark:text-gray-100">
       <Navbar />
       <Starfield />
+      <DarkModeToggle />
       <div className="flex flex-col gap-16 max-w-5xl mx-auto px-4 pb-24 relative z-10 pt-16">
         <section id="about">
           <div className="relative w-full h-screen pb-24 sm:pb-32 xl:pb-40 flex flex-col">

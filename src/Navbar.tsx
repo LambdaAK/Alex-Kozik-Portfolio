@@ -71,12 +71,12 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-lg shadow-md border-b border-white/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-lg shadow-md border-b border-white/20 dark:bg-gray-950/90 dark:border-gray-800">
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         {/* Left: Name */}
         <button
           onClick={() => scrollToSection('#about')}
-          className="text-xl md:text-2xl font-extrabold text-gray-800 tracking-tight hover:text-blue-600 transition"
+          className="text-xl md:text-2xl font-extrabold text-gray-800 tracking-tight hover:text-blue-600 transition dark:text-gray-100 dark:hover:text-orange-400"
         >
           Alex Kozik
         </button>
@@ -92,8 +92,8 @@ const Navbar: React.FC = () => {
                 className={
                   'px-4 py-2 rounded-lg font-medium transition text-sm ' +
                   (isActive
-                    ? 'bg-blue-500/10 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600')
+                    ? 'bg-blue-500/10 text-blue-600 dark:bg-orange-500/20 dark:text-orange-300'
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-orange-300')
                 }
               >
                 {link.name}
@@ -109,14 +109,14 @@ const Navbar: React.FC = () => {
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label="LinkedIn"
-            className="text-gray-600 hover:text-blue-600 transition"
+            className="text-gray-600 hover:text-blue-600 transition dark:text-gray-300 dark:hover:text-orange-300"
           >
             <FaLinkedin size={20} />
           </a>
           <a 
             href="mailto:alex.kozik3141@gmail.com" 
             aria-label="Email"
-            className="text-gray-600 hover:text-blue-600 transition"
+            className="text-gray-600 hover:text-blue-600 transition dark:text-gray-300 dark:hover:text-orange-300"
           >
             <FaEnvelope size={20} />
           </a>
@@ -125,7 +125,7 @@ const Navbar: React.FC = () => {
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label="GitHub"
-            className="text-gray-600 hover:text-blue-600 transition"
+            className="text-gray-600 hover:text-blue-600 transition dark:text-gray-300 dark:hover:text-orange-300"
           >
             <FaGithub size={20} />
           </a>
@@ -133,7 +133,7 @@ const Navbar: React.FC = () => {
 
         {/* Hamburger for mobile */}
         <button
-          className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
+          className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition dark:hover:bg-gray-800"
           aria-label="Toggle menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
@@ -149,7 +149,7 @@ const Navbar: React.FC = () => {
       {menuOpen && (
         <div
           ref={menuRef}
-          className="md:hidden absolute left-0 right-0 top-full bg-white/95 backdrop-blur-lg shadow-lg border-b border-white/20 animate-dropdown"
+          className="md:hidden absolute left-0 right-0 top-full bg-white/95 backdrop-blur-lg shadow-lg border-b border-white/20 animate-dropdown dark:bg-gray-950/95 dark:border-gray-800"
         >
           <div className="flex flex-col gap-1 px-4 py-4">
             {navLinks.map((link) => {
@@ -161,8 +161,8 @@ const Navbar: React.FC = () => {
                   className={
                     'px-4 py-3 rounded-lg font-medium text-base text-left transition ' +
                     (isActive
-                      ? 'bg-blue-500/10 text-blue-600'
-                      : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600')
+                      ? 'bg-blue-500/10 text-blue-600 dark:bg-orange-500/20 dark:text-orange-300'
+                      : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-orange-300')
                   }
                 >
                   {link.name}
@@ -177,14 +177,14 @@ const Navbar: React.FC = () => {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="LinkedIn"
-                className="text-gray-600 hover:text-blue-600 transition"
+                className="text-gray-600 hover:text-blue-600 transition dark:text-gray-300 dark:hover:text-orange-300"
               >
                 <FaLinkedin size={24} />
               </a>
               <a 
                 href="mailto:alex.kozik3141@gmail.com" 
                 aria-label="Email"
-                className="text-gray-600 hover:text-blue-600 transition"
+                className="text-gray-600 hover:text-blue-600 transition dark:text-gray-300 dark:hover:text-orange-300"
               >
                 <FaEnvelope size={24} />
               </a>
@@ -193,7 +193,7 @@ const Navbar: React.FC = () => {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="GitHub"
-                className="text-gray-600 hover:text-blue-600 transition"
+                className="text-gray-600 hover:text-blue-600 transition dark:text-gray-300 dark:hover:text-orange-300"
               >
                 <FaGithub size={24} />
               </a>
