@@ -2,7 +2,7 @@ import './App.css'
 import { useEffect, useState } from 'react';
 import Starfield from './Starfield';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
-import { Mouse, ArrowDown, ChevronDown, ChevronUp, FileText, ExternalLink, Award, Microscope, Code, Calculator, Users, Star, GraduationCap, Heart } from 'lucide-react';
+import { Mouse, ArrowDown, ChevronDown, ChevronUp, FileText, ExternalLink, Award, Microscope, Code, Users, Star, GraduationCap, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // About Me Card Component
