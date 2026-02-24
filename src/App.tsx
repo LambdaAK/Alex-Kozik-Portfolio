@@ -773,7 +773,7 @@ const awardsData: Award[] = [
   {
     title: "AP Scholar with Distinction",
     organization: "College Board",
-    description: "Awarded to students who receive an average score of at least 3.5 on all AP Exams taken, and scores of 3 or higher on five or more of these exams.",
+    description: "Took 8 AP courses and received high scores on exams.",
     date: "2022",
     icon: "users"
   },
