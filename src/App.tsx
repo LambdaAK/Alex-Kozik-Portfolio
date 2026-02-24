@@ -483,7 +483,7 @@ const featuredProjects = [
 const machineLearningProjects = [
   {
     name: "dX - Math & ML Lab",
-    description: "Client-side web app for stochastic processes, probability, and machine learning. Features SDEs, Markov chains, bandits, LLN/CLT, RL algorithms, regression, and clustering—all with interactive visualizations running in the browser.",
+    description: "Browser-based interactive sandbox for applied mathematics and machine learning. Features labs for stochastic processes (SDEs, Markov chains), probability theory (LLN, CLT), reinforcement learning (bandits, MDPs), supervised learning (regression, classification, decision trees, ensembles, SVM), clustering (K-means, DBSCAN, PCA), optimization (simplex, gradient descent), linear algebra (eigenvalues, matrix factorizations), and physics simulations (pendulum, heat equation in 1D/2D/3D). All numerical methods and visualizations run entirely client-side with interactive parameter controls.",
     tech: ["Math", "TypeScript", "React"],
     github: "https://github.com/LambdaAK/dX",
     demo: "https://dxlab.netlify.app/",
