@@ -2,7 +2,7 @@ import './App.css'
 import { useEffect, useState } from 'react';
 import Starfield from './Starfield';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
-import { Mouse, ArrowDown, ChevronDown, ChevronUp, FileText, ExternalLink } from 'lucide-react';
+import { Mouse, ArrowDown, ChevronDown, ChevronUp, FileText, ExternalLink, Award, Microscope, Code, Calculator, Users, Star, GraduationCap, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // About Me Card Component
@@ -718,6 +718,144 @@ const technicalPapersData: TechnicalPaper[] = [
   }
 ];
 
+// Awards Section
+interface Award {
+  title: string;
+  organization: string;
+  description: string;
+  date: string;
+  icon: 'graduation' | 'microscope' | 'code' | 'pi' | 'award' | 'star' | 'users' | 'pbk' | 'heart';
+}
+
+const awardsData: Award[] = [
+  {
+    title: "Phi Beta Kappa",
+    organization: "The Phi Beta Kappa Society",
+    description: "Invited to join the oldest and most prestigious academic honor society in the United States, recognizing excellence in the liberal arts and sciences.",
+    date: "2026",
+    icon: "pbk"
+  },
+  {
+    title: "Honors Distinction in Computer Science",
+    organization: "Cornell University",
+    description: "Earned by completing research for credit and undertaking graduate-level coursework in addition to the standard CS major requirements.",
+    date: "2025",
+    icon: "code"
+  },
+  {
+    title: "Honors Distinction in Mathematics",
+    organization: "Cornell University",
+    description: "Earned by maintaining a high GPA in math courses and demonstrating exceptional performance in the mathematics curriculum.",
+    date: "2025",
+    icon: "pi"
+  },
+  {
+    title: "NSF Research Experience for Undergraduates (REU)",
+    organization: "Carnegie Mellon University",
+    description: "Competitively selected for CMU's NSF-funded REUSE program to conduct summer research in programming languages and software engineering. Received a full research stipend.",
+    date: "2024",
+    icon: "microscope"
+  },
+  {
+    title: "CS Course Staff Award",
+    organization: "Cornell University",
+    description: "Awarded to the top 10% of teaching assistants for exceptional teaching performance; received while TAing CS 3110 (Data Structures and Functional Programming).",
+    date: "2024",
+    icon: "award"
+  },
+  {
+    title: "Dean's List",
+    organization: "Cornell University",
+    description: "Recognizes students with GPA of 3.6 or higher; received every eligible semester throughout undergraduate career.",
+    date: "2022 - 2025",
+    icon: "star"
+  },
+  {
+    title: "AP Scholar with Distinction",
+    organization: "College Board",
+    description: "Awarded to students who receive an average score of at least 3.5 on all AP Exams taken, and scores of 3 or higher on five or more of these exams.",
+    date: "2022",
+    icon: "users"
+  },
+  {
+    title: "Boomerang Youth Recognition Award",
+    organization: "Central Bucks School District",
+    description: "Recognized for outstanding volunteer work promoting equality and social justice through community organizations.",
+    date: "2022",
+    icon: "heart"
+  }
+];
+
+const AwardsSection = () => (
+  <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
+    <h2 className="text-3xl font-bold text-gray-800 mb-3">Awards & Honors</h2>
+    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">
+      Recognition for academic excellence, research, and teaching.
+    </p>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-5xl">
+      {awardsData.map((award, index) => (
+        <AwardCard key={index} award={award} />
+      ))}
+    </div>
+  </div>
+);
+
+const AwardCard = ({ award }: { award: Award }) => {
+  const getIcon = () => {
+    const iconProps = { size: 20, className: "text-gray-600" };
+    switch (award.icon) {
+      case 'pbk':
+        return <span className="text-lg font-semibold text-gray-600">ΦΒΚ</span>;
+      case 'pi':
+        return <span className="text-xl font-semibold text-gray-600">π</span>;
+      case 'graduation':
+        return <GraduationCap {...iconProps} />;
+      case 'microscope':
+        return <Microscope {...iconProps} />;
+      case 'code':
+        return <Code {...iconProps} />;
+      case 'award':
+        return <Award {...iconProps} />;
+      case 'star':
+        return <Star {...iconProps} />;
+      case 'users':
+        return <Users {...iconProps} />;
+      case 'heart':
+        return <Heart {...iconProps} />;
+      default:
+        return <Award {...iconProps} />;
+    }
+  };
+
+  return (
+    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6">
+      <div className="flex flex-row items-start gap-3">
+        {/* Icon */}
+        <div className="flex-shrink-0 mt-0.5">
+          {getIcon()}
+        </div>
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-row items-start justify-between gap-2 mb-1">
+            <h3 className="text-lg font-bold text-gray-800 leading-tight">
+              {award.title}
+            </h3>
+            <span className="text-sm text-gray-500 font-medium whitespace-nowrap">
+              {award.date}
+            </span>
+          </div>
+          <p className="text-blue-600 text-sm font-medium mb-2">
+            {award.organization}
+          </p>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            {award.description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const TechnicalPapersSection = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
     <h2 className="text-3xl font-bold text-gray-800 mb-3">Papers</h2>
@@ -1232,6 +1370,15 @@ function App() {
             transition={{ duration: 0.4, ease: 'easeOut' }}
           >
             <ExperienceSection />
+          </motion.div>
+        </section>
+        <section id="awards" className="pt-8">
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            <AwardsSection />
           </motion.div>
         </section>
         <section id="papers" className="pt-8">
