@@ -732,7 +732,7 @@ const awardsData: Award[] = [
   {
     title: "Phi Beta Kappa",
     organization: "The Phi Beta Kappa Society",
-    description: "Invited to join the oldest and most prestigious academic honor society in the United States, recognizing excellence in the liberal arts and sciences.",
+    description: "Inducted into the oldest and most prestigious academic honor society in the United States. About 1% of college seniors in the U.S. are invited.",
     date: "2026",
     icon: "pbk"
   },
