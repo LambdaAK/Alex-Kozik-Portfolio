@@ -206,7 +206,7 @@ const experienceData = [
     company: 'Salesforce',
     logo: '/Salesforce.com_logo.svg.png',
     position: 'Software Engineer Intern',
-    duration: 'May 2025 - Aug 2025',
+    duration: 'Jun 2025 - Aug 2025',
     description: [
       'Develop custom virtual formula field functionality in Salesforce Data Cloud, empowering customers to create dynamic data transformations without code and enabling self-service analytics capabilities.',
       'Build scalable backend services using Java and Apache Spark for formula computations on distributed metadata services, enabling processing that scales automatically with customer data volume.',
@@ -267,7 +267,7 @@ const experienceData = [
     company: 'Carnegie Mellon University',
     logo: '/S3D.jpeg',
     position: 'Software Engineer and Research Intern',
-    duration: 'May 2024 - August 2024',
+    duration: 'May 2024 - Aug 2024',
     description: [
       'Worked on the interpreter for SASyLF, a language for writing proofs, implementing core features in Java.',
       'Implemented a polymorphic type system for SASyLF, similar to Java generics, enabling type-safe code reuse and significantly reducing duplication in proofs by allowing abstraction over multiple data types.',
@@ -694,11 +694,11 @@ const technicalPapersData: TechnicalPaper[] = [
     description: "A research paper exploring multi-armed bandit algorithms in multi-agent systems using voting mechanisms. My final project for CS 6783 - Machine Learning Theory.",
     pdf: "/Voting-Based Multi-Agent Bandits.pdf",
     image: "/bandits.png",
-    tags: ["Reinforcement Learning", "Multi-Armed Bandits", "Multi-Agent Systems"]
+    tags: ["Machine Learning Theory", "Reinforcement Learning", "Multi-Armed Bandits", "Multi-Agent Systems"]
   },
   {
     title: "From Redux to Component-level State: Modernizing CMSX Architecture",
-    description: "A comprehensive technical document detailing the migration of Cornell's Course Management System (CMSX) from Redux-facilitated global state to component-level state architecture. I worked on this project from January 2024 to December 2024, receiving academic research credit through CS 4999. This migration yielded a massive improvement in both developer experience and user experience.",
+    description: "A comprehensive technical document detailing the migration of Cornell's Course Management System (CMSX) from Redux-facilitated global state to component-level state architecture. I worked on this project from Jan 2024 to Dec 2024, receiving academic research credit through CS 4999. This migration yielded a massive improvement in both developer experience and user experience.",
     pdf: "/From Redux to Component-level State Modernizing CMSX Architecture.pdf",
     image: "/CMSX-logo.svg",
     tags: ["React", "TypeScript", "Software Architecture", "State Management", "Frontend Engineering", "Performance Optimization"]
