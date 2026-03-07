@@ -256,7 +256,7 @@ const experienceData = [
   {
     company: 'Cornell Generative AI',
     logo: '/generative_ai_at_cornell_logo.jpeg',
-    position: 'Artificial Intelligence/Machine Learning Engineer',
+    position: 'Founding Member and Machine Learning Engineer',
     duration: 'Jan 2025 - Present',
     description: [
       'Developed AI agent for QuickFi, a commercial lending technology company, automating insurance certificate validation and compliance verification processes, reducing operational costs.',
