@@ -170,13 +170,13 @@ const EducationSection = () => (
                         <div>* = Graduate course</div>
                         <div>x n = taken n times</div>
                       </div>
-                      <span className="font-semibold text-blue-500">CS:</span>
+                      <span className="font-semibold text-blue-500">Computer Science:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
                         {edu.courses.slice(0, 14).map((course) => (
                           <li key={course}>{course}</li>
                         ))}
                       </ul>
-                      <span className="font-semibold text-blue-500">Math:</span>
+                      <span className="font-semibold text-blue-500">Mathematics:</span>
                       <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
                         {edu.courses.slice(14, 21).map((course) => (
                           <li key={course}>{course}</li>
