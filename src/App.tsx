@@ -599,6 +599,21 @@ const softwareEngineeringProjects = [
     ]
   },
   {
+    name: "ObsidianDB - In-Memory SQL Database Engine",
+    description: "SQL database engine in C++ built from scratch—custom lexer, parser, and in-memory execution. No external SQL libraries.",
+    tech: ["C++"],
+    github: "https://github.com/LambdaAK/ObsidianDB",
+    demo: null,
+    image: "/ObsidianDB logo.png",
+    imageSize: "lg",
+    highlights: [
+      "Hand-built lexer and recursive-descent parser; full parsing and execution pipeline implemented from scratch.",
+      "SQL subset: CREATE TABLE, INSERT, SELECT with WHERE predicates and ORDER BY clauses.",
+      "Interactive REPL with meta-commands (.tables, .schema) for introspection.",
+      "Typed columns: INT, FLOAT, STRING—no external SQL libraries used."
+    ]
+  },
+  {
     name: "HabitStack - Habit Tracking Application",
     description: "Full-stack habit tracking application with OAuth2, monthly calendar interface, and real-time goal management.",
     tech: ["React", "TypeScript", "JavaScript", "SASS", "Express.js", "Firebase", "Vite"],
@@ -642,6 +657,7 @@ const softwareEngineeringProjects = [
     github: "https://github.com/LambdaAK/Orb",
     demo: null,
     image: "/Orb logo.png",
+    imageSize: "lg",
     highlights: [
       "Place & play: Click-drag to spawn particles (with initial velocity) or add gravity wells; drag wells to move them.",
       "Physics: Gravity, elastic particle–particle and wall collisions, configurable restitution.",
@@ -1094,6 +1110,7 @@ interface Project {
   github?: string | null;
   demo?: string | null;
   image?: string | null;
+  imageSize?: 'default' | 'lg';
   highlights?: string[];
   whyFavorite?: string;
   paper?: string | null;
@@ -1110,12 +1127,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
       {/* Desktop layout (md and up) */}
       <div className="hidden md:flex flex-row items-start gap-6">
         {/* Logo section */}
-        <div className="flex items-center justify-center w-20 h-20 rounded-xl flex-shrink-0">
+        <div className={`flex items-center justify-center rounded-xl flex-shrink-0 ${project.imageSize === 'lg' ? 'w-28 h-28' : 'w-20 h-20'}`}>
           {project.image ? (
             <img
               src={project.image}
               alt={project.name + ' logo'}
-              className="object-contain w-16 h-16 rounded-lg"
+              className={`object-contain rounded-lg ${project.imageSize === 'lg' ? 'w-24 h-24' : 'w-16 h-16'}`}
             />
           ) : (
             <span className="text-2xl font-extrabold text-gray-800 select-none">
@@ -1209,12 +1226,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <div className="md:hidden flex flex-col">
         {/* Top section: Logo, name, and tech */}
         <div className="flex flex-row items-center gap-4 mb-4">
-          <div className="flex items-center justify-center w-16 h-16 rounded-xl flex-shrink-0">
+          <div className={`flex items-center justify-center rounded-xl flex-shrink-0 ${project.imageSize === 'lg' ? 'w-20 h-20' : 'w-16 h-16'}`}>
             {project.image ? (
               <img
                 src={project.image}
                 alt={project.name + ' logo'}
-                className="object-contain w-12 h-12 rounded-lg"
+                className={`object-contain rounded-lg ${project.imageSize === 'lg' ? 'w-16 h-16' : 'w-12 h-12'}`}
               />
             ) : (
               <span className="text-xl font-extrabold text-gray-800 select-none">
