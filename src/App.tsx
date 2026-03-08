@@ -453,7 +453,7 @@ const featuredProjects = [
   {
     name: "LambdaScript - Custom Programming Language",
     description: "Custom functional programming language with a performant interpreter, type inference, and core language features.",
-    tech: ["TypeScript", "OCaml", "Jest", "OUnit"],
+    tech: ["OCaml", "OUnit", "TypeScript", "Jest"],
     github: "https://github.com/LambdaAK/lambdascript",
     demo: null,
     image: "/LambdaScript logo.png",
@@ -477,11 +477,7 @@ const featuredProjects = [
       "Implemented DQN and Policy Gradient agents achieving 97%+ win rates in autonomous gameplay.",
       "Achieved 26x performance speedup through compiler optimizations and parallelization techniques."
     ]
-  }
-];
-
-// Categorized Projects Data
-const machineLearningProjects = [
+  },
   {
     name: "dX - Math & ML Lab",
     description: "Browser-based interactive sandbox for applied mathematics and machine learning. Features labs for stochastic processes (SDEs, Markov chains), probability theory (LLN, CLT), reinforcement learning (bandits, MDPs), supervised learning (regression, classification, decision trees, ensembles, SVM), clustering (K-means, DBSCAN, PCA), optimization (simplex, gradient descent), linear algebra (eigenvalues, matrix factorizations), and physics simulations (pendulum, heat equation in 1D/2D/3D). All numerical methods and visualizations run entirely client-side with interactive parameter controls.",
@@ -496,7 +492,11 @@ const machineLearningProjects = [
       "Provides supervised learning models (linear/logistic regression) and clustering (K-means, DBSCAN, KNN).",
       "All simulations, fitting, and numerical methods run entirely in the browser—no backend required."
     ]
-  },
+  }
+];
+
+// Categorized Projects Data
+const machineLearningProjects = [
   {
     name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
     description: "A deep learning model that automatically generates descriptive captions for images using visual attention. Implements the Show, Attend, Tell architecture and achieves superior METEOR scores. Final project for CS 4782 - Deep Learning.",
