@@ -541,6 +541,18 @@ const machineLearningProjects = [
     ]
   },
   {
+    name: "MCTSLab - Monte Carlo Tree Search Framework",
+    description: "MCTSLab is a small Python framework for Monte Carlo Tree Search. It includes UCT and a Flat UCB variant, playable games (tic-tac-toe, Connect Four, 2048), tree visualization, and a benchmark script that measures MCTS win rate against a random player.",
+    tech: ["Python"],
+    github: "https://github.com/LambdaAK/MCTSLab",
+    demo: null,
+    image: "/MCTSLab logo.png",
+    highlights: [
+      "UCT and Flat UCB with tic-tac-toe, Connect Four, and 2048.",
+      "Tree visualization and benchmark script (MCTS vs random)."
+    ]
+  },
+  {
     name: "BanditBot - Multi-Armed Bandit Algorithm Library",
     description: "A comprehensive library for simulating and benchmarking Multi-Armed Bandit (MAB) algorithms, including Epsilon-Greedy, UCB, Thompson Sampling, neural network-based contextual bandits, and more. Designed for research, teaching, and practical experimentation.",
     tech: ["Python", "NumPy", "Matplotlib"],
