@@ -599,7 +599,7 @@ const softwareEngineeringProjects = [
     ]
   },
   {
-    name: "ObsidianDB - In-Memory SQL Database Engine",
+    name: "ObsidianDB - SQL Database Engine",
     description: "SQL database engine in C++ built from scratch—custom lexer, parser, and in-memory execution. No external SQL libraries.",
     tech: ["C++"],
     github: "https://github.com/LambdaAK/ObsidianDB",
