@@ -636,6 +636,20 @@ const softwareEngineeringProjects = [
     ]
   },
   {
+    name: "Orb - Particle Simulator",
+    description: "Interactive particle sandbox — C++, SDL2, OpenGL. A real-time 2D physics sandbox where you place particles and gravity wells, then watch them move, collide, and leave trails. Built in C++ with SDL2 for windowing and input and OpenGL for rendering.",
+    tech: ["C++", "OpenGL"],
+    github: "https://github.com/LambdaAK/Orb",
+    demo: null,
+    image: "/Orb logo.png",
+    highlights: [
+      "Place & play: Click-drag to spawn particles (with initial velocity) or add gravity wells; drag wells to move them.",
+      "Physics: Gravity, elastic particle–particle and wall collisions, configurable restitution.",
+      "Time control: Slider and keyboard shortcuts to run the simulation from 0.1× to 10× speed; pause with Space.",
+      "Visuals: Glowing particle trails, clear well indicators, separate tool panel with time readout."
+    ]
+  },
+  {
     name: "Portfolio Website",
     description: "This portfolio website",
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
