@@ -605,7 +605,7 @@ const softwareEngineeringProjects = [
     github: "https://github.com/LambdaAK/ObsidianDB",
     demo: null,
     image: "/ObsidianDB logo.png",
-    imageSize: "lg",
+    imageSize: "lg" as const,
     highlights: [
       "Hand-built lexer and recursive-descent parser; full parsing and execution pipeline implemented from scratch.",
       "SQL subset: CREATE TABLE, INSERT, SELECT with WHERE predicates and ORDER BY clauses.",
@@ -657,7 +657,7 @@ const softwareEngineeringProjects = [
     github: "https://github.com/LambdaAK/Orb",
     demo: null,
     image: "/Orb logo.png",
-    imageSize: "lg",
+    imageSize: "lg" as const,
     highlights: [
       "Place & play: Click-drag to spawn particles (with initial velocity) or add gravity wells; drag wells to move them.",
       "Physics: Gravity, elastic particle–particle and wall collisions, configurable restitution.",
