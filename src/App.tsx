@@ -265,7 +265,7 @@ const experienceData = [
   },
   {
     company: 'Carnegie Mellon University',
-    logo: '/S3D.jpeg',
+    logo: '/CMU.png',
     position: 'Software Engineer and Research Intern',
     duration: 'May 2024 - Aug 2024',
     description: [
