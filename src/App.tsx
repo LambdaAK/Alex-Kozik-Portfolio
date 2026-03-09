@@ -464,7 +464,7 @@ const featuredProjects = [
     ]
   },
   {
-    name: "C-Torch - Artificial Intelligence/Machine Learning Library",
+    name: "C-Torch - C++ Machine Learning Library",
     description: "High-performance math library supporting numerical methods, calculus, and linear algebra. Includes 15+ ML models and RL agents.",
     tech: ["C++"],
     github: "https://github.com/LambdaAK/c-torch",
@@ -498,6 +498,21 @@ const featuredProjects = [
 // Categorized Projects Data
 const machineLearningProjects = [
   {
+    name: "Snake DQN - AI Snake Game Agent",
+    description: "A Deep Q-Network (DQN) reinforcement learning implementation for the classic Snake game. Features an AI agent that learns optimal strategies through 29-dimensional state representation, intelligent reward functions, and anti-looping mechanisms. The agent achieves scores of 20-40+ points through sophisticated spatial reasoning and strategic planning.",
+    tech: ["Python", "PyTorch", "NumPy", "Matplotlib"],
+    github: "https://github.com/LambdaAK/Snake",
+    demo: null,
+    image: "/new-snake-logo.png",
+    highlights: [
+      "Implements DQN with 4-layer neural network for Snake game navigation.",
+      "Uses 29-dimensional state representation including danger detection and spatial awareness.",
+      "Features intelligent reward functions and anti-looping mechanisms for optimal performance.",
+      "Achieves scores of 20-40+ points through strategic planning and spatial reasoning.",
+      "Includes interactive testing modes and comprehensive training visualization."
+    ]
+  },
+  {
     name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
     description: "A deep learning model that automatically generates descriptive captions for images using visual attention. Implements the Show, Attend, Tell architecture and achieves superior METEOR scores. Final project for CS 4782 - Deep Learning.",
     tech: ["PyTorch", "Python"],
@@ -512,11 +527,24 @@ const machineLearningProjects = [
     ]
   },
   {
+    name: "Bool Transformer",
+    description: "Transformer models for boolean logic: evaluation, generation, and simplification. Built in PyTorch with encoder-only, decoder-only, and encoder-decoder architectures. Simplifier reaches ~92% test accuracy on synthetic data.",
+    tech: ["PyTorch", "Python"],
+    github: "https://github.com/LambdaAK/Bool-Transformer",
+    demo: null,
+    image: "/Bool Transformer.png",
+    highlights: [
+      "Simplifier: seq2seq encoder-decoder that applies logical identities (e.g. True AND X → X, NOT NOT X → X) to expressions with variables; ~92% test accuracy.",
+      "Generator: decoder-only model that produces valid expressions, optionally conditioned on a target result.",
+      "Evaluator: encoder-only model that classifies boolean expressions as True or False."
+    ]
+  },
+  {
     name: "CoinBot - Reinforcement Learning 2D Navigation Bot",
     description: "A reinforcement learning agent that navigates a 2D world using Q-learning and Deep Q-Networks (DQN). CoinBot learns optimal movement strategies through trial and error, demonstrating core RL concepts with real-time learning visualizations.",
     tech: ["Python", "PyTorch", "NumPy", "Matplotlib"],
-    github: "https://github.com/LambdaAK/CoinBot", // Add your GitHub link here if available
-    demo: null, // Add your demo link here if available
+    github: "https://github.com/LambdaAK/CoinBot",
+    demo: null,
     image: "/CoinBot Logo Design.png",
     highlights: [
       "Implements both tabular Q-learning and DQN for 2D navigation tasks.",
@@ -526,27 +554,13 @@ const machineLearningProjects = [
     ]
   },
   {
-    name: "Snake DQN - AI Snake Game Agent",
-    description: "A Deep Q-Network (DQN) reinforcement learning implementation for the classic Snake game. Features an AI agent that learns optimal strategies through 29-dimensional state representation, intelligent reward functions, and anti-looping mechanisms. The agent achieves scores of 20-40+ points through sophisticated spatial reasoning and strategic planning.",
-    tech: ["Python", "PyTorch", "NumPy", "Matplotlib"],
-    github: "https://github.com/LambdaAK/Snake",
-    demo: null, // Add your demo link here if available
-    image: "/new-snake-logo.png",
-    highlights: [
-      "Implements DQN with 4-layer neural network for Snake game navigation.",
-      "Uses 29-dimensional state representation including danger detection and spatial awareness.",
-      "Features intelligent reward functions and anti-looping mechanisms for optimal performance.",
-      "Achieves scores of 20-40+ points through strategic planning and spatial reasoning.",
-      "Includes interactive testing modes and comprehensive training visualization."
-    ]
-  },
-  {
     name: "MCTSLab - Monte Carlo Tree Search Framework",
     description: "MCTSLab is a small Python framework for Monte Carlo Tree Search. It includes UCT and a Flat UCB variant, playable games (tic-tac-toe, Connect Four, 2048), tree visualization, and a benchmark script that measures MCTS win rate against a random player.",
     tech: ["Python"],
     github: "https://github.com/LambdaAK/MCTSLab",
     demo: null,
     image: "/MCTSLab logo.png",
+    imageSize: "lg" as const,
     highlights: [
       "UCT and Flat UCB with tic-tac-toe, Connect Four, and 2048.",
       "Tree visualization and benchmark script (MCTS vs random)."
