@@ -793,16 +793,16 @@ const awardsData: Award[] = [
     icon: "pbk"
   },
   {
-    title: "Honors Distinction in Computer Science",
+    title: "Summa Cum Laude in Computer Science",
     organization: "Cornell University",
-    description: "Earned by completing research for credit and undertaking graduate-level coursework in addition to the standard CS major requirements.",
+    description: "Awarded for excelling in research, undertaking graduate-level coursework in addition to the standard CS major requirements, and graduating with above a 4.0 GPA.",
     date: "2025",
     icon: "code"
   },
   {
-    title: "Honors Distinction in Mathematics",
+    title: "Cum Laude in Mathematics",
     organization: "Cornell University",
-    description: "Earned by maintaining a high GPA in math courses and demonstrating exceptional performance in the mathematics curriculum.",
+    description: "Earned by demonstrating exceptional performance in the mathematics curriculum, attaining a math major GPA of 4.16/4.3.",
     date: "2025",
     icon: "pi"
   },
