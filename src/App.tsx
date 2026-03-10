@@ -500,7 +500,7 @@ const machineLearningProjects = [
   {
     name: "Snake DQN - AI Snake Game Agent",
     description: "A Deep Q-Network (DQN) reinforcement learning implementation for the classic Snake game. Features an AI agent that learns optimal strategies through 29-dimensional state representation, intelligent reward functions, and anti-looping mechanisms. The agent achieves scores of 20-40+ points through sophisticated spatial reasoning and strategic planning.",
-    tech: ["Python", "PyTorch", "NumPy", "Matplotlib"],
+    tech: ["Python", "PyTorch", "Reinforcement Learning"],
     github: "https://github.com/LambdaAK/Snake",
     demo: null,
     image: "/new-snake-logo.png",
@@ -515,7 +515,7 @@ const machineLearningProjects = [
   {
     name: "Visual Attention Image Captioning - Show, Attend, Tell Implementation",
     description: "A deep learning model that automatically generates descriptive captions for images using visual attention. Implements the Show, Attend, Tell architecture and achieves superior METEOR scores. Final project for CS 4782 - Deep Learning.",
-    tech: ["PyTorch", "Python"],
+    tech: ["PyTorch", "Python", "LSTM", "CNN"],
     github: "https://github.com/LambdaAK/CS-4782-Final-Project",
     demo: null,
     image: "/image captioning logo.png",
@@ -527,16 +527,29 @@ const machineLearningProjects = [
     ]
   },
   {
-    name: "Bool Transformer",
-    description: "Transformer models for boolean logic: evaluation, generation, and simplification. Built in PyTorch with encoder-only, decoder-only, and encoder-decoder architectures. Simplifier reaches ~92% test accuracy on synthetic data.",
-    tech: ["PyTorch", "Python"],
-    github: "https://github.com/LambdaAK/Bool-Transformer",
+    name: "English2Logic",
+    description: "A transformer that translates natural English into propositional logic. Synthetic data pipeline (formula generator + English realizer) trains without human-labeled data. ~88% exact-match accuracy on nested formulas; ~30 min on an A100.",
+    tech: ["PyTorch", "Python", "Transformer"],
+    github: "https://github.com/LambdaAK/English2Logic",
     demo: null,
-    image: "/Bool Transformer.png",
+    image: "/English2Logic.png",
+    imageSize: "xl" as const,
     highlights: [
-      "Simplifier: seq2seq encoder-decoder that applies logical identities (e.g. True AND X → X, NOT NOT X → X) to expressions with variables; ~92% test accuracy.",
-      "Generator: decoder-only model that produces valid expressions, optionally conditioned on a target result.",
-      "Evaluator: encoder-only model that classifies boolean expressions as True or False."
+      "Handles varied phrasings: \"if A then B\", \"both A and B\", \"it is not the case that A\" → formal logic notation.",
+      "End-to-end synthetic pipeline eliminates need for human-labeled training data."
+    ]
+  },
+  {
+    name: "MCTSLab - Monte Carlo Tree Search Framework",
+    description: "MCTSLab is a small Python framework for Monte Carlo Tree Search. It includes UCT and a Flat UCB variant, playable games (tic-tac-toe, Connect Four, 2048), tree visualization, and a benchmark script that measures MCTS win rate against a random player.",
+    tech: ["Python"],
+    github: "https://github.com/LambdaAK/MCTSLab",
+    demo: null,
+    image: "/MCTSLab logo.png",
+    imageSize: "xl" as const,
+    highlights: [
+      "UCT and Flat UCB with tic-tac-toe, Connect Four, and 2048.",
+      "Tree visualization and benchmark script (MCTS vs random)."
     ]
   },
   {
@@ -554,19 +567,6 @@ const machineLearningProjects = [
     ]
   },
   {
-    name: "MCTSLab - Monte Carlo Tree Search Framework",
-    description: "MCTSLab is a small Python framework for Monte Carlo Tree Search. It includes UCT and a Flat UCB variant, playable games (tic-tac-toe, Connect Four, 2048), tree visualization, and a benchmark script that measures MCTS win rate against a random player.",
-    tech: ["Python"],
-    github: "https://github.com/LambdaAK/MCTSLab",
-    demo: null,
-    image: "/MCTSLab logo.png",
-    imageSize: "lg" as const,
-    highlights: [
-      "UCT and Flat UCB with tic-tac-toe, Connect Four, and 2048.",
-      "Tree visualization and benchmark script (MCTS vs random)."
-    ]
-  },
-  {
     name: "BanditBot - Multi-Armed Bandit Algorithm Library",
     description: "A comprehensive library for simulating and benchmarking Multi-Armed Bandit (MAB) algorithms, including Epsilon-Greedy, UCB, Thompson Sampling, neural network-based contextual bandits, and more. Designed for research, teaching, and practical experimentation.",
     tech: ["Python", "NumPy", "Matplotlib"],
@@ -578,6 +578,19 @@ const machineLearningProjects = [
       "Provides a flexible simulation environment for comparing algorithm performance on custom bandit problems.",
       "Includes visualization tools for reward distributions, regret, and action selection over time.",
       "Well-documented and modular codebase, ideal for both research and teaching applications."
+    ]
+  },
+  {
+    name: "Bool Transformer",
+    description: "Transformer models for boolean logic: evaluation, generation, and simplification. Built in PyTorch with encoder-only, decoder-only, and encoder-decoder architectures. Simplifier reaches ~92% test accuracy on synthetic data.",
+    tech: ["PyTorch", "Python", "Transformer"],
+    github: "https://github.com/LambdaAK/Bool-Transformer",
+    demo: null,
+    image: "/Bool Transformer.png",
+    highlights: [
+      "Simplifier: seq2seq encoder-decoder that applies logical identities (e.g. True AND X → X, NOT NOT X → X) to expressions with variables; ~92% test accuracy.",
+      "Generator: decoder-only model that produces valid expressions, optionally conditioned on a target result.",
+      "Evaluator: encoder-only model that classifies boolean expressions as True or False."
     ]
   },
   {
@@ -1124,7 +1137,7 @@ interface Project {
   github?: string | null;
   demo?: string | null;
   image?: string | null;
-  imageSize?: 'default' | 'lg';
+  imageSize?: 'default' | 'lg' | 'xl';
   highlights?: string[];
   whyFavorite?: string;
   paper?: string | null;
@@ -1141,12 +1154,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
       {/* Desktop layout (md and up) */}
       <div className="hidden md:flex flex-row items-start gap-6">
         {/* Logo section */}
-        <div className={`flex items-center justify-center rounded-xl flex-shrink-0 ${project.imageSize === 'lg' ? 'w-28 h-28' : 'w-20 h-20'}`}>
+        <div className={`flex items-center justify-center rounded-xl flex-shrink-0 ${project.imageSize === 'xl' ? 'w-36 h-36' : project.imageSize === 'lg' ? 'w-28 h-28' : 'w-20 h-20'}`}>
           {project.image ? (
             <img
               src={project.image}
               alt={project.name + ' logo'}
-              className={`object-contain rounded-lg ${project.imageSize === 'lg' ? 'w-24 h-24' : 'w-16 h-16'}`}
+              className={`object-contain rounded-lg ${project.imageSize === 'xl' ? 'w-32 h-32' : project.imageSize === 'lg' ? 'w-24 h-24' : 'w-16 h-16'}`}
             />
           ) : (
             <span className="text-2xl font-extrabold text-gray-800 select-none">
@@ -1156,16 +1169,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
         </div>
         {/* Content section */}
         <div className="flex-1 min-w-0">
-          <div className="flex flex-row items-start justify-between flex-wrap gap-2 mb-3">
-            <div>
-              <h3 className="text-xl font-bold text-gray-800 leading-tight">
-                {project.name}
-              </h3>
-              <p className="text-blue-600 text-base font-medium mt-1">
-                {project.tech && project.tech.join(', ')}
-              </p>
-            </div>
-            <div className="flex gap-2">
+          <div className="mb-3">
+            <h3 className="text-xl font-bold text-gray-800 leading-tight">
+              {project.name}
+            </h3>
+            <p className="text-blue-600 text-base font-medium mt-1">
+              {project.tech && project.tech.join(', ')}
+            </p>
+            <div className="flex gap-2 mt-2">
               {project.github && (
                 <a
                   href={project.github}
@@ -1240,12 +1251,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <div className="md:hidden flex flex-col">
         {/* Top section: Logo, name, and tech */}
         <div className="flex flex-row items-center gap-4 mb-4">
-          <div className={`flex items-center justify-center rounded-xl flex-shrink-0 ${project.imageSize === 'lg' ? 'w-20 h-20' : 'w-16 h-16'}`}>
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={project.name + ' logo'}
-                className={`object-contain rounded-lg ${project.imageSize === 'lg' ? 'w-16 h-16' : 'w-12 h-12'}`}
+<div className={`flex items-center justify-center rounded-xl flex-shrink-0 ${project.imageSize === 'xl' ? 'w-24 h-24' : project.imageSize === 'lg' ? 'w-20 h-20' : 'w-16 h-16'}`}>
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={project.name + ' logo'}
+              className={`object-contain rounded-lg ${project.imageSize === 'xl' ? 'w-20 h-20' : project.imageSize === 'lg' ? 'w-16 h-16' : 'w-12 h-12'}`}
               />
             ) : (
               <span className="text-xl font-extrabold text-gray-800 select-none">
