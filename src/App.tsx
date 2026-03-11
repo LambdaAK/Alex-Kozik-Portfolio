@@ -501,7 +501,7 @@ const machineLearningProjects = [
     name: "Snake DQN - AI Snake Game Agent",
     description: "A Deep Q-Network (DQN) reinforcement learning implementation for the classic Snake game. Features an AI agent that learns optimal strategies through 29-dimensional state representation, intelligent reward functions, and anti-looping mechanisms. The agent achieves scores of 20-40+ points through sophisticated spatial reasoning and strategic planning.",
     tech: ["Python", "PyTorch", "Reinforcement Learning"],
-    github: "https://github.com/LambdaAK/Snake",
+    github: "https://github.com/LambdaAK/SnakeDQN",
     demo: null,
     image: "/new-snake-logo.png",
     highlights: [
