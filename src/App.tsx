@@ -595,19 +595,6 @@ const machineLearningProjects = [
     ]
   },
   {
-    name: "Bool Transformer",
-    description: "Transformer models for boolean logic: evaluation, generation, and simplification. Built in PyTorch with encoder-only, decoder-only, and encoder-decoder architectures. Simplifier reaches ~92% test accuracy on synthetic data.",
-    tech: ["PyTorch", "Python", "Transformer"],
-    github: "https://github.com/LambdaAK/Bool-Transformer",
-    demo: null,
-    image: "/Bool Transformer.png",
-    highlights: [
-      "Simplifier: seq2seq encoder-decoder that applies logical identities (e.g. True AND X → X, NOT NOT X → X) to expressions with variables; ~92% test accuracy.",
-      "Generator: decoder-only model that produces valid expressions, optionally conditioned on a target result.",
-      "Evaluator: encoder-only model that classifies boolean expressions as True or False."
-    ]
-  },
-  {
     name: "CourseSphere - LLM-powered course recommendation system",
     description: "AI-powered assistant for Cornell students that matches users to courses and professors based on their academic interests, backgrounds, and goals. Aggregates course and professor data for quick, informed decisions.",
     tech: ["TypeScript", "Python", "Jupyter Notebook", "SCSS", "Pinecone"],
