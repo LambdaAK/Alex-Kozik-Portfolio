@@ -527,16 +527,17 @@ const machineLearningProjects = [
     ]
   },
   {
-    name: "English2Logic",
-    description: "A transformer that translates natural English into propositional logic. Synthetic data pipeline (formula generator + English realizer) trains without human-labeled data. ~88% exact-match accuracy on nested formulas; ~30 min on an A100.",
+    name: "TinyGPT - World-State Reasoning Transformer",
+    description: "A ~6.4M-parameter decoder-only transformer, built from scratch in PyTorch, that learns to maintain and reason about world state. Trained on synthetically generated multi-turn conversations, the model tracks object possession through transfers between people and accurately answers natural-language queries such as \"Who has the ball?\" and \"How many things does Alice have?\"",
     tech: ["PyTorch", "Python", "Transformer"],
-    github: "https://github.com/LambdaAK/English2Logic",
+    github: "https://github.com/LambdaAK/TinyGPT",
     demo: null,
-    image: "/English2Logic.png",
-    imageSize: "xl" as const,
+    image: "/TinyGPT.png",
     highlights: [
-      "Handles varied phrasings: \"if A then B\", \"both A and B\", \"it is not the case that A\" → formal logic notation.",
-      "End-to-end synthetic pipeline eliminates need for human-labeled training data."
+      "GPT-style causal attention pattern with weight-tied embeddings and ~150-word vocabulary.",
+      "Tracks object possession through multi-turn transfers and answers natural-language queries.",
+      "Optimized for A100 GPUs with FlashAttention-2, bfloat16 mixed precision, torch.compile, and fused AdamW.",
+      "Converges in under 3 minutes."
     ]
   },
   {
@@ -564,6 +565,19 @@ const machineLearningProjects = [
       "Visualizes agent learning progress and policy evolution in real time.",
       "Supports custom reward structures, DQN state representations, and environment configurations.",
       "Achieved 100% success rate after training."
+    ]
+  },
+  {
+    name: "English2Logic",
+    description: "A transformer that translates natural English into propositional logic. Synthetic data pipeline (formula generator + English realizer) trains without human-labeled data. ~88% exact-match accuracy on nested formulas; ~30 min on an A100.",
+    tech: ["PyTorch", "Python", "Transformer"],
+    github: "https://github.com/LambdaAK/English2Logic",
+    demo: null,
+    image: "/English2Logic.png",
+    imageSize: "xl" as const,
+    highlights: [
+      "Handles varied phrasings: \"if A then B\", \"both A and B\", \"it is not the case that A\" → formal logic notation.",
+      "End-to-end synthetic pipeline eliminates need for human-labeled training data."
     ]
   },
   {
