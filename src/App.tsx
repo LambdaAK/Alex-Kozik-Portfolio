@@ -528,7 +528,7 @@ const machineLearningProjects = [
   },
   {
     name: "TinyGPT - World-State Reasoning Transformer",
-    description: "A ~6.4M-parameter decoder-only transformer, built from scratch in PyTorch, that learns to maintain and reason about world state. Trained on synthetically generated multi-turn conversations, the model tracks object possession through transfers between people and accurately answers natural-language queries such as \"Who has the ball?\" and \"How many things does Alice have?\"",
+    description: "A 50.7 million-parameter decoder-only transformer, built from scratch in PyTorch, that learns to maintain and reason about world state. Trained on synthetically generated multi-turn conversations, the model tracks object possession through transfers between people and accurately answers natural-language queries such as \"Who has the ball?\" and \"How many things does Alice have?\"",
     tech: ["PyTorch", "Python", "Transformer"],
     github: "https://github.com/LambdaAK/TinyGPT",
     demo: null,
