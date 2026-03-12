@@ -536,8 +536,7 @@ const machineLearningProjects = [
     highlights: [
       "GPT-style causal attention pattern with weight-tied embeddings and ~150-word vocabulary.",
       "Tracks object possession through multi-turn transfers and answers natural-language queries.",
-      "Optimized for A100 GPUs with FlashAttention-2, bfloat16 mixed precision, torch.compile, and fused AdamW.",
-      "Converges in under 3 minutes."
+      "Optimized for A100 GPUs with FlashAttention-2, bfloat16 mixed precision, torch.compile, and fused AdamW."
     ]
   },
   {
