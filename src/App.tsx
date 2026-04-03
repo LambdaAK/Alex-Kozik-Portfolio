@@ -451,16 +451,19 @@ const ExperienceSection = () => (
 // Featured Projects Data
 const featuredProjects = [
   {
-    name: "LambdaScript - Custom Programming Language",
-    description: "Custom functional programming language with a performant interpreter, type inference, and core language features.",
-    tech: ["OCaml", "OUnit", "TypeScript", "Jest"],
-    github: "https://github.com/LambdaAK/lambdascript",
+    name: "Forge - Compiler & Interpreter",
+    description:
+      "Forge is a custom functional programming language with a performant interpreter, type inference, and a native backend: typechecked core → Min IR → LLVM IR, linked with a C runtime via clang.",
+    tech: ["OCaml", "LLVM", "C"],
+    github: "https://github.com/LambdaAK/Forge",
     demo: null,
-    image: "/LambdaScript logo.png",
+    image: "/Forge.png",
     highlights: [
-      "Built interpreter for custom programming language, achieving 50% speed improvement over Python.",
+      "Built interpreter for Forge, achieving 50% speed improvement over Python.",
       "Designed parser and type inference algorithm to validate programs and provide developer feedback.",
-      "Implemented core language features including pattern matching, functions, and polymorphism."
+      "Implemented core language features including pattern matching, functions, and polymorphism.",
+      "Native pipeline: Min IR → LLVM IR → clang-linked executables with the C runtime.",
+      "Monomorphized lowering with curried closures, tuples, lists, and control flow; integration-tested typed subset."
     ]
   },
   {
