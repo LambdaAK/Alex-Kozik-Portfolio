@@ -448,6 +448,75 @@ const ExperienceSection = () => (
     </div>
   </div>
 );
+
+interface SkillCategory {
+  title: string;
+  summary: string;
+  skills: string[];
+}
+
+const skillsData: SkillCategory[] = [
+  {
+    title: 'Languages',
+    summary: 'Programming languages used across software, systems, and ML projects.',
+    skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C/C++', 'Go', 'Rust', 'SQL', 'HTML/CSS', 'OCaml'],
+  },
+  {
+    title: 'Frontend',
+    summary: 'UI frameworks and tools for building modern web and desktop interfaces.',
+    skills: ['React', 'Next.js', 'Redux', 'Material-UI', 'TailwindCSS', 'SASS', 'JavaFX', 'Electron.js', 'JSP'],
+  },
+  {
+    title: 'Backend & Databases',
+    summary: 'APIs, services, and data infrastructure used in production systems.',
+    skills: ['Express.js', 'Flask', 'Firebase', 'Apache Spark', 'REST APIs', 'Node.js', 'Pinecone'],
+  },
+  {
+    title: 'ML Frameworks & Libraries',
+    summary: 'Core libraries for model training, experimentation, and data processing.',
+    skills: ['PyTorch', 'TensorFlow', 'NumPy', 'Pandas', 'Scikit-learn', 'OpenCV', 'Matplotlib'],
+  },
+  {
+    title: 'DevOps & Tools',
+    summary: 'Infrastructure, build systems, and developer workflow tooling.',
+    skills: ['AWS', 'Docker', 'Kubernetes', 'Git', 'Linux', 'Gradle', 'Maven', 'JUnit', 'Jest', 'Vite'],
+  },
+  {
+    title: 'Machine Learning',
+    summary: 'Applied ML domains and model families.',
+    skills: ['Neural Networks', 'Computer Vision', 'NLP', 'Reinforcement Learning', 'Deep Learning'],
+  },
+];
+
+const SkillsSection = () => (
+  <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
+    <h2 className="text-3xl font-bold text-gray-800 mb-3">Skills</h2>
+    <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">
+      Technologies and areas I use most across software engineering and machine learning work.
+    </p>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-5xl">
+      {skillsData.map((category) => (
+        <div
+          key={category.title}
+          className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
+        >
+          <h3 className="text-xl font-bold text-gray-800 leading-tight">{category.title}</h3>
+          <p className="text-gray-600 text-sm mt-2 mb-4">{category.summary}</p>
+          <div className="flex flex-wrap gap-2">
+            {category.skills.map((skill) => (
+              <span
+                key={skill}
+                className="px-3 py-1.5 rounded-full bg-white/10 text-gray-700 text-xs sm:text-sm font-medium border border-white/20"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 // Featured Projects Data
 const featuredProjects = [
   {
@@ -1389,6 +1458,15 @@ function App() {
             transition={{ duration: 0.4, ease: 'easeOut' }}
           >
             <ExperienceSection />
+          </motion.div>
+        </section>
+        <section id="skills" className="pt-8">
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            <SkillsSection />
           </motion.div>
         </section>
         <section id="awards" className="pt-8">
