@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaLinkedin, FaEnvelope, FaGithub } from 'react-icons/fa';
 import { Menu, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -15,7 +16,10 @@ const navLinks = [
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
+  const [indicator, setIndicator] = useState({ x: 0, width: 0, ready: false });
   const menuRef = useRef<HTMLDivElement>(null);
+  const desktopNavRef = useRef<HTMLDivElement>(null);
+  const navButtonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -56,6 +60,29 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const updateIndicator = () => {
+      const container = desktopNavRef.current;
+      const activeButton = navButtonRefs.current[activeSection];
+      if (!container || !activeButton) {
+        return;
+      }
+
+      const containerRect = container.getBoundingClientRect();
+      const buttonRect = activeButton.getBoundingClientRect();
+
+      setIndicator({
+        x: buttonRect.left - containerRect.left,
+        width: buttonRect.width,
+        ready: true,
+      });
+    };
+
+    updateIndicator();
+    window.addEventListener('resize', updateIndicator);
+    return () => window.removeEventListener('resize', updateIndicator);
+  }, [activeSection]);
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -72,32 +99,50 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-lg shadow-md border-b border-white/20">
+    <motion.nav
+      className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-lg shadow-md border-b border-white/20"
+      initial={{ y: -64, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+    >
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         {/* Left: Name */}
-        <button
+        <motion.button
           onClick={() => scrollToSection('#about')}
           className="text-xl md:text-2xl font-extrabold text-gray-800 tracking-tight hover:text-blue-600 transition"
+          whileHover={{ y: -1 }}
         >
           Alex Kozik
-        </button>
+        </motion.button>
 
         {/* Desktop Nav links */}
-        <div className="hidden md:flex gap-1 items-center">
+        <div ref={desktopNavRef} className="hidden md:flex gap-1 items-center relative">
+          {indicator.ready && (
+            <motion.span
+              className="pointer-events-none absolute inset-y-0 rounded-lg bg-gradient-to-r from-cyan-400/20 to-blue-500/25 border border-cyan-300/30"
+              initial={false}
+              animate={{ x: indicator.x, width: indicator.width }}
+              transition={{ type: 'spring', stiffness: 420, damping: 38, mass: 0.7 }}
+            />
+          )}
           {navLinks.map((link) => {
-            const isActive = activeSection === link.href.substring(1);
+            const sectionId = link.href.substring(1);
+            const isActive = activeSection === sectionId;
             return (
               <button
                 key={link.name}
+                ref={(el) => {
+                  navButtonRefs.current[sectionId] = el;
+                }}
                 onClick={() => scrollToSection(link.href)}
                 className={
-                  'px-4 py-2 rounded-lg font-medium transition text-sm ' +
+                  'relative px-4 py-2 rounded-lg font-medium transition text-sm text-gray-700 hover:text-blue-600 ' +
                   (isActive
-                    ? 'bg-blue-500/10 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600')
+                    ? 'text-blue-700'
+                    : 'hover:bg-gray-100')
                 }
               >
-                {link.name}
+                <span className="relative z-10">{link.name}</span>
               </button>
             );
           })}
@@ -105,31 +150,37 @@ const Navbar: React.FC = () => {
 
         {/* Social icons on desktop */}
         <div className="hidden md:flex gap-3 items-center">
-          <a 
+          <motion.a
             href="https://linkedin.com/in/alex-kozik" 
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label="LinkedIn"
             className="text-gray-600 hover:text-blue-600 transition"
+            whileHover={{ y: -2, scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
           >
             <FaLinkedin size={20} />
-          </a>
-          <a 
+          </motion.a>
+          <motion.a
             href="mailto:alex.kozik3141@gmail.com" 
             aria-label="Email"
             className="text-gray-600 hover:text-blue-600 transition"
+            whileHover={{ y: -2, scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
           >
             <FaEnvelope size={20} />
-          </a>
-          <a 
+          </motion.a>
+          <motion.a
             href="https://github.com/LambdaAK" 
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label="GitHub"
             className="text-gray-600 hover:text-blue-600 transition"
+            whileHover={{ y: -2, scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
           >
             <FaGithub size={20} />
-          </a>
+          </motion.a>
         </div>
 
         {/* Hamburger for mobile */}
@@ -147,72 +198,68 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile dropdown menu */}
-      {menuOpen && (
-        <div
-          ref={menuRef}
-          className="md:hidden absolute left-0 right-0 top-full bg-white/95 backdrop-blur-lg shadow-lg border-b border-white/20 animate-dropdown"
-        >
-          <div className="flex flex-col gap-1 px-4 py-4">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href.substring(1);
-              return (
-                <button
-                  key={link.name}
-                  onClick={() => scrollToSection(link.href)}
-                  className={
-                    'px-4 py-3 rounded-lg font-medium text-base text-left transition ' +
-                    (isActive
-                      ? 'bg-blue-500/10 text-blue-600'
-                      : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600')
-                  }
-                >
-                  {link.name}
-                </button>
-              );
-            })}
-            
-            {/* Social icons on mobile */}
-            <div className="flex gap-4 items-center justify-start mt-4 ml-2">
-              <a 
-                href="https://linkedin.com/in/alex-kozik" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                aria-label="LinkedIn"
-                className="text-gray-600 hover:text-blue-600 transition"
-              >
-                <FaLinkedin size={24} />
-              </a>
-              <a 
-                href="mailto:alex.kozik3141@gmail.com" 
-                aria-label="Email"
-                className="text-gray-600 hover:text-blue-600 transition"
-              >
-                <FaEnvelope size={24} />
-              </a>
-              <a 
-                href="https://github.com/LambdaAK" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                aria-label="GitHub"
-                className="text-gray-600 hover:text-blue-600 transition"
-              >
-                <FaGithub size={24} />
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            ref={menuRef}
+            className="md:hidden absolute left-0 right-0 top-full bg-white/95 backdrop-blur-lg shadow-lg border-b border-white/20"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+          >
+            <div className="flex flex-col gap-1 px-4 py-4">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.substring(1);
+                return (
+                  <button
+                    key={link.name}
+                    onClick={() => scrollToSection(link.href)}
+                    className={
+                      'px-4 py-3 rounded-lg font-medium text-base text-left transition ' +
+                      (isActive
+                        ? 'bg-blue-500/10 text-blue-600'
+                        : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600')
+                    }
+                  >
+                    {link.name}
+                  </button>
+                );
+              })}
 
-      <style>{`
-        @keyframes dropdown {
-          0% { transform: translateY(-10px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
-        }
-        .animate-dropdown {
-          animation: dropdown 0.2s ease;
-        }
-      `}</style>
-    </nav>
+              {/* Social icons on mobile */}
+              <div className="flex gap-4 items-center justify-start mt-4 ml-2">
+                <a
+                  href="https://linkedin.com/in/alex-kozik"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="text-gray-600 hover:text-blue-600 transition"
+                >
+                  <FaLinkedin size={24} />
+                </a>
+                <a
+                  href="mailto:alex.kozik3141@gmail.com"
+                  aria-label="Email"
+                  className="text-gray-600 hover:text-blue-600 transition"
+                >
+                  <FaEnvelope size={24} />
+                </a>
+                <a
+                  href="https://github.com/LambdaAK"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="text-gray-600 hover:text-blue-600 transition"
+                >
+                  <FaGithub size={24} />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 

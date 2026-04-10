@@ -1,24 +1,65 @@
 import './App.css'
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import Starfield from './Starfield';
 import Navbar from './Navbar';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { ChevronDown, ChevronUp, FileText, ExternalLink, Award, Microscope, Code, Users, Star, GraduationCap, Heart } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+
+const revealEase = [0.16, 1, 0.3, 1] as const;
+
+const SectionReveal = ({ children }: { children: ReactNode }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 52, filter: 'blur(8px)' }}
+    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{ duration: 0.7, ease: revealEase }}
+  >
+    {children}
+  </motion.div>
+);
+
+const AnimatedOrbs = () => (
+  <div className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
+    <motion.div
+      className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-cyan-300/20 blur-3xl"
+      animate={{ x: [0, 120, 0], y: [0, 90, 0], scale: [1, 1.2, 1] }}
+      transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+    />
+    <motion.div
+      className="absolute right-[-120px] top-[24vh] h-96 w-96 rounded-full bg-blue-300/20 blur-3xl"
+      animate={{ x: [0, -140, 0], y: [0, 120, 0], scale: [1.1, 0.95, 1.1] }}
+      transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+    />
+    <motion.div
+      className="absolute bottom-[-180px] left-[20vw] h-[28rem] w-[28rem] rounded-full bg-pink-300/18 blur-3xl"
+      animate={{ x: [0, 80, 0], y: [0, -100, 0], scale: [1, 1.15, 1] }}
+      transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+    />
+  </div>
+);
 
 // About Me Card Component
 const AboutMeCard = () => (
-  <div className="w-full max-w-4xl mx-auto rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center md:items-center border border-white/20">
+  <motion.div
+    className="w-full max-w-4xl mx-auto rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center md:items-center border border-white/20"
+    whileHover={{ y: -6, boxShadow: '0 30px 70px rgba(29, 78, 216, 0.22)' }}
+    transition={{ duration: 0.35, ease: 'easeOut' }}
+  >
     {/* Profile Picture */}
     <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto mb-4 md:mb-0 md:mr-8">
-      <div className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center">
+      <motion.div
+        className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      >
         <img
           src="/kozik4.PNG"
           alt="Profile"
           className="object-cover w-full h-full"
           style={{ objectPosition: '45% 52%', transform: 'scale(1.05)' }}
         />
-      </div>
+      </motion.div>
     </div>
     {/* Content */}
     <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-4">
@@ -38,39 +79,54 @@ const AboutMeCard = () => (
       </p>
       {/* Buttons */}
       <div className="flex flex-row gap-2 sm:gap-4 mt-2 flex-wrap">
-        <a
+        <motion.a
           href="https://linkedin.com/in/alex-kozik"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          whileHover={{ y: -3, scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
         >
           <FaLinkedin size={18} />
           LinkedIn
-        </a>
-        <a
+        </motion.a>
+        <motion.a
           href="mailto:alex.kozik3141@gmail.com"
           className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          whileHover={{ y: -3, scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
         >
           <FaEnvelope size={18} />
           Email
-        </a>
-        <a
+        </motion.a>
+        <motion.a
           href="https://github.com/LambdaAK"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
+          whileHover={{ y: -3, scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
         >
           <FaGithub size={18} />
           GitHub
-        </a>
+        </motion.a>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 // Education Section Component
-const educationData = [
-  
+interface EducationItem {
+  name: string;
+  logo: string;
+  degree: string;
+  major: string;
+  gpa: string;
+  date: string;
+  courses: string[];
+}
+
+const educationData: EducationItem[] = [
   {
     name: 'Cornell University',
     logo: '/cornell-logo.png',
@@ -123,79 +179,98 @@ const educationData = [
     ],
   },
 ];
+
+const EducationCard = ({ edu, index }: { edu: EducationItem; index: number }) => {
+  const [showCourses, setShowCourses] = useState(false);
+
+  return (
+    <motion.div
+      className="w-full flex flex-row items-stretch bg-white/5 rounded-2xl shadow-lg border border-white/10 p-0"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.45, delay: index * 0.06, ease: revealEase }}
+      whileHover={{ y: -6, scale: 1.01 }}
+    >
+      {/* Logo on the left */}
+      <div className="flex items-center justify-center min-w-[120px] max-w-[160px] rounded-l-2xl p-4">
+        <img
+          src={edu.logo}
+          alt={edu.name + ' logo'}
+          className="object-contain w-24 h-16 rounded-2xl"
+          loading="lazy"
+        />
+      </div>
+      {/* Details on the right */}
+      <div className="flex-1 flex flex-col justify-between p-5 gap-2">
+        <div className="flex flex-row items-start justify-between flex-wrap gap-2">
+          <div>
+            <h3 className="text-xl font-bold text-gray-800 leading-tight">
+              {edu.degree} - {edu.name}
+            </h3>
+            <span className="block text-blue-500 text-base font-medium mt-1">{edu.major}</span>
+          </div>
+        </div>
+        <div className="flex flex-row items-center gap-4 mt-1">
+          <span className="text-base text-gray-600">{edu.gpa}</span>
+          <button
+            className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
+            onClick={() => setShowCourses((prev) => !prev)}
+          >
+            {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
+          </button>
+        </div>
+        <AnimatePresence initial={false}>
+          {showCourses && (
+            <motion.div
+              className="mt-2 overflow-hidden"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+            >
+              <span className="font-semibold text-gray-700">Relevant Courses:</span>
+              {edu.name === 'Cornell University' ? (
+                <div className="ml-3 mt-1">
+                  <div className="text-gray-500 text-xs mb-2 italic">
+                    <div>* = Graduate course</div>
+                    <div>x n = taken n times</div>
+                  </div>
+                  <span className="font-semibold text-blue-500">Computer Science:</span>
+                  <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
+                    {edu.courses.slice(0, 14).map((course) => (
+                      <li key={course}>{course}</li>
+                    ))}
+                  </ul>
+                  <span className="font-semibold text-blue-500">Mathematics:</span>
+                  <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
+                    {edu.courses.slice(14, 21).map((course) => (
+                      <li key={course}>{course}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <ul className="list-disc list-inside ml-3 mt-1 text-gray-600 text-sm">
+                  {edu.courses.map((course) => (
+                    <li key={course}>{course}</li>
+                  ))}
+                </ul>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+};
+
 const EducationSection = () => (
   <div className="flex flex-col gap-2 items-center justify-center">
     <h2 className="text-3xl font-bold text-gray-800 mb-3">Education</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
-      {educationData.map((edu) => {
-        const [showCourses, setShowCourses] = useState(false);
-        return (
-          <div
-            key={edu.name}
-            className="w-full flex flex-row items-stretch bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200"
-          >
-            {/* Logo on the left */}
-            <div className="flex items-center justify-center min-w-[120px] max-w-[160px] rounded-l-2xl p-4">
-              <img
-                src={edu.logo}
-                alt={edu.name + ' logo'}
-                className="object-contain w-24 h-16 rounded-2xl"
-              />
-            </div>
-            {/* Details on the right */}
-            <div className="flex-1 flex flex-col justify-between p-5 gap-2">
-              <div className="flex flex-row items-start justify-between flex-wrap gap-2">
-                <div>
-                  <h3 className="text-xl font-bold text-gray-800 leading-tight">
-                    {edu.degree} - {edu.name}
-                  </h3>
-                  <span className="block text-blue-500 text-base font-medium mt-1">{edu.major}</span>
-                </div>
-              </div>
-              <div className="flex flex-row items-center gap-4 mt-1">
-                <span className="text-base text-gray-600">{edu.gpa}</span>
-                <button
-                  className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
-                  onClick={() => setShowCourses((prev) => !prev)}
-                >
-                  {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
-                </button>
-              </div>
-              {showCourses && (
-                <div className="mt-2">
-                  <span className="font-semibold text-gray-700">Relevant Courses:</span>
-                  {edu.name === 'Cornell University' ? (
-                    <div className="ml-3 mt-1">
-                      <div className="text-gray-500 text-xs mb-2 italic">
-                        <div>* = Graduate course</div>
-                        <div>x n = taken n times</div>
-                      </div>
-                      <span className="font-semibold text-blue-500">Computer Science:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(0, 14).map((course) => (
-                          <li key={course}>{course}</li>
-                        ))}
-                      </ul>
-                      <span className="font-semibold text-blue-500">Mathematics:</span>
-                      <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                        {edu.courses.slice(14, 21).map((course) => (
-                          <li key={course}>{course}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
-                    <ul className="list-disc list-inside ml-3 mt-1 text-gray-600 text-sm">
-                      {edu.courses.map((course) => (
-                        <li key={course}>{course}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        );
-      })}
+      {educationData.map((edu, index) => (
+        <EducationCard key={edu.name} edu={edu} index={index} />
+      ))}
     </div>
   </div>
 );
@@ -312,10 +387,15 @@ const ExperienceSection = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
     <h2 className="text-3xl font-bold text-gray-800 mb-3">Experience</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
-      {experienceData.map((exp) => (
-        <div
+      {experienceData.map((exp, index) => (
+        <motion.div
           key={exp.company + (exp.position || exp.mainTitle || '')}
-          className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
+          className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.45, delay: index * 0.05, ease: revealEase }}
+          whileHover={{ y: -6, scale: 1.01 }}
         >
           {/* Desktop layout (md and up) */}
           <div className="hidden md:flex flex-row items-start gap-6">
@@ -325,6 +405,7 @@ const ExperienceSection = () => (
                 src={exp.logo}
                 alt={exp.company + ' logo'}
                 className="object-contain w-16 h-16 rounded-lg"
+                loading="lazy"
               />
             </div>
             
@@ -390,6 +471,7 @@ const ExperienceSection = () => (
                   src={exp.logo}
                   alt={exp.company + ' logo'}
                   className="object-contain w-12 h-12 rounded-lg"
+                  loading="lazy"
                 />
               </div>
               <div className="flex-1 min-w-0">
@@ -443,7 +525,7 @@ const ExperienceSection = () => (
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   </div>
@@ -970,7 +1052,14 @@ const AwardCard = ({ award }: { award: Award }) => {
   };
 
   return (
-    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6">
+    <motion.div
+      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, ease: revealEase }}
+      whileHover={{ y: -6, scale: 1.01 }}
+    >
       <div className="flex flex-row items-start gap-3">
         {/* Icon */}
         <div className="flex-shrink-0 mt-0.5">
@@ -994,7 +1083,7 @@ const AwardCard = ({ award }: { award: Award }) => {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -1023,7 +1112,14 @@ const TechnicalPapersSection = () => (
 
 const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
   return (
-    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6">
+    <motion.div
+      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, ease: revealEase }}
+      whileHover={{ y: -6, scale: 1.01 }}
+    >
       {/* Desktop layout (md and up) */}
       <div className="hidden md:flex flex-row items-start gap-6">
         {/* Icon/Image section */}
@@ -1033,6 +1129,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
               src={paper.image}
               alt={paper.title + ' logo'}
               className="object-contain w-16 h-16 rounded-lg"
+              loading="lazy"
             />
           ) : (
             <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 w-16 h-16 rounded-xl flex items-center justify-center">
@@ -1119,6 +1216,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
                 src={paper.image}
                 alt={paper.title + ' logo'}
                 className="object-contain w-12 h-12 rounded-lg"
+                loading="lazy"
               />
             ) : (
               <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 w-12 h-12 rounded-xl flex items-center justify-center">
@@ -1197,7 +1295,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -1220,8 +1318,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const [showHighlights, setShowHighlights] = useState(false);
 
   return (
-    <div
-      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 hover:scale-[1.01] transition-transform duration-200 p-6"
+    <motion.div
+      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, ease: revealEase }}
+      whileHover={{ y: -6, scale: 1.01 }}
     >
       {/* Desktop layout (md and up) */}
       <div className="hidden md:flex flex-row items-start gap-6">
@@ -1232,6 +1335,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               src={project.image}
               alt={project.name + ' logo'}
               className={`object-contain rounded-lg ${project.imageSize === 'xl' ? 'w-32 h-32' : project.imageSize === 'lg' ? 'w-24 h-24' : 'w-16 h-16'}`}
+              loading="lazy"
             />
           ) : (
             <span className="text-2xl font-extrabold text-gray-800 select-none">
@@ -1305,16 +1409,26 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   </>
                 )}
               </button>
-              {showHighlights && (
-                <ul className="space-y-1 text-gray-600 text-sm">
-                  {project.highlights.map((h: string, i: number) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <AnimatePresence initial={false}>
+                {showHighlights && (
+                  <motion.div
+                    className="overflow-hidden"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                  >
+                    <ul className="space-y-1 text-gray-600 text-sm">
+                      {project.highlights.map((h: string, i: number) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           )}
         </div>
@@ -1323,12 +1437,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <div className="md:hidden flex flex-col">
         {/* Top section: Logo, name, and tech */}
         <div className="flex flex-row items-center gap-4 mb-4">
-<div className={`flex items-center justify-center rounded-xl flex-shrink-0 ${project.imageSize === 'xl' ? 'w-24 h-24' : project.imageSize === 'lg' ? 'w-20 h-20' : 'w-16 h-16'}`}>
-          {project.image ? (
-            <img
-              src={project.image}
-              alt={project.name + ' logo'}
-              className={`object-contain rounded-lg ${project.imageSize === 'xl' ? 'w-20 h-20' : project.imageSize === 'lg' ? 'w-16 h-16' : 'w-12 h-12'}`}
+          <div className={`flex items-center justify-center rounded-xl flex-shrink-0 ${project.imageSize === 'xl' ? 'w-24 h-24' : project.imageSize === 'lg' ? 'w-20 h-20' : 'w-16 h-16'}`}>
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.name + ' logo'}
+                className={`object-contain rounded-lg ${project.imageSize === 'xl' ? 'w-20 h-20' : project.imageSize === 'lg' ? 'w-16 h-16' : 'w-12 h-12'}`}
+                loading="lazy"
               />
             ) : (
               <span className="text-xl font-extrabold text-gray-800 select-none">
@@ -1406,20 +1521,30 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 </>
               )}
             </button>
-            {showHighlights && (
-              <ul className="space-y-1 text-gray-600 text-sm">
-                {project.highlights.map((h: string, i: number) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <AnimatePresence initial={false}>
+              {showHighlights && (
+                <motion.div
+                  className="overflow-hidden"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                >
+                  <ul className="space-y-1 text-gray-600 text-sm">
+                    {project.highlights.map((h: string, i: number) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -1428,37 +1553,26 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-blue-100 to-pink-300 text-gray-800 relative overflow-x-hidden">
       <Navbar />
       <Starfield />
+      <AnimatedOrbs />
       <div className="flex flex-col gap-16 max-w-5xl mx-auto px-4 pb-24 relative z-10 pt-16">
         <section id="about">
           <div className="relative w-full h-screen pb-24 sm:pb-32 xl:pb-40 flex flex-col">
             <div className="flex-1 flex items-center justify-center px-4" style={{ paddingTop: '80px' }}>
-              <motion.div
-                initial={{ x: -100, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-              >
+              <SectionReveal>
                 <AboutMeCard />
-              </motion.div>
+              </SectionReveal>
             </div>
           </div>
         </section>
         <section id="education" className="pt-8">
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          >
+          <SectionReveal>
             <EducationSection />
-          </motion.div>
+          </SectionReveal>
         </section>
         <section id="experience" className="pt-8">
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          >
+          <SectionReveal>
             <ExperienceSection />
-          </motion.div>
+          </SectionReveal>
         </section>
         <section id="skills" className="pt-8">
           <motion.div
@@ -1470,31 +1584,19 @@ function App() {
           </motion.div>
         </section>
         <section id="awards" className="pt-8">
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          >
+          <SectionReveal>
             <AwardsSection />
-          </motion.div>
+          </SectionReveal>
         </section>
         <section id="papers" className="pt-8">
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          >
+          <SectionReveal>
             <TechnicalPapersSection />
-          </motion.div>
+          </SectionReveal>
         </section>
         <section id="projects" className="pt-8">
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          >
+          <SectionReveal>
             <Projects />
-          </motion.div>
+          </SectionReveal>
         </section>
       </div>
     </div>
