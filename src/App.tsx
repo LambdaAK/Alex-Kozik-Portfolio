@@ -73,7 +73,7 @@ const AboutMeCard = () => (
       <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4">Software/ML Engineer</div>
       {/* Intro Paragraph */}
       <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6">
-        I am a <span className="font-bold">first-generation</span> college student studying computer science and mathematics at <span className="text-red-500 font-semibold">Cornell</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.<br /><br />
+        I am a <span className="font-bold">first-generation</span> college student starting an M.S. at <span className="text-red-500 font-semibold">Carnegie Mellon University</span> in the fall. I have a B.A. in mathematics and computer science from <span className="text-red-500 font-semibold">Cornell University</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.<br /><br />
         In my free time, I enjoy working on personal projects, working out, and reading.<br /><br />
         Welcome to my website!
       </p>
@@ -128,10 +128,19 @@ interface EducationItem {
 
 const educationData: EducationItem[] = [
   {
+    name: 'Carnegie Mellon University',
+    logo: '/CMU.png',
+    degree: 'Master of Science',
+    major: 'Computer Science',
+    gpa: 'Beginning Fall 2026',
+    date: 'Aug 2026 - ',
+    courses: [],
+  },
+  {
     name: 'Cornell University',
     logo: '/cornell-logo.png',
     degree: "Bachelor of Arts, Honors",
-    major: 'Double Major: Computer Science & Mathematics',
+    major: 'Double Major: Mathematics & Computer Science',
     gpa: 'GPA: 4.11/4.3 (top 1%)',
     date: 'Aug 2022 - May 2026',
     courses: [
@@ -182,6 +191,7 @@ const educationData: EducationItem[] = [
 
 const EducationCard = ({ edu, index }: { edu: EducationItem; index: number }) => {
   const [showCourses, setShowCourses] = useState(false);
+  const cmuLogo = edu.logo === '/CMU.png';
 
   return (
     <motion.div
@@ -194,12 +204,23 @@ const EducationCard = ({ edu, index }: { edu: EducationItem; index: number }) =>
     >
       {/* Logo on the left */}
       <div className="flex items-center justify-center min-w-[120px] max-w-[160px] rounded-l-2xl p-4">
-        <img
-          src={edu.logo}
-          alt={edu.name + ' logo'}
-          className="object-contain w-24 h-16 rounded-2xl"
-          loading="lazy"
-        />
+        {cmuLogo ? (
+          <div className="flex items-center justify-center w-20 h-20 rounded-xl flex-shrink-0">
+            <img
+              src={edu.logo}
+              alt={edu.name + ' logo'}
+              className="object-contain w-16 h-16 rounded-lg"
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <img
+            src={edu.logo}
+            alt={edu.name + ' logo'}
+            className="object-contain w-24 h-16 rounded-2xl"
+            loading="lazy"
+          />
+        )}
       </div>
       {/* Details on the right */}
       <div className="flex-1 flex flex-col justify-between p-5 gap-2">
@@ -213,15 +234,17 @@ const EducationCard = ({ edu, index }: { edu: EducationItem; index: number }) =>
         </div>
         <div className="flex flex-row items-center gap-4 mt-1">
           <span className="text-base text-gray-600">{edu.gpa}</span>
-          <button
-            className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
-            onClick={() => setShowCourses((prev) => !prev)}
-          >
-            {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
-          </button>
+          {edu.courses.length > 0 && (
+            <button
+              className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
+              onClick={() => setShowCourses((prev) => !prev)}
+            >
+              {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
+            </button>
+          )}
         </div>
         <AnimatePresence initial={false}>
-          {showCourses && (
+          {showCourses && edu.courses.length > 0 && (
             <motion.div
               className="mt-2 overflow-hidden"
               initial={{ height: 0, opacity: 0 }}
