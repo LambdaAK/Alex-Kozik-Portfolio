@@ -86,20 +86,7 @@ const AboutMeCard = () => (
       <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4">Software/ML Engineer</div>
       {/* Intro Paragraph */}
       <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6">
-        I am a <span className="font-bold">first-generation</span> college student starting an M.S. at <span className="text-red-500 font-semibold">Carnegie Mellon University</span> in the fall. I have a B.A. in mathematics and computer science from <span className="text-red-500 font-semibold">Cornell University</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.
-        {otherMsProgramOffers.length > 0 && (
-          <span className="block mt-4">
-            I was also admitted to {otherMsProgramOffers.length} other M.S. program{otherMsProgramOffers.length === 1 ? '' : 's'}; see the{' '}
-            <a
-              href="#education"
-              className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2"
-            >
-              Education
-            </a>
-            {' '}section for the list.
-          </span>
-        )}
-        <br /><br />
+        I am a <span className="font-bold">first-generation</span> college student starting an M.S. at <span className="text-red-500 font-semibold">Carnegie Mellon University</span> in the fall. I have a B.A. in mathematics and computer science from <span className="text-red-500 font-semibold">Cornell University</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.<br /><br />
         In my free time, I enjoy working on personal projects, working out, and reading.<br /><br />
         Welcome to my website!
       </p>
