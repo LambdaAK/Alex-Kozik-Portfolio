@@ -8,6 +8,19 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const revealEase = [0.16, 1, 0.3, 1] as const;
 
+/** M.S. programs admitted to other than CMU (CMU is the enrolled program on the card above). */
+const otherMsProgramOffers: string[] = [
+  'Cornell University — MSCS',
+  'Columbia University — MSCS',
+  'University of Pennsylvania — MSECS',
+  'Brown University — MSCS',
+  'University of Michigan — MSCSE',
+  'University of California, San Diego — MSCSE',
+  'The University of Texas at Austin — MSCS',
+  'University of Southern California — MSCS',
+  'University of Southern California — MSCS (AI)',
+];
+
 const SectionReveal = ({ children }: { children: ReactNode }) => (
   <motion.div
     initial={{ opacity: 0, y: 52, filter: 'blur(8px)' }}
@@ -73,7 +86,20 @@ const AboutMeCard = () => (
       <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4">Software/ML Engineer</div>
       {/* Intro Paragraph */}
       <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6">
-        I am a <span className="font-bold">first-generation</span> college student starting an M.S. at <span className="text-red-500 font-semibold">Carnegie Mellon University</span> in the fall. I have a B.A. in mathematics and computer science from <span className="text-red-500 font-semibold">Cornell University</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.<br /><br />
+        I am a <span className="font-bold">first-generation</span> college student starting an M.S. at <span className="text-red-500 font-semibold">Carnegie Mellon University</span> in the fall. I have a B.A. in mathematics and computer science from <span className="text-red-500 font-semibold">Cornell University</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.
+        {otherMsProgramOffers.length > 0 && (
+          <span className="block mt-4">
+            I was also admitted to {otherMsProgramOffers.length} other M.S. program{otherMsProgramOffers.length === 1 ? '' : 's'}; see the{' '}
+            <a
+              href="#education"
+              className="font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2"
+            >
+              Education
+            </a>
+            {' '}section for the list.
+          </span>
+        )}
+        <br /><br />
         In my free time, I enjoy working on personal projects, working out, and reading.<br /><br />
         Welcome to my website!
       </p>
@@ -124,6 +150,8 @@ interface EducationItem {
   gpa: string;
   date: string;
   courses: string[];
+  /** Other M.S. admits (not this school); collapsible list on the card. */
+  admittedToPrograms?: string[];
 }
 
 const educationData: EducationItem[] = [
@@ -135,6 +163,7 @@ const educationData: EducationItem[] = [
     gpa: 'Beginning Fall 2026',
     date: 'Aug 2026 - ',
     courses: [],
+    admittedToPrograms: otherMsProgramOffers,
   },
   {
     name: 'Cornell University',
@@ -144,7 +173,6 @@ const educationData: EducationItem[] = [
     gpa: 'GPA: 4.11/4.3 (top 1%)',
     date: 'Aug 2022 - May 2026',
     courses: [
-      // CS
       'CS 2112 - Honors OOP & Data Structures (A)',
       'CS 2800 - Discrete Math (A-)',
       'CS 3110 - Data Structures and Functional Programming (A)',
@@ -159,7 +187,6 @@ const educationData: EducationItem[] = [
       'CS 4999 x 2 - Independent Reading and Research (A+, A+)',
       'CS 6783* - Machine Learning Theory (A)',
       'CS 7190* x 2 - Seminar in PL/Compilers',
-      // Math
       'MATH 2210 - Linear Algebra (A)',
       'MATH 2220 - Multivariable Calculus (A-)',
       'MATH 3110 - Real Analysis (A+)',
@@ -188,6 +215,41 @@ const educationData: EducationItem[] = [
     ],
   },
 ];
+
+const OtherMsAdmitsCollapsible = ({ programs }: { programs: string[] }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mt-3">
+      <p className="text-sm text-gray-600 leading-relaxed mb-2">
+        Also admitted to {programs.length} other M.S. program{programs.length === 1 ? '' : 's'} (CMU is where I am enrolled).
+      </p>
+      <button
+        type="button"
+        className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
+        onClick={() => setOpen((prev) => !prev)}
+      >
+        {open ? 'Hide other programs' : 'Show other programs'}
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            className="mt-2 overflow-hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
+            <ul className="list-disc list-inside ml-1 text-gray-600 text-sm space-y-1">
+              {programs.map((school, i) => (
+                <li key={`${school}-${i}`}>{school}</li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const EducationCard = ({ edu, index }: { edu: EducationItem; index: number }) => {
   const [showCourses, setShowCourses] = useState(false);
@@ -232,56 +294,62 @@ const EducationCard = ({ edu, index }: { edu: EducationItem; index: number }) =>
             <span className="block text-blue-500 text-base font-medium mt-1">{edu.major}</span>
           </div>
         </div>
-        <div className="flex flex-row items-center gap-4 mt-1">
-          <span className="text-base text-gray-600">{edu.gpa}</span>
-          {edu.courses.length > 0 && (
-            <button
-              className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
-              onClick={() => setShowCourses((prev) => !prev)}
-            >
-              {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
-            </button>
-          )}
-        </div>
-        <AnimatePresence initial={false}>
-          {showCourses && edu.courses.length > 0 && (
-            <motion.div
-              className="mt-2 overflow-hidden"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-            >
-              <span className="font-semibold text-gray-700">Relevant Courses:</span>
-              {edu.name === 'Cornell University' ? (
-                <div className="ml-3 mt-1">
-                  <div className="text-gray-500 text-xs mb-2 italic">
-                    <div>* = Graduate course</div>
-                    <div>x n = taken n times</div>
+        <>
+          <div className="flex flex-row items-center gap-4 mt-1">
+            {edu.gpa ? <span className="text-base text-gray-600">{edu.gpa}</span> : null}
+            {edu.courses.length > 0 && (
+              <button
+                type="button"
+                className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
+                onClick={() => setShowCourses((prev) => !prev)}
+              >
+                {showCourses ? 'Hide Relevant Courses' : 'Show Relevant Courses'}
+              </button>
+            )}
+          </div>
+          {edu.admittedToPrograms && edu.admittedToPrograms.length > 0 ? (
+            <OtherMsAdmitsCollapsible programs={edu.admittedToPrograms} />
+          ) : null}
+          <AnimatePresence initial={false}>
+            {showCourses && edu.courses.length > 0 && (
+              <motion.div
+                className="mt-2 overflow-hidden"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+              >
+                <span className="font-semibold text-gray-700">Relevant Courses:</span>
+                {edu.name === 'Cornell University' ? (
+                  <div className="ml-3 mt-1">
+                    <div className="text-gray-500 text-xs mb-2 italic">
+                      <div>* = Graduate course</div>
+                      <div>x n = taken n times</div>
+                    </div>
+                    <span className="font-semibold text-blue-500">Computer Science:</span>
+                    <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
+                      {edu.courses.slice(0, 14).map((course) => (
+                        <li key={course}>{course}</li>
+                      ))}
+                    </ul>
+                    <span className="font-semibold text-blue-500">Mathematics:</span>
+                    <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
+                      {edu.courses.slice(14, 21).map((course) => (
+                        <li key={course}>{course}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <span className="font-semibold text-blue-500">Computer Science:</span>
-                  <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                    {edu.courses.slice(0, 14).map((course) => (
+                ) : (
+                  <ul className="list-disc list-inside ml-3 mt-1 text-gray-600 text-sm">
+                    {edu.courses.map((course) => (
                       <li key={course}>{course}</li>
                     ))}
                   </ul>
-                  <span className="font-semibold text-blue-500">Mathematics:</span>
-                  <ul className="list-disc list-inside ml-3 text-gray-600 text-sm">
-                    {edu.courses.slice(14, 21).map((course) => (
-                      <li key={course}>{course}</li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <ul className="list-disc list-inside ml-3 mt-1 text-gray-600 text-sm">
-                  {edu.courses.map((course) => (
-                    <li key={course}>{course}</li>
-                  ))}
-                </ul>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
       </div>
     </motion.div>
   );
