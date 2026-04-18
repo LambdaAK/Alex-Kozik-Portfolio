@@ -4,10 +4,6 @@ import Starfield from './Starfield';
 import Navbar from './Navbar';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { ChevronDown, ChevronUp, FileText, ExternalLink, Award, Microscope, Code, Users, Star, GraduationCap, Heart } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
-
-const revealEase = [0.16, 1, 0.3, 1] as const;
-
 /** M.S. programs admitted to other than CMU (CMU is the enrolled program on the card above). */
 const otherMsProgramOffers: string[] = [
   'Cornell University — MSCS',
@@ -21,58 +17,29 @@ const otherMsProgramOffers: string[] = [
   'University of Southern California — MSCS (AI)',
 ];
 
-const SectionReveal = ({ children }: { children: ReactNode }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 52, filter: 'blur(8px)' }}
-    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-    viewport={{ once: true, amount: 0.2 }}
-    transition={{ duration: 0.7, ease: revealEase }}
-  >
-    {children}
-  </motion.div>
-);
+const SectionReveal = ({ children }: { children: ReactNode }) => <div>{children}</div>;
 
 const AnimatedOrbs = () => (
   <div className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
-    <motion.div
-      className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-cyan-300/20 blur-3xl"
-      animate={{ x: [0, 120, 0], y: [0, 90, 0], scale: [1, 1.2, 1] }}
-      transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-    />
-    <motion.div
-      className="absolute right-[-120px] top-[24vh] h-96 w-96 rounded-full bg-blue-300/20 blur-3xl"
-      animate={{ x: [0, -140, 0], y: [0, 120, 0], scale: [1.1, 0.95, 1.1] }}
-      transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
-    />
-    <motion.div
-      className="absolute bottom-[-180px] left-[20vw] h-[28rem] w-[28rem] rounded-full bg-pink-300/18 blur-3xl"
-      animate={{ x: [0, 80, 0], y: [0, -100, 0], scale: [1, 1.15, 1] }}
-      transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-    />
+    <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-cyan-300/20 blur-3xl" />
+    <div className="absolute right-[-120px] top-[24vh] h-96 w-96 rounded-full bg-blue-300/20 blur-3xl" />
+    <div className="absolute bottom-[-180px] left-[20vw] h-[28rem] w-[28rem] rounded-full bg-pink-300/18 blur-3xl" />
   </div>
 );
 
 // About Me Card Component
 const AboutMeCard = () => (
-  <motion.div
-    className="w-full max-w-4xl mx-auto rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center md:items-center border border-white/20"
-    whileHover={{ y: -6, boxShadow: '0 30px 70px rgba(29, 78, 216, 0.22)' }}
-    transition={{ duration: 0.35, ease: 'easeOut' }}
-  >
+  <div className="w-full max-w-4xl mx-auto rounded-3xl bg-white/10 backdrop-blur-lg shadow-2xl px-4 sm:px-8 py-8 flex flex-col md:flex-row items-center md:items-center border border-white/20">
     {/* Profile Picture */}
     <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto mb-4 md:mb-0 md:mr-8">
-      <motion.div
-        className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center"
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-      >
+      <div className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center">
         <img
           src="/kozik4.PNG"
           alt="Profile"
           className="object-cover w-full h-full"
           style={{ objectPosition: '45% 52%', transform: 'scale(1.05)' }}
         />
-      </motion.div>
+      </div>
     </div>
     {/* Content */}
     <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-4">
@@ -92,40 +59,34 @@ const AboutMeCard = () => (
       </p>
       {/* Buttons */}
       <div className="flex flex-row gap-2 sm:gap-4 mt-2 flex-wrap">
-        <motion.a
+        <a
           href="https://linkedin.com/in/alex-kozik"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
-          whileHover={{ y: -3, scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
         >
           <FaLinkedin size={18} />
           LinkedIn
-        </motion.a>
-        <motion.a
+        </a>
+        <a
           href="mailto:alex.kozik3141@gmail.com"
           className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
-          whileHover={{ y: -3, scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
         >
           <FaEnvelope size={18} />
           Email
-        </motion.a>
-        <motion.a
+        </a>
+        <a
           href="https://github.com/LambdaAK"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-white/20 text-gray-800 font-semibold shadow-md border border-white/20 hover:bg-gradient-to-r hover:from-blue-500/40 hover:to-purple-500/40 hover:text-blue-700 transition text-base backdrop-blur-md"
-          whileHover={{ y: -3, scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
         >
           <FaGithub size={18} />
           GitHub
-        </motion.a>
+        </a>
       </div>
     </div>
-  </motion.div>
+  </div>
 );
 
 // Education Section Component
@@ -217,40 +178,25 @@ const OtherMsAdmitsCollapsible = ({ programs }: { programs: string[] }) => {
       >
         {open ? 'Hide other programs' : 'Show other programs'}
       </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            className="mt-2 overflow-hidden"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-          >
-            <ul className="list-disc list-inside ml-1 text-gray-600 text-sm space-y-1">
-              {programs.map((school, i) => (
-                <li key={`${school}-${i}`}>{school}</li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {open && (
+        <div className="mt-2 overflow-hidden">
+          <ul className="list-disc list-inside ml-1 text-gray-600 text-sm space-y-1">
+            {programs.map((school, i) => (
+              <li key={`${school}-${i}`}>{school}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
 
-const EducationCard = ({ edu, index }: { edu: EducationItem; index: number }) => {
+const EducationCard = ({ edu }: { edu: EducationItem }) => {
   const [showCourses, setShowCourses] = useState(false);
   const cmuLogo = edu.logo === '/CMU.png';
 
   return (
-    <motion.div
-      className="w-full flex flex-row items-stretch bg-white/5 rounded-2xl shadow-lg border border-white/10 p-0"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.45, delay: index * 0.06, ease: revealEase }}
-      whileHover={{ y: -6, scale: 1.01 }}
-    >
+    <div className="w-full flex flex-row items-stretch bg-white/5 rounded-2xl shadow-lg border border-white/10 p-0">
       {/* Logo on the left */}
       <div className="flex items-center justify-center min-w-[120px] max-w-[160px] rounded-l-2xl p-4">
         {cmuLogo ? (
@@ -297,15 +243,8 @@ const EducationCard = ({ edu, index }: { edu: EducationItem; index: number }) =>
           {edu.admittedToPrograms && edu.admittedToPrograms.length > 0 ? (
             <OtherMsAdmitsCollapsible programs={edu.admittedToPrograms} />
           ) : null}
-          <AnimatePresence initial={false}>
-            {showCourses && edu.courses.length > 0 && (
-              <motion.div
-                className="mt-2 overflow-hidden"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-              >
+          {showCourses && edu.courses.length > 0 && (
+              <div className="mt-2 overflow-hidden">
                 <span className="font-semibold text-gray-700">Relevant Courses:</span>
                 {edu.name === 'Cornell University' ? (
                   <div className="ml-3 mt-1">
@@ -333,12 +272,11 @@ const EducationCard = ({ edu, index }: { edu: EducationItem; index: number }) =>
                     ))}
                   </ul>
                 )}
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
         </>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -346,8 +284,8 @@ const EducationSection = () => (
   <div className="flex flex-col gap-2 items-center justify-center">
     <h2 className="text-3xl font-bold text-gray-800 mb-3">Education</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
-      {educationData.map((edu, index) => (
-        <EducationCard key={edu.name} edu={edu} index={index} />
+      {educationData.map((edu) => (
+        <EducationCard key={edu.name} edu={edu} />
       ))}
     </div>
   </div>
@@ -465,15 +403,10 @@ const ExperienceSection = () => (
   <div className="flex flex-col gap-6 items-center justify-center min-h-[56vh]">
     <h2 className="text-3xl font-bold text-gray-800 mb-3">Experience</h2>
     <div className="flex flex-col gap-4 w-full max-w-5xl">
-      {experienceData.map((exp, index) => (
-        <motion.div
+      {experienceData.map((exp) => (
+        <div
           key={exp.company + (exp.position || exp.mainTitle || '')}
           className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.45, delay: index * 0.05, ease: revealEase }}
-          whileHover={{ y: -6, scale: 1.01 }}
         >
           {/* Desktop layout (md and up) */}
           <div className="hidden md:flex flex-row items-start gap-6">
@@ -603,7 +536,7 @@ const ExperienceSection = () => (
               )}
             </div>
           </div>
-        </motion.div>
+        </div>
       ))}
     </div>
   </div>
@@ -1130,14 +1063,7 @@ const AwardCard = ({ award }: { award: Award }) => {
   };
 
   return (
-    <motion.div
-      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.45, ease: revealEase }}
-      whileHover={{ y: -6, scale: 1.01 }}
-    >
+    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6">
       <div className="flex flex-row items-start gap-3">
         {/* Icon */}
         <div className="flex-shrink-0 mt-0.5">
@@ -1161,7 +1087,7 @@ const AwardCard = ({ award }: { award: Award }) => {
           </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -1190,14 +1116,7 @@ const TechnicalPapersSection = () => (
 
 const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
   return (
-    <motion.div
-      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.45, ease: revealEase }}
-      whileHover={{ y: -6, scale: 1.01 }}
-    >
+    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6">
       {/* Desktop layout (md and up) */}
       <div className="hidden md:flex flex-row items-start gap-6">
         {/* Icon/Image section */}
@@ -1373,7 +1292,7 @@ const PaperCard = ({ paper }: { paper: TechnicalPaper }) => {
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -1396,14 +1315,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const [showHighlights, setShowHighlights] = useState(false);
 
   return (
-    <motion.div
-      className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.45, ease: revealEase }}
-      whileHover={{ y: -6, scale: 1.01 }}
-    >
+    <div className="w-full bg-white/5 rounded-2xl shadow-lg border border-white/10 p-6">
       {/* Desktop layout (md and up) */}
       <div className="hidden md:flex flex-row items-start gap-6">
         {/* Logo section */}
@@ -1487,26 +1399,18 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   </>
                 )}
               </button>
-              <AnimatePresence initial={false}>
-                {showHighlights && (
-                  <motion.div
-                    className="overflow-hidden"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                  >
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      {project.highlights.map((h: string, i: number) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {showHighlights && (
+                <div className="overflow-hidden">
+                  <ul className="space-y-1 text-gray-600 text-sm">
+                    {project.highlights.map((h: string, i: number) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -1599,30 +1503,22 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 </>
               )}
             </button>
-            <AnimatePresence initial={false}>
-              {showHighlights && (
-                <motion.div
-                  className="overflow-hidden"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
-                >
-                  <ul className="space-y-1 text-gray-600 text-sm">
-                    {project.highlights.map((h: string, i: number) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {showHighlights && (
+              <div className="overflow-hidden">
+                <ul className="space-y-1 text-gray-600 text-sm">
+                  {project.highlights.map((h: string, i: number) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-cyan-600 mt-1.5 w-1 h-1 bg-cyan-600 rounded-full flex-shrink-0"></span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -1653,13 +1549,7 @@ function App() {
           </SectionReveal>
         </section>
         <section id="skills" className="pt-8">
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          >
-            <SkillsSection />
-          </motion.div>
+          <SkillsSection />
         </section>
         <section id="awards" className="pt-8">
           <SectionReveal>

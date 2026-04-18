@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
 interface ParallaxLayer {
   id: string;
@@ -72,26 +71,15 @@ const ParallaxBackground: React.FC = () => {
     return Array.from({ length: layer.count }, (_, i) => {
       const left = Math.random() * 100;
       const top = Math.random() * 200; // Extended height for parallax
-      const delay = Math.random() * 2;
-      
       return (
-        <motion.div
+        <div
           key={`${layer.id}-${i}`}
-          className={`absolute ${layer.size} ${layer.color} dark:bg-gray-400 rounded-full opacity-${Math.floor(layer.opacity * 100)}`}
+          className={`absolute ${layer.size} ${layer.color} dark:bg-gray-400 rounded-full`}
           style={{
             left: `${left}%`,
             top: `${top}vh`,
             transform: `translateY(${scrollY * layer.speed}px)`,
-          }}
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [layer.opacity * 0.5, layer.opacity, layer.opacity * 0.5],
-          }}
-          transition={{
-            duration: 3 + delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: delay,
+            opacity: layer.opacity,
           }}
         />
       );
@@ -108,7 +96,7 @@ const ParallaxBackground: React.FC = () => {
     const rotationSpeed = 0.03 + Math.random() * 0.05;
     
     return (
-      <motion.div
+      <div
         key={`shape-${i}`}
         className="absolute opacity-20 dark:opacity-10"
         style={{
@@ -147,38 +135,7 @@ const ParallaxBackground: React.FC = () => {
             style={{ width: size * 0.7, height: size * 0.7 }}
           />
         )}
-      </motion.div>
-    );
-  });
-
-  // Shooting stars with parallax
-  const shootingStars = Array.from({ length: 5 }, (_, i) => {
-    const left = Math.random() * 100;
-    const top = Math.random() * 100;
-    const delay = Math.random() * 10;
-    const duration = 3 + Math.random() * 2;
-    
-    return (
-      <motion.div
-        key={`shooting-${i}`}
-        className="absolute w-1 h-1 bg-white dark:bg-gray-200 rounded-full"
-        style={{
-          left: `${left}%`,
-          top: `${top}%`,
-          transform: `translateY(${scrollY * 0.04}px)`,
-        }}
-        animate={{
-          x: [0, 300],
-          y: [0, -300],
-          opacity: [0, 1, 1, 0],
-        }}
-        transition={{
-          duration: duration,
-          repeat: Infinity,
-          delay: delay,
-          ease: "easeOut",
-        }}
-      />
+      </div>
     );
   });
 
@@ -186,7 +143,7 @@ const ParallaxBackground: React.FC = () => {
     <div className="fixed inset-0 w-full h-full pointer-events-none select-none overflow-hidden">
       {/* Dynamic gradient background */}
       <div 
-        className={`absolute inset-0 bg-gradient-to-br transition-all duration-1000 ease-in-out ${getBackgroundColor()} ${getDarkBackgroundColor()}`}
+        className={`absolute inset-0 bg-gradient-to-br ${getBackgroundColor()} ${getDarkBackgroundColor()}`}
       />
       
       {/* Parallax particle layers */}
@@ -199,11 +156,6 @@ const ParallaxBackground: React.FC = () => {
       {/* Geometric shapes */}
       <div className="absolute inset-0">
         {geometricShapes}
-      </div>
-      
-      {/* Shooting stars */}
-      <div className="absolute inset-0">
-        {shootingStars}
       </div>
       
       {/* Scroll-based overlay effects */}

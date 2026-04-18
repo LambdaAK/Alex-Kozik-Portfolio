@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaLinkedin, FaEnvelope, FaGithub } from 'react-icons/fa';
 import { Menu, X } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -99,30 +98,23 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-lg shadow-md border-b border-white/20"
-      initial={{ y: -64, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-lg shadow-md border-b border-white/20">
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         {/* Left: Name */}
-        <motion.button
+        <button
           onClick={() => scrollToSection('#about')}
           className="text-xl md:text-2xl font-extrabold text-gray-800 tracking-tight hover:text-blue-600 transition"
-          whileHover={{ y: -1 }}
         >
           Alex Kozik
-        </motion.button>
+        </button>
 
         {/* Desktop Nav links */}
         <div ref={desktopNavRef} className="hidden md:flex gap-1 items-center relative">
           {indicator.ready && (
-            <motion.span
-              className="pointer-events-none absolute inset-y-0 rounded-lg bg-gradient-to-r from-cyan-400/20 to-blue-500/25 border border-cyan-300/30"
-              initial={false}
-              animate={{ x: indicator.x, width: indicator.width }}
-              transition={{ type: 'spring', stiffness: 420, damping: 38, mass: 0.7 }}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 left-0 rounded-lg bg-gradient-to-r from-cyan-400/20 to-blue-500/25 border border-cyan-300/30 transition-[transform,width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
+              style={{ transform: `translateX(${indicator.x}px)`, width: indicator.width }}
             />
           )}
           {navLinks.map((link) => {
@@ -150,37 +142,31 @@ const Navbar: React.FC = () => {
 
         {/* Social icons on desktop */}
         <div className="hidden md:flex gap-3 items-center">
-          <motion.a
+          <a
             href="https://linkedin.com/in/alex-kozik" 
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label="LinkedIn"
             className="text-gray-600 hover:text-blue-600 transition"
-            whileHover={{ y: -2, scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
           >
             <FaLinkedin size={20} />
-          </motion.a>
-          <motion.a
+          </a>
+          <a
             href="mailto:alex.kozik3141@gmail.com" 
             aria-label="Email"
             className="text-gray-600 hover:text-blue-600 transition"
-            whileHover={{ y: -2, scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
           >
             <FaEnvelope size={20} />
-          </motion.a>
-          <motion.a
+          </a>
+          <a
             href="https://github.com/LambdaAK" 
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label="GitHub"
             className="text-gray-600 hover:text-blue-600 transition"
-            whileHover={{ y: -2, scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
           >
             <FaGithub size={20} />
-          </motion.a>
+          </a>
         </div>
 
         {/* Hamburger for mobile */}
@@ -198,15 +184,10 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile dropdown menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
+      {menuOpen && (
+          <div
             ref={menuRef}
             className="md:hidden absolute left-0 right-0 top-full bg-white/95 backdrop-blur-lg shadow-lg border-b border-white/20"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: 'easeOut' }}
           >
             <div className="flex flex-col gap-1 px-4 py-4">
               {navLinks.map((link) => {
@@ -256,10 +237,9 @@ const Navbar: React.FC = () => {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };
 
