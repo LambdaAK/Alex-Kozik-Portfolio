@@ -685,7 +685,7 @@ const featuredProjects = [
       "Forge is a custom functional programming language with a performant interpreter, type inference, and a native backend: typechecked core → Min IR → LLVM IR, linked with a C runtime via clang.",
     tech: ["OCaml", "LLVM", "C"],
     github: "https://github.com/LambdaAK/Forge",
-    demo: null,
+    demo: "https://forgepl.netlify.app/",
     image: "/Forge.png",
     highlights: [
       "Built interpreter for Forge, achieving 50% speed improvement over Python.",
