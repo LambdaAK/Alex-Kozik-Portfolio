@@ -629,6 +629,20 @@ const featuredProjects = [
     ]
   },
   {
+    name: "Atlas - End-to-End LLM Infrastructure",
+    description: "A 50.7 million-parameter decoder-only transformer, built from scratch in PyTorch, that learns to maintain and reason about world state. Trained on synthetically generated multi-turn conversations, the model tracks object possession through transfers between people and accurately answers natural-language queries such as \"Who has the ball?\" and \"How many things does Alice have?\"",
+    tech: ["PyTorch", "Python", "Transformer", "Redis", "Docker", "Kubernetes", "PostgreSQL"],
+    github: "https://github.com/LambdaAK/AtlasGPT",
+    demo: null,
+    image: "/TinyGPT.png",
+    highlights: [
+      "Built a 50M-param GPT-style transformer from scratch for conversational reasoning and state tracking.",
+      "Trained on 300K synthetic conversations using masked loss with AdamW and cosine decay.",
+      "Built a distributed inference system with Redis + batching, sustaining 110 req/s at 140 ms P95 latency.",
+      "Containerized stack with Docker and Kubernetes, scaling to 8 pods with persistent PostgreSQL storage."
+    ]
+  },
+  {
     name: "C-Torch - C++ Machine Learning Library",
     description: "High-performance math library supporting numerical methods, calculus, and linear algebra. Includes 15+ ML models and RL agents.",
     tech: ["C++"],
@@ -689,19 +703,6 @@ const machineLearningProjects = [
       "Developed a model that generates natural language captions for images using attention-based mechanisms.",
       "Implemented both soft and hard visual attention with REINFORCE and backpropagation for effective training.",
       "Built an encoder-decoder architecture with ResNet-50 and LSTM, including attention visualization to interpret model focus."
-    ]
-  },
-  {
-    name: "TinyGPT - World-State Reasoning Transformer",
-    description: "A 50.7 million-parameter decoder-only transformer, built from scratch in PyTorch, that learns to maintain and reason about world state. Trained on synthetically generated multi-turn conversations, the model tracks object possession through transfers between people and accurately answers natural-language queries such as \"Who has the ball?\" and \"How many things does Alice have?\"",
-    tech: ["PyTorch", "Python", "Transformer"],
-    github: "https://github.com/LambdaAK/TinyGPT",
-    demo: null,
-    image: "/TinyGPT.png",
-    highlights: [
-      "GPT-style causal attention pattern with weight-tied embeddings and ~150-word vocabulary.",
-      "Tracks object possession through multi-turn transfers and answers natural-language queries.",
-      "Optimized for A100 GPUs with FlashAttention-2, bfloat16 mixed precision, torch.compile, and fused AdamW."
     ]
   },
   {
