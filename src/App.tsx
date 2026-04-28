@@ -965,6 +965,13 @@ interface Award {
 
 const awardsData: Award[] = [
   {
+    title: "Phi Beta Kappa Graduation Scholarship",
+    organization: "Phi Beta Kappa Honor Society (Cornell University)",
+    description: "Competitive scholarship awarded to select graduating Phi Beta Kappa members for academic excellence. One of about 10 recipients from the Cornell graduating class; $3,000 award.",
+    date: "Apr 2026",
+    icon: "pbk"
+  },
+  {
     title: "Phi Beta Kappa",
     organization: "The Phi Beta Kappa Society",
     description: "Inducted into the oldest and most prestigious academic honor society in the United States. About 1% of college seniors in the U.S. are invited.",
