@@ -958,21 +958,36 @@ const technicalPapersData: TechnicalPaper[] = [
 interface Award {
   title: string;
   organization: string;
-  description: string;
+  description: string | ReactNode;
   date: string;
   icon: 'graduation' | 'microscope' | 'code' | 'pi' | 'award' | 'star' | 'users' | 'pbk' | 'heart';
 }
 
 const awardsData: Award[] = [
   {
+    title: "Jonathan E. Marx Memorial Senior Prize",
+    organization: "Cornell University",
+    description: (
+      <>
+        Awarded annually to <span className="font-bold">two graduating seniors</span> at Cornell in recognition of leadership, service, and contributions to the Cornell community. Recognized for mentorship, teaching, and leadership through Cornell's course management system and work as a teaching assistant; $500 award.
+      </>
+    ),
+    date: "2026",
+    icon: "award"
+  },
+  {
     title: "Phi Beta Kappa Graduation Scholarship",
-    organization: "Phi Beta Kappa Honor Society (Cornell University)",
-    description: "Competitive scholarship awarded to select graduating Phi Beta Kappa members for academic excellence. One of about 10 recipients from the Cornell graduating class; $3,000 award.",
+    organization: "Phi Beta Kappa Honor Society",
+    description: (
+      <>
+        Competitive scholarship awarded to select graduating Phi Beta Kappa members for academic excellence. <span className="font-bold">One of about 10 recipients</span> from the graduating class; $3,000 award.
+      </>
+    ),
     date: "Apr 2026",
     icon: "pbk"
   },
   {
-    title: "Phi Beta Kappa",
+    title: "Phi Beta Kappa Honors Society",
     organization: "The Phi Beta Kappa Society",
     description: "Inducted into the oldest and most prestigious academic honor society in the United States. About 1% of college seniors in the U.S. are invited.",
     date: "2026",
