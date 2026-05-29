@@ -294,6 +294,15 @@ const EducationSection = () => (
 // Experience Section Component
 const experienceData = [
   {
+    company: 'Amazon',
+    logo: '/amazon-logo.svg',
+    position: 'Software Engineer Intern',
+    duration: 'Jun 2026 - Present',
+    description: [
+      'AI for customer service.',
+    ],
+  },
+  {
     company: 'Salesforce',
     logo: '/Salesforce.com_logo.svg.png',
     position: 'Software Engineer Intern',
