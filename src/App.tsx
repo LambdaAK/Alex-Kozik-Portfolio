@@ -4,18 +4,6 @@ import Starfield from './Starfield';
 import Navbar from './Navbar';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { ChevronDown, ChevronUp, FileText, ExternalLink, Award, Microscope, Code, Users, Star, GraduationCap, Heart } from 'lucide-react';
-/** M.S. programs admitted to other than CMU (CMU is the enrolled program on the card above). */
-const otherMsProgramOffers: string[] = [
-  'Cornell University — MSCS',
-  'Columbia University — MSCS',
-  'University of Pennsylvania — MSECS',
-  'Brown University — MSCS',
-  'University of Michigan — MSCSE',
-  'University of California, San Diego — MSCSE',
-  'The University of Texas at Austin — MSCS',
-  'University of Southern California — MSCS',
-  'University of Southern California — MSCS (AI)',
-];
 
 const SectionReveal = ({ children }: { children: ReactNode }) => <div>{children}</div>;
 
@@ -98,8 +86,6 @@ interface EducationItem {
   gpa: string;
   date: string;
   courses: string[];
-  /** Other M.S. admits (not this school); collapsible list on the card. */
-  admittedToPrograms?: string[];
 }
 
 const educationData: EducationItem[] = [
@@ -111,7 +97,6 @@ const educationData: EducationItem[] = [
     gpa: 'Beginning Fall 2026',
     date: 'Aug 2026 - ',
     courses: [],
-    admittedToPrograms: otherMsProgramOffers,
   },
   {
     name: 'Cornell University',
@@ -164,32 +149,6 @@ const educationData: EducationItem[] = [
   },
 ];
 
-const OtherMsAdmitsCollapsible = ({ programs }: { programs: string[] }) => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="mt-3">
-      <p className="text-sm text-gray-600 leading-relaxed mb-2">
-        Also admitted to {programs.length} other M.S. program{programs.length === 1 ? '' : 's'} (CMU is where I am enrolled).
-      </p>
-      <button
-        type="button"
-        className="px-4 py-1.5 rounded-full bg-white/10 text-gray-800 font-semibold backdrop-blur-lg border border-white/20 shadow-lg transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-500/30 hover:text-cyan-700 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/40 text-sm"
-        onClick={() => setOpen((prev) => !prev)}
-      >
-        {open ? 'Hide other programs' : 'Show other programs'}
-      </button>
-      {open && (
-        <div className="mt-2 overflow-hidden">
-          <ul className="list-disc list-inside ml-1 text-gray-600 text-sm space-y-1">
-            {programs.map((school, i) => (
-              <li key={`${school}-${i}`}>{school}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-};
 
 const EducationCard = ({ edu }: { edu: EducationItem }) => {
   const [showCourses, setShowCourses] = useState(false);
@@ -240,9 +199,6 @@ const EducationCard = ({ edu }: { edu: EducationItem }) => {
               </button>
             )}
           </div>
-          {edu.admittedToPrograms && edu.admittedToPrograms.length > 0 ? (
-            <OtherMsAdmitsCollapsible programs={edu.admittedToPrograms} />
-          ) : null}
           {showCourses && edu.courses.length > 0 && (
               <div className="mt-2 overflow-hidden">
                 <span className="font-semibold text-gray-700">Relevant Courses:</span>
