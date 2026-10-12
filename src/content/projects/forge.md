@@ -15,7 +15,6 @@ tech:
 - js_of_ocaml
 - dune
 github: https://github.com/LambdaAK/Forge
-demo: https://forgepl.netlify.app/
 website: https://forgepl.netlify.app/
 links:
 - label: Playground
