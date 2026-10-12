@@ -6,7 +6,7 @@ date: "2025"
 role: Solo
 description: A Deep Q-Network agent for Snake with a 33-feature hand-designed state (danger, food direction, free space, A*-based path quality), shaped rewards and timeouts that stop it from looping. The demo on this page runs the trained network in your browser.
 group: ml
-order: 2
+order: 3
 tech: [Python, PyTorch, Reinforcement Learning]
 github: https://github.com/LambdaAK/SnakeDQN
 links:

@@ -5,7 +5,7 @@ question: "How do bandit and tree-search algorithms trade exploration against ex
 date: 2025–26
 description: BanditBot is a Python library for simulating and benchmarking multi-armed bandit algorithms, with plots for regret and action selection. MCTSLab is a small Monte Carlo Tree Search framework with pluggable games and a benchmark harness. Together with the voting-based multi-agent bandits report, they're the groundwork for my RL research at CMU.
 group: ml
-order: 3
+order: 5
 tech: [Python, NumPy, Matplotlib]
 github: https://github.com/LambdaAK/BanditBot
 links:
