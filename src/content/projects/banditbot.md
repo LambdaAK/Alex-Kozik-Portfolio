@@ -6,7 +6,7 @@ date: '2025'
 role: Solo
 description: From-scratch multi-armed and contextual bandit library in NumPy and PyTorch, with classic MAB policies, linear and neural contextual policies, and an experiment harness.
 group: ml
-order: 6
+order: 7
 tech:
 - Python
 - NumPy

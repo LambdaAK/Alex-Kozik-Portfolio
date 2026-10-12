@@ -6,7 +6,7 @@ date: '2025'
 role: Team of 5 · co-author of the report and poster; wrote the README's results and conclusion sections
 description: A PyTorch reimplementation of Xu et al. (2015) for Cornell CS 4782 with a ResNet-50 encoder, an LSTM decoder with additive attention, and hard attention trained by REINFORCE. The model was evaluated on the Flickr8k test split against the paper's numbers.
 group: ml
-order: 7
+order: 8
 tech:
 - PyTorch
 - ResNet-50
