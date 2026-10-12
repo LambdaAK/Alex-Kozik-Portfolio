@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, tagline, question, description, date, role, tech, github, demo, paper, links, image, media, mediaAlt, results, highlights } =
+const { title, tagline, question, description, date, role, tech, github, demo, website, paper, links, image, media, mediaAlt, results, highlights } =
   project.data;
 const { Content } = await render(project);
 const hasBody = (project.body ?? '').trim().length > 0;
@@ -53,7 +53,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
       <Results results={results} class="mt-6" />
 
       <TechChips items={tech} class="mt-6" />
-      <ProjectLinks github={github} demo={demo} paper={paper} links={links} project={title} class="mt-4" />
+      <ProjectLinks github={github} demo={demo} website={website} paper={paper} links={links} project={title} class="mt-4" />
 
       {
         media && (

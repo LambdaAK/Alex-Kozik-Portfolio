@@ -4,6 +4,7 @@ import Icon from './Icon.astro';
 interface Props {
   github?: string;
   demo?: string;
+  website?: string;
   paper?: string;
   details?: string;
   links?: { label: string; href: string }[];
@@ -11,7 +12,7 @@ interface Props {
   project?: string;
   class?: string;
 }
-const { github, demo, paper, details, links = [], project, class: className = '' } = Astro.props;
+const { github, demo, website, paper, details, links = [], project, class: className = '' } = Astro.props;
 const linkClass =
   'inline-flex items-center gap-1 text-sm font-medium text-fg-muted transition hover:text-accent';
 // Umami picks these up when analytics is on; harmless otherwise.
@@ -30,6 +31,13 @@ const track = (event: string) => ({ 'data-umami-event': event, 'data-umami-event
     demo && (
       <a href={demo} class={linkClass} target="_blank" rel="noopener" {...track('demo')}>
         <Icon name="external" class="h-3.5 w-3.5" /> Live demo
+      </a>
+    )
+  }
+  {
+    website && (
+      <a href={website} class={linkClass} target="_blank" rel="noopener" {...track('website')}>
+        <Icon name="external" class="h-3.5 w-3.5" /> Website
       </a>
     )
   }

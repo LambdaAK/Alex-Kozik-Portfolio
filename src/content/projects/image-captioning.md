@@ -6,7 +6,7 @@ date: Spring 2025
 role: Team of 5 · Cornell CS 4782 Deep Learning
 description: A re-implementation of the Show, Attend and Tell image-captioning model with both soft attention and hard (stochastic) attention, trained on Flickr8k and compared against the numbers reported by Xu et al. (2015).
 group: featured
-order: 3
+order: 4
 tech: [PyTorch, Computer Vision, LSTM, REINFORCE]
 github: https://github.com/srkvatsa/exploring-show-attend-tell
 paper: /papers/show-attend-tell.pdf

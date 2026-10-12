@@ -15,8 +15,8 @@ export const profile = {
 } as const;
 
 export const nav = [
+  { id: 'experience', label: 'Experience' },
   { id: 'research', label: 'Research' },
   { id: 'work', label: 'Work' },
-  { id: 'experience', label: 'Experience' },
   { id: 'about', label: 'About' },
 ] as const;

@@ -6,7 +6,7 @@ date: "2026"
 role: Solo
 description: A decoder-only transformer, written from scratch in PyTorch, that tracks world state across multi-turn conversations ("Who has the ball?", "How many things does Alice have?"), plus the full inference stack around it.
 group: featured
-order: 1
+order: 2
 tech: [PyTorch, Python, FastAPI, Redis, PostgreSQL, Docker, Kubernetes]
 github: https://github.com/LambdaAK/Atlas
 image: ../../assets/logos/atlas.png

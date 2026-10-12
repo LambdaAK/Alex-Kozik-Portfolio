@@ -5,7 +5,7 @@ question: "Can applied-math and ML methods be explored interactively, with no ba
 date: "2026"
 description: An interactive sandbox for applied mathematics and machine learning that runs entirely in the browser. Each lab exposes the parameters of a method and renders the result live.
 group: featured
-order: 4
+order: 5
 tech: [TypeScript, React, Numerical Methods]
 github: https://github.com/LambdaAK/dX
 demo: https://dxlab.netlify.app/

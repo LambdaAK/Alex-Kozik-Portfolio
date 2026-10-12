@@ -23,6 +23,8 @@ const projects = defineCollection({
       tech: z.array(z.string()),
       github: z.url().optional(),
       demo: z.url().optional(),
+      // Project's own website (docs, landing page).
+      website: z.url().optional(),
       paper: z.string().optional(),
       // Extra links (second repo, notebook, …).
       links: z.array(z.object({ label: z.string(), href: z.string() })).default([]),

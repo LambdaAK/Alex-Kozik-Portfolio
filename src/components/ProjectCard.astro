@@ -10,10 +10,10 @@ interface Props {
   variant?: 'featured' | 'compact';
 }
 const { project, variant = 'compact' } = Astro.props;
-const { title, tagline, question, date, tech, github, demo, paper, links, image, media, mediaAlt, results } =
+const { title, tagline, question, date, tech, github, demo, website, paper, links, image, media, mediaAlt, results } =
   project.data;
 const href = `/projects/${project.id}/`;
-const linkProps = { github, demo, paper, links, details: href, project: title };
+const linkProps = { github, demo, website, paper, links, details: href, project: title };
 ---
 
 {
