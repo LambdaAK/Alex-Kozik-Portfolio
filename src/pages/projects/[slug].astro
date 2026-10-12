@@ -5,7 +5,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import TechChips from '../../components/TechChips.astro';
 import ProjectLinks from '../../components/ProjectLinks.astro';
+import Results from '../../components/Results.astro';
 import ThemeToggle from '../../components/ThemeToggle.astro';
+import SnakeDemo from '../../components/SnakeDemo.astro';
 import { profile } from '../../data/profile';
 
 export async function getStaticPaths() {
@@ -14,7 +16,8 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, tagline, description, tech, github, demo, paper, image, highlights } = project.data;
+const { title, tagline, question, description, date, role, tech, github, demo, paper, links, image, media, mediaAlt, results, highlights } =
+  project.data;
 const { Content } = await render(project);
 const hasBody = (project.body ?? '').trim().length > 0;
 ---
@@ -23,6 +26,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
   title={`${title} – ${profile.name}`}
   description={tagline}
   path={`/projects/${project.id}/`}
+  ogImage={`/og/${project.id}.png`}
 >
   <div class="mx-auto max-w-3xl px-6 py-10 lg:py-16">
     <header class="flex items-center justify-between">
@@ -34,15 +38,33 @@ const hasBody = (project.body ?? '').trim().length > 0;
 
     <main id="main" class="mt-10">
       <div class="flex items-start gap-5">
-        <Image src={image} alt="" width={160} height={160} class="h-16 w-16 rounded-xl object-cover sm:h-20 sm:w-20" />
+        <Image src={image} alt="" width={160} height={160} class="h-14 w-14 rounded-xl object-cover sm:h-16 sm:w-16" />
         <div class="min-w-0">
-          <h1 class="text-3xl font-bold tracking-tight">{title}</h1>
-          <p class="mt-2 text-base font-medium text-fg">{tagline}</p>
+          <h1 class="font-display text-4xl font-semibold tracking-tight">{title}</h1>
+          {question && <p class="mt-1 font-display text-lg italic leading-snug text-fg-muted">{question}</p>}
         </div>
       </div>
 
-      <TechChips items={tech} class="mt-5" />
-      <ProjectLinks github={github} demo={demo} paper={paper} class="mt-4" />
+      <p class="mt-6 text-base font-medium leading-relaxed text-fg">{tagline}</p>
+      <p class="mt-2 text-sm text-fg-faint">
+        {date}{role && <> · {role}</>}
+      </p>
+
+      <Results results={results} class="mt-6" />
+
+      <TechChips items={tech} class="mt-6" />
+      <ProjectLinks github={github} demo={demo} paper={paper} links={links} project={title} class="mt-4" />
+
+      {
+        media && (
+          <figure class="mt-8">
+            <Image src={media} alt={mediaAlt ?? ''} width={1200} class="w-full rounded-xl bg-white ring-1 ring-line" />
+            {mediaAlt && <figcaption class="mt-2 text-xs text-fg-faint">{mediaAlt}</figcaption>}
+          </figure>
+        )
+      }
+
+      {project.id === 'snake-dqn' && <SnakeDemo />}
 
       <p class="mt-8 text-[15px] leading-relaxed text-fg-muted">{description}</p>
 
@@ -72,9 +94,12 @@ const hasBody = (project.body ?? '').trim().length > 0;
         )
       }
 
-      <p class="mt-12 border-t border-line pt-6 text-sm text-fg-muted">
+      <p class="mt-12 flex justify-between border-t border-line pt-6 text-sm text-fg-muted">
         <a href="/#work" class="inline-flex items-center gap-1 hover:text-accent">
-          <Icon name="arrow" class="h-3.5 w-3.5 rotate-180" /> All projects
+          <Icon name="arrow" class="h-3.5 w-3.5 rotate-180" /> Home
+        </a>
+        <a href="/projects/" class="inline-flex items-center gap-1 hover:text-accent">
+          All projects <Icon name="arrow" class="h-3.5 w-3.5" />
         </a>
       </p>
     </main>

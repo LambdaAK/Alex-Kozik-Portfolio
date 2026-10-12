@@ -1,16 +1,32 @@
 ---
 title: C-Torch
-tagline: A C++ ML library with CUDA kernels and distributed training; 26× faster than the baseline, 5× across 8 nodes.
-description: A machine learning library written from the ground up in C++, covering numerical methods, calculus and linear algebra, with 15+ models and reinforcement learning agents built on top.
+tagline: A machine learning library written from scratch in C++; 15+ models, DQN and REINFORCE agents, and synchronous distributed training over TCP.
+question: "How much of the ML stack can you build yourself, from linear algebra up to distributed training?"
+date: 2025–26
+role: Solo
+description: A machine learning library built from the ground up in C++, covering linear algebra, symbolic differentiation and optimizers, with classical models, neural networks and reinforcement learning agents on top, plus Python bindings.
 group: featured
-order: 3
-tech: [C++, CUDA, Multithreading, TCP Networking]
+order: 2
+tech: [C++, Multithreading, TCP Networking, Python bindings]
 github: https://github.com/LambdaAK/c-torch
-paper: /Low-Level Learning.pdf
+paper: /papers/low-level-learning.pdf
 image: ../../assets/logos/c-torch.png
+media: ../../assets/media/c-torch.jpg
+mediaAlt: DQN win rate against a uniformly random tic-tac-toe player over 10,000 training episodes, 10 independent trials.
+results:
+  - metric: DQN vs random player
+    value: 91.2% wins
+    baseline: Mean of 10 trials (84.7–94.9%), 3×3 tic-tac-toe
+  - metric: Models
+    value: 15+
+    baseline: SVMs, MLP, KNN, NB, K-means, PCA, bandits
+  - metric: Distributed
+    value: Sync over TCP
+    baseline: Multi-process data-parallel training
 highlights:
-  - 15+ models (neural networks, classifiers, RL agents) reaching 99%+ accuracy on classification tasks.
-  - DQN and policy-gradient agents achieving 97%+ win rates in autonomous gameplay.
-  - Distributed training across 8 nodes using TCP AllReduce and dataset sharding, for a 5× speedup.
-  - 26× speedup via CUDA kernels, compiler optimizations and parallelized tensor operations.
+  - Matrix library, a symbolic expression engine for derivatives, and optimizers, all from scratch.
+  - Perceptron, linear, kernel and random-Fourier SVMs, logistic and linear regression, KNN, Gaussian naive Bayes, K-means, PCA, bandits and an MLP.
+  - DQN and REINFORCE agents; the DQN beats a random tic-tac-toe player 91% of the time across 10 independent training runs (training-time win rate).
+  - Synchronous data-parallel training across processes over TCP, plus multithreaded training on one machine.
+  - Python bindings through ctypes.
 ---

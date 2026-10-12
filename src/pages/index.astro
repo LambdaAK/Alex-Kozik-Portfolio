@@ -6,7 +6,8 @@ import Icon from '../components/Icon.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import Section from '../components/Section.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import TechChips from '../components/TechChips.astro';
+import CopyEmail from '../components/CopyEmail.astro';
+import Timeline from '../components/Timeline.astro';
 import { profile, nav } from '../data/profile';
 import { experience } from '../data/experience';
 import { education } from '../data/education';
@@ -15,23 +16,39 @@ import { papers } from '../data/papers';
 import portrait from '../assets/alex.jpeg';
 
 const all = await getCollection('projects');
-const byGroup = (g: 'featured' | 'ml' | 'swe') =>
+const byGroup = (g: 'featured' | 'ml' | 'systems' | 'archive') =>
   all.filter((p) => p.data.group === g).sort((a, b) => a.data.order - b.data.order);
 const featured = byGroup('featured');
 const ml = byGroup('ml');
-const swe = byGroup('swe');
+const systems = byGroup('systems');
+const archiveCount = byGroup('archive').length;
 
 const socials = [
   { href: profile.github, label: 'GitHub', icon: 'github' },
   { href: profile.linkedin, label: 'LinkedIn', icon: 'linkedin' },
-  { href: `mailto:${profile.email}`, label: 'Email', icon: 'mail' },
 ] as const;
 ---
 
 <BaseLayout>
+  <!-- Mobile top bar: section anchors and résumé, always reachable. -->
+  <header class="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur lg:hidden">
+    <nav class="mx-auto flex max-w-6xl items-center gap-4 overflow-x-auto px-6 py-3 text-sm font-medium" aria-label="Sections">
+      {nav.map((n) => <a href={`#${n.id}`} class="shrink-0 text-fg-muted hover:text-fg">{n.label}</a>)}
+      <a
+        href={profile.resume}
+        class="ml-auto shrink-0 rounded-full bg-fg px-3 py-1 text-xs font-semibold text-bg"
+        target="_blank"
+        rel="noopener"
+        data-umami-event="resume"
+      >
+        Résumé
+      </a>
+    </nav>
+  </header>
+
   <div class="mx-auto max-w-6xl px-6 lg:flex lg:gap-12 lg:px-12 xl:gap-20">
     <!-- Sidebar / hero -->
-    <aside class="flex flex-col pt-12 lg:sticky lg:top-0 lg:h-screen lg:w-[38%] lg:shrink-0 lg:overflow-y-auto lg:py-16">
+    <aside class="flex flex-col pt-10 lg:sticky lg:top-0 lg:h-screen lg:w-[38%] lg:shrink-0 lg:overflow-y-auto lg:py-16">
       <div class="flex items-start justify-between gap-4">
         <Image
           src={portrait}
@@ -44,12 +61,12 @@ const socials = [
         <ThemeToggle />
       </div>
 
-      <h1 class="mt-6 text-3xl font-bold tracking-tight lg:text-4xl">{profile.name}</h1>
-      <p class="mt-2 text-lg font-medium text-fg">{profile.tagline}</p>
+      <h1 class="mt-6 font-display text-4xl font-semibold tracking-tight lg:text-5xl">{profile.name}</h1>
 
       <div class="mt-5 space-y-3 text-sm leading-relaxed text-fg-muted">
         {profile.bio.map((p) => <p>{p}</p>)}
       </div>
+
 
       <div class="mt-6 flex flex-wrap gap-2">
         <a
@@ -57,18 +74,23 @@ const socials = [
           class="inline-flex items-center gap-2 rounded-full bg-fg px-4 py-2 text-sm font-semibold text-bg transition hover:opacity-85"
           target="_blank"
           rel="noopener"
+          data-umami-event="resume"
         >
           <Icon name="file" /> Résumé
         </a>
+        <CopyEmail email={profile.email} />
         {
           socials.map((s) => (
             <a
               href={s.href}
-              class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-medium text-fg-muted transition hover:border-accent hover:text-fg"
-              target={s.href.startsWith('mailto:') ? undefined : '_blank'}
+              class="inline-flex items-center rounded-full border border-line px-3 py-2 text-fg-muted transition hover:border-accent hover:text-fg"
+              target="_blank"
               rel="noopener"
+              aria-label={s.label}
+              title={s.label}
+              data-umami-event={s.label.toLowerCase()}
             >
-              <Icon name={s.icon} /> {s.label}
+              <Icon name={s.icon} />
             </a>
           ))
         }
@@ -93,95 +115,32 @@ const socials = [
         </ul>
       </nav>
 
-      <p class="mt-auto hidden pt-10 text-xs text-fg-faint lg:block">
-        {profile.location} · <a href={profile.github + '/Alex-Kozik-Portfolio'} class="hover:text-fg">Source</a>
-      </p>
     </aside>
 
     <!-- Content -->
-    <main id="main" class="lg:w-[62%] lg:py-8">
-      <Section id="work" title="Selected work">
-        <div class="space-y-4">
-          {featured.map((p) => <ProjectCard project={p} variant="featured" />)}
-        </div>
+    <main id="main" class="pb-16 lg:w-[62%] lg:py-8">
 
-        <h3 class="mt-12 mb-4 text-sm font-semibold text-fg-muted">Machine learning</h3>
-        <div class="grid gap-3 sm:grid-cols-2">
-          {ml.map((p) => <ProjectCard project={p} />)}
-        </div>
+      <Section id="research" title="Research">
+        <Timeline items={experience.filter((e) => e.research)} />
 
-        <h3 class="mt-10 mb-4 text-sm font-semibold text-fg-muted">Software engineering</h3>
-        <div class="grid gap-3 sm:grid-cols-2">
-          {swe.map((p) => <ProjectCard project={p} />)}
-        </div>
-      </Section>
-
-      <Section id="experience" title="Experience">
-        <ol class="space-y-8">
-          {
-            experience.map((e) => (
-              <li class="grid gap-3 sm:grid-cols-[7.5rem_1fr] sm:gap-6">
-                <div class="text-xs font-medium tracking-wide text-fg-faint uppercase sm:pt-1">
-                  {e.dates}
-                </div>
-                <div>
-                  <div class="flex items-start gap-3">
-                    <Image
-                      src={e.logo}
-                      alt=""
-                      width={64}
-                      height={64}
-                      class="mt-0.5 h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-line"
-                    />
-                    <div>
-                      <h3 class="font-semibold leading-snug">
-                        {e.role}
-                      </h3>
-                      <p class="text-sm text-fg-muted">
-                        {e.url ? (
-                          <a href={e.url} class="hover:text-accent" target="_blank" rel="noopener">
-                            {e.company}
-                          </a>
-                        ) : (
-                          e.company
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                  <ul class="mt-3 space-y-1.5 text-sm leading-relaxed text-fg-muted">
-                    {e.bullets.map((b) => (
-                      <li class="flex gap-2">
-                        <span class="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-fg-faint" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <TechChips items={e.tech} class="mt-3" />
-                </div>
-              </li>
-            ))
-          }
-        </ol>
-      </Section>
-
-      <Section id="research" title="Research & write-ups" subtitle="Technical reports from coursework and independent research.">
-        <ol class="space-y-5">
+        <h3 class="mt-12 mb-1 text-sm font-semibold text-fg-muted">Papers</h3>
+        <ol class="divide-y divide-line">
           {
             papers.map((p) => (
-              <li class="rounded-xl border border-line bg-bg-elev p-4">
-                <h3 class="font-semibold leading-snug">
-                  <a href={p.pdf} class="hover:text-accent" target="_blank" rel="noopener">
+              <li class="py-4">
+                <h4 class="font-semibold leading-snug">
+                  <a href={p.project ?? p.pdf} class="hover:text-accent" {...(p.project ? {} : { target: '_blank', rel: 'noopener' })}>
                     {p.title}
                   </a>
-                </h3>
+                </h4>
                 <p class="mt-0.5 text-xs text-fg-faint">{p.venue}</p>
-                <p class="mt-2 text-sm leading-relaxed text-fg-muted">{p.summary}</p>
-                <div class="mt-2 flex flex-wrap gap-x-4 text-sm font-medium text-fg-muted">
-                  <a href={p.pdf} class="inline-flex items-center gap-1 hover:text-accent" target="_blank" rel="noopener">
+                <p class="mt-1.5 text-sm leading-relaxed text-fg-muted">{p.summary}</p>
+                <div class="mt-1.5 flex flex-wrap gap-x-4 text-sm font-medium text-fg-muted">
+                  <a href={p.pdf} class="inline-flex items-center gap-1 hover:text-accent" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={p.title}>
                     <Icon name="file" class="h-3.5 w-3.5" /> PDF
                   </a>
                   {p.code && (
-                    <a href={p.code} class="inline-flex items-center gap-1 hover:text-accent" target="_blank" rel="noopener">
+                    <a href={p.code} class="inline-flex items-center gap-1 hover:text-accent" target="_blank" rel="noopener" data-umami-event="source" data-umami-event-project={p.title}>
                       <Icon name="github" class="h-3.5 w-3.5" /> Code
                     </a>
                   )}
@@ -192,7 +151,39 @@ const socials = [
         </ol>
       </Section>
 
-      <Section id="education" title="Education">
+      <Section id="work" title="Selected work">
+        <div class="space-y-4">
+          {featured.map((p) => <ProjectCard project={p} variant="featured" />)}
+        </div>
+
+        <div class="mt-12 grid gap-x-10 sm:grid-cols-2">
+          <div>
+            <h3 class="text-sm font-semibold text-fg-muted">More machine learning</h3>
+            <div class="divide-y divide-line">
+              {ml.map((p) => <ProjectCard project={p} />)}
+            </div>
+          </div>
+          <div class="mt-8 sm:mt-0">
+            <h3 class="text-sm font-semibold text-fg-muted">Systems</h3>
+            <div class="divide-y divide-line">
+              {systems.map((p) => <ProjectCard project={p} />)}
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-6">
+          <a href="/projects/" class="inline-flex items-center gap-1 text-sm font-medium text-fg-muted hover:text-accent">
+            All projects, including {archiveCount} more <Icon name="arrow" class="h-3.5 w-3.5" />
+          </a>
+        </p>
+      </Section>
+
+      <Section id="experience" title="Experience">
+        <Timeline items={experience.filter((e) => !e.research)} />
+      </Section>
+
+      <Section id="about" title="About">
+        <h3 class="mb-4 text-sm font-semibold text-fg-muted">Education</h3>
         <ol class="space-y-8">
           {
             education.map((e) => (
@@ -201,16 +192,16 @@ const socials = [
                   {e.dates}
                 </div>
                 <div>
-                  <div class="flex items-start gap-3">
+                  <div class="flex items-center gap-4">
                     <Image
                       src={e.logo}
                       alt=""
-                      width={64}
-                      height={64}
-                      class="mt-0.5 h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-line"
+                      width={112}
+                      height={112}
+                      class="h-12 w-12 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-line sm:h-14 sm:w-14"
                     />
                     <div>
-                      <h3 class="font-semibold leading-snug">{e.degree}</h3>
+                      <h4 class="font-semibold leading-snug">{e.degree}</h4>
                       <p class="text-sm text-fg-muted">
                         <a href={e.url} class="hover:text-accent" target="_blank" rel="noopener">
                           {e.school}
@@ -243,33 +234,24 @@ const socials = [
             ))
           }
         </ol>
-      </Section>
 
-      <Section id="awards" title="Awards">
-        <ul class="grid gap-3 sm:grid-cols-2">
+        <h3 class="mt-12 mb-2 text-sm font-semibold text-fg-muted">Awards</h3>
+        <ul class="divide-y divide-line">
           {
             awards.map((a) => (
-              <li class="rounded-xl border border-line bg-bg-elev p-4">
-                <div class="flex items-baseline justify-between gap-3">
-                  <h3 class="font-semibold leading-snug">{a.title}</h3>
-                  <span class="shrink-0 text-xs text-fg-faint">{a.year}</span>
+              <li class="grid gap-1 py-3 sm:grid-cols-[1fr_auto] sm:gap-4">
+                <div>
+                  <p class="font-medium leading-snug">{a.title}</p>
+                  <p class="text-xs text-fg-faint">{a.org}</p>
+                  <p class="mt-0.5 text-sm text-fg-muted">{a.note}</p>
                 </div>
-                <p class="text-xs text-fg-faint">{a.org}</p>
-                <p class="mt-1.5 text-sm leading-relaxed text-fg-muted">{a.note}</p>
+                <span class="text-xs text-fg-faint sm:pt-1">{a.year}</span>
               </li>
             ))
           }
         </ul>
       </Section>
 
-      <footer class="border-t border-line py-10 text-sm text-fg-muted">
-        <p>
-          Want to talk? Email <a href={`mailto:${profile.email}`} class="font-medium text-fg hover:text-accent">{profile.email}</a>.
-        </p>
-        <p class="mt-2 text-xs text-fg-faint">
-          Built with Astro and Tailwind. <a href={profile.github + '/Alex-Kozik-Portfolio'} class="hover:text-fg">Source on GitHub</a>.
-        </p>
-      </footer>
     </main>
   </div>
 

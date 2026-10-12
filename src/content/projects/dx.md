@@ -1,6 +1,8 @@
 ---
 title: dX
 tagline: An in-browser lab for applied math and ML; SDEs, Markov chains, bandits, regression, clustering and PDE simulations, all client-side.
+question: "Can applied-math and ML methods be explored interactively, with no backend at all?"
+date: "2026"
 description: An interactive sandbox for applied mathematics and machine learning that runs entirely in the browser. Each lab exposes the parameters of a method and renders the result live.
 group: featured
 order: 4
@@ -8,6 +10,9 @@ tech: [TypeScript, React, Numerical Methods]
 github: https://github.com/LambdaAK/dX
 demo: https://dxlab.netlify.app/
 image: ../../assets/logos/dx.png
+media: ../../assets/media/dx.jpg
+mediaAlt: "The K-means lab: three clusters and their centroids, computed in the browser."
+role: Solo
 highlights:
   - Stochastic differential equations with Euler–Maruyama and RK4 integration; discrete and continuous-time Markov chains with transition-matrix visualization.
   - Multi-armed bandits (ε-greedy, UCB, Thompson sampling) and MDP solvers.

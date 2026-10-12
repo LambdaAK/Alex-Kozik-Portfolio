@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  email: string;
+  class?: string;
+}
+const { email, class: className = '' } = Astro.props;
+---
+
+<span class={`inline-flex items-stretch overflow-hidden rounded-full border border-line text-sm font-medium text-fg-muted transition hover:border-accent ${className}`}>
+  <a href={`mailto:${email}`} class="inline-flex items-center gap-2 py-2 pr-2 pl-4 hover:text-fg" data-umami-event="email">
+    <Icon name="mail" /> Email
+  </a>
+  <button
+    type="button"
+    class="copy-email border-l border-line px-3 hover:text-fg"
+    data-email={email}
+    aria-label={`Copy ${email}`}
+    title="Copy address"
+    data-umami-event="copy-email"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
+      <rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  </button>
+  <span class="sr-only" aria-live="polite" data-copy-status></span>
+</span>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button.copy-email').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const status = btn.parentElement?.querySelector<HTMLElement>('[data-copy-status]');
+      try {
+        await navigator.clipboard.writeText(btn.dataset.email!);
+        btn.title = 'Copied';
+        if (status) status.textContent = 'Email address copied';
+        btn.classList.add('text-accent');
+        setTimeout(() => {
+          btn.title = 'Copy address';
+          btn.classList.remove('text-accent');
+        }, 1500);
+      } catch {
+        window.location.href = `mailto:${btn.dataset.email}`;
+      }
+    });
+  });
+</script>

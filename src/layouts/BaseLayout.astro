@@ -2,23 +2,28 @@
 import '../styles/global.css';
 import { profile } from '../data/profile';
 import ogImage from '../assets/alex.jpeg';
-import { getImage } from 'astro:assets';
+import { getImage, Font } from 'astro:assets';
 
 interface Props {
   title?: string;
   description?: string;
   /** Path of this page, used for the canonical URL. */
   path?: string;
+  /** Site-relative path of a 1200×630 share image. Defaults to the portrait. */
+  ogImage?: string;
 }
 const {
-  title = `${profile.name} – ML Engineer`,
+  title = `${profile.name} – ML Research Engineer, CMU`,
   description = profile.metaDescription,
   path = '/',
+  ogImage: ogPath,
 } = Astro.props;
 
 const canonical = new URL(path, profile.site).href;
 const og = await getImage({ src: ogImage, width: 1200, height: 630, format: 'jpeg', fit: 'cover' });
-const ogUrl = new URL(og.src, profile.site).href;
+const ogUrl = new URL(ogPath ?? og.src, profile.site).href;
+// Umami analytics; set PUBLIC_UMAMI_WEBSITE_ID in Netlify to turn it on.
+const umamiId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -27,7 +32,7 @@ const jsonLd = {
   alternateName: profile.name,
   url: profile.site,
   email: `mailto:${profile.email}`,
-  jobTitle: 'Machine Learning Engineer',
+  jobTitle: 'Machine Learning Research Engineer',
   affiliation: { '@type': 'CollegeOrUniversity', name: 'Carnegie Mellon University' },
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Cornell University' },
   sameAs: [profile.github, profile.linkedin],
@@ -58,12 +63,13 @@ const jsonLd = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogUrl} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    />
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-newsreader" preload={[{ weight: '400 600', style: 'normal' }]} />
+    {
+      umamiId && (
+        <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id={umamiId} />
+      )
+    }
 
     <script is:inline>
       // Apply the saved theme before first paint to avoid a flash.

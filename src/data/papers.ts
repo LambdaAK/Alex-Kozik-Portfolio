@@ -4,43 +4,35 @@ export interface Paper {
   summary: string;
   pdf: string;
   code?: string;
-  tags: string[];
+  // Project page on this site, if one exists.
+  project?: string;
 }
 
-// Course reports and technical write-ups. Add peer-reviewed work at the top as it lands.
+// Technical reports from coursework. Add peer-reviewed work at the top as it lands.
 export const papers: Paper[] = [
   {
-    title: 'Voting-Based Multi-Agent Bandits',
-    venue: 'CS 6783 Machine Learning Theory, Cornell',
+    title: 'Show, Attend, Tell: Visual Attention for Image Captioning',
+    venue: 'CS 4782 Deep Learning, Cornell · Spring 2025 · team of 5',
     summary:
-      'Multi-armed bandit algorithms for multi-agent systems where agents aggregate decisions through voting mechanisms.',
-    pdf: '/Voting-Based Multi-Agent Bandits.pdf',
-    tags: ['ML Theory', 'Bandits', 'Multi-Agent'],
+      'Reproduction of soft and hard visual attention for image captioning (ResNet-50 encoder, LSTM decoder), evaluated with METEOR against the original paper.',
+    pdf: '/papers/show-attend-tell.pdf',
+    code: 'https://github.com/srkvatsa/exploring-show-attend-tell',
+    project: '/projects/image-captioning/',
   },
   {
     title: 'Low-Level Learning',
     venue: 'CS 4701 AI Practicum, Cornell',
     summary:
-      'Design and implementation of C-Torch, a C++ machine learning library with numerical methods, linear algebra and 15+ models.',
-    pdf: '/Low-Level Learning.pdf',
+      'Design and implementation of C-Torch, a C++ machine learning library with numerical methods, linear algebra, distributed training and 15+ models.',
+    pdf: '/papers/low-level-learning.pdf',
     code: 'https://github.com/LambdaAK/c-torch',
-    tags: ['C++', 'ML Systems'],
+    project: '/projects/c-torch/',
   },
   {
-    title: 'Show, Attend, Tell: Visual Attention for Image Captioning',
-    venue: 'CS 4782 Deep Learning, Cornell',
+    title: 'Voting-Based Multi-Agent Bandits',
+    venue: 'CS 6783 Machine Learning Theory (graduate), Cornell',
     summary:
-      'Re-implementation of soft and hard visual attention for image captioning with a ResNet-50 encoder and LSTM decoder.',
-    pdf: '/ShowAttendTell Report.pdf',
-    code: 'https://github.com/LambdaAK/CS-4782-Final-Project',
-    tags: ['Computer Vision', 'Attention'],
-  },
-  {
-    title: 'From Redux to Component-level State: Modernizing CMSX Architecture',
-    venue: 'CS 4999 Independent Research, Cornell · 2024',
-    summary:
-      "Migration of Cornell's course management system from Redux global state to component-level state, and its effect on developer and user experience.",
-    pdf: '/From Redux to Component-level State Modernizing CMSX Architecture.pdf',
-    tags: ['Software Architecture', 'React'],
+      'Multi-armed bandit algorithms for multi-agent systems in which agents aggregate decisions through voting.',
+    pdf: '/papers/voting-based-multi-agent-bandits.pdf',
   },
 ];

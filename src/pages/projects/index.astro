@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
+import ProjectLinks from '../../components/ProjectLinks.astro';
+import { profile } from '../../data/profile';
+
+const groups = [
+  { id: 'featured', label: 'Selected' },
+  { id: 'ml', label: 'Machine learning' },
+  { id: 'systems', label: 'Systems' },
+  { id: 'archive', label: 'Archive' },
+] as const;
+
+const all = await getCollection('projects');
+const sections = groups.map((g) => ({
+  ...g,
+  items: all.filter((p) => p.data.group === g.id).sort((a, b) => a.data.order - b.data.order),
+}));
+---
+
+<BaseLayout
+  title={`Projects – ${profile.name}`}
+  description={`Every project by ${profile.name}: ML models, ML systems, compilers and web apps, with source and results.`}
+  path="/projects/"
+>
+  <div class="mx-auto max-w-3xl px-6 py-10 lg:py-16">
+    <header class="flex items-center justify-between">
+      <a href="/#work" class="inline-flex items-center gap-1 text-sm font-medium text-fg-muted hover:text-accent">
+        ← {profile.name}
+      </a>
+      <ThemeToggle />
+    </header>
+
+    <main id="main" class="mt-10">
+      <h1 class="font-display text-4xl font-semibold tracking-tight">Projects</h1>
+      <p class="mt-2 text-fg-muted">Everything I've built, grouped by area, with source and results.</p>
+
+      {
+        sections.map((s) => (
+          <section class="mt-12" aria-labelledby={`g-${s.id}`}>
+            <h2 id={`g-${s.id}`} class="text-xs font-semibold tracking-[0.18em] text-fg-faint uppercase">
+              {s.label}
+            </h2>
+            <ul class="mt-2 divide-y divide-line">
+              {s.items.map((p) => (
+                <li class="grid gap-1 py-4 sm:grid-cols-[1fr_auto] sm:gap-6">
+                  <div class="min-w-0">
+                    <a href={`/projects/${p.id}/`} class="font-semibold hover:text-accent">
+                      {p.data.title}
+                    </a>
+                    <p class="mt-0.5 text-sm leading-relaxed text-fg-muted">{p.data.tagline}</p>
+                    <ProjectLinks github={p.data.github} demo={p.data.demo} paper={p.data.paper} project={p.data.title} class="mt-1.5" />
+                  </div>
+                  <span class="text-xs text-fg-faint sm:pt-1">{p.data.date}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </main>
+  </div>
+</BaseLayout>

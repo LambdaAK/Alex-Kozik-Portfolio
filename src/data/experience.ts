@@ -14,6 +14,10 @@ export interface Experience {
   logo: ImageMetadata;
   bullets: string[];
   tech: string[];
+  // Shown under Research instead of Experience.
+  research?: boolean;
+  // Reports or write-ups about this role.
+  links?: { label: string; href: string }[];
 }
 
 export const experience: Experience[] = [
@@ -21,10 +25,12 @@ export const experience: Experience[] = [
     company: 'Carnegie Mellon University',
     url: 'https://www.cs.cmu.edu/',
     role: 'Machine Learning Researcher',
+    research: true,
     dates: 'Aug 2026 – Present',
     logo: cmu,
     bullets: [
       "Reinforcement learning research in Prof. Andrea Zanette's group at the School of Computer Science.",
+      'Design, implement and evaluate RL experiments in PyTorch.',
     ],
     tech: ['Reinforcement Learning', 'PyTorch'],
   },
@@ -58,6 +64,7 @@ export const experience: Experience[] = [
     company: 'Cornell Course Management System',
     url: 'https://cmsx.cs.cornell.edu/',
     role: 'Software Engineering Lead & President',
+    research: true,
     dates: 'Aug 2023 – Jan 2026',
     logo: cmsx,
     bullets: [
@@ -67,6 +74,12 @@ export const experience: Experience[] = [
       'Joined as a full-stack engineer (2023), became frontend lead (2024), then president (2025): ran recruiting, onboarding, code review and architecture decisions.',
     ],
     tech: ['React', 'TypeScript', 'Java', 'MUI'],
+    links: [
+      {
+        label: 'Report: From Redux to component-level state',
+        href: '/papers/cmsx-redux-to-component-state.pdf',
+      },
+    ],
   },
   {
     company: 'Generative AI @ Cornell',
@@ -83,6 +96,7 @@ export const experience: Experience[] = [
     company: 'Carnegie Mellon University',
     url: 'https://www.cmu.edu/',
     role: 'Software Engineer & Research Intern · NSF REU',
+    research: true,
     dates: 'May – Aug 2024',
     logo: cmu,
     bullets: [
@@ -100,7 +114,7 @@ export const experience: Experience[] = [
     logo: cornell,
     bullets: [
       'CS 3780/5780 Introduction to Machine Learning (2025), CS 4820/5820 Analysis of Algorithms (Fall 2024), CS 3110 Data Structures & Functional Programming (2023–24).',
-      'Course Staff Award for CS 3110: given to the top 10% of teaching assistants.',
+      'CS Course Staff Award (2024) for CS 3110: top 10% of teaching assistants.',
     ],
     tech: ['Machine Learning', 'Algorithms', 'OCaml'],
   },

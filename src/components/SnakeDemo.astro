@@ -1,0 +1,177 @@
+---
+// Live demo: the trained DQN plays Snake in the browser. Weights (117 KB) load on click.
+---
+
+<section class="snake-demo mt-8 rounded-xl border border-line bg-bg-elev p-4 sm:p-5" aria-labelledby="snake-demo-title">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <h2 id="snake-demo-title" class="font-display text-xl font-semibold">Watch it play</h2>
+    <p class="text-xs text-fg-faint">The trained network, running in your browser. No server.</p>
+  </div>
+
+  <div class="mt-4 grid gap-5 sm:grid-cols-[1fr_11rem]">
+    <div class="relative">
+      <canvas class="aspect-square w-full rounded-lg bg-bg ring-1 ring-line" width="600" height="600" aria-label="Snake board"></canvas>
+      <button
+        type="button"
+        data-start
+        class="absolute inset-0 m-auto h-fit w-fit rounded-full bg-fg px-5 py-2.5 text-sm font-semibold text-bg shadow-lg transition hover:opacity-85"
+        data-umami-event="snake-demo"
+      >
+        ▶ Load the agent (117 KB)
+      </button>
+    </div>
+
+    <div class="flex flex-col gap-4 text-sm">
+      <dl class="grid grid-cols-2 gap-3 sm:grid-cols-1">
+        <div>
+          <dt class="text-[11px] font-medium tracking-wide text-fg-faint uppercase">Score</dt>
+          <dd class="font-mono text-2xl font-semibold" data-score>0</dd>
+        </div>
+        <div>
+          <dt class="text-[11px] font-medium tracking-wide text-fg-faint uppercase">Games · best</dt>
+          <dd class="font-mono text-fg-muted" data-games>0 · 0</dd>
+        </div>
+      </dl>
+
+      <div>
+        <p class="text-[11px] font-medium tracking-wide text-fg-faint uppercase">Q-values</p>
+        <ul class="mt-1.5 space-y-1 font-mono text-xs" data-q>
+          {
+            ['up', 'down', 'left', 'right'].map((a) => (
+              <li class="grid grid-cols-[3rem_1fr] items-center gap-2">
+                <span class="text-fg-muted">{a}</span>
+                <span class="h-2 rounded-full bg-line">
+                  <span class="block h-2 rounded-full bg-fg-faint transition-[width] duration-75" style="width:0%" />
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-1.5 text-xs leading-snug text-fg-faint">The agent picks the highest bar each step.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        <button type="button" data-pause class="rounded-full border border-line px-3 py-1 text-xs font-medium text-fg-muted hover:border-accent hover:text-fg" disabled>Pause</button>
+        <button type="button" data-speed class="rounded-full border border-line px-3 py-1 text-xs font-medium text-fg-muted hover:border-accent hover:text-fg" disabled>Speed 1×</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { SnakeGame, Policy, argmax } from '../scripts/snake';
+
+  for (const root of document.querySelectorAll<HTMLElement>('.snake-demo')) {
+    const canvas = root.querySelector('canvas')!;
+    const ctx = canvas.getContext('2d')!;
+    const startBtn = root.querySelector<HTMLButtonElement>('[data-start]')!;
+    const pauseBtn = root.querySelector<HTMLButtonElement>('[data-pause]')!;
+    const speedBtn = root.querySelector<HTMLButtonElement>('[data-speed]')!;
+    const scoreEl = root.querySelector('[data-score]')!;
+    const gamesEl = root.querySelector('[data-games]')!;
+    const bars = Array.from(root.querySelectorAll<HTMLElement>('[data-q] li'));
+
+    const game = new SnakeGame(30, 30);
+    let policy: Policy | null = null;
+    let running = false;
+    let speed = 1;
+    let games = 0;
+    let best = 0;
+    let last = 0;
+
+    const css = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+    function draw() {
+      const n = game.width;
+      const cell = canvas.width / n;
+      ctx.fillStyle = css('--color-bg');
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = css('--color-line');
+      for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) ctx.fillRect(c * cell + cell / 2 - 1, r * cell + cell / 2 - 1, 2, 2);
+      ctx.fillStyle = '#e11d48';
+      const [fr, fc] = game.food;
+      ctx.beginPath();
+      ctx.arc(fc * cell + cell / 2, fr * cell + cell / 2, cell * 0.38, 0, Math.PI * 2);
+      ctx.fill();
+      const accent = css('--color-accent');
+      game.snake.forEach(([r, c], i) => {
+        ctx.globalAlpha = i === 0 ? 1 : Math.max(0.35, 1 - i / (game.snake.length + 8));
+        ctx.fillStyle = accent;
+        ctx.beginPath();
+        ctx.roundRect(c * cell + 1, r * cell + 1, cell - 2, cell - 2, cell * 0.25);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    }
+
+    function showQ(q: Float32Array, choice: number) {
+      const lo = Math.min(...q);
+      const hi = Math.max(...q);
+      bars.forEach((li, i) => {
+        const bar = li.querySelector<HTMLElement>('span > span')!;
+        bar.style.width = `${hi === lo ? 100 : 8 + (92 * (q[i] - lo)) / (hi - lo)}%`;
+        bar.classList.toggle('bg-accent', i === choice);
+        bar.classList.toggle('bg-fg-faint', i !== choice);
+      });
+    }
+
+    function tick() {
+      if (!policy) return;
+      if (game.over) {
+        games++;
+        best = Math.max(best, game.score);
+        game.reset();
+      }
+      const q = policy.q(game.state());
+      const a = argmax(q);
+      game.step(a);
+      showQ(q, a);
+      scoreEl.textContent = String(game.score);
+      gamesEl.textContent = `${games} · ${Math.max(best, game.score)}`;
+    }
+
+    function loop(t: number) {
+      if (!running) return;
+      const interval = 70 / speed;
+      if (t - last >= interval) {
+        const steps = speed >= 4 ? 2 : 1;
+        for (let i = 0; i < steps; i++) tick();
+        draw();
+        last = t;
+      }
+      requestAnimationFrame(loop);
+    }
+
+    function setRunning(on: boolean) {
+      running = on;
+      pauseBtn.textContent = on ? 'Pause' : 'Play';
+      if (on) requestAnimationFrame(loop);
+    }
+
+    startBtn.addEventListener('click', async () => {
+      startBtn.disabled = true;
+      startBtn.textContent = 'Loading…';
+      try {
+        const res = await fetch('/models/snake-dqn.bin');
+        if (!res.ok) throw new Error(String(res.status));
+        policy = new Policy(await res.arrayBuffer());
+        startBtn.remove();
+        pauseBtn.disabled = false;
+        speedBtn.disabled = false;
+        setRunning(true);
+      } catch {
+        startBtn.disabled = false;
+        startBtn.textContent = 'Couldn’t load the weights. Retry';
+      }
+    });
+    pauseBtn.addEventListener('click', () => setRunning(!running));
+    speedBtn.addEventListener('click', () => {
+      speed = speed === 1 ? 2 : speed === 2 ? 4 : 1;
+      speedBtn.textContent = `Speed ${speed}×`;
+    });
+    // Keep colors right when the theme toggles.
+    new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    draw();
+  }
+</script>

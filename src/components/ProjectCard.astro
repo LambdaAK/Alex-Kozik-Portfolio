@@ -3,54 +3,68 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import TechChips from './TechChips.astro';
 import ProjectLinks from './ProjectLinks.astro';
+import Results from './Results.astro';
 
 interface Props {
   project: CollectionEntry<'projects'>;
   variant?: 'featured' | 'compact';
 }
 const { project, variant = 'compact' } = Astro.props;
-const { title, tagline, description, tech, github, demo, paper, image } = project.data;
+const { title, tagline, question, date, tech, github, demo, paper, links, image, media, mediaAlt, results } =
+  project.data;
 const href = `/projects/${project.id}/`;
+const linkProps = { github, demo, paper, links, details: href, project: title };
 ---
 
 {
   variant === 'featured' ? (
-    <article class="group grid gap-4 rounded-xl border border-line bg-bg-elev p-5 transition hover:border-accent/60 sm:grid-cols-[88px_1fr] sm:gap-6">
-      <a href={href} class="shrink-0" aria-hidden="true" tabindex="-1">
-        <Image
-          src={image}
-          alt=""
-          width={176}
-          height={176}
-          class="h-16 w-16 rounded-lg object-cover sm:h-[88px] sm:w-[88px]"
-        />
-      </a>
-      <div class="min-w-0">
-        <h3 class="text-lg font-semibold leading-snug">
-          <a href={href} class="transition group-hover:text-accent">
-            {title}
-          </a>
-        </h3>
-        <p class="mt-1 text-sm font-medium text-fg">{tagline}</p>
-        <p class="mt-2 text-sm leading-relaxed text-fg-muted">{description}</p>
-        <TechChips items={tech} class="mt-3" />
-        <ProjectLinks github={github} demo={demo} paper={paper} details={href} class="mt-3" />
+    <article class="group rounded-xl border border-line bg-bg-elev p-5 transition hover:border-accent/60">
+      <div class={`grid gap-5 ${media ? 'sm:grid-cols-[220px_1fr]' : 'sm:grid-cols-[72px_1fr]'}`}>
+        <a href={href} class="block shrink-0" aria-hidden="true" tabindex="-1">
+          {media ? (
+            <Image
+              src={media}
+              alt={mediaAlt ?? ''}
+              width={440}
+              class="aspect-[16/10] w-full rounded-lg bg-bg object-contain ring-1 ring-line"
+            />
+          ) : (
+            <Image src={image} alt="" width={144} height={144} class="h-14 w-14 rounded-lg object-cover sm:h-[72px] sm:w-[72px]" />
+          )}
+        </a>
+        <div class="min-w-0">
+          <div class="flex items-baseline justify-between gap-3">
+            <h3 class="font-display text-xl font-semibold leading-snug">
+              <a href={href} class="transition group-hover:text-accent">
+                {title}
+              </a>
+            </h3>
+            <span class="shrink-0 text-xs text-fg-faint">{date}</span>
+          </div>
+          {question && <p class="mt-1 font-display text-[15px] italic leading-snug text-fg-muted">{question}</p>}
+          <p class="mt-2 text-sm font-medium leading-relaxed text-fg">{tagline}</p>
+        </div>
       </div>
+      <Results results={results} class="mt-4" />
+      <TechChips items={tech} class="mt-4" />
+      <ProjectLinks {...linkProps} class="mt-3" />
     </article>
   ) : (
-    <article class="group flex gap-4 rounded-xl border border-line bg-bg-elev p-4 transition hover:border-accent/60">
+    <article class="group flex gap-4 py-4">
       <a href={href} class="shrink-0" aria-hidden="true" tabindex="-1">
-        <Image src={image} alt="" width={96} height={96} class="h-12 w-12 rounded-md object-cover" />
+        <Image src={image} alt="" width={112} height={112} class="h-12 w-12 rounded-lg object-cover" />
       </a>
       <div class="min-w-0 flex-1">
-        <h3 class="font-semibold leading-snug">
-          <a href={href} class="transition group-hover:text-accent">
-            {title}
-          </a>
-        </h3>
+        <div class="flex items-baseline justify-between gap-3">
+          <h3 class="font-semibold leading-snug">
+            <a href={href} class="transition group-hover:text-accent">
+              {title}
+            </a>
+          </h3>
+          <span class="shrink-0 text-xs text-fg-faint">{date}</span>
+        </div>
         <p class="mt-1 text-sm leading-relaxed text-fg-muted">{tagline}</p>
-        <TechChips items={tech} class="mt-2.5" />
-        <ProjectLinks github={github} demo={demo} paper={paper} details={href} class="mt-2.5" />
+        <ProjectLinks {...linkProps} class="mt-2" />
       </div>
     </article>
   )

@@ -7,10 +7,10 @@ interface Props {
 const { id, title, subtitle } = Astro.props;
 ---
 
-<section id={id} class="scroll-mt-20 py-12 lg:py-16" aria-labelledby={`${id}-title`}>
+<section id={id} class="scroll-mt-16 py-12 lg:scroll-mt-0 lg:py-16" aria-labelledby={`${id}-title`}>
   <h2
     id={`${id}-title`}
-    class="mb-5 text-xs font-semibold tracking-[0.18em] text-fg uppercase"
+    class="mb-6 text-xs font-semibold tracking-[0.18em] text-fg uppercase"
   >
     {title}
   </h2>

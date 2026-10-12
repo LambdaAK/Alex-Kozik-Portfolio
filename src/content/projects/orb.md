@@ -1,9 +1,10 @@
 ---
 title: Orb
 tagline: A real-time particle and gravity-well sandbox in C++ with SDL2 and OpenGL.
+date: "2026"
 description: A 2D physics sandbox where you place particles and gravity wells and watch them move, collide and leave trails.
-group: swe
-order: 6
+group: archive
+order: 5
 tech: [C++, OpenGL, SDL2]
 github: https://github.com/LambdaAK/Orb
 image: ../../assets/logos/orb.png

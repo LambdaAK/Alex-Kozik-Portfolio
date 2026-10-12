@@ -6,40 +6,52 @@ interface Props {
   demo?: string;
   paper?: string;
   details?: string;
+  links?: { label: string; href: string }[];
+  // Project name, sent with analytics events.
+  project?: string;
   class?: string;
 }
-const { github, demo, paper, details, class: className = '' } = Astro.props;
+const { github, demo, paper, details, links = [], project, class: className = '' } = Astro.props;
 const linkClass =
   'inline-flex items-center gap-1 text-sm font-medium text-fg-muted transition hover:text-accent';
+// Umami picks these up when analytics is on; harmless otherwise.
+const track = (event: string) => ({ 'data-umami-event': event, 'data-umami-event-project': project });
 ---
 
 <div class={`flex flex-wrap gap-x-4 gap-y-1 ${className}`}>
   {
-    github && (
-      <a href={github} class={linkClass} target="_blank" rel="noopener">
-        <Icon name="github" class="h-3.5 w-3.5" /> Source
+    details && (
+      <a href={details} class={linkClass} {...track('project-open')}>
+        Details <Icon name="arrow" class="h-3.5 w-3.5" />
       </a>
     )
   }
   {
     demo && (
-      <a href={demo} class={linkClass} target="_blank" rel="noopener">
+      <a href={demo} class={linkClass} target="_blank" rel="noopener" {...track('demo')}>
         <Icon name="external" class="h-3.5 w-3.5" /> Live demo
       </a>
     )
   }
   {
-    paper && (
-      <a href={paper} class={linkClass} target="_blank" rel="noopener">
-        <Icon name="file" class="h-3.5 w-3.5" /> Write-up
+    github && (
+      <a href={github} class={linkClass} target="_blank" rel="noopener" {...track('source')}>
+        <Icon name="github" class="h-3.5 w-3.5" /> Source
       </a>
     )
   }
   {
-    details && (
-      <a href={details} class={linkClass}>
-        Details <Icon name="arrow" class="h-3.5 w-3.5" />
+    paper && (
+      <a href={paper} class={linkClass} target="_blank" rel="noopener" {...track('report')}>
+        <Icon name="file" class="h-3.5 w-3.5" /> Report
       </a>
     )
+  }
+  {
+    links.map((l) => (
+      <a href={l.href} class={linkClass} target="_blank" rel="noopener" {...track('link')}>
+        <Icon name="external" class="h-3.5 w-3.5" /> {l.label}
+      </a>
+    ))
   }
 </div>
