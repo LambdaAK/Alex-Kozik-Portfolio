@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  github?: string;
+  demo?: string;
+  paper?: string;
+  details?: string;
+  class?: string;
+}
+const { github, demo, paper, details, class: className = '' } = Astro.props;
+const linkClass =
+  'inline-flex items-center gap-1 text-sm font-medium text-fg-muted transition hover:text-accent';
+---
+
+<div class={`flex flex-wrap gap-x-4 gap-y-1 ${className}`}>
+  {
+    github && (
+      <a href={github} class={linkClass} target="_blank" rel="noopener">
+        <Icon name="github" class="h-3.5 w-3.5" /> Source
+      </a>
+    )
+  }
+  {
+    demo && (
+      <a href={demo} class={linkClass} target="_blank" rel="noopener">
+        <Icon name="external" class="h-3.5 w-3.5" /> Live demo
+      </a>
+    )
+  }
+  {
+    paper && (
+      <a href={paper} class={linkClass} target="_blank" rel="noopener">
+        <Icon name="file" class="h-3.5 w-3.5" /> Write-up
+      </a>
+    )
+  }
+  {
+    details && (
+      <a href={details} class={linkClass}>
+        Details <Icon name="arrow" class="h-3.5 w-3.5" />
+      </a>
+    )
+  }
+</div>

@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import TechChips from '../../components/TechChips.astro';
+import ProjectLinks from '../../components/ProjectLinks.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
+import { profile } from '../../data/profile';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+const { title, tagline, description, tech, github, demo, paper, image, highlights } = project.data;
+const { Content } = await render(project);
+const hasBody = (project.body ?? '').trim().length > 0;
+---
+
+<BaseLayout
+  title={`${title} – ${profile.name}`}
+  description={tagline}
+  path={`/projects/${project.id}/`}
+>
+  <div class="mx-auto max-w-3xl px-6 py-10 lg:py-16">
+    <header class="flex items-center justify-between">
+      <a href="/#work" class="inline-flex items-center gap-1 text-sm font-medium text-fg-muted hover:text-accent">
+        ← {profile.name}
+      </a>
+      <ThemeToggle />
+    </header>
+
+    <main id="main" class="mt-10">
+      <div class="flex items-start gap-5">
+        <Image src={image} alt="" width={160} height={160} class="h-16 w-16 rounded-xl object-cover sm:h-20 sm:w-20" />
+        <div class="min-w-0">
+          <h1 class="text-3xl font-bold tracking-tight">{title}</h1>
+          <p class="mt-2 text-base font-medium text-fg">{tagline}</p>
+        </div>
+      </div>
+
+      <TechChips items={tech} class="mt-5" />
+      <ProjectLinks github={github} demo={demo} paper={paper} class="mt-4" />
+
+      <p class="mt-8 text-[15px] leading-relaxed text-fg-muted">{description}</p>
+
+      {
+        highlights.length > 0 && (
+          <section class="mt-8" aria-labelledby="highlights">
+            <h2 id="highlights" class="text-xs font-semibold tracking-[0.18em] text-fg-faint uppercase">
+              Highlights
+            </h2>
+            <ul class="mt-3 space-y-2 text-[15px] leading-relaxed text-fg-muted">
+              {highlights.map((h) => (
+                <li class="flex gap-2">
+                  <span class="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-fg-faint" />
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        hasBody && (
+          <article class="prose mt-10 border-t border-line pt-8 text-[15px] text-fg">
+            <Content />
+          </article>
+        )
+      }
+
+      <p class="mt-12 border-t border-line pt-6 text-sm text-fg-muted">
+        <a href="/#work" class="inline-flex items-center gap-1 hover:text-accent">
+          <Icon name="arrow" class="h-3.5 w-3.5 rotate-180" /> All projects
+        </a>
+      </p>
+    </main>
+  </div>
+</BaseLayout>
