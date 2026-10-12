@@ -6,7 +6,7 @@ date: 2025–26
 role: Solo
 description: A machine learning library built from the ground up in C++, covering linear algebra, symbolic differentiation and optimizers, with classical models, neural networks and reinforcement learning agents on top, plus Python bindings.
 group: featured
-order: 3
+order: 4
 tech: [C++, Multithreading, TCP Networking, Python bindings]
 github: https://github.com/LambdaAK/c-torch
 paper: /papers/low-level-learning.pdf

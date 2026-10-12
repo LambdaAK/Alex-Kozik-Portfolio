@@ -1,0 +1,20 @@
+// Traits (typeclasses) with dictionary passing: Show for a user type.
+type Shape =
+  | Circle of Int
+  | Rect of (Int, Int)
+
+impl Show for Shape where
+  show s =
+    case s do
+    | Circle r -> str_concat "Circle r=" (int_to_str r)
+    | Rect (w, h) -> str_concat (str_concat "Rect " (int_to_str w)) (str_concat "x" (int_to_str h))
+end
+
+let area s =
+  case s do
+  | Circle r -> 3 * r * r
+  | Rect (w, h) -> w * h
+
+let () = println (Circle 2)
+let () = println (Rect (3, 4))
+let () = println (area (Rect (3, 4)))

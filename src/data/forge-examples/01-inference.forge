@@ -1,0 +1,20 @@
+// No type annotations anywhere: Hindley-Milner infers every type.
+// The inferred types show up on the right.
+let compose f g x = f (g x)
+let twice f = compose f f
+let rec map f xs =
+  case xs do
+  | [] -> []
+  | h :: t -> f h :: map f t
+
+let rec join sep xs =
+  case xs do
+  | [] -> ""
+  | x :: [] -> x
+  | h :: t -> str_concat (str_concat h sep) (join sep t)
+
+let inc n = n + 1
+let shout s = str_concat s "!"
+
+let () = print_string (join ", " (map int_to_str (map (twice inc) [1, 2, 3])))
+let () = print_string (join ", " (map (twice shout) ["hi", "yo"]))

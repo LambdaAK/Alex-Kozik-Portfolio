@@ -1,0 +1,5 @@
+// A type error: `add` is inferred as Int -> Int -> Int,
+// so applying it to a String is rejected before `oops` is evaluated.
+let add x y = x + y
+let oops = add 1 "two"
+let () = println oops

@@ -6,7 +6,7 @@ date: '2026'
 role: Solo
 description: A browser sandbox of 30 labs across probability, stochastic processes, linear algebra, optimization, supervised learning, clustering, RL and physics. The solvers (integrators, PDE stencils, LP/QP, SMO, factorizations) are written from scratch in about 7k lines of TypeScript.
 group: featured
-order: 4
+order: 5
 tech:
 - TypeScript
 - React

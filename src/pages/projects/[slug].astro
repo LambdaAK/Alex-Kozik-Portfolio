@@ -11,6 +11,7 @@ import ThemeToggle from '../../components/ThemeToggle.astro';
 import SnakeDemo from '../../components/SnakeDemo.astro';
 import MnistDemo from '../../components/MnistDemo.astro';
 import PokerDemo from '../../components/PokerDemo.astro';
+import ForgePlayground from '../../components/ForgePlayground.astro';
 import { profile } from '../../data/profile';
 
 export async function getStaticPaths() {
@@ -70,6 +71,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
       {project.id === 'snake-dqn' && <SnakeDemo />}
       {project.id === 'mnist-classifier' && <MnistDemo />}
       {project.id === 'poker-games' && <PokerDemo />}
+      {project.id === 'forge' && <ForgePlayground />}
 
       <p class="mt-8 text-[15px] leading-relaxed text-fg-muted">{description}</p>
 
