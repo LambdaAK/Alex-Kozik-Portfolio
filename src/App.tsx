@@ -22,10 +22,9 @@ const AboutMeCard = () => (
     <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto mb-4 md:mb-0 md:mr-8">
       <div className="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg flex items-center justify-center">
         <img
-          src="/kozik4.PNG"
-          alt="Profile"
+          src="/grad%20pic.jpeg"
+          alt="Alex Kozik at graduation"
           className="object-cover w-full h-full"
-          style={{ objectPosition: '45% 52%', transform: 'scale(1.05)' }}
         />
       </div>
     </div>
@@ -41,7 +40,7 @@ const AboutMeCard = () => (
       <div className="text-xl sm:text-2xl font-semibold text-blue-600 mb-4">Software/ML Engineer</div>
       {/* Intro Paragraph */}
       <p className="text-base sm:text-lg text-gray-700 max-w-xl mb-6">
-        I am a <span className="font-bold">first-generation</span> college student starting an M.S. at <span className="text-red-500 font-semibold">Carnegie Mellon University</span> in the fall. I have a B.A. in mathematics and computer science from <span className="text-red-500 font-semibold">Cornell University</span>, specializing in <span className="font-bold">machine learning</span> and <span className="font-bold">software engineering</span>.<br /><br />
+        I am a <span className="font-bold">first-generation</span> college student pursuing an M.S. at <span className="text-red-500 font-semibold">Carnegie Mellon University</span>. I have a B.A. in mathematics and computer science from <span className="text-red-500 font-semibold">Cornell University</span>.<br /><br />
         In my free time, I enjoy working on personal projects, working out, and reading.<br /><br />
         Welcome to my website!
       </p>
@@ -92,11 +91,15 @@ const educationData: EducationItem[] = [
   {
     name: 'Carnegie Mellon University',
     logo: '/CMU.png',
-    degree: 'Master of Science',
-    major: 'Computer Science',
-    gpa: 'Beginning Fall 2026',
-    date: 'Aug 2026 - ',
-    courses: [],
+    degree: 'Master of Science (Thesis Track)',
+    major: 'Computer Science, Machine Learning and Systems',
+    gpa: 'Aug 2026 - Present',
+    date: 'Aug 2026 - Present',
+    courses: [
+      '10-703: Deep Reinforcement Learning & Control',
+      '10-714: Deep Learning Systems: Algorithms & Implementation',
+      '15-659: Randomized Algorithms & Markov Chains',
+    ],
   },
   {
     name: 'Cornell University',
@@ -106,27 +109,27 @@ const educationData: EducationItem[] = [
     gpa: 'GPA: 4.11/4.3 (top 1%)',
     date: 'Aug 2022 - May 2026',
     courses: [
-      'CS 2112 - Honors OOP & Data Structures (A)',
-      'CS 2800 - Discrete Math (A-)',
-      'CS 3110 - Data Structures and Functional Programming (A)',
-      'CS 3410 - Computer Systems Organization (A)',
-      'CS 4110 - Programming Languages and Logics (A+)',
-      'CS 4414 - Systems Programming (A)',
-      'CS 4701 - AI Practicum (A+)',
-      'CS 4780 - Machine Learning (A+)',
-      'CS 4782 - Deep Learning (A+)',
-      'CS 4820 - Analysis of Algorithms (A)',
-      'CS 4998 x 3 - Team Projects (A+, A+, A+)',
-      'CS 4999 x 2 - Independent Reading and Research (A+, A+)',
-      'CS 6783* - Machine Learning Theory (A)',
+      'CS 2112 - Honors OOP & Data Structures',
+      'CS 2800 - Discrete Math',
+      'CS 3110 - Data Structures and Functional Programming',
+      'CS 3410 - Computer Systems Organization',
+      'CS 4110 - Programming Languages and Logics',
+      'CS 4414 - Systems Programming',
+      'CS 4701 - AI Practicum',
+      'CS 4780 - Machine Learning',
+      'CS 4782 - Deep Learning',
+      'CS 4820 - Analysis of Algorithms',
+      'CS 4998 x 3 - Team Projects',
+      'CS 4999 x 2 - Independent Reading and Research',
+      'CS 6783* - Machine Learning Theory',
       'CS 7190* x 2 - Seminar in PL/Compilers',
-      'MATH 2210 - Linear Algebra (A)',
-      'MATH 2220 - Multivariable Calculus (A-)',
-      'MATH 3110 - Real Analysis (A+)',
-      'MATH 3360 - Applicable Algebra (A+)',
-      'MATH 4220 - Complex Analysis (A+)',
-      'MATH 4310 - Advanced Linear Algebra (A+)',
-      'MATH 4710 - Probability (A)',
+      'MATH 2210 - Linear Algebra',
+      'MATH 2220 - Multivariable Calculus',
+      'MATH 3110 - Real Analysis',
+      'MATH 3360 - Applicable Algebra',
+      'MATH 4220 - Complex Analysis',
+      'MATH 4310 - Advanced Linear Algebra',
+      'MATH 4710 - Probability',
     ],
   },
   {
@@ -249,6 +252,15 @@ const EducationSection = () => (
 
 // Experience Section Component
 const experienceData = [
+  {
+    company: 'Carnegie Mellon University',
+    logo: '/CMU.png',
+    position: 'Machine Learning Researcher',
+    duration: 'Aug 2026 - Present',
+    description: [
+      "Reinforcement learning research in Prof. Andrea Zanette's research group at the School of Computer Science.",
+    ],
+  },
   {
     company: 'Amazon',
     logo: '/amazon-logo.svg',
