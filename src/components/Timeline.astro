@@ -50,8 +50,14 @@ const { items } = Astro.props;
           {e.links && (
             <div class="mt-2 flex flex-wrap gap-x-4 text-sm font-medium text-fg-muted">
               {e.links.map((l) => (
-                <a href={l.href} class="inline-flex items-center gap-1 hover:text-accent" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={e.company}>
-                  <Icon name="file" class="h-3.5 w-3.5" /> {l.label}
+                <a
+                  href={l.href}
+                  class="inline-flex items-center gap-1 hover:text-accent"
+                  {...(l.href.startsWith('/projects/') ? {} : { target: '_blank', rel: 'noopener' })}
+                  data-umami-event="link"
+                  data-umami-event-project={e.company}
+                >
+                  <Icon name={l.href.endsWith('.pdf') ? 'file' : l.href.startsWith('/') ? 'arrow' : 'external'} class="h-3.5 w-3.5" /> {l.label}
                 </a>
               ))}
             </div>

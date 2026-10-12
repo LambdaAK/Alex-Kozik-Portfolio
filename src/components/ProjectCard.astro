@@ -1,5 +1,6 @@
 ---
-import { Image } from 'astro:assets';
+import ProjectMedia from './ProjectMedia.astro';
+import ProjectIcon from './ProjectIcon.astro';
 import type { CollectionEntry } from 'astro:content';
 import TechChips from './TechChips.astro';
 import ProjectLinks from './ProjectLinks.astro';
@@ -10,7 +11,7 @@ interface Props {
   variant?: 'featured' | 'compact';
 }
 const { project, variant = 'compact' } = Astro.props;
-const { title, tagline, question, date, tech, github, demo, website, paper, links, image, media, mediaAlt, results } =
+const { title, tagline, question, date, tech, github, demo, website, paper, links, image, media, mediaAlt, video, results } =
   project.data;
 const href = `/projects/${project.id}/`;
 const linkProps = { github, demo, website, paper, links, details: href, project: title };
@@ -22,14 +23,15 @@ const linkProps = { github, demo, website, paper, links, details: href, project:
       <div class={`grid gap-5 ${media ? 'sm:grid-cols-[220px_1fr]' : 'sm:grid-cols-[72px_1fr]'}`}>
         <a href={href} class="block shrink-0" aria-hidden="true" tabindex="-1">
           {media ? (
-            <Image
-              src={media}
-              alt={mediaAlt ?? ''}
+            <ProjectMedia
+              media={media}
+              video={video}
+              alt={mediaAlt}
               width={440}
               class="aspect-[16/10] w-full rounded-lg bg-bg object-contain ring-1 ring-line"
             />
           ) : (
-            <Image src={image} alt="" width={144} height={144} class="h-14 w-14 rounded-lg object-cover sm:h-[72px] sm:w-[72px]" />
+            <ProjectIcon image={image} title={title} size={72} class="h-14 w-14 rounded-lg text-xl sm:h-[72px] sm:w-[72px]" />
           )}
         </a>
         <div class="min-w-0">
@@ -52,7 +54,7 @@ const linkProps = { github, demo, website, paper, links, details: href, project:
   ) : (
     <article class="group flex gap-4 py-4">
       <a href={href} class="shrink-0" aria-hidden="true" tabindex="-1">
-        <Image src={image} alt="" width={112} height={112} class="h-12 w-12 rounded-lg object-cover" />
+        <ProjectIcon image={image} title={title} size={56} class="h-12 w-12 rounded-lg" />
       </a>
       <div class="min-w-0 flex-1">
         <div class="flex items-baseline justify-between gap-3">

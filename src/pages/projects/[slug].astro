@@ -1,5 +1,6 @@
 ---
-import { Image } from 'astro:assets';
+import ProjectMedia from '../../components/ProjectMedia.astro';
+import ProjectIcon from '../../components/ProjectIcon.astro';
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, tagline, question, description, date, role, tech, github, demo, website, paper, links, image, media, mediaAlt, results, highlights } =
+const { title, tagline, question, description, date, role, tech, github, demo, website, paper, links, image, media, mediaAlt, video, results, highlights } =
   project.data;
 const { Content } = await render(project);
 const hasBody = (project.body ?? '').trim().length > 0;
@@ -38,7 +39,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
 
     <main id="main" class="mt-10">
       <div class="flex items-start gap-5">
-        <Image src={image} alt="" width={160} height={160} class="h-14 w-14 rounded-xl object-cover sm:h-16 sm:w-16" />
+        <ProjectIcon image={image} title={title} size={64} class="h-14 w-14 shrink-0 rounded-xl text-xl sm:h-16 sm:w-16" />
         <div class="min-w-0">
           <h1 class="font-display text-4xl font-semibold tracking-tight">{title}</h1>
           {question && <p class="mt-1 font-display text-lg italic leading-snug text-fg-muted">{question}</p>}
@@ -58,7 +59,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
       {
         media && (
           <figure class="mt-8">
-            <Image src={media} alt={mediaAlt ?? ''} width={1200} class="w-full rounded-xl bg-white ring-1 ring-line" />
+            <ProjectMedia media={media} video={video} alt={mediaAlt} width={1200} class="w-full rounded-xl bg-white ring-1 ring-line" />
             {mediaAlt && <figcaption class="mt-2 text-xs text-fg-faint">{mediaAlt}</figcaption>}
           </figure>
         )

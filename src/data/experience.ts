@@ -100,11 +100,15 @@ export const experience: Experience[] = [
     dates: 'May – Aug 2024',
     logo: cmu,
     bullets: [
-      'Worked on the interpreter for SASyLF, a language for writing machine-checked proofs, implementing core features in Java.',
-      'Implemented a polymorphic type system (similar to Java generics), enabling type-safe reuse and cutting duplication in proofs.',
-      'Built a Python integration-test framework for the interpreter.',
+      'Added parameterized (functor-style) modules to SASyLF, a proof assistant for programming-language metatheory: argument checking with specific errors, plus deep copy and substitution across the whole AST.',
+      'All 204 commits merged upstream and released as SASyLF 1.6.0, "Polymorphic modules".',
+      'Built a Python regression runner and 79 regression tests for the checker.',
     ],
     tech: ['Java', 'Python', 'Programming Languages'],
+    links: [
+      { label: 'Project page', href: '/projects/sasylf/' },
+      { label: 'Upstream merge (PR #128)', href: 'https://github.com/boyland/sasylf/pull/128' },
+    ],
   },
   {
     company: 'Cornell Bowers CIS',

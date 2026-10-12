@@ -28,11 +28,13 @@ const projects = defineCollection({
       paper: z.string().optional(),
       // Extra links (second repo, notebook, …).
       links: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
-      // Small square icon.
-      image: image(),
+      // Small square icon. Optional; compact rows fall back to a monogram.
+      image: image().optional(),
       // Result figure or screenshot shown on featured cards and the project page.
       media: image().optional(),
       mediaAlt: z.string().optional(),
+      // Looping clip under public/, e.g. /media/orb.mp4. `media` is its poster frame.
+      video: z.string().optional(),
       // Headline numbers, each with what it is compared against.
       results: z
         .array(z.object({ metric: z.string(), value: z.string(), baseline: z.string().optional() }))

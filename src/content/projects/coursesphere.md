@@ -1,15 +1,24 @@
 ---
 title: CourseSphere
-tagline: An LLM course and professor recommender for Cornell over 19k courses and 8k faculty, backed by a vector database.
-date: "2024"
-description: An assistant that matches Cornell students to courses and professors based on their interests, background and goals, using embeddings over aggregated course and faculty data.
+tagline: A team prototype of a Cornell course recommender (React + Flask + Firebase) over scraped course-roster and Reddit data.
+date: '2024'
+role: Team of 5 · I set up the repo and built the React frontend (auth, dashboard, course selector) and the first query-classification scaffold
+description: A summer team project to recommend Cornell courses from a student's profile. It has a working frontend and auth, Flask endpoints over course-roster data, and an unfinished LLM query pipeline.
 group: archive
 order: 1
-tech: [TypeScript, Python, Pinecone]
+tech:
+- React
+- TypeScript
+- Flask
+- Firebase
+- Python
 github: https://github.com/LambdaAK/CourseSphere
-role: Team of 5
 image: ../../assets/logos/coursesphere.png
+mediaAlt: ''
 highlights:
-  - Pinecone vector search over 19k courses and 8k faculty.
-  - Data pipeline aggregating course and professor information from multiple sources.
+- I built Firebase sign-up/login, the dashboard with a course selector, and Realtime Database persistence of the student profile.
+- Teammates added Flask endpoints over Kaggle course-roster and Reddit data, plus a chat UI.
 ---
+
+## How it works
+A React (MUI) frontend with Firebase auth collects a student's majors, minors, courses taken and an "about" blurb. A Flask backend serves course queries from roster data. `backend/query_manager.py` sketches an LLM step (classify the query type, then answer), but the OpenAI calls are commented out and `get_response_to_query` returns "Fake implementation".
