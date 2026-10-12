@@ -12,7 +12,6 @@ tech:
 - ARM64 assembly
 - NEON
 - Metal
-- CUDA
 - NumPy
 - PyTorch (baselines)
 github: https://github.com/LambdaAK/Anvil-Lang
