@@ -68,6 +68,7 @@ const jsonLd = {
     <meta name="twitter:image" content={ogUrl} />
 
     <Font cssVariable="--font-inter" />
+    <Font cssVariable="--font-newsreader" preload={[{ weight: '400 600', style: 'normal' }]} />
     {
       umamiId && (
         <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id={umamiId} />
