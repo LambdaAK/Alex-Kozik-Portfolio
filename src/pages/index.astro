@@ -57,23 +57,28 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
     </div>
   </header>
 
-  <main id="main" class="mx-auto max-w-5xl px-5 pb-32">
+  <main id="main" class="mx-auto max-w-5xl px-5 pb-24">
     <!-- About: centered hero -->
-    <section id="about" class="scroll-mt-14 pt-20 text-center sm:pt-28">
-      <Image src={portrait} alt="Alex Kozik" width={320} height={320} class="mx-auto h-28 w-28 rounded-full object-cover sm:h-36 sm:w-36" loading="eager" />
-      <h1 class="mt-8 text-6xl font-semibold tracking-[-0.04em] sm:text-8xl">Alex Kozik</h1>
-      <p class="mx-auto mt-4 w-fit bg-gradient-to-r from-[#0071e3] via-[#7d5cf0] to-[#e5487f] bg-clip-text text-2xl font-semibold tracking-[-0.02em] text-transparent sm:text-3xl dark:from-[#2997ff] dark:via-[#a78bfa] dark:to-[#ff6b9a]">
+    <section id="about" class="relative isolate scroll-mt-14 pt-12 text-center sm:pt-16">
+      <div class="aurora pointer-events-none absolute -top-10 left-1/2 -z-10 h-[34rem] w-screen -translate-x-1/2 overflow-hidden [mask-image:linear-gradient(to_bottom,black_60%,transparent)]" aria-hidden="true">
+        <span class="top-10 left-[22%] h-72 w-72 bg-[#0a84ff]"></span>
+        <span class="top-24 right-[22%] h-72 w-72 bg-[#bf5af2]"></span>
+        <span class="top-56 left-[44%] h-64 w-64 bg-[#ff375f]"></span>
+      </div>
+      <Image src={portrait} alt="Alex Kozik" width={320} height={320} class="mx-auto h-24 w-24 rounded-full object-cover shadow-[0_12px_40px_-10px_rgba(0,0,0,0.35)] ring-4 ring-white/70 sm:h-28 sm:w-28 dark:ring-white/10" loading="eager" />
+      <h1 class="metal mt-6 pb-1 text-5xl font-semibold tracking-[-0.04em] sm:text-7xl">Alex Kozik</h1>
+      <p class="shimmer mx-auto mt-1 w-fit text-xl font-semibold tracking-[-0.02em] sm:text-2xl">
         ML Research Engineer.
       </p>
-      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-fg-muted sm:text-xl">
+      <p class="mx-auto mt-4 max-w-2xl leading-relaxed text-fg-muted sm:text-lg">
         {profile.bio[0]} Before CMU, I studied computer science and mathematics at Cornell and interned at Amazon and Salesforce.
       </p>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[17px]">
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
         <a
           href={profile.resume}
           target="_blank"
           rel="noopener"
-          class="rounded-full bg-accent px-6 py-2.5 font-medium text-white transition hover:opacity-90"
+          class="btn-gloss rounded-full px-6 py-2.5 font-medium"
           data-umami-event="resume"
         >
           Résumé
@@ -92,9 +97,9 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
       <div class="grid gap-3 md:grid-cols-2">
         {
           education.map((e) => (
-            <article class="frame p-7" data-reveal>
-              <Image src={e.logo} alt="" width={112} height={112} class="h-12 w-12 rounded-xl bg-white object-contain p-1.5 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]" />
-              <p class="label mt-5">{e.dates}</p>
+            <article class="frame p-5 sm:p-6" data-reveal>
+              <Image src={e.logo} alt="" width={112} height={112} class="h-11 w-11 rounded-xl bg-white object-contain p-1.5 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]" />
+              <p class="label mt-3">{e.dates}</p>
               <h3 class="mt-1 text-xl font-semibold tracking-[-0.02em]">{e.degree}</h3>
               <p class="text-fg-muted">
                 <a href={e.url} class="hover:text-accent" target="_blank" rel="noopener">{e.school}</a>
@@ -132,10 +137,10 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
     </Section>
 
     <Section id="awards" title="Awards and honors.">
-      <ul class="grid gap-3 sm:grid-cols-2">
+      <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {
           awards.map((a) => (
-            <li class="frame p-6" data-reveal>
+            <li class="frame p-5" data-reveal>
               <p class="label">
                 {a.year} · {a.org}
               </p>
@@ -148,10 +153,10 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
     </Section>
 
     <Section id="papers" title="Papers.">
-      <ol class="frame divide-y divide-line/70 px-7" data-reveal>
+      <ol class="frame divide-y divide-line/70 px-6" data-reveal>
         {
           papers.map((p) => (
-            <li class="py-6">
+            <li class="py-5">
               <p class="label">{p.venue}</p>
               <h3 class="mt-1 text-lg font-semibold leading-snug tracking-[-0.01em]">{p.title}</h3>
               <p class="mt-1.5 text-[15px] leading-relaxed text-fg-muted">{p.summary}</p>
@@ -181,11 +186,11 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
         {featured.map((p, i) => <Entry project={p} n={i + 1} />)}
       </div>
 
-      <h3 class="mt-16 mb-5 text-2xl font-semibold tracking-[-0.02em]">More projects.</h3>
+      <h3 class="mt-10 mb-4 text-xl font-semibold tracking-[-0.02em]">More projects.</h3>
       <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {
           more.map((p) => (
-            <li class="frame flex flex-col p-6" data-reveal>
+            <li class="frame flex flex-col p-5" data-reveal>
               <p class="label">
                 {p.data.date}
                 {(demos[p.id] || p.data.demo) && <span class="text-accent"> · Live</span>}
@@ -199,7 +204,7 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
           ))
         }
       </ul>
-      <p class="mt-10 text-center text-[17px]">
+      <p class="mt-8 text-center">
         <a href="/projects/" class="more">See all {all.length} projects ›</a>
       </p>
     </Section>
