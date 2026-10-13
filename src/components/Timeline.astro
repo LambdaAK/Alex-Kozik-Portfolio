@@ -35,8 +35,8 @@ const { items } = Astro.props;
         {(e.bullets.length > 1 || e.links) && (
           <details class="group mt-2">
             <summary class="more cursor-pointer list-none text-[15px]">
-              <span class="group-open:hidden">More ›</span>
-              <span class="hidden group-open:inline">Less</span>
+              <span class="group-open:hidden">more</span>
+              <span class="hidden group-open:inline">less</span>
             </summary>
             <ul class="mt-2 list-disc space-y-1.5 pl-5 text-[15px] leading-relaxed text-fg-muted">
               {e.bullets.slice(1).map((b) => (
@@ -53,7 +53,7 @@ const { items } = Astro.props;
                     data-umami-event="link"
                     data-umami-event-project={e.company}
                   >
-                    {l.label} ›
+                    {l.label} →
                   </a>
                 ))}
               </p>

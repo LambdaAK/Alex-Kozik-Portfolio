@@ -34,12 +34,12 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
   <!-- Frosted global nav -->
   <header class="sticky top-0 z-40 border-b border-line/60 bg-bg/75 backdrop-blur-xl backdrop-saturate-150">
     <div class="mx-auto flex h-12 max-w-5xl items-center gap-6 px-5">
-      <a href="#about" class="shrink-0 text-[15px] font-semibold tracking-[-0.01em]">Alex Kozik</a>
+      <a href="#about" class="shrink-0 text-[15px] font-semibold tracking-[-0.01em]">alex kozik</a>
       <nav class="flex min-w-0 flex-1 gap-x-6 overflow-x-auto text-[13px] text-fg-muted [scrollbar-width:none] md:justify-center" aria-label="Sections">
         {
           nav.map((n) => (
             <a href={`#${n.id}`} data-nav={n.id} class="shrink-0 transition hover:text-fg aria-[current=true]:text-fg">
-              {n.label}
+              {n.label.toLowerCase()}
             </a>
           ))
         }
@@ -58,42 +58,31 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
   </header>
 
   <main id="main" class="mx-auto max-w-5xl px-5 pb-24">
-    <!-- About: centered hero -->
-    <section id="about" class="relative isolate scroll-mt-14 pt-12 text-center sm:pt-16">
-      <div class="aurora pointer-events-none absolute -top-10 left-1/2 -z-10 h-[34rem] w-screen -translate-x-1/2 overflow-hidden [mask-image:linear-gradient(to_bottom,black_60%,transparent)]" aria-hidden="true">
-        <span class="top-10 left-[22%] h-72 w-72 bg-[#0a84ff]"></span>
-        <span class="top-24 right-[22%] h-72 w-72 bg-[#bf5af2]"></span>
-        <span class="top-56 left-[44%] h-64 w-64 bg-[#ff375f]"></span>
-      </div>
-      <Image src={portrait} alt="Alex Kozik" width={320} height={320} class="mx-auto h-24 w-24 rounded-full object-cover shadow-[0_12px_40px_-10px_rgba(0,0,0,0.35)] ring-4 ring-white/70 sm:h-28 sm:w-28 dark:ring-white/10" loading="eager" />
-      <h1 class="metal mt-6 pb-1 text-5xl font-semibold tracking-[-0.04em] sm:text-7xl">Alex Kozik</h1>
-      <p class="shimmer mx-auto mt-1 w-fit text-xl font-semibold tracking-[-0.02em] sm:text-2xl">
-        ML Research Engineer.
-      </p>
-      <p class="mx-auto mt-4 max-w-2xl leading-relaxed text-fg-muted sm:text-lg">
-        {profile.bio[0]} Before CMU, I studied computer science and mathematics at Cornell and interned at Amazon and Salesforce.
-      </p>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-        <a
-          href={profile.resume}
-          target="_blank"
-          rel="noopener"
-          class="btn-gloss rounded-full px-6 py-2.5 font-medium"
-          data-umami-event="resume"
-        >
-          Résumé
-        </a>
-        {
-          socials.map((s) => (
-            <a href={s.href} class="more" data-umami-event={s.label.toLowerCase()} {...ext(s.href)}>
-              {s.label} ›
-            </a>
-          ))
-        }
+    <!-- About -->
+    <section id="about" class="scroll-mt-14 pt-14 sm:pt-20">
+      <div class="frame flex flex-col gap-6 p-6 sm:flex-row sm:items-start sm:p-8">
+        <Image src={portrait} alt="Alex Kozik" width={192} height={192} class="h-20 w-20 shrink-0 rounded-full object-cover ring-1 ring-black/5 sm:h-24 sm:w-24" loading="eager" />
+        <div>
+          <h1 class="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Alex Kozik</h1>
+          <p class="mt-3 max-w-2xl leading-relaxed text-fg-muted sm:text-lg">
+            hi. I'm a master's student at Carnegie Mellon, working on reinforcement learning in Andrea Zanette's group. before that:
+            Cornell, Amazon, Salesforce.
+          </p>
+          <div class="mt-5 flex flex-wrap gap-2 text-[15px]">
+            <a href={profile.resume} target="_blank" rel="noopener" class="pill" data-umami-event="resume">résumé ↗</a>
+            {
+              socials.map((s) => (
+                <a href={s.href} class="pill" data-umami-event={s.label.toLowerCase()} {...ext(s.href)}>
+                  {s.label.toLowerCase()} {s.href.startsWith('http') ? '↗' : ''}
+                </a>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </section>
 
-    <Section id="education" title="Education.">
+    <Section id="education" title="education">
       <div class="grid gap-3 md:grid-cols-2">
         {
           education.map((e) => (
@@ -108,8 +97,8 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
               {e.notes.length > 0 && <p class="text-[15px] leading-relaxed text-fg-muted">{e.notes.join(' · ')}</p>}
               <details class="group mt-3">
                 <summary class="more cursor-pointer list-none text-[15px]">
-                  <span class="group-open:hidden">Coursework ›</span>
-                  <span class="hidden group-open:inline">Hide coursework</span>
+                  <span class="group-open:hidden">coursework</span>
+                  <span class="hidden group-open:inline">hide coursework</span>
                 </summary>
                 <div class="mt-3 grid gap-4 sm:grid-cols-2">
                   {e.courses.map((c) => (
@@ -128,15 +117,15 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
       </div>
     </Section>
 
-    <Section id="experience" title="Experience.">
+    <Section id="experience" title="experience">
       <Timeline items={experience.filter((e) => !e.research)} />
     </Section>
 
-    <Section id="research" title="Research.">
+    <Section id="research" title="research">
       <Timeline items={experience.filter((e) => e.research)} />
     </Section>
 
-    <Section id="awards" title="Awards and honors.">
+    <Section id="awards" title="awards">
       <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {
           awards.map((a) => (
@@ -152,7 +141,7 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
       </ul>
     </Section>
 
-    <Section id="papers" title="Papers.">
+    <Section id="papers" title="papers">
       <ol class="frame divide-y divide-line/70 px-6" data-reveal>
         {
           papers.map((p) => (
@@ -162,16 +151,16 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
               <p class="mt-1.5 text-[15px] leading-relaxed text-fg-muted">{p.summary}</p>
               <p class="mt-2 flex flex-wrap gap-x-5 text-[15px]">
                 <a href={p.pdf} class="more" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={p.title}>
-                  Read the paper ›
+                  read it ↗
                 </a>
                 {p.project && (
                   <a href={p.project} class="more">
-                    Project ›
+                    project →
                   </a>
                 )}
                 {p.code && (
                   <a href={p.code} class="more" target="_blank" rel="noopener">
-                    Code ›
+                    code ↗
                   </a>
                 )}
               </p>
@@ -181,31 +170,31 @@ const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel
       </ol>
     </Section>
 
-    <Section id="projects" title="Projects." subtitle="Four I'd show first. Two of them run right here in your browser.">
+    <Section id="projects" title="projects" subtitle="a few things I've made. a couple of them run right here in your browser.">
       <div class="grid gap-3 md:grid-cols-2">
         {featured.map((p, i) => <Entry project={p} n={i + 1} />)}
       </div>
 
-      <h3 class="mt-10 mb-4 text-xl font-semibold tracking-[-0.02em]">More projects.</h3>
+      <h3 class="mt-10 mb-4 text-lg font-medium text-fg-muted">and some more</h3>
       <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {
           more.map((p) => (
             <li class="frame flex flex-col p-5" data-reveal>
               <p class="label">
                 {p.data.date}
-                {(demos[p.id] || p.data.demo) && <span class="text-accent"> · Live</span>}
+                {(demos[p.id] || p.data.demo) && <span class="text-accent"> · live</span>}
               </p>
               <h4 class="mt-1 text-lg font-semibold tracking-[-0.01em]">{p.data.title}</h4>
               <p class="mt-1.5 flex-1 text-[15px] leading-snug text-fg-muted">{(p.data.question ?? p.data.description).replace(/\.$/, '')}</p>
               <a href={`/projects/${p.id}/`} class="more mt-4 text-[15px]">
-                Learn more ›
+                details →
               </a>
             </li>
           ))
         }
       </ul>
-      <p class="mt-8 text-center">
-        <a href="/projects/" class="more">See all {all.length} projects ›</a>
+      <p class="mt-8">
+        <a href="/projects/" class="more">everything else ({all.length}) →</a>
       </p>
     </Section>
   </main>

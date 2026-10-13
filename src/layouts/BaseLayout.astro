@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { profile } from '../data/profile';
 import ogImage from '../assets/alex.jpeg';
 import { getImage, Font } from 'astro:assets';
+import Field from '../components/Field.astro';
 
 interface Props {
   title?: string;
@@ -89,6 +90,7 @@ const jsonLd = {
     >
       Skip to content
     </a>
+    <Field />
     <slot />
     <script>
       // Card spotlight: feed the pointer position to .frame as --mx/--my.
