@@ -1,0 +1,22 @@
+---
+import Page from '../layouts/Page.astro';
+import { profile } from '../data/profile';
+import { awards } from '../data/awards';
+---
+
+<Page current="/awards/" title={`Awards – ${profile.name}`} path="/awards/">
+  <h1 class="sr-only">Awards</h1>
+    <ul class="space-y-3">
+      {
+        awards.map((a) => (
+          <li class="flex items-baseline justify-between gap-4">
+            <p>
+              {a.title}
+              <span class="text-fg-muted"> · {a.org}</span>
+            </p>
+            <span class="shrink-0 text-sm text-fg-faint">{a.year}</span>
+          </li>
+        ))
+      }
+    </ul>
+</Page>
