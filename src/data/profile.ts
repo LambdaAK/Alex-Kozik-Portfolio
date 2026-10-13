@@ -15,10 +15,8 @@ export const profile = {
 } as const;
 
 export const nav = [
-  { id: 'about', label: 'About' },
-  { id: 'education', label: 'Education' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'awards', label: 'Awards' },
-  { id: 'papers', label: 'Papers' },
-  { id: 'projects', label: 'Projects' },
+  { href: '/', label: 'about' },
+  { href: '/experience/', label: 'experience' },
+  { href: '/projects/', label: 'projects' },
+  { href: '/papers/', label: 'papers' },
 ] as const;

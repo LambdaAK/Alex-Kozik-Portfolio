@@ -1,0 +1,42 @@
+---
+// A site page: name, a thin rule, and the page nav, then a single readable column.
+import BaseLayout from './BaseLayout.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import { profile, nav } from '../data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+  ogImage?: string;
+  field?: boolean;
+  /** Nav item to mark as current, by href. */
+  current?: string;
+}
+const { current, ...rest } = Astro.props;
+---
+
+<BaseLayout {...rest}>
+  <div class="mx-auto max-w-[44rem] px-5">
+    <header class="pt-12 sm:pt-16">
+      <div class="flex items-center justify-between gap-4">
+        <a href="/" class="text-lg font-semibold tracking-[-0.01em]">{profile.name}</a>
+        <ThemeToggle />
+      </div>
+      <hr class="mt-5 border-fg/80" />
+      <nav class="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-[15px] text-fg-muted" aria-label="Pages">
+        {
+          nav.map((n) => (
+            <a href={n.href} class="transition hover:text-fg aria-[current=page]:text-fg" aria-current={n.href === current ? 'page' : undefined}>
+              {n.label}
+            </a>
+          ))
+        }
+      </nav>
+    </header>
+
+    <main id="main" class="pt-14 pb-24 sm:pt-20">
+      <slot />
+    </main>
+  </div>
+</BaseLayout>

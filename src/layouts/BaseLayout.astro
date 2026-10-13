@@ -12,12 +12,15 @@ interface Props {
   path?: string;
   /** Site-relative path of a 1200×630 share image. Defaults to the portrait. */
   ogImage?: string;
+  /** Draw the drifting point field behind the top of the page. */
+  field?: boolean;
 }
 const {
   title = `${profile.name} – ML Research Engineer, CMU`,
   description = profile.metaDescription,
   path = '/',
   ogImage: ogPath,
+  field = false,
 } = Astro.props;
 
 const canonical = new URL(path, profile.site).href;
@@ -90,7 +93,7 @@ const jsonLd = {
     >
       Skip to content
     </a>
-    <Field />
+    {field && <Field />}
     <slot />
     <script>
       // Card spotlight: feed the pointer position to .frame as --mx/--my.

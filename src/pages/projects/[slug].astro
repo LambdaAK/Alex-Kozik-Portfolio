@@ -2,8 +2,7 @@
 import ProjectMedia from '../../components/ProjectMedia.astro';
 import ProjectIcon from '../../components/ProjectIcon.astro';
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ThemeToggle from '../../components/ThemeToggle.astro';
+import Page from '../../layouts/Page.astro';
 import SnakeDemo from '../../components/SnakeDemo.astro';
 import ForgePlayground from '../../components/ForgePlayground.astro';
 import { profile } from '../../data/profile';
@@ -21,111 +20,80 @@ const { Content } = await render(project);
 const hasBody = (project.body ?? '').trim().length > 0;
 ---
 
-<BaseLayout
-  title={`${title} – ${profile.name}`}
-  description={tagline}
-  path={`/projects/${project.id}/`}
-  ogImage={`/og/${project.id}.png`}
->
-  <header class="sticky top-0 z-40 bg-bg/80 backdrop-blur-md">
-    <div class="mx-auto flex h-12 max-w-[56rem] items-center gap-6 px-6">
-      <a href="/" class="text-sm font-medium">alex kozik</a>
-      <a href="/projects/" class="flex-1 text-sm text-fg-faint hover:text-fg">all projects</a>
-      <ThemeToggle />
-    </div>
-  </header>
+<Page current="/projects/" title={`${title} – ${profile.name}`} description={tagline} path={`/projects/${project.id}/`} ogImage={`/og/${project.id}.png`}>
+  {project.id === 'forge' && <ProjectIcon image={image} dark={imageDark} title={title} size={48} class="mb-5 h-12 w-12" />}
+  <h1 class="text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{title}</h1>
+  {question && <p class="mt-3 text-lg leading-snug text-fg-muted">{question}</p>}
+  <p class="mt-5">{tagline}</p>
+  <p class="mt-3 text-sm text-fg-faint">{[date, role].filter(Boolean).join(' · ')}</p>
 
-  <main id="main" class="mx-auto max-w-[56rem] px-6 pt-14 pb-24">
-    <div class="grid gap-x-10 lg:grid-cols-[minmax(0,42rem)_11rem]">
-      <div class="min-w-0">
-        <p class="label flex items-center gap-4">
-          {project.id === 'forge' && <ProjectIcon image={image} dark={imageDark} title={title} size={48} class="h-12 w-12 rounded-xl text-base" />}
-          <span>{date}</span>
-        </p>
-        <h1 class="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{title}</h1>
-        {question && <p class="mt-3 text-lg leading-snug text-fg-muted">{question}</p>}
-        <p class="mt-5 text-fg">{tagline}</p>
-      </div>
-
-      <aside class="label mt-6 space-y-4 lg:mt-2 lg:border-l lg:border-line lg:pl-4">
-        {role && <p class="leading-relaxed">{role}</p>}
-        {
-          results.map((r) => (
-            <p class="leading-relaxed">
-              <span class="block text-[15px] text-fg">{r.value}</span>
-              {r.metric}
-              {r.baseline && <span class="block">{r.baseline}</span>}
-            </p>
-          ))
-        }
-        <p class="flex flex-col gap-1">
-          {demos[project.id] && <a href="#demo" class="text-accent hover:underline">{demos[project.id]} ↓</a>}
-          {demo && <a href={demo} class="hover:text-fg" target="_blank" rel="noopener">Live demo ↗</a>}
-          {website && <a href={website} class="hover:text-fg" target="_blank" rel="noopener">Website ↗</a>}
-          {github && <a href={github} class="hover:text-fg" target="_blank" rel="noopener" data-umami-event="source" data-umami-event-project={title}>Source ↗</a>}
-          {paper && <a href={paper} class="hover:text-fg" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={title}>Report (PDF) ↗</a>}
-          {links.filter((l) => !l.href.includes('#playground')).map((l) => (
-            <a href={l.href} class="hover:text-fg" {...(l.href.startsWith('/') && !l.href.endsWith('.pdf') ? {} : { target: '_blank', rel: 'noopener' })}>
-              {l.label} ↗
-            </a>
-          ))}
-        </p>
-        <p class="leading-relaxed">{tech.join(' · ')}</p>
-      </aside>
-    </div>
-
-    <div class="mt-10 max-w-[42rem]">
-      {
-        demos[project.id] && (
-          <div id="demo" class="scroll-mt-8">
-            {project.id === 'snake-dqn' && <SnakeDemo />}
-            {project.id === 'forge' && <ForgePlayground />}
+  {
+    results.length > 0 && (
+      <dl class="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-3">
+        {results.map((r) => (
+          <div>
+            <dd class="font-medium">{r.value}</dd>
+            <dt class="text-sm text-fg-muted">{r.metric}</dt>
+            {r.baseline && <dd class="text-sm text-fg-faint">{r.baseline}</dd>}
           </div>
-        )
-      }
+        ))}
+      </dl>
+    )
+  }
 
-      {
-        media && (
-          <figure class="mt-10">
-            <div class="frame p-3">
-              <ProjectMedia media={media} video={video} alt={mediaAlt} width={1200} class="w-full" />
-            </div>
-            {mediaAlt && (
-              <figcaption class="label mt-2 leading-relaxed">
-                <span class="text-accent">Fig. 1</span> — {mediaAlt}
-              </figcaption>
-            )}
-          </figure>
-        )
-      }
+  <p class="mt-6 flex flex-wrap gap-x-5 gap-y-1 text-[15px]">
+    {demos[project.id] && <a href="#demo" class="ink">{demos[project.id]} ↓</a>}
+    {demo && <a href={demo} class="ink" target="_blank" rel="noopener">live demo</a>}
+    {website && <a href={website} class="ink" target="_blank" rel="noopener">website</a>}
+    {github && <a href={github} class="ink" target="_blank" rel="noopener" data-umami-event="source" data-umami-event-project={title}>source</a>}
+    {paper && <a href={paper} class="ink" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={title}>report (pdf)</a>}
+    {links.filter((l) => !l.href.includes('#playground')).map((l) => (
+      <a href={l.href} class="ink" {...(l.href.startsWith('/') && !l.href.endsWith('.pdf') ? {} : { target: '_blank', rel: 'noopener' })}>
+        {l.label}
+      </a>
+    ))}
+  </p>
+  <p class="mt-2 text-sm text-fg-faint">{tech.join(' · ')}</p>
 
-      <p class="mt-10 text-fg-muted">{description}</p>
+  {
+    demos[project.id] && (
+      <div id="demo" class="mt-10 scroll-mt-8">
+        {project.id === 'snake-dqn' && <SnakeDemo />}
+        {project.id === 'forge' && <ForgePlayground />}
+      </div>
+    )
+  }
 
-      {
-        highlights.length > 0 && (
-          <ul class="mt-6 space-y-2 text-[17px] leading-relaxed text-fg-muted">
-            {highlights.map((h) => (
-              <li class="flex gap-3">
-                <span class="text-accent">–</span>
-                <span>{h}</span>
-              </li>
-            ))}
-          </ul>
-        )
-      }
+  {
+    media && (
+      <figure class="mt-10">
+        <ProjectMedia media={media} video={video} alt={mediaAlt} width={1200} class="w-full rounded-xl bg-bg-elev p-2" />
+        {mediaAlt && <figcaption class="mt-2 text-sm leading-relaxed text-fg-faint">{mediaAlt}</figcaption>}
+      </figure>
+    )
+  }
 
-      {
-        hasBody && (
-          <article class="prose mt-6 text-fg">
-            <Content />
-          </article>
-        )
-      }
+  <p class="mt-10 leading-relaxed text-fg-muted">{description}</p>
 
-      <p class="label mt-16 flex justify-between border-t border-line pt-5">
-        <a href="/#projects" class="hover:text-accent">← Home</a>
-        <a href="/projects/" class="hover:text-accent">All projects →</a>
-      </p>
-    </div>
-  </main>
-</BaseLayout>
+  {
+    highlights.length > 0 && (
+      <ul class="mt-5 list-disc space-y-2 pl-5 leading-relaxed text-fg-muted marker:text-fg-faint">
+        {highlights.map((h) => (
+          <li>{h}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    hasBody && (
+      <article class="prose mt-6 text-fg">
+        <Content />
+      </article>
+    )
+  }
+
+  <p class="mt-16 border-t border-line pt-5 text-sm">
+    <a href="/projects/" class="ink text-fg-muted">← all projects</a>
+  </p>
+</Page>

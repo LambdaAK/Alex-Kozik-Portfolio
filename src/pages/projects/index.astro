@@ -1,68 +1,74 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ThemeToggle from '../../components/ThemeToggle.astro';
+import Page from '../../layouts/Page.astro';
 import { profile } from '../../data/profile';
 import { demos } from '../../data/demos';
 
-const groups = [
-  { id: 'featured', label: 'Selected' },
-  { id: 'ml', label: 'Machine learning' },
-  { id: 'systems', label: 'Software engineering' },
-] as const;
-
 const all = await getCollection('projects');
-const sections = groups.map((g) => ({
-  ...g,
-  items: all.filter((p) => p.data.group === g.id).sort((a, b) => a.data.order - b.data.order),
-}));
+const byOrder = (g: string) => all.filter((p) => p.data.group === g).sort((a, b) => a.data.order - b.data.order);
+const featured = byOrder('featured');
+const others = [
+  { label: 'ML / AI', items: byOrder('ml') },
+  { label: 'Software engineering', items: byOrder('systems') },
+];
 ---
 
-<BaseLayout
+<Page
+  current="/projects/"
   title={`Projects – ${profile.name}`}
-  description={`Every project by ${profile.name}: ML models, ML systems, compilers and web apps, with source and results.`}
+  description={`Projects by ${profile.name}: a compiler, an LLM serving stack, a C++ ML library, RL agents and more.`}
   path="/projects/"
 >
-  <header class="sticky top-0 z-40 bg-bg/80 backdrop-blur-md">
-    <div class="mx-auto flex h-12 max-w-[56rem] items-center gap-6 px-6">
-      <a href="/" class="text-sm font-medium">alex kozik</a>
-      <a href="/#projects" class="flex-1 text-sm text-fg-faint hover:text-fg">home</a>
-      <ThemeToggle />
-    </div>
-  </header>
-
-  <main id="main" class="mx-auto max-w-[56rem] px-6 pt-14 pb-24">
-    <h1 class="text-3xl font-semibold tracking-[-0.03em]">projects</h1>
-    <p class="mt-3 max-w-[42rem] text-fg-muted">
-      Everything worth a look, with the numbers checked against the code. Entries marked <span class="label text-accent">live</span> run in
-      your browser.
-    </p>
-
+  <h1 class="sr-only">Projects</h1>
+  <ul class="space-y-8">
     {
-      sections.map((s, i) => (
-        <section class="mt-14" aria-labelledby={`g-${s.id}`}>
-          <h2 id={`g-${s.id}`} class="label mb-3 flex gap-3 tracking-[0.12em] uppercase">
-            <span class="text-accent">§{i + 1}</span>
-            <span class="text-fg-muted">{s.label}</span>
-          </h2>
-          <ul class="divide-y divide-line border-y border-line">
-            {s.items.map((p) => (
-              <li class="grid gap-x-10 py-2.5 lg:grid-cols-[minmax(0,42rem)_11rem]">
-                <p class="min-w-0">
-                  <a href={`/projects/${p.id}/`} class="ink">
-                    {p.data.title}
+      featured.map((p) => {
+        const r = p.data.results[0];
+        return (
+          <li>
+            <div class="flex items-baseline justify-between gap-4">
+              <p>
+                <a href={`/projects/${p.id}/`} class="ink text-lg font-medium" data-umami-event="project-open" data-umami-event-project={p.data.title}>
+                  {p.data.title}
+                </a>
+                {demos[p.id] && (
+                  <a href={`/projects/${p.id}/#demo`} class="ml-2 text-sm text-fg-faint hover:text-fg">
+                    {demos[p.id]} →
                   </a>
-                  <span class="text-fg-muted"> — {p.data.tagline.replace(/\.$/, '')}</span>
-                </p>
-                <p class="label lg:pt-1.5">
-                  {p.data.date}
-                  {(demos[p.id] || p.data.demo) && <span class="text-accent"> · live</span>}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))
+                )}
+              </p>
+              <span class="shrink-0 text-sm text-fg-faint">{p.data.date}</span>
+            </div>
+            <p class="mt-1 leading-relaxed text-fg-muted">{p.data.question ?? p.data.description}</p>
+            {r && (
+              <p class="mt-0.5 text-sm text-fg-faint">
+                {r.value} · {r.metric}
+              </p>
+            )}
+          </li>
+        );
+      })
     }
-  </main>
-</BaseLayout>
+  </ul>
+
+  {
+    others.map((g) => (
+      <section class="mt-14" aria-label={g.label}>
+        <h2 class="text-[15px] font-medium text-fg-faint">{g.label}</h2>
+        <ul class="mt-3 space-y-2.5">
+          {g.items.map((p) => (
+            <li class="flex items-baseline justify-between gap-4">
+              <p class="min-w-0">
+                <a href={`/projects/${p.id}/`} class="ink">
+                  {p.data.title}
+                </a>
+                {(demos[p.id] || p.data.demo) && <span class="text-sm text-fg-faint"> · live</span>}
+              </p>
+              <span class="shrink-0 text-sm text-fg-faint">{p.data.date}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Page>
