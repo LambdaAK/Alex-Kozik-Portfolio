@@ -6,8 +6,7 @@ import { profile } from '../data/profile';
 import { education } from '../data/education';
 ---
 
-<Page current="/education/" title={`Education – ${profile.name}`} path="/education/">
-  <h1 class="sr-only">Education</h1>
+<Page current="/education/" heading="Education" title={`Education – ${profile.name}`} path="/education/">
     <ol class="space-y-7">
       {
         education.map((e) => (

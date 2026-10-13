@@ -4,13 +4,12 @@ import { profile } from '../data/profile';
 import { papers } from '../data/papers';
 ---
 
-<Page current="/papers/" title={`Papers – ${profile.name}`} path="/papers/">
-  <h1 class="sr-only">Papers</h1>
-  <ul class="space-y-8">
+<Page current="/papers/" heading="Papers" title={`Papers – ${profile.name}`} path="/papers/">
+  <ul class="space-y-6">
     {
       papers.map((p) => (
         <li>
-          <a href={p.pdf} class="ink text-lg font-medium" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={p.title}>
+          <a href={p.pdf} class="ink font-medium" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={p.title}>
             {p.title}
           </a>
           <p class="mt-0.5 text-sm text-fg-faint">{p.venue}</p>

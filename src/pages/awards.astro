@@ -4,8 +4,7 @@ import { profile } from '../data/profile';
 import { awards } from '../data/awards';
 ---
 
-<Page current="/awards/" title={`Awards – ${profile.name}`} path="/awards/">
-  <h1 class="sr-only">Awards</h1>
+<Page current="/awards/" heading="Awards" title={`Awards – ${profile.name}`} path="/awards/">
     <ul class="space-y-3">
       {
         awards.map((a) => (

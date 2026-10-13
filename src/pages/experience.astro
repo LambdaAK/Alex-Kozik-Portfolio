@@ -5,7 +5,6 @@ import { profile } from '../data/profile';
 import { experience } from '../data/experience';
 ---
 
-<Page current="/experience/" title={`Experience – ${profile.name}`} path="/experience/">
-  <h1 class="sr-only">Experience</h1>
+<Page current="/experience/" heading="Experience" title={`Experience – ${profile.name}`} path="/experience/">
   <Timeline items={experience} />
 </Page>

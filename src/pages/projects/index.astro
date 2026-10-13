@@ -15,12 +15,12 @@ const others = [
 
 <Page
   current="/projects/"
+  heading="Projects"
   title={`Projects – ${profile.name}`}
   description={`Projects by ${profile.name}: a compiler, an LLM serving stack, a C++ ML library, RL agents and more.`}
   path="/projects/"
 >
-  <h1 class="sr-only">Projects</h1>
-  <ul class="space-y-8">
+  <ul class="space-y-6">
     {
       featured.map((p) => {
         const r = p.data.results[0];
@@ -28,7 +28,7 @@ const others = [
           <li>
             <div class="flex items-baseline justify-between gap-4">
               <p>
-                <a href={`/projects/${p.id}/`} class="ink text-lg font-medium" data-umami-event="project-open" data-umami-event-project={p.data.title}>
+                <a href={`/projects/${p.id}/`} class="ink font-medium" data-umami-event="project-open" data-umami-event-project={p.data.title}>
                   {p.data.title}
                 </a>
                 {demos[p.id] && (
@@ -53,7 +53,7 @@ const others = [
 
   {
     others.map((g) => (
-      <section class="mt-14" aria-label={g.label}>
+      <section class="mt-10" aria-label={g.label}>
         <h2 class="text-[15px] font-medium text-fg-faint">{g.label}</h2>
         <ul class="mt-3 space-y-2.5">
           {g.items.map((p) => (
