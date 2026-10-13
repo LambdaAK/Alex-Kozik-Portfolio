@@ -40,10 +40,10 @@ export const education: Education[] = [
     school: 'Cornell University',
     url: 'https://www.cs.cornell.edu/',
     degree: 'B.A. in Computer Science & Mathematics',
-    detail: 'GPA 4.11 / 4.3 (top 1%) · Summa Cum Laude in CS · Cum Laude in Math',
+    detail: 'GPA 4.11 / 4.3',
     dates: 'Aug 2022 – Dec 2025',
     logo: cornell,
-    notes: ['Phi Beta Kappa', 'Dean’s List every semester'],
+    notes: [],
     courses: [
       {
         group: 'Computer Science',
