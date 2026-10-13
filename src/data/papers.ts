@@ -35,4 +35,11 @@ export const papers: Paper[] = [
       'Multi-armed bandit algorithms for multi-agent systems in which agents aggregate decisions through voting.',
     pdf: '/papers/voting-based-multi-agent-bandits.pdf',
   },
+  {
+    title: 'From Redux to Component-level State: Modernizing CMSX Architecture',
+    venue: 'CS 4999 Independent Research, Cornell · 2024',
+    summary:
+      "Migration of Cornell's course management system from Redux global state to component-level state, and its effect on developer and user experience.",
+    pdf: '/papers/cmsx-redux-to-component-state.pdf',
+  },
 ];
