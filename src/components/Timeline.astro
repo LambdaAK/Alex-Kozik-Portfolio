@@ -33,7 +33,7 @@ const { items } = Astro.props;
             <span class="text-sm text-fg-faint">{e.dates}</span>
           </div>
           {e.courses && <CourseList items={e.courses} class="mt-2" />}
-          <p class="mt-1 leading-relaxed text-fg-muted">{e.bullets[0]}</p>
+          {e.bullets[0] && <p class="mt-1 leading-relaxed text-fg-muted">{e.bullets[0]}</p>}
           {(e.bullets.length > 1 || e.links) && (
             <details class="group mt-1">
               <summary class="more cursor-pointer list-none text-sm hover:text-fg">

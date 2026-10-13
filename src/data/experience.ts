@@ -127,9 +127,7 @@ export const experience: Experience[] = [
     role: 'Teaching Assistant',
     dates: 'Aug 2023 – Dec 2025',
     logo: cornell,
-    bullets: [
-      'CS Course Staff Award (2024) for CS 3110: top 10% of teaching assistants.',
-    ],
+    bullets: [],
     courses: [
       'CS 3780/5780 Introduction to Machine Learning (2025)',
       'CS 4820/5820 Analysis of Algorithms (Fall 2024)',
