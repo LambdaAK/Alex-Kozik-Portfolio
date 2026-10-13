@@ -9,6 +9,8 @@ const projects = defineCollection({
       title: z.string(),
       // One line shown on cards. Lead with the result.
       tagline: z.string(),
+      // One impressive sentence for the projects list: what was built and what it does.
+      summary: z.string().optional(),
       // The question the project answers, shown under the title.
       question: z.string().optional(),
       // 1–2 sentences shown on featured cards and the project page.

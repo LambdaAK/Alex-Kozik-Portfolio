@@ -1,6 +1,7 @@
 ---
 title: Atlas
 tagline: A 21.5M-parameter transformer trained from scratch answers 99.6% of 4,388 held-out questions about who holds what, until objects change hands more often than they did in training.
+summary: "A 21.5M-parameter transformer trained from scratch to track who holds what across multi-turn conversations, answering 99.6% of 4,388 held-out questions, served behind a Redis-batched inference stack that autoscales on Kubernetes."
 question: Can a small decoder-only transformer trained from scratch track who holds what across a multi-turn conversation, and where does that stop working?
 date: '2026'
 role: Solo

@@ -1,6 +1,7 @@
 ---
 title: dX
 tagline: 30 interactive applied-math and ML labs (SDEs, Fokker–Planck, SVM via SMO, active-set QP, 3D heat equation) with every solver hand-written in TypeScript and run in the browser.
+summary: "Thirty interactive applied-math and ML labs (stochastic differential equations, Fokker–Planck PDEs, SMO-trained SVMs, active-set quadratic programming) with every solver hand-written in TypeScript and running entirely in the browser."
 question: Can the numerical methods behind applied math and ML be implemented from scratch and explored live, with no backend or math library?
 date: '2026'
 role: Solo
