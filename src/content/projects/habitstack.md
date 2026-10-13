@@ -1,6 +1,7 @@
 ---
 title: HabitStack
 tagline: A full-stack habit tracker with 18 Express endpoints, Firebase Realtime Database persistence, token-verified writes, and Socket.IO chat servers.
+summary: "A full-stack habit tracker with real-time chat on Express, Firebase and Socket.IO."
 date: '2023'
 role: Solo
 description: A habit-tracking web app (habit stacks, habits to build or resist, daily tasks, daily ratings, a monthly calendar) with chat servers users can create, join via invite, and message in.

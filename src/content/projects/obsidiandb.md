@@ -1,6 +1,7 @@
 ---
 title: ObsidianDB
 tagline: An in-memory SQL engine in about 1,150 lines of dependency-free C++, covering lexer, recursive-descent parser, typed tables, WHERE with AND/OR/NOT, ORDER BY, and a REPL.
+summary: "A SQL database engine in dependency-free C++, with its own lexer, parser and REPL."
 question: What is the smallest complete path from a SQL string to a result table?
 date: '2026'
 role: Solo

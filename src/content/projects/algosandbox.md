@@ -1,6 +1,7 @@
 ---
 title: AlgoSandbox
 tagline: A step-through visualizer for 10 classic algorithms and data structures (5 sorts, 3 searches, stack, queue), with reference code in Python, Java, C++ and JavaScript.
+summary: "Step-through visualizations of classic sorting and search algorithms."
 date: 2023–24
 role: Solo
 description: A React + TypeScript site that animates sorting and searching algorithms on editable arrays and provides interactive stack and queue sandboxes, each paired with complexity tables and implementations in four languages.

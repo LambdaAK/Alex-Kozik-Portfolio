@@ -1,6 +1,7 @@
 ---
 title: BanditBot
 tagline: Linear Thompson Sampling ends 2,000 rounds of a 5-arm contextual bandit with 131 cumulative regret, vs 489 for linear ε-greedy and 2,289 for a context-free learner (10 seeds).
+summary: "A bandit-algorithm library where linear Thompson sampling cuts regret 3.7× versus ε-greedy."
 question: How much does using context, and modelling uncertainty, cut regret in a linear contextual bandit?
 date: '2025'
 role: Solo

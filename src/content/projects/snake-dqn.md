@@ -1,6 +1,7 @@
 ---
 title: Snake DQN
 tagline: A DQN over 33 hand-engineered features averages 44.5 food per game on a 30×30 board (100 seeds, 1,500-step cap), against 66.6 for a hand-coded greedy A* bot.
+summary: "A DQN that learns Snake from a 33-feature state, averaging 44.5 food per game."
 question: Can a small DQN learn to play Snake from engineered state features, and how much does the learning add over the features themselves?
 date: '2025'
 role: Solo

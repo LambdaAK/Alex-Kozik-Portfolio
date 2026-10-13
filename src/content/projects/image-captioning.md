@@ -1,6 +1,7 @@
 ---
 title: Reproducing Show, Attend and Tell
 tagline: A course-team reimplementation of soft and hard attention captioning that matched the paper's Flickr8k METEOR (18.96 vs 18.93 soft, 20.75 vs 20.30 hard) but trailed far behind on BLEU-1.
+summary: "A team reproduction of Show, Attend and Tell that matched the paper's METEOR on Flickr8k."
 question: Do Show, Attend and Tell's METEOR results on Flickr8k hold up with a modern encoder and unknown training details?
 date: '2025'
 role: Team of 5 · co-author of the report and poster; wrote the README's results and conclusion sections

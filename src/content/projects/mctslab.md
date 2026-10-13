@@ -1,6 +1,7 @@
 ---
 title: MCTSLab
 tagline: A game-agnostic MCTS engine for five games. On Connect 4, UCT with 800 simulations per move scores 80% against 200 simulations and 100% against 50, and 8 simulations already beat a random player 91% of the time.
+summary: "A Monte Carlo Tree Search engine for five games, from tic-tac-toe to Connect 4."
 question: How does Monte Carlo Tree Search strength scale with search budget, and does full-tree UCT beat root-only Flat UCB?
 date: '2026'
 role: Solo

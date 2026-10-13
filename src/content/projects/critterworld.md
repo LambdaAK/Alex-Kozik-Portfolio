@@ -1,6 +1,7 @@
 ---
 title: CritterWorld
 tagline: An artificial-life simulator in JavaFX with its own organism language, interpreter and A*/Dijkstra pathfinding.
+summary: "An artificial-life simulator where critters run programs in a custom language."
 description: A simulator in which virtual organisms evolve and interact, each driven by a program in a custom language that is parsed and interpreted at runtime. Course project; source is not public.
 group: systems
 order: 4

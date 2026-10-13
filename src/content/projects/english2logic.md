@@ -1,6 +1,7 @@
 ---
 title: English2Logic
 tagline: Encoder-decoder transformer that translates templated English into propositional-logic formulas. It gets 66% exact match on 916 held-out sentences, where 83% is the most any model can score because 64% of the sentences have more than one valid reading.
+summary: "A transformer that translates English into propositional logic, trained only on synthetic data."
 question: How close does a small seq2seq transformer get to the best possible accuracy when the English it reads is often structurally ambiguous?
 date: '2026'
 role: Solo

@@ -1,6 +1,7 @@
 ---
 title: Orb
 tagline: A real-time 2D particle sandbox in C++17 with SDL2 and an OpenGL 3.2 core-profile renderer, featuring gravity wells, mass-weighted elastic collisions with restitution, and additive-blended trails.
+summary: "A real-time particle and gravity sandbox in C++ with its own OpenGL renderer."
 date: '2026'
 role: Solo
 description: A 2D sandbox where you place particles and gravity wells by click-dragging and watch them orbit, collide and leave glowing trails, with 0.1× to 10× time control.
