@@ -4,7 +4,7 @@
 // Static frame under prefers-reduced-motion; pauses when the tab is hidden.
 ---
 
-<div class="field pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+<div class="field pointer-events-none absolute inset-x-0 top-0 -z-10 h-[70vh] overflow-hidden [mask-image:linear-gradient(to_bottom,black_30%,transparent)]" aria-hidden="true">
   <canvas class="absolute inset-0 h-full w-full"></canvas>
 </div>
 
@@ -26,7 +26,7 @@
   function resize() {
     const dpr = Math.min(devicePixelRatio || 1, 2);
     w = innerWidth;
-    h = innerHeight;
+    h = canvas.clientHeight || innerHeight * 0.7;
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -70,7 +70,7 @@
   function draw() {
     const dark = document.documentElement.classList.contains('dark');
     const ink = dark ? '255 255 255' : '29 29 31';
-    const a = dark ? 0.32 : 0.22;
+    const a = dark ? 0.22 : 0.14;
     ctx.clearRect(0, 0, w, h);
     ctx.lineWidth = 1;
     for (let i = 0; i < pts.length; i++) {
@@ -81,7 +81,7 @@
         const dy = p.y - q.y;
         const d2 = dx * dx + dy * dy;
         if (d2 > LINK * LINK) continue;
-        ctx.strokeStyle = `rgb(${ink} / ${(1 - Math.sqrt(d2) / LINK) * (dark ? 0.12 : 0.08)})`;
+        ctx.strokeStyle = `rgb(${ink} / ${(1 - Math.sqrt(d2) / LINK) * (dark ? 0.08 : 0.05)})`;
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(q.x, q.y);
@@ -113,7 +113,7 @@
     if (still) draw();
   });
   addEventListener('pointermove', (e) => {
-    mouse = { x: e.clientX, y: e.clientY };
+    mouse = { x: e.clientX, y: e.clientY + scrollY };
   });
   addEventListener('pointerleave', () => (mouse = { x: -1e4, y: -1e4 }));
   new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });

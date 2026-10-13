@@ -1,5 +1,5 @@
 ---
-// A section with a large, tight Apple-style headline.
+// A quiet section: small lowercase heading, then content.
 interface Props {
   id: string;
   title: string;
@@ -8,10 +8,10 @@ interface Props {
 const { id, title, subtitle } = Astro.props;
 ---
 
-<section id={id} class="scroll-mt-14 pt-16 sm:pt-20" aria-labelledby={`${id}-title`}>
-  <div class="mb-6" data-reveal>
-    <h2 id={`${id}-title`} class="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">{title}</h2>
-    {subtitle && <p class="mt-2 max-w-2xl text-fg-muted sm:text-lg">{subtitle}</p>}
+<section id={id} class="scroll-mt-16 pt-14" aria-labelledby={`${id}-title`}>
+  <h2 id={`${id}-title`} class="text-[15px] font-medium text-fg-faint">{title}</h2>
+  {subtitle && <p class="mt-1 text-fg-muted">{subtitle}</p>}
+  <div class="mt-4">
+    <slot />
   </div>
-  <slot />
 </section>

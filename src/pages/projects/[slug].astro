@@ -29,10 +29,10 @@ const hasBody = (project.body ?? '').trim().length > 0;
   path={`/projects/${project.id}/`}
   ogImage={`/og/${project.id}.png`}
 >
-  <header class="sticky top-0 z-40 border-b border-line/60 bg-bg/75 backdrop-blur-xl">
+  <header class="sticky top-0 z-40 bg-bg/80 backdrop-blur-md">
     <div class="mx-auto flex h-12 max-w-[56rem] items-center gap-6 px-6">
-      <a href="/" class="text-[15px] font-semibold tracking-[-0.01em]">Alex Kozik</a>
-      <a href="/projects/" class="flex-1 text-[13px] text-fg-muted hover:text-fg">‹ All projects</a>
+      <a href="/" class="text-sm font-medium">alex kozik</a>
+      <a href="/projects/" class="flex-1 text-sm text-fg-faint hover:text-fg">all projects</a>
       <ThemeToggle />
     </div>
   </header>
@@ -44,8 +44,8 @@ const hasBody = (project.body ?? '').trim().length > 0;
           <ProjectIcon image={image} title={title} size={28} class="h-7 w-7 text-xs" />
           <span>{date}</span>
         </p>
-        <h1 class="mt-4 text-5xl font-semibold tracking-[-0.04em] sm:text-6xl">{title}</h1>
-        {question && <p class="mt-3 text-xl leading-snug text-fg-muted italic">{question}</p>}
+        <h1 class="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{title}</h1>
+        {question && <p class="mt-3 text-lg leading-snug text-fg-muted">{question}</p>}
         <p class="mt-5 text-fg">{tagline}</p>
       </div>
 

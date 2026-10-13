@@ -9,10 +9,10 @@
   --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-inter), "Helvetica Neue", sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
-  --color-bg: #f2f3f7;
+  --color-bg: #fbfbfa;
   --color-bg-elev: #ffffff;
   --color-fg: #1d1d1f;
-  --color-fg-muted: #6e6e73;
+  --color-fg-muted: #515154;
   --color-fg-faint: #86868b;
   --color-line: #d2d2d7;
   --color-accent: #0071e3;
@@ -20,10 +20,10 @@
 }
 
 .dark {
-  --color-bg: #050507;
+  --color-bg: #0b0b0c;
   --color-bg-elev: #1c1c1e;
-  --color-fg: #f5f5f7;
-  --color-fg-muted: #a1a1a6;
+  --color-fg: #ededee;
+  --color-fg-muted: #b0b0b5;
   --color-fg-faint: #6e6e73;
   --color-line: #38383a;
   --color-accent: #2997ff;
@@ -233,9 +233,9 @@ body {
   }
 }
 
-/* Apple-style text link with a chevron: "Learn more ›". */
+/* Secondary text link: "details →". */
 .more {
-  color: var(--color-accent);
+  color: var(--color-fg-muted);
   white-space: nowrap;
 }
 .more:hover {
@@ -243,13 +243,17 @@ body {
   text-underline-offset: 3px;
 }
 
-/* Inline links in running text. */
+/* Inline links: same ink as the text, quiet underline that darkens on hover. */
 .ink {
-  color: var(--color-accent);
+  color: var(--color-fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--color-fg) 25%, transparent);
+  transition: text-decoration-color 0.15s;
 }
 .ink:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration-color: var(--color-fg);
 }
 
 details > summary::-webkit-details-marker {
