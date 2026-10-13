@@ -5,8 +5,6 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ThemeToggle from '../../components/ThemeToggle.astro';
 import SnakeDemo from '../../components/SnakeDemo.astro';
-import MnistDemo from '../../components/MnistDemo.astro';
-import PokerDemo from '../../components/PokerDemo.astro';
 import ForgePlayground from '../../components/ForgePlayground.astro';
 import { profile } from '../../data/profile';
 import { demos } from '../../data/demos';
@@ -81,8 +79,6 @@ const hasBody = (project.body ?? '').trim().length > 0;
         demos[project.id] && (
           <div id="demo" class="scroll-mt-8">
             {project.id === 'snake-dqn' && <SnakeDemo />}
-            {project.id === 'mnist-classifier' && <MnistDemo />}
-            {project.id === 'poker-games' && <PokerDemo />}
             {project.id === 'forge' && <ForgePlayground />}
           </div>
         )

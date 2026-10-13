@@ -4,8 +4,8 @@ tagline: A step-through visualizer for 10 classic algorithms and data structures
 date: 2023–24
 role: Solo
 description: A React + TypeScript site that animates sorting and searching algorithms on editable arrays and provides interactive stack and queue sandboxes, each paired with complexity tables and implementations in four languages.
-group: archive
-order: 4
+group: systems
+order: 5
 tech:
 - React
 - TypeScript

@@ -6,7 +6,7 @@ date: '2026'
 role: Solo
 description: A GPT-style decoder trained from scratch on 300k synthetic conversations to track object possession, served behind a FastAPI gateway with a Redis micro-batching queue, Postgres request logs and a Kubernetes deployment with worker autoscaling.
 group: featured
-order: 3
+order: 2
 tech:
 - PyTorch
 - Transformers (from scratch)

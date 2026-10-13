@@ -4,8 +4,8 @@ tagline: "Finalist, Salesforce Agentforce Virtual Hackathon: a one-weekend front
 date: '2025'
 role: Team of 5 · Salesforce Agentforce Virtual Hackathon · I built the globe/map view, route and flight-path rendering, sidebar and dark mode
 description: A React dashboard prototype for routing surplus corporate donations to disaster sites, built on mock data for a hackathon prompt. The five-agent Agentforce design is described in the README but not implemented in this repo.
-group: archive
-order: 2
+group: systems
+order: 1
 tech:
 - React
 - TypeScript

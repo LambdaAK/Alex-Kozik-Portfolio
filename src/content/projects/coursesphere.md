@@ -4,8 +4,8 @@ tagline: A team prototype of a Cornell course recommender (React + Flask + Fireb
 date: '2024'
 role: Team of 5 · I set up the repo and built the React frontend (auth, dashboard, course selector) and the first query-classification scaffold
 description: A summer team project to recommend Cornell courses from a student's profile. It has a working frontend and auth, Flask endpoints over course-roster data, and an unfinished LLM query pipeline.
-group: archive
-order: 1
+group: ml
+order: 7
 tech:
 - React
 - TypeScript

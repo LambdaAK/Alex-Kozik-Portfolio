@@ -6,7 +6,7 @@ date: '2026'
 role: Solo
 description: Pure-Python MCTS framework (UCT and Flat UCB) behind a small game interface. It covers tic-tac-toe, Connect 4, 6×6 checkers, dots-and-boxes and stochastic 2048, and adds a round-robin arena with Elo, tree visualization and position analysis.
 group: ml
-order: 6
+order: 3
 tech:
 - Python
 - MCTS

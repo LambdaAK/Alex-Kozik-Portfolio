@@ -6,7 +6,7 @@ date: '2025'
 role: Solo
 description: PyTorch DQN (and a REINFORCE variant) for Snake on a 30×30 board, with a 33-feature state that includes danger flags, open space and A* path quality, plus 22 committed checkpoints.
 group: ml
-order: 3
+order: 1
 tech:
 - Python
 - PyTorch

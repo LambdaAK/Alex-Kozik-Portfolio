@@ -5,8 +5,8 @@ question: Can the numerical methods behind applied math and ML be implemented fr
 date: '2026'
 role: Solo
 description: A browser sandbox of 30 labs across probability, stochastic processes, linear algebra, optimization, supervised learning, clustering, RL and physics. The solvers (integrators, PDE stencils, LP/QP, SMO, factorizations) are written from scratch in about 7k lines of TypeScript.
-group: ml
-order: 1
+group: featured
+order: 4
 tech:
 - TypeScript
 - React

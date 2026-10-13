@@ -4,8 +4,8 @@ tagline: A real-time 2D particle sandbox in C++17 with SDL2 and an OpenGL 3.2 co
 date: '2026'
 role: Solo
 description: A 2D sandbox where you place particles and gravity wells by click-dragging and watch them orbit, collide and leave glowing trails, with 0.1× to 10× time control.
-group: archive
-order: 5
+group: systems
+order: 6
 tech:
 - C++17
 - SDL2

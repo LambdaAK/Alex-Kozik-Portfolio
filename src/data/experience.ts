@@ -118,7 +118,6 @@ export const experience: Experience[] = [
     ],
     tech: ['Java', 'Python', 'Programming Languages'],
     links: [
-      { label: 'Project page', href: '/projects/sasylf/' },
       { label: 'Upstream merge (PR #128)', href: 'https://github.com/boyland/sasylf/pull/128' },
     ],
   },

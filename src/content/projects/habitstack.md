@@ -4,7 +4,7 @@ tagline: A full-stack habit tracker with 18 Express endpoints, Firebase Realtime
 date: '2023'
 role: Solo
 description: A habit-tracking web app (habit stacks, habits to build or resist, daily tasks, daily ratings, a monthly calendar) with chat servers users can create, join via invite, and message in.
-group: archive
+group: systems
 order: 3
 tech:
 - React
