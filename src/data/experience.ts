@@ -18,6 +18,8 @@ export interface Experience {
   logoDark?: ImageMetadata;
   // The logo has its own background, so show it as a rounded tile.
   logoTile?: boolean;
+  // Courses taught or supported, shown as an aligned list.
+  courses?: string[];
   bullets: string[];
   tech: string[];
   // Shown under Research instead of Experience.
@@ -127,8 +129,12 @@ export const experience: Experience[] = [
     dates: 'Aug 2023 – Dec 2025',
     logo: cornell,
     bullets: [
-      'CS 3780/5780 Introduction to Machine Learning (2025), CS 4820/5820 Analysis of Algorithms (Fall 2024), CS 3110 Data Structures & Functional Programming (2023–24).',
       'CS Course Staff Award (2024) for CS 3110: top 10% of teaching assistants.',
+    ],
+    courses: [
+      'CS 3780/5780 Introduction to Machine Learning (2025)',
+      'CS 4820/5820 Analysis of Algorithms (Fall 2024)',
+      'CS 3110 Data Structures & Functional Programming (2023–24)',
     ],
     tech: ['Machine Learning', 'Algorithms', 'OCaml'],
   },

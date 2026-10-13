@@ -1,6 +1,7 @@
 ---
 // Plain rows: logo, role at company, dates; one line of what I did, the rest on click.
 import Logo from './Logo.astro';
+import CourseList from './CourseList.astro';
 import type { Experience } from '../data/experience';
 
 interface Props {
@@ -31,6 +32,7 @@ const { items } = Astro.props;
             </p>
             <span class="text-sm text-fg-faint">{e.dates}</span>
           </div>
+          {e.courses && <CourseList items={e.courses} class="mt-2" />}
           <p class="mt-1 leading-relaxed text-fg-muted">{e.bullets[0]}</p>
           {(e.bullets.length > 1 || e.links) && (
             <details class="group mt-1">
