@@ -19,7 +19,8 @@ website: https://forgepl.netlify.app/
 links:
 - label: Playground
   href: /projects/forge/#playground
-image: ../../assets/logos/forge.png
+image: ../../assets/logos/forge.svg
+imageDark: ../../assets/logos/forge-dark.svg
 media: ../../assets/media/forge.svg
 mediaAlt: 'Forge''s pipeline: one OCaml front end (parsing, macros, Hindley-Milner inference) feeds an LLVM-based native compiler, a tree-walking interpreter, and a js_of_ocaml build for the browser.'
 results:

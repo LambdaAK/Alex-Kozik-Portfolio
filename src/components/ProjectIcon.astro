@@ -5,11 +5,13 @@ import type { ImageMetadata } from 'astro';
 
 interface Props {
   image?: ImageMetadata;
+  // Shown instead of `image` in dark mode.
+  dark?: ImageMetadata;
   title: string;
   size: number;
   class?: string;
 }
-const { image, title, size, class: className = '' } = Astro.props;
+const { image, dark, title, size, class: className = '' } = Astro.props;
 const initials = title
   .split(/[\s-]+/)
   .map((w) => w[0])
@@ -20,7 +22,10 @@ const initials = title
 
 {
   image ? (
-    <Image src={image} alt="" width={size * 2} height={size * 2} class={`object-cover ${className}`} />
+    <>
+      <Image src={image} alt="" width={size * 2} height={size * 2} class={`object-cover ${className} ${dark ? 'dark:hidden' : ''}`} />
+      {dark && <Image src={dark} alt="" width={size * 2} height={size * 2} class={`hidden object-cover dark:block ${className}`} />}
+    </>
   ) : (
     <span
       class={`flex items-center justify-center bg-accent-soft font-display font-semibold text-accent dark:text-fg ${className}`}

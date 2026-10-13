@@ -30,6 +30,8 @@ const projects = defineCollection({
       links: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
       // Small square icon. Optional; compact rows fall back to a monogram.
       image: image().optional(),
+      // Variant of the icon for dark mode (light lettering).
+      imageDark: image().optional(),
       // Result figure or screenshot shown on featured cards and the project page.
       media: image().optional(),
       mediaAlt: z.string().optional(),
