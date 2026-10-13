@@ -38,7 +38,7 @@ A generator samples a random propositional formula over variables A–E. It pick
 
 The model is a standard PyTorch `nn.Transformer` encoder-decoder: 4+4 layers, d_model 256, 8 heads and 7.5M parameters. Word-level tokenization uses a closed 43-token English vocabulary (including 4 special tokens) and 17 logic tokens, with output in prefix form (`IMPLIES(AND(A,B),C)`). It was trained with teacher forcing and cross-entropy. Training stopped once exact match on the training set reached 95% (epoch 102). Decoding is greedy, and the interactive script adds a repetition penalty and bracket-balancing post-processing.
 
-To put the score in context, I wrote an exact parser over the same templates. It enumerates every formula that could have produced a sentence and computes P(formula | sentence) under the generator. This gives two reference points: picking a random valid reading, and the Bayes-optimal argmax.
+To put the score in context, an exact parser (written for this evaluation, not in the repo) runs over the same templates. It enumerates every formula that could have produced a sentence and computes P(formula | sentence) under the generator. This gives two reference points: picking a random valid reading, and the Bayes-optimal argmax.
 
 ## Results
 All numbers below were measured on the regenerated test split (`python -m dataset.dataset_builder --train 10000 --val 1000 --test 1000`, seed 42, 916 examples) with the committed checkpoint, on an Apple Silicon Mac CPU.
@@ -51,7 +51,7 @@ All numbers below were measured on the regenerated test split (`python -m datase
 | Transformer, repo `evaluate.py` (padded batches of 64) | 77.1% |
 | Bayes-optimal (exact posterior argmax) | 82.9% |
 
-The model is perfect on depth ≤2 (173/173) and falls to 51.5% at depth 4, where 90% of sentences are ambiguous. The README reports about 88%. I could not reproduce that: it is above the Bayes-optimal ceiling for this test distribution, and training-set accuracy is 94.5%. The 77.1% from the repo's own evaluator holds only when sentences are padded in a batch. Fed one at a time, as in the interactive tool, the model drops to 65.8%. It reproduces 10 of the 17 example translations in the README.
+The model is perfect on depth ≤2 (173/173) and falls to 51.5% at depth 4, where 90% of sentences are ambiguous. The repo's batched evaluator reports 77.1% because the decoder currently attends to encoder padding; scored one sentence at a time, as above, the model gets 65.8%.
 
 ## Try it
 ```bash

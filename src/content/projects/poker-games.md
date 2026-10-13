@@ -29,7 +29,7 @@ highlights:
 - Vanilla CFR with full chance enumeration over all 120 Leduc deals; regret matching and reach-weighted average strategy, 288 information sets.
 - Chance-sampled CFR, REINFORCE, and a tabular NFSP-style learner (ε-greedy best-response Q-learner plus a reservoir-trained average policy) for limit Hold'em over a hand-bucketing abstraction, plus a league script that trains candidates and promotes the round-robin winner.
 - Benchmark harness reporting chips/hand, bb/100, 95% CIs over seeds and per-game Elo.
-- Exact best-response exploitability (written for this page) shows CFR converging roughly as 1/√T while policy-gradient self-play plateaus.
+- Measured with an exact best-response exploitability evaluator (run separately for this page, not part of the repo), CFR converges roughly as 1/√T while policy-gradient self-play plateaus.
 ---
 
 ## How it works

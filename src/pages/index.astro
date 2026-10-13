@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import Section from '../components/Section.astro';
 import Entry from '../components/Entry.astro';
@@ -17,85 +18,173 @@ import portrait from '../assets/alex.jpeg';
 const all = await getCollection('projects');
 const featured = all.filter((p) => p.data.group === 'featured').sort((a, b) => a.data.order - b.data.order);
 
-// One line each on the homepage; everything else lives on /projects.
+// Compact cards on the homepage; everything else lives on /projects.
 const MORE = ['c-torch', 'dx', 'mnist-classifier', 'snake-dqn', 'text2code', 'english2logic', 'sasylf', 'obsidiandb'];
 const more = (await Promise.all(MORE.map((id) => getEntry('projects', id)))).filter((p) => p !== undefined);
 
-const contact = [
-  { href: `mailto:${profile.email}`, label: 'email', event: 'email' },
-  { href: profile.github, label: 'github', event: 'github' },
-  { href: profile.linkedin, label: 'linkedin', event: 'linkedin' },
-  { href: profile.resume, label: 'résumé', event: 'resume' },
-];
-const external = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') ? { target: '_blank', rel: 'noopener' } : {});
+const socials = [
+  { href: profile.linkedin, label: 'LinkedIn', icon: 'linkedin' },
+  { href: `mailto:${profile.email}`, label: 'Email', icon: 'mail' },
+  { href: profile.github, label: 'GitHub', icon: 'github' },
+] as const;
+const ext = (href: string) => (href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {});
 ---
 
 <BaseLayout>
-  <header class="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
-    <div class="mx-auto flex max-w-[56rem] items-center gap-x-6 gap-y-1 px-6 py-3">
-      <a href="/" class="label shrink-0 text-fg hover:text-accent">Alex Kozik</a>
-      <nav class="label flex min-w-0 flex-1 gap-x-5 overflow-x-auto [scrollbar-width:none]" aria-label="Sections">
+  <!-- Top navbar, as on the original site -->
+  <header class="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center gap-6 px-5 py-3">
+      <a href="#about" class="shrink-0 font-semibold tracking-tight hover:text-accent">Alex Kozik</a>
+      <nav class="label flex min-w-0 flex-1 justify-start gap-x-5 overflow-x-auto [scrollbar-width:none] md:justify-center" aria-label="Sections">
         {
           nav.map((n) => (
-            <a href={`#${n.id}`} data-nav={n.id} class="shrink-0 transition hover:text-fg aria-[current=true]:text-accent">
-              {n.label.toLowerCase()}
+            <a href={`#${n.id}`} data-nav={n.id} class="shrink-0 py-1 transition hover:text-fg aria-[current=true]:text-accent">
+              {n.label}
             </a>
           ))
         }
-        <a href={profile.resume} class="shrink-0 hover:text-fg" target="_blank" rel="noopener" data-umami-event="resume">résumé</a>
       </nav>
+      <div class="hidden items-center gap-3 text-fg-muted sm:flex">
+        {
+          socials.map((s) => (
+            <a href={s.href} aria-label={s.label} title={s.label} class="hover:text-accent" data-umami-event={s.label.toLowerCase()} {...ext(s.href)}>
+              <Icon name={s.icon} class="h-4 w-4" />
+            </a>
+          ))
+        }
+      </div>
       <ThemeToggle />
     </div>
   </header>
 
-  <main id="main" class="mx-auto max-w-[56rem] px-6 pb-24">
-    <!-- Opening -->
-    <section class="grid gap-x-10 pt-16 lg:grid-cols-[minmax(0,42rem)_11rem] lg:pt-24">
-      <div>
-        <h1 class="text-[2.6rem] leading-[1.1] font-semibold tracking-tight sm:text-5xl">{profile.name}</h1>
-        <p class="mt-6 text-[1.45rem] leading-snug text-fg sm:text-[1.6rem]">{profile.bio[0]}</p>
-        <p class="mt-4 text-fg-muted">
-          On the side I build languages and learning systems: <a href="/projects/forge/#demo" class="ink">Forge</a>, a typed
-          functional language you can run on this page; <a href="/projects/anvil-lang/" class="ink">Anvil</a>, a tensor compiler
-          that fuses whole training loops; and a <a href="/projects/poker-games/#demo" class="ink">poker bot</a> you can try to beat.
-        </p>
-        <p class="label mt-6 flex flex-wrap gap-x-5 gap-y-1">
-          {
-            contact.map((c) => (
-              <a href={c.href} class="text-fg-muted hover:text-accent" data-umami-event={c.event} {...external(c.href)}>
-                {c.label}
-              </a>
-            ))
-          }
-        </p>
+  <main id="main" class="mx-auto max-w-5xl px-5 pb-28">
+    <!-- About: the hero card -->
+    <section id="about" class="scroll-mt-20 pt-14 sm:pt-20">
+      <div class="frame grid gap-8 p-6 sm:p-10 md:grid-cols-[15rem_1fr] md:items-center">
+        <figure>
+          <Image src={portrait} alt="Alex Kozik" width={480} height={480} class="aspect-square w-40 object-cover ring-1 ring-line md:w-full" loading="eager" />
+          <figcaption class="label mt-2">fig. 0 — portrait</figcaption>
+        </figure>
+        <div>
+          <p class="label text-accent">Hello, I'm</p>
+          <h1 class="mt-1 text-5xl font-semibold tracking-tight sm:text-6xl">Alex Kozik</h1>
+          <p class="mt-3 font-mono text-[15px] text-accent">ML Research Engineer · M.S. CS, Carnegie Mellon</p>
+          <p class="mt-5 max-w-xl leading-relaxed text-fg-muted">{profile.bio[0]}</p>
+          <p class="mt-3 max-w-xl leading-relaxed text-fg-muted">
+            Before CMU I studied computer science and mathematics at Cornell and interned at Amazon and Salesforce.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-2">
+            <a
+              href={profile.resume}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2 border border-accent bg-accent px-4 py-2 text-sm font-medium text-bg transition hover:opacity-90"
+              data-umami-event="resume"
+            >
+              <Icon name="file" class="h-4 w-4" /> Résumé
+            </a>
+            {
+              socials.map((s) => (
+                <a
+                  href={s.href}
+                  class="inline-flex items-center gap-2 border border-line bg-bg-elev px-4 py-2 text-sm font-medium text-fg-muted transition hover:border-accent hover:text-accent"
+                  data-umami-event={s.label.toLowerCase()}
+                  {...ext(s.href)}
+                >
+                  <Icon name={s.icon} class="h-4 w-4" /> {s.label}
+                </a>
+              ))
+            }
+          </div>
+        </div>
       </div>
-      <aside class="hidden lg:mt-2 lg:block">
-        <Image src={portrait} alt="Alex Kozik" width={176} height={176} class="h-24 w-24 object-cover grayscale-[15%] sepia-[12%] lg:h-28 lg:w-28" loading="eager" />
-      </aside>
     </section>
 
-    <Section id="experience" title="Experience" mark="§1">
+    <Section id="education" title="Education" n={1}>
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          education.map((e) => (
+            <article class="frame p-5">
+              <div class="flex items-start gap-4">
+                <Image src={e.logo} alt="" width={96} height={96} class="h-11 w-11 shrink-0 bg-white object-contain p-1 ring-1 ring-line" />
+                <div class="min-w-0">
+                  <h3 class="font-semibold leading-snug">{e.degree}</h3>
+                  <p class="text-fg-muted">
+                    <a href={e.url} class="hover:text-accent" target="_blank" rel="noopener">{e.school}</a>
+                  </p>
+                  <p class="label mt-1">{e.dates}</p>
+                </div>
+              </div>
+              <p class="mt-3 text-[15px] text-fg-muted">{e.detail}</p>
+              {e.notes.length > 0 && <p class="mt-1 text-[15px] text-fg-muted">{e.notes.join(' · ')}</p>}
+              <details class="group mt-3">
+                <summary class="label cursor-pointer list-none text-accent hover:underline">
+                  <span class="group-open:hidden">+ coursework</span>
+                  <span class="hidden group-open:inline">− coursework</span>
+                </summary>
+                <div class="mt-2 grid gap-3 sm:grid-cols-2">
+                  {e.courses.map((c) => (
+                    <div>
+                      <p class="label mb-1">{c.group}</p>
+                      <ul class="space-y-0.5 text-sm text-fg-muted">
+                        {c.items.map((i) => <li>{i}</li>)}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section id="experience" title="Experience" n={2}>
       <Timeline items={experience.filter((e) => !e.research)} />
     </Section>
 
-    <Section id="research" title="Research" mark="§2">
+    <Section id="research" title="Research" n={3}>
       <Timeline items={experience.filter((e) => e.research)} />
+    </Section>
 
-      <h3 class="label mt-10 mb-3 uppercase tracking-[0.12em]">Papers</h3>
+    <Section id="awards" title="Awards & honors" n={4}>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {
+          awards.map((a) => (
+            <li class="frame p-4">
+              <div class="flex items-baseline justify-between gap-3">
+                <h3 class="font-semibold leading-snug">{a.title}</h3>
+                <span class="label shrink-0">{a.year}</span>
+              </div>
+              <p class="label mt-0.5">{a.org}</p>
+              <p class="mt-1.5 text-[15px] leading-relaxed text-fg-muted">{a.note}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </Section>
+
+    <Section id="papers" title="Papers" n={5}>
       <ol class="space-y-3">
         {
           papers.map((p) => (
-            <li class="grid gap-x-10 lg:grid-cols-[minmax(0,42rem)_11rem]">
-              <p>
-                <a href={p.project ?? p.pdf} class="ink" {...(p.project ? {} : { target: '_blank', rel: 'noopener' })}>
+            <li class="frame p-5">
+              <h3 class="font-semibold leading-snug">
+                <a href={p.project ?? p.pdf} class="hover:text-accent" {...(p.project ? {} : { target: '_blank', rel: 'noopener' })}>
                   {p.title}
                 </a>
-                <span class="text-fg-muted"> — {p.venue}</span>
-              </p>
-              <p class="label lg:pt-1.5">
-                <a href={p.pdf} class="hover:text-accent" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={p.title}>
+              </h3>
+              <p class="label mt-0.5">{p.venue}</p>
+              <p class="mt-2 text-[15px] leading-relaxed text-fg-muted">{p.summary}</p>
+              <p class="label mt-2 flex gap-x-5">
+                <a href={p.pdf} class="text-accent hover:underline" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={p.title}>
                   PDF ↗
                 </a>
+                {p.code && (
+                  <a href={p.code} class="hover:text-fg" target="_blank" rel="noopener">
+                    Code ↗
+                  </a>
+                )}
               </p>
             </li>
           ))
@@ -103,72 +192,38 @@ const external = (href: string) => (href.startsWith('http') || href.endsWith('.p
       </ol>
     </Section>
 
-    <Section id="work" title="Selected work" mark="§3">
-      <div class="space-y-16">
+    <Section id="projects" title="Projects" n={6}>
+      <div class="grid gap-5 md:grid-cols-2">
         {featured.map((p, i) => <Entry project={p} n={i + 1} />)}
       </div>
 
-      <h3 class="label mt-20 mb-3 uppercase tracking-[0.12em]">More work</h3>
-      <ul class="divide-y divide-line border-y border-line">
+      <h3 class="label mt-12 mb-4 tracking-[0.12em] uppercase">More projects</h3>
+      <ul class="grid gap-3 sm:grid-cols-2">
         {
           more.map((p) => (
-            <li class="grid gap-x-10 py-2.5 lg:grid-cols-[minmax(0,42rem)_11rem]">
-              <p class="min-w-0">
-                <a href={`/projects/${p.id}/`} class="ink">
+            <li class="frame p-4">
+              <div class="flex items-baseline justify-between gap-3">
+                <a href={`/projects/${p.id}/`} class="font-semibold hover:text-accent">
                   {p.data.title}
                 </a>
-                <span class="text-fg-muted"> — {(p.data.question ?? p.data.description).replace(/\.$/, '')}</span>
-              </p>
-              <p class="label lg:pt-1.5">
-                {p.data.date}
-                {(demos[p.id] || p.data.demo) && <span class="text-accent"> · live</span>}
-              </p>
-            </li>
-          ))
-        }
-      </ul>
-      <p class="label mt-4">
-        <a href="/projects/" class="text-accent hover:underline">All {all.length} projects →</a>
-      </p>
-    </Section>
-
-    <Section id="about" title="About" mark="§4">
-      <ol class="divide-y divide-line border-y border-line">
-        {
-          education.map((e) => (
-            <li class="grid gap-x-10 py-3 lg:grid-cols-[minmax(0,42rem)_11rem]">
-              <div>
-                <p>
-                  {e.degree}
-                  <span class="text-fg-muted"> — {e.school}</span>
-                </p>
-                <p class="mt-0.5 text-[16px] text-fg-muted">{e.detail}</p>
+                <span class="label shrink-0">
+                  {(demos[p.id] || p.data.demo) && <span class="text-accent">● live · </span>}
+                  {p.data.date}
+                </span>
               </div>
-              <p class="label lg:pt-1.5">{e.dates}</p>
-            </li>
-          ))
-        }
-      </ol>
-
-      <h3 class="label mt-10 mb-3 uppercase tracking-[0.12em]">Awards</h3>
-      <ul class="space-y-2">
-        {
-          awards.map((a) => (
-            <li class="grid gap-x-10 lg:grid-cols-[minmax(0,42rem)_11rem]">
-              <p>
-                {a.title}
-                <span class="text-fg-muted"> — {a.note}</span>
-              </p>
-              <p class="label lg:pt-1.5">{a.year}</p>
+              <p class="mt-1 text-[15px] leading-relaxed text-fg-muted">{(p.data.question ?? p.data.description).replace(/\.$/, '')}</p>
             </li>
           ))
         }
       </ul>
+      <p class="mt-6">
+        <a href="/projects/" class="label text-accent hover:underline">All {all.length} projects →</a>
+      </p>
     </Section>
   </main>
 
   <script>
-    // Mark the nav link for the section currently in view.
+    // Highlight the nav link for the section currently in view.
     const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-nav]'));
     const sections = links.map((l) => document.getElementById(l.dataset.nav!)).filter((s): s is HTMLElement => !!s);
     const observer = new IntersectionObserver(

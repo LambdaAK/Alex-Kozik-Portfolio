@@ -1,6 +1,6 @@
 ---
 title: Anvil
-tagline: A tensor language that compiles a whole training loop (forward, backward and optimizer) into one fused ARM64 program; it trained four small models 2.6-5.8× faster per epoch than the best PyTorch CPU setting in my reruns.
+tagline: A tensor language that compiles a whole training loop (forward, backward and optimizer) into one fused ARM64 program; it trained four small models 2.6-5.8× faster per epoch than the best PyTorch CPU setting in independent reruns.
 question: If the compiler sees the whole training step at once, how much of a framework's overhead can it remove?
 date: '2026'
 role: Solo
@@ -54,7 +54,7 @@ around them. The same IR also lowers to Metal and to a single CUDA file. The com
 
 ## Results
 
-My reruns on an Apple M3 Max with other jobs running (load average 9-16), using the repo's own
+Independent reruns on an Apple M3 Max with other jobs running (load average 9-16), using the repo's own
 harness (`benchmarks/vs_pytorch/run.py`, 3 runs, median steady-state epoch):
 
 | model | Anvil | PyTorch, default threads | PyTorch, 1 thread | final accuracy / loss (Anvil, PyTorch) |

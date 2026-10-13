@@ -1,10 +1,15 @@
 ---
-// Text toggle in the notebook's mono voice: "night" on paper, "day" at night.
+import Icon from './Icon.astro';
 ---
 
-<button id="theme-toggle" type="button" class="label cursor-pointer transition hover:text-accent" aria-label="Toggle dark mode">
-  <span class="dark:hidden">night</span>
-  <span class="hidden dark:inline">day</span>
+<button
+  id="theme-toggle"
+  type="button"
+  class="inline-flex h-8 w-8 items-center justify-center border border-line text-fg-muted transition hover:border-accent hover:text-accent"
+  aria-label="Toggle dark mode"
+>
+  <span class="dark:hidden"><Icon name="moon" class="h-4 w-4" /></span>
+  <span class="hidden dark:inline"><Icon name="sun" class="h-4 w-4" /></span>
 </button>
 
 <script>

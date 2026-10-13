@@ -41,7 +41,7 @@ The board state is a 9-character string. Each player has its own Q-table, `state
 | X (moves first) | 99.0 / 1.0 / 0.0 % | 0 / 100 / 0 % |
 | O (moves second) | 88.6 / 9.7 / 1.8 % | 0 / 77.0 / 23.0 % |
 
-The repo's MCTS agent (1,000 iterations, playing X) won 975 and lost 25 of 1,000 games against random (`mcts_1000_games_results.json`). My 300-game rerun matched: 296 wins, 4 losses. Since optimal X never loses, those losses point to a weakness in the MCTS implementation.
+The repo's MCTS agent (1,000 iterations, playing X) won 975 and lost 25 of 1,000 games against random (`mcts_1000_games_results.json`). A 300-game rerun matched: 296 wins, 4 losses. Since optimal X never loses, those losses point to a weakness in the MCTS implementation.
 
 ## Try it
 
