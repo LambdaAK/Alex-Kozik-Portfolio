@@ -7,6 +7,7 @@ import Section from '../components/Section.astro';
 import Timeline from '../components/Timeline.astro';
 import Logo from '../components/Logo.astro';
 import CourseList from '../components/CourseList.astro';
+import ProjectIcon from '../components/ProjectIcon.astro';
 import { profile, nav } from '../data/profile';
 import { experience } from '../data/experience';
 import { education } from '../data/education';
@@ -172,7 +173,9 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
           featured.map((p) => {
             const r = p.data.results[0];
             return (
-              <li>
+              <li class="flex gap-5">
+                <ProjectIcon image={p.data.image} dark={p.data.imageDark} title={p.data.title} size={48} class="mt-0.5 h-12 w-12 shrink-0 rounded-xl text-base" />
+                <div class="min-w-0 flex-1">
                 <div class="flex items-baseline justify-between gap-4">
                   <p>
                     <a href={`/projects/${p.id}/`} class="ink font-medium" data-umami-event="project-open" data-umami-event-project={p.data.title}>
@@ -192,6 +195,7 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
                     {r.value} · {r.metric}
                   </p>
                 )}
+                </div>
               </li>
             );
           })
@@ -202,8 +206,9 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
       <ul class="mt-3 space-y-2.5">
         {
           more.map((p) => (
-            <li class="flex items-baseline justify-between gap-4">
-              <p class="min-w-0">
+            <li class="flex items-center gap-4">
+              <ProjectIcon image={p.data.image} dark={p.data.imageDark} title={p.data.title} size={32} class="h-8 w-8 shrink-0 rounded-lg text-xs" />
+              <p class="min-w-0 flex-1">
                 <a href={`/projects/${p.id}/`} class="ink">
                   {p.data.title}
                 </a>
