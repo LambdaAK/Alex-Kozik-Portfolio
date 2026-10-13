@@ -22,8 +22,8 @@ const featured = all.filter((p) => p.data.group === 'featured').sort((a, b) => a
 // The rest, grouped like the original site.
 const byOrder = (g: string) => all.filter((p) => p.data.group === g).sort((a, b) => a.data.order - b.data.order);
 const others = [
-  { label: 'ml / ai', items: byOrder('ml') },
-  { label: 'software engineering', items: byOrder('systems') },
+  { label: 'ML / AI', items: byOrder('ml') },
+  { label: 'Software engineering', items: byOrder('systems') },
 ];
 
 const contact = [
@@ -88,7 +88,7 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
 
     <main id="main" class="min-w-0 pb-24 lg:pt-12">
 
-    <Section id="education" title="education">
+    <Section id="education" title="Education">
       <ol class="space-y-7">
         {
           education.map((e) => (
@@ -131,11 +131,11 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
       </ol>
     </Section>
 
-    <Section id="experience" title="experience">
+    <Section id="experience" title="Experience">
       <Timeline items={experience} />
     </Section>
 
-    <Section id="awards" title="awards">
+    <Section id="awards" title="Awards">
       <ul class="space-y-3">
         {
           awards.map((a) => (
@@ -151,7 +151,7 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
       </ul>
     </Section>
 
-    <Section id="papers" title="papers">
+    <Section id="papers" title="Papers">
       <ul class="space-y-4">
         {
           papers.map((p) => (
@@ -166,7 +166,7 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
       </ul>
     </Section>
 
-    <Section id="projects" title="projects">
+    <Section id="projects" title="Projects">
       <ul class="space-y-6">
         {
           featured.map((p) => {
@@ -204,7 +204,7 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
       {
         others.map((g) => (
           <div class="mt-10">
-            <p class="text-[12px] font-medium tracking-[0.08em] text-fg-faint uppercase">{g.label}</p>
+            <p class="text-[15px] font-medium text-fg-faint">{g.label}</p>
             <ul class="mt-3 space-y-2.5">
               {
                 g.items.map((p) => (
