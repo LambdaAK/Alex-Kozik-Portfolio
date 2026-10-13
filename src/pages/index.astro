@@ -132,11 +132,7 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
     </Section>
 
     <Section id="experience" title="experience">
-      <Timeline items={experience.filter((e) => !e.research)} />
-    </Section>
-
-    <Section id="research" title="research">
-      <Timeline items={experience.filter((e) => e.research)} />
+      <Timeline items={experience} />
     </Section>
 
     <Section id="awards" title="awards">
