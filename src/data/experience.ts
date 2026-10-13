@@ -16,6 +16,8 @@ export interface Experience {
   logo: ImageMetadata;
   // Variant for dark mode when the logo has dark lettering.
   logoDark?: ImageMetadata;
+  // The logo has its own background, so show it as a rounded tile.
+  logoTile?: boolean;
   bullets: string[];
   tech: string[];
   // Shown under Research instead of Experience.
@@ -32,6 +34,7 @@ export const experience: Experience[] = [
     research: true,
     dates: 'Aug 2026 – Present',
     logo: cmu,
+    logoTile: true,
     bullets: [
       "Reinforcement learning research in Prof. Andrea Zanette's group at the School of Computer Science.",
       'Design, implement and evaluate RL experiments in PyTorch.',
@@ -105,6 +108,7 @@ export const experience: Experience[] = [
     research: true,
     dates: 'May – Aug 2024',
     logo: cmu,
+    logoTile: true,
     bullets: [
       'Added parameterized (functor-style) modules to SASyLF, a proof assistant for programming-language metatheory: argument checking with specific errors, plus deep copy and substitution across the whole AST.',
       'All 204 commits merged upstream and released as SASyLF 1.6.0, "Polymorphic modules".',

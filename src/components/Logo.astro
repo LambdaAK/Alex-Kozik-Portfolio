@@ -1,15 +1,17 @@
 ---
 // An organization's logo, unframed on a transparent background. Uses `dark` in dark mode
-// when the regular logo has dark lettering.
+// when the regular logo has dark lettering; `tile` rounds the corners of logos that carry
+// their own background (e.g. CMU's red square).
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
   src: ImageMetadata;
   dark?: ImageMetadata;
+  tile?: boolean;
 }
-const { src, dark } = Astro.props;
-const cls = 'h-12 w-12 shrink-0 object-contain';
+const { src, dark, tile } = Astro.props;
+const cls = `h-12 w-12 shrink-0 object-contain${tile ? ' rounded-xl' : ''}`;
 ---
 
 <Image src={src} alt="" width={96} height={96} class={dark ? `${cls} dark:hidden` : cls} />

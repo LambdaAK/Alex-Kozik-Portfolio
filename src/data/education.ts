@@ -9,6 +9,8 @@ export interface Education {
   detail: string;
   dates: string;
   logo: ImageMetadata;
+  // The logo has its own background, so show it as a rounded tile.
+  logoTile?: boolean;
   notes: string[];
   courses: { group: string; items: string[] }[];
 }
@@ -21,6 +23,7 @@ export const education: Education[] = [
     detail: 'Thesis track · Machine Learning and Systems',
     dates: 'Aug 2026 – Dec 2027',
     logo: cmu,
+    logoTile: true,
     notes: [],
     courses: [
       {
