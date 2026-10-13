@@ -5,8 +5,8 @@ question: How close to a Nash equilibrium do CFR and policy-gradient self-play g
 date: '2026'
 role: Solo
 description: Kuhn, Leduc, and heads-up limit Hold'em environments with CFR, REINFORCE and NFSP-style agents, a round-robin benchmark harness, and a blackjack environment with tabular RL. Standard library only, with 56 unit tests.
-group: ml
-order: 1
+group: featured
+order: 4
 tech:
 - Python
 - CFR

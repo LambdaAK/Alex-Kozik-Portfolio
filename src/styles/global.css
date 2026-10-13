@@ -2,30 +2,31 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Notebook palette: warm paper, ink, one clay accent. Token names are shared with the demos. */
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-newsreader), Georgia, "Times New Roman", serif;
   --font-display: var(--font-newsreader), Georgia, serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
 
-  --color-bg: #fbfbfa;
-  --color-bg-elev: #ffffff;
-  --color-fg: #18181b;
-  --color-fg-muted: #52525b;
-  --color-fg-faint: #a1a1aa;
-  --color-line: #e4e4e7;
-  --color-accent: #0f766e;
-  --color-accent-soft: #ccfbf1;
+  --color-bg: #f4efe6;
+  --color-bg-elev: #faf6ef;
+  --color-fg: #1f1e1b;
+  --color-fg-muted: #57524a;
+  --color-fg-faint: #8f877a;
+  --color-line: #dcd3c3;
+  --color-accent: #b0522d;
+  --color-accent-soft: #f0dccf;
 }
 
 .dark {
-  --color-bg: #0b0f14;
-  --color-bg-elev: #111822;
-  --color-fg: #e6e8eb;
-  --color-fg-muted: #a3adb8;
-  --color-fg-faint: #5f6b78;
-  --color-line: #1f2a37;
-  --color-accent: #5eead4;
-  --color-accent-soft: #134e4a;
+  --color-bg: #1a1915;
+  --color-bg-elev: #22211c;
+  --color-fg: #ece6da;
+  --color-fg-muted: #b5ad9e;
+  --color-fg-faint: #7f786c;
+  --color-line: #36332c;
+  --color-accent: #e3906c;
+  --color-accent-soft: #4a2f23;
 }
 
 html {
@@ -49,12 +50,13 @@ html.dark {
   }
 }
 
-
 body {
   background: var(--color-bg);
   color: var(--color-fg);
   font-family: var(--font-sans);
-  font-feature-settings: "cv11", "ss01";
+  font-size: 18px;
+  line-height: 1.6;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -62,15 +64,52 @@ body {
   background: var(--color-accent-soft);
 }
 
+/* Small mono labels: dates, numbers, nav, figure captions. */
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--color-fg-faint);
+}
+
+/* Inline links: ink text with a clay underline that thickens on hover. */
+.ink {
+  color: var(--color-fg);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 120ms, text-decoration-thickness 120ms;
+}
+.ink:hover {
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+}
+
+/* A figure plate: hairline frame and a mono caption. */
+.plate {
+  border: 1px solid var(--color-line);
+  background: var(--color-bg-elev);
+  padding: 10px;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
 /* Prose for project write-ups */
 .prose :where(h2) {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-fg-faint);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
 }
 .prose :where(h3) {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
@@ -83,25 +122,51 @@ body {
   list-style: disc;
   padding-left: 1.25rem;
 }
+.prose :where(ol) {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
 .prose :where(a) {
-  color: var(--color-accent);
   text-decoration: underline;
+  text-decoration-color: var(--color-accent);
   text-underline-offset: 3px;
+}
+.prose :where(img) {
+  border: 1px solid var(--color-line);
+  background: var(--color-bg-elev);
+  padding: 8px;
+  margin: 1.5rem 0;
+}
+.prose :where(table) {
+  width: 100%;
+  font-size: 0.9em;
+  border-collapse: collapse;
+}
+.prose :where(th, td) {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+}
+.prose :where(th) {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-fg-faint);
 }
 .prose :where(code) {
   font-family: var(--font-mono);
-  font-size: 0.9em;
+  font-size: 0.82em;
   background: var(--color-bg-elev);
   border: 1px solid var(--color-line);
-  border-radius: 4px;
-  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  padding: 0.1em 0.3em;
 }
 .prose :where(pre) {
   background: var(--color-bg-elev);
   border: 1px solid var(--color-line);
-  border-radius: 8px;
   padding: 1rem;
   overflow-x: auto;
+  font-size: 14px;
 }
 .prose :where(pre code) {
   border: 0;

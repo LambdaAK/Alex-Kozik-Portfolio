@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ThemeToggle from '../../components/ThemeToggle.astro';
-import ProjectLinks from '../../components/ProjectLinks.astro';
 import { profile } from '../../data/profile';
+import { demos } from '../../data/demos';
 
 const groups = [
   { id: 'featured', label: 'Selected' },
@@ -24,41 +24,46 @@ const sections = groups.map((g) => ({
   description={`Every project by ${profile.name}: ML models, ML systems, compilers and web apps, with source and results.`}
   path="/projects/"
 >
-  <div class="mx-auto max-w-3xl px-6 py-10 lg:py-16">
-    <header class="flex items-center justify-between">
-      <a href="/#work" class="inline-flex items-center gap-1 text-sm font-medium text-fg-muted hover:text-accent">
-        ← {profile.name}
-      </a>
+  <header class="border-b border-line">
+    <div class="mx-auto flex max-w-[56rem] items-center gap-6 px-6 py-3">
+      <a href="/" class="label text-fg hover:text-accent">Alex Kozik</a>
+      <a href="/#work" class="label flex-1 hover:text-fg">← home</a>
       <ThemeToggle />
-    </header>
+    </div>
+  </header>
 
-    <main id="main" class="mt-10">
-      <h1 class="font-display text-4xl font-semibold tracking-tight">Projects</h1>
-      <p class="mt-2 text-fg-muted">Everything I've built, grouped by area, with source and results.</p>
+  <main id="main" class="mx-auto max-w-[56rem] px-6 pt-14 pb-24">
+    <h1 class="text-[2.6rem] leading-[1.1] font-semibold tracking-tight sm:text-5xl">Projects</h1>
+    <p class="mt-3 max-w-[42rem] text-fg-muted">
+      Everything worth a look, with the numbers checked against the code. Entries marked <span class="label text-accent">live</span> run in
+      your browser.
+    </p>
 
-      {
-        sections.map((s) => (
-          <section class="mt-12" aria-labelledby={`g-${s.id}`}>
-            <h2 id={`g-${s.id}`} class="text-xs font-semibold tracking-[0.18em] text-fg-faint uppercase">
-              {s.label}
-            </h2>
-            <ul class="mt-2 divide-y divide-line">
-              {s.items.map((p) => (
-                <li class="grid gap-1 py-4 sm:grid-cols-[1fr_auto] sm:gap-6">
-                  <div class="min-w-0">
-                    <a href={`/projects/${p.id}/`} class="font-semibold hover:text-accent">
-                      {p.data.title}
-                    </a>
-                    <p class="mt-0.5 text-sm leading-relaxed text-fg-muted">{p.data.tagline}</p>
-                    <ProjectLinks github={p.data.github} demo={p.data.demo} website={p.data.website} paper={p.data.paper} project={p.data.title} class="mt-1.5" />
-                  </div>
-                  <span class="text-xs text-fg-faint sm:pt-1">{p.data.date}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      }
-    </main>
-  </div>
+    {
+      sections.map((s, i) => (
+        <section class="mt-14" aria-labelledby={`g-${s.id}`}>
+          <h2 id={`g-${s.id}`} class="label mb-3 flex gap-3 tracking-[0.12em] uppercase">
+            <span class="text-accent">§{i + 1}</span>
+            <span class="text-fg-muted">{s.label}</span>
+          </h2>
+          <ul class="divide-y divide-line border-y border-line">
+            {s.items.map((p) => (
+              <li class="grid gap-x-10 py-2.5 lg:grid-cols-[minmax(0,42rem)_11rem]">
+                <p class="min-w-0">
+                  <a href={`/projects/${p.id}/`} class="ink">
+                    {p.data.title}
+                  </a>
+                  <span class="text-fg-muted"> — {p.data.tagline.replace(/\.$/, '')}</span>
+                </p>
+                <p class="label lg:pt-1.5">
+                  {p.data.date}
+                  {(demos[p.id] || p.data.demo) && <span class="text-accent"> · live</span>}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </main>
 </BaseLayout>

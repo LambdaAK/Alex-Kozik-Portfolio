@@ -1,19 +1,17 @@
 ---
+// A notebook section: a mono section mark and title over a hairline.
 interface Props {
   id: string;
   title: string;
-  subtitle?: string;
+  mark?: string;
 }
-const { id, title, subtitle } = Astro.props;
+const { id, title, mark } = Astro.props;
 ---
 
-<section id={id} class="scroll-mt-16 py-12 lg:scroll-mt-0 lg:py-16" aria-labelledby={`${id}-title`}>
-  <h2
-    id={`${id}-title`}
-    class="mb-6 text-xs font-semibold tracking-[0.18em] text-fg uppercase"
-  >
-    {title}
+<section id={id} class="scroll-mt-8 pt-16 lg:pt-20" aria-labelledby={`${id}-title`}>
+  <h2 id={`${id}-title`} class="label mb-6 flex items-baseline gap-3 tracking-[0.12em] uppercase">
+    {mark && <span class="text-accent">{mark}</span>}
+    <span class="text-fg-muted">{title}</span>
   </h2>
-  {subtitle && <p class="-mt-3 mb-6 text-sm text-fg-muted">{subtitle}</p>}
   <slot />
 </section>

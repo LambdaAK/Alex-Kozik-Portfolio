@@ -5,8 +5,8 @@ question: What does it take to build the pieces of an ML framework (matrices, la
 date: 2025–26
 role: Solo
 description: A dependency-free C++20 library covering dense matrices, an MLP stack with SGD, Adam and other optimizers, classical models (SVMs, kNN, naive Bayes, PCA, k-means, bandits), DQN and REINFORCE agents, synchronous data-parallel training over TCP, and Python ctypes bindings.
-group: featured
-order: 4
+group: systems
+order: 1
 tech:
 - C++20
 - CMake

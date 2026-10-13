@@ -1,0 +1,69 @@
+---
+// A numbered notebook entry for a selected project: title, one line, a figure plate,
+// links underneath, and headline numbers in the margin.
+import type { CollectionEntry } from 'astro:content';
+import ProjectMedia from './ProjectMedia.astro';
+import { demos } from '../data/demos';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  n: number;
+}
+const { project, n } = Astro.props;
+const { title, tagline, date, github, website, media, mediaAlt, video, results } = project.data;
+const href = `/projects/${project.id}/`;
+const demo = demos[project.id];
+const num = String(n).padStart(2, '0');
+---
+
+<article class="grid gap-x-10 lg:grid-cols-[minmax(0,42rem)_11rem]">
+  <div class="min-w-0">
+    <div class="flex items-baseline gap-4">
+      <span class="font-mono text-sm text-accent">{num}</span>
+      <h3 class="text-[1.65rem] leading-tight font-semibold tracking-tight">
+        <a href={href} class="hover:text-accent">{title}</a>
+      </h3>
+    </div>
+    <p class="mt-2 text-fg-muted">{tagline}</p>
+
+    {
+      media && (
+        <figure class="mt-5">
+          <a href={demo ? `${href}#demo` : href} class="plate block" aria-label={`${title}: details`}>
+            <ProjectMedia media={media} video={video} alt={mediaAlt} width={900} class="w-full" />
+          </a>
+          {mediaAlt && (
+            <figcaption class="label mt-2 leading-relaxed">
+              <span class="text-accent">Fig. {n}</span> — {mediaAlt}
+            </figcaption>
+          )}
+        </figure>
+      )
+    }
+
+    <p class="label mt-4 flex flex-wrap gap-x-5 gap-y-1">
+      {
+        demo && (
+          <a href={`${href}#demo`} class="text-accent hover:underline" data-umami-event="demo-open" data-umami-event-project={title}>
+            {demo} →
+          </a>
+        )
+      }
+      <a href={href} class="hover:text-fg" data-umami-event="project-open" data-umami-event-project={title}>Notes</a>
+      {website && <a href={website} class="hover:text-fg" target="_blank" rel="noopener">Website ↗</a>}
+      {github && <a href={github} class="hover:text-fg" target="_blank" rel="noopener" data-umami-event="source" data-umami-event-project={title}>Source ↗</a>}
+    </p>
+  </div>
+
+  <aside class="label mt-4 space-y-3 lg:mt-1.5 lg:border-l lg:border-line lg:pl-4">
+    <p>{date}</p>
+    {
+      results.slice(0, 2).map((r) => (
+        <p>
+          <span class="block text-[15px] text-fg">{r.value}</span>
+          {r.metric}
+        </p>
+      ))
+    }
+  </aside>
+</article>
