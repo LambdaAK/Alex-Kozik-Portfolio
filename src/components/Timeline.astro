@@ -1,6 +1,6 @@
 ---
 // Plain rows: logo, role at company, dates; one line of what I did, the rest on click.
-import { Image } from 'astro:assets';
+import Logo from './Logo.astro';
 import type { Experience } from '../data/experience';
 
 interface Props {
@@ -12,8 +12,8 @@ const { items } = Astro.props;
 <ol class="space-y-7">
   {
     items.map((e) => (
-      <li class="flex gap-4">
-        <Image src={e.logo} alt="" width={80} height={80} class="mt-1 h-9 w-9 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-black/5" />
+      <li class="flex gap-5">
+        <Logo src={e.logo} dark={e.logoDark} />
         <div class="min-w-0 flex-1">
           <div class="flex flex-wrap items-baseline justify-between gap-x-4">
             <p class="font-medium">

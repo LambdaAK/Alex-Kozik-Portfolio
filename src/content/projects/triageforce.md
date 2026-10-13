@@ -13,7 +13,7 @@ tech:
 - Leaflet
 - MUI
 github: https://github.com/LambdaAK/agent-hackathon
-image: ../../assets/logos/salesforce.png
+image: ../../assets/logos/salesforce.svg
 mediaAlt: TriageForce's dark-mode globe showing relief shipment routes.
 highlights:
 - CesiumJS 3D globe with disaster markers, shipment routes and flight paths; clicking a route shows its details.

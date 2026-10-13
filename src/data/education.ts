@@ -1,6 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import cmu from '../assets/logos/cmu.png';
-import cornell from '../assets/logos/cornell.png';
+import cornell from '../assets/logos/cornell.svg';
 
 export interface Education {
   school: string;

@@ -1,10 +1,12 @@
 import type { ImageMetadata } from 'astro';
 import cmu from '../assets/logos/cmu.png';
 import amazon from '../assets/logos/amazon.svg';
-import salesforce from '../assets/logos/salesforce.png';
+import amazonDark from '../assets/logos/amazon-dark.svg';
+import salesforce from '../assets/logos/salesforce.svg';
 import cmsx from '../assets/logos/cmsx.svg';
-import genai from '../assets/logos/genai-cornell.jpeg';
-import cornell from '../assets/logos/cornell.png';
+import cmsxDark from '../assets/logos/cmsx-dark.svg';
+import genai from '../assets/logos/genai-cornell.png';
+import cornell from '../assets/logos/cornell.svg';
 
 export interface Experience {
   company: string;
@@ -12,6 +14,8 @@ export interface Experience {
   role: string;
   dates: string;
   logo: ImageMetadata;
+  // Variant for dark mode when the logo has dark lettering.
+  logoDark?: ImageMetadata;
   bullets: string[];
   tech: string[];
   // Shown under Research instead of Experience.
@@ -40,6 +44,7 @@ export const experience: Experience[] = [
     role: 'Software Development Engineer Intern · AI for Customer Service',
     dates: 'Jun – Aug 2026',
     logo: amazon,
+    logoDark: amazonDark,
     bullets: [
       'Architected an ML-gated damage-claim verification feature to block fraud and reduce manual review.',
       'Engineered a secure image-upload pipeline (S3 + virus scanning) that passes scanned images to a computer-vision service, which synchronously verifies reported damage and gates approval.',
@@ -67,6 +72,7 @@ export const experience: Experience[] = [
     research: true,
     dates: 'Aug 2023 – Jan 2026',
     logo: cmsx,
+    logoDark: cmsxDark,
     bullets: [
       "Led a team of 20 engineers building Cornell's CS course management system, used by 10,000+ students.",
       'Architected the React/TypeScript student-facing frontend, reducing page load times by 90%, and led the rewrite of the legacy JSP site in React.',

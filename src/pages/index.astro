@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import Section from '../components/Section.astro';
 import Timeline from '../components/Timeline.astro';
+import Logo from '../components/Logo.astro';
 import { profile, nav } from '../data/profile';
 import { experience } from '../data/experience';
 import { education } from '../data/education';
@@ -86,8 +87,8 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
       <ol class="space-y-7">
         {
           education.map((e) => (
-            <li class="flex gap-4">
-              <Image src={e.logo} alt="" width={80} height={80} class="mt-1 h-9 w-9 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-black/5" />
+            <li class="flex gap-5">
+              <Logo src={e.logo} />
               <div class="min-w-0 flex-1">
                 <div class="flex flex-wrap items-baseline justify-between gap-x-4">
                   <p class="font-medium">
