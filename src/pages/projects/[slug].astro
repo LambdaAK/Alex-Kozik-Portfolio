@@ -39,7 +39,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
     <div class="grid gap-x-10 lg:grid-cols-[minmax(0,42rem)_11rem]">
       <div class="min-w-0">
         <p class="label flex items-center gap-4">
-          <ProjectIcon image={image} dark={imageDark} title={title} size={48} class="h-12 w-12 rounded-xl text-base" />
+          {project.id === 'forge' && <ProjectIcon image={image} dark={imageDark} title={title} size={48} class="h-12 w-12 rounded-xl text-base" />}
           <span>{date}</span>
         </p>
         <h1 class="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{title}</h1>

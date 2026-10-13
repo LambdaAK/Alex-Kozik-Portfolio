@@ -7,7 +7,6 @@ import Section from '../components/Section.astro';
 import Timeline from '../components/Timeline.astro';
 import Logo from '../components/Logo.astro';
 import CourseList from '../components/CourseList.astro';
-import ProjectIcon from '../components/ProjectIcon.astro';
 import { profile, nav } from '../data/profile';
 import { experience } from '../data/experience';
 import { education } from '../data/education';
@@ -175,7 +174,6 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
             const r = p.data.results[0];
             return (
               <li class="flex gap-5">
-                <ProjectIcon image={p.data.image} dark={p.data.imageDark} title={p.data.title} size={48} class="mt-0.5 h-12 w-12 shrink-0 rounded-xl text-base" />
                 <div class="min-w-0 flex-1">
                 <div class="flex items-baseline justify-between gap-4">
                   <p>
@@ -211,7 +209,6 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
               {
                 g.items.map((p) => (
                   <li class="flex items-center gap-4">
-                    <ProjectIcon image={p.data.image} dark={p.data.imageDark} title={p.data.title} size={32} class="h-8 w-8 shrink-0 rounded-lg text-xs" />
                     <p class="min-w-0 flex-1">
                       <a href={`/projects/${p.id}/`} class="ink">
                         {p.data.title}
