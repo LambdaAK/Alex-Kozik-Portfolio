@@ -89,7 +89,7 @@ body {
 .frame {
   --glass: rgb(255 255 255 / 0.58);
   --edge: rgb(255 255 255 / 0.75);
-  --spot: rgb(0 113 227 / 0.06);
+  --spot: rgb(0 0 0 / 0.025);
   border-radius: 22px;
   background:
     radial-gradient(420px circle at var(--mx, -999px) var(--my, -999px), var(--spot), transparent 60%),
@@ -109,7 +109,7 @@ body {
 .dark .frame {
   --glass: rgb(28 28 32 / 0.55);
   --edge: rgb(255 255 255 / 0.14);
-  --spot: rgb(41 151 255 / 0.1);
+  --spot: rgb(255 255 255 / 0.05);
   box-shadow:
     inset 0 1px 0 var(--edge),
     inset 0 0 0 1px rgb(255 255 255 / 0.06),

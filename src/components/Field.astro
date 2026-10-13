@@ -1,34 +1,18 @@
 ---
-// Page background: a soft color wash plus a drifting point cloud that looks like an
-// embedding plot. Points follow noisy (Langevin-style) dynamics toward three slowly moving
+// Page background: a drifting, monochrome point cloud that looks like an embedding plot. Points follow noisy (Langevin-style) dynamics toward three slowly moving
 // cluster centers, nearby points are joined by faint lines, and the cursor pushes them aside.
 // Static frame under prefers-reduced-motion; pauses when the tab is hidden.
 ---
 
 <div class="field pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-  <span class="wash top-[-10%] left-[-5%] h-[45vw] w-[45vw] bg-[#0a84ff]"></span>
-  <span class="wash top-[5%] right-[-10%] h-[40vw] w-[40vw] bg-[#bf5af2]"></span>
-  <span class="wash bottom-[-15%] left-[30%] h-[40vw] w-[40vw] bg-[#ff375f]"></span>
   <canvas class="absolute inset-0 h-full w-full"></canvas>
 </div>
 
-<style>
-  .wash {
-    position: absolute;
-    border-radius: 9999px;
-    filter: blur(90px);
-    opacity: 0.22;
-  }
-  :global(.dark) .wash {
-    opacity: 0.18;
-  }
-</style>
 
 <script>
   const canvas = document.querySelector<HTMLCanvasElement>('.field canvas')!;
   const ctx = canvas.getContext('2d')!;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const COLORS = ['10 132 255', '191 90 242', '255 55 95'];
   const N = innerWidth < 640 ? 60 : 120;
   const LINK = 90;
 
@@ -85,7 +69,8 @@
 
   function draw() {
     const dark = document.documentElement.classList.contains('dark');
-    const a = dark ? 0.55 : 0.38;
+    const ink = dark ? '255 255 255' : '29 29 31';
+    const a = dark ? 0.32 : 0.22;
     ctx.clearRect(0, 0, w, h);
     ctx.lineWidth = 1;
     for (let i = 0; i < pts.length; i++) {
@@ -96,7 +81,7 @@
         const dy = p.y - q.y;
         const d2 = dx * dx + dy * dy;
         if (d2 > LINK * LINK) continue;
-        ctx.strokeStyle = `rgb(${COLORS[p.c]} / ${(1 - Math.sqrt(d2) / LINK) * (dark ? 0.22 : 0.14)})`;
+        ctx.strokeStyle = `rgb(${ink} / ${(1 - Math.sqrt(d2) / LINK) * (dark ? 0.12 : 0.08)})`;
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(q.x, q.y);
@@ -104,7 +89,7 @@
       }
     }
     for (const p of pts) {
-      ctx.fillStyle = `rgb(${COLORS[p.c]} / ${a})`;
+      ctx.fillStyle = `rgb(${ink} / ${a})`;
       ctx.beginPath();
       ctx.arc(p.x, p.y, 1.8, 0, Math.PI * 2);
       ctx.fill();
