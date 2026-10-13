@@ -1,6 +1,6 @@
 ---
-// A featured project as a drawing sheet: figure on top, a title block underneath with
-// the headline numbers and links.
+// A featured project as an Apple-style tile: headline and one line on top, links,
+// then the figure filling the bottom of the tile.
 import type { CollectionEntry } from 'astro:content';
 import ProjectMedia from './ProjectMedia.astro';
 import { demos } from '../data/demos';
@@ -9,54 +9,50 @@ interface Props {
   project: CollectionEntry<'projects'>;
   n: number;
 }
-const { project, n } = Astro.props;
+const { project } = Astro.props;
 const { title, tagline, date, github, website, media, mediaAlt, video, results } = project.data;
 const href = `/projects/${project.id}/`;
 const demo = demos[project.id];
+const headline = results[0];
 ---
 
-<article class="frame flex flex-col">
-  {
-    media && (
-      <a href={demo ? `${href}#demo` : href} class="block border-b border-line bg-bg p-3" aria-label={`${title}: details`}>
-        <ProjectMedia media={media} video={video} alt={mediaAlt} width={720} class="aspect-[16/10] w-full object-contain" />
-      </a>
-    )
-  }
-  <div class="flex flex-1 flex-col p-5">
-    <div class="flex items-baseline justify-between gap-3">
-      <h3 class="text-xl font-semibold tracking-tight">
-        <span class="label mr-2 text-accent">{String(n).padStart(2, '0')}</span>
-        <a href={href} class="hover:text-accent">{title}</a>
-      </h3>
-      <span class="label shrink-0">{date}</span>
-    </div>
-    <p class="mt-2 text-[15px] leading-relaxed text-fg-muted">{tagline}</p>
-
+<article class="frame flex flex-col overflow-hidden" data-reveal>
+  <div class="px-7 pt-8 text-center sm:px-10 sm:pt-10">
+    <p class="label">{date}</p>
+    <h3 class="mt-1 text-3xl font-semibold tracking-[-0.03em] sm:text-[2.5rem] sm:leading-tight">
+      <a href={href} class="hover:opacity-80">{title}</a>
+    </h3>
     {
-      results.length > 0 && (
-        <dl class="mt-4 grid grid-cols-2 border-t border-line pt-3">
-          {results.slice(0, 2).map((r) => (
-            <div>
-              <dd class="font-mono text-[15px] font-medium text-fg">{r.value}</dd>
-              <dt class="label">{r.metric}</dt>
-            </div>
-          ))}
-        </dl>
+      headline && (
+        <p class="mt-2 text-lg font-medium text-fg">
+          {headline.value} <span class="text-fg-muted">{headline.metric}</span>
+        </p>
       )
     }
-
-    <p class="label mt-auto flex flex-wrap gap-x-5 gap-y-1 pt-4">
+    <p class="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-fg-muted">{tagline}</p>
+    <p class="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[15px]">
       {
         demo && (
-          <a href={`${href}#demo`} class="font-medium text-accent hover:underline" data-umami-event="demo-open" data-umami-event-project={title}>
-            ▶ {demo}
+          <a
+            href={`${href}#demo`}
+            class="rounded-full bg-accent px-4 py-1.5 font-medium text-white transition hover:opacity-90"
+            data-umami-event="demo-open"
+            data-umami-event-project={title}
+          >
+            {demo}
           </a>
         )
       }
-      <a href={href} class="hover:text-fg" data-umami-event="project-open" data-umami-event-project={title}>Details →</a>
-      {website && <a href={website} class="hover:text-fg" target="_blank" rel="noopener">Website ↗</a>}
-      {github && <a href={github} class="hover:text-fg" target="_blank" rel="noopener" data-umami-event="source" data-umami-event-project={title}>Source ↗</a>}
+      <a href={href} class="more" data-umami-event="project-open" data-umami-event-project={title}>Learn more ›</a>
+      {website && <a href={website} class="more" target="_blank" rel="noopener">Website ›</a>}
+      {!demo && github && <a href={github} class="more" target="_blank" rel="noopener" data-umami-event="source" data-umami-event-project={title}>Source ›</a>}
     </p>
   </div>
+  {
+    media && (
+      <a href={demo ? `${href}#demo` : href} class="mt-8 block px-6 pb-6" aria-label={`${title}: details`}>
+        <ProjectMedia media={media} video={video} alt={mediaAlt} width={760} class="aspect-[16/10] w-full rounded-2xl bg-bg object-contain p-2" />
+      </a>
+    )
+  }
 </article>

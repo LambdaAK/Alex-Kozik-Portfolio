@@ -10,21 +10,12 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: 'IBM Plex Sans',
-      cssVariable: '--font-plex',
-      weights: [400, 500, 600],
-      styles: ['normal', 'italic'],
-      subsets: ['latin'],
-      fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
-    },
-    {
-      provider: fontProviders.fontsource(),
-      name: 'IBM Plex Mono',
-      cssVariable: '--font-plex-mono',
-      weights: [400, 500],
+      name: 'Inter',
+      cssVariable: '--font-inter',
+      weights: ['400 700'],
       styles: ['normal'],
       subsets: ['latin'],
-      fallbacks: ['ui-monospace', 'monospace'],
+      fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
     },
   ],
   vite: {

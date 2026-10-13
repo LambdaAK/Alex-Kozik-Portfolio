@@ -1,35 +1,17 @@
 ---
-// A section with a drawing-sheet title block: number, title, and a ruler running to the edge.
+// A section with a large, tight Apple-style headline.
 interface Props {
   id: string;
   title: string;
-  n: number;
+  subtitle?: string;
 }
-const { id, title, n } = Astro.props;
+const { id, title, subtitle } = Astro.props;
 ---
 
-<section id={id} class="scroll-mt-20 pt-20" aria-labelledby={`${id}-title`}>
-  <div class="mb-8 flex items-end gap-4">
-    <span class="label pb-1 text-accent">{String(n).padStart(2, '0')}</span>
-    <h2 id={`${id}-title`} class="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h2>
-    <span class="ruler mb-2 h-2 flex-1" aria-hidden="true"></span>
+<section id={id} class="scroll-mt-14 pt-24 sm:pt-32" aria-labelledby={`${id}-title`}>
+  <div class="mb-8 sm:mb-10" data-reveal>
+    <h2 id={`${id}-title`} class="text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">{title}</h2>
+    {subtitle && <p class="mt-3 max-w-2xl text-lg text-fg-muted sm:text-xl">{subtitle}</p>}
   </div>
   <slot />
 </section>
-
-<style>
-  /* Tick marks every 8px, a taller one every 64px, sitting on a baseline. */
-  .ruler {
-    border-bottom: 1px solid var(--color-line);
-    background-image:
-      linear-gradient(90deg, var(--color-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-fg-faint) 1px, transparent 1px);
-    background-size:
-      8px 4px,
-      64px 8px;
-    background-position:
-      0 100%,
-      0 100%;
-    background-repeat: repeat-x;
-  }
-</style>
