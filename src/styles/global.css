@@ -15,8 +15,8 @@
   --color-fg-muted: #5e5d59;
   --color-fg-faint: #8f8d86;
   --color-line: #e3e0d6;
-  --color-accent: #c96442;
-  --color-accent-soft: #f5e6dc;
+  --color-accent: #2f7a6b;
+  --color-accent-soft: #dcefe9;
 }
 
 .dark {
@@ -26,8 +26,8 @@
   --color-fg-muted: #c2c0b6;
   --color-fg-faint: #8a8880;
   --color-line: #3e3e3a;
-  --color-accent: #d97757;
-  --color-accent-soft: #4a3329;
+  --color-accent: #6cc1ad;
+  --color-accent-soft: #1f3b35;
 }
 
 html {
@@ -257,7 +257,7 @@ body {
   text-decoration-color: var(--color-accent);
 }
 
-/* A little clay spark that spins on hover. */
+/* A little accent spark that spins on hover. */
 .spark {
   display: inline-block;
   color: var(--color-accent);
