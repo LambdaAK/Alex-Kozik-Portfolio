@@ -1,7 +1,7 @@
 ---
 title: Forge
 tagline: A statically typed functional language in OCaml with Hindley-Milner inference, traits and macros; its compiler emits LLVM IR, and native binaries ran 2.9-17× faster than CPython on three benchmark programs. Try it in your browser.
-summary: "A statically typed functional language built from scratch in OCaml, with Hindley–Milner type inference, traits, macros, and an LLVM backend whose native binaries run 3–17× faster than Python. It also compiles to JavaScript, so you can run it right here in the browser."
+summary: "A statically typed functional language built from scratch in OCaml, with Hindley–Milner type inference, traits, macros, and an LLVM backend whose native binaries run 3–17× faster than Python."
 question: What does it take to build a real functional language, from type inference to native code?
 date: 2023–26
 role: Solo
