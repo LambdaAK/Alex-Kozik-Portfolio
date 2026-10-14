@@ -1,6 +1,6 @@
 import type { ImageMetadata } from 'astro';
-import cmu from '../assets/logos/cmu.png';
-import cornell from '../assets/logos/cornell.svg';
+import cmu from '../assets/logos/cmu.svg';
+import cornell from '../assets/logos/cornell-tile.svg';
 
 export interface Education {
   school: string;
@@ -46,6 +46,7 @@ export const education: Education[] = [
     detail: 'GPA 4.11 / 4.3 · Summa Cum Laude',
     dates: 'Aug 2022 – Dec 2025',
     logo: cornell,
+    logoTile: true,
     notes: [],
     courses: [
       {
