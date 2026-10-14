@@ -24,6 +24,7 @@ const { items } = Astro.props;
             <span class="t-meta">{e.dates}</span>
           </div>
           <p class="t-sub">{e.role}</p>
+          {e.team && <p class="t-meta">{e.team}</p>}
           {e.courses && <CourseList items={e.courses} class="mt-1.5" />}
           {lead && <p class="t-desc mt-1">{lead}</p>}
           {(rest.length > 0 || e.links) && (

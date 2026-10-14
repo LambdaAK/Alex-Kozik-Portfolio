@@ -12,6 +12,8 @@ export interface Experience {
   company: string;
   url?: string;
   role: string;
+  // Team or group, shown in small text under the role.
+  team?: string;
   dates: string;
   logo: ImageMetadata;
   // Variant for dark mode when the logo has dark lettering.
@@ -48,10 +50,11 @@ export const experience: Experience[] = [
     company: 'Amazon',
     url: 'https://www.amazon.com/',
     role: 'Software Engineer Intern',
+    team: 'AI for Customer Service',
     dates: 'Jun – Aug 2026',
     logo: amazon,
     logoDark: amazonDark,
-    blurb: 'Built an ML-gated fraud check for damage claims on the AI for Customer Service team.',
+    blurb: 'Built an ML-gated fraud check for customer damage claims.',
     bullets: [
       'Architected an ML-gated damage-claim verification feature to block fraud and reduce manual review.',
       'Engineered a secure image-upload pipeline (S3 + virus scanning) passing scanned images to a computer-vision service that synchronously verifies reported damage and gates approval.',
