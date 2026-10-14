@@ -37,6 +37,11 @@ const groups = [
                   </a>
                 )}
                 {!demos[p.id] && p.data.demo && <span class="t-meta ml-2">live</span>}
+                {p.data.github && (
+                  <a href={p.data.github} class="t-meta ml-2 hover:text-fg" target="_blank" rel="noopener" data-umami-event="source" data-umami-event-project={p.data.title}>
+                    github ↗
+                  </a>
+                )}
               </p>
               <p class="t-desc mt-1">{p.data.summary ?? p.data.description}</p>
             </li>
