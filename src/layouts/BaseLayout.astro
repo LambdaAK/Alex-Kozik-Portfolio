@@ -76,7 +76,7 @@ const jsonLd = {
       (function () {
         try {
           var saved = localStorage.getItem('theme');
-          var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = saved === 'dark'; // light unless the visitor chose dark
           if (dark) document.documentElement.classList.add('dark');
         } catch (e) {}
       })();
