@@ -1,6 +1,5 @@
 ---
 import ProjectMedia from '../../components/ProjectMedia.astro';
-import ProjectIcon from '../../components/ProjectIcon.astro';
 import { getCollection, render } from 'astro:content';
 import Page from '../../layouts/Page.astro';
 import SnakeDemo from '../../components/SnakeDemo.astro';
@@ -14,14 +13,13 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, tagline, question, description, role, tech, github, demo, website, paper, links, image, imageDark, media, mediaAlt, video, results, highlights } =
+const { title, tagline, question, description, role, tech, github, demo, website, paper, links, media, mediaAlt, video, results, highlights } =
   project.data;
 const { Content } = await render(project);
 const hasBody = (project.body ?? '').trim().length > 0;
 ---
 
 <Page current="/projects/" title={`${title} – ${profile.name}`} description={tagline} path={`/projects/${project.id}/`} ogImage={`/og/${project.id}.png`}>
-  {project.id === 'forge' && <ProjectIcon image={image} dark={imageDark} title={title} size={48} class="mb-5 h-12 w-12" />}
   <h1 class="t-page">{title}</h1>
   {question && <p class="t-sub mt-2">{question}</p>}
   <p class="t-desc mt-3">{tagline}</p>
