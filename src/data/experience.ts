@@ -136,7 +136,7 @@ export const experience: Experience[] = [
     bullets: [],
     courses: [
       'CS 3780/5780 Introduction to Machine Learning (2025)',
-      'CS 4820/5820 Analysis of Algorithms (Fall 2024)',
+      'CS 4820/5820 Analysis of Algorithms (2024)',
       'CS 3110 Data Structures & Functional Programming (2023–24)',
     ],
     tech: ['Machine Learning', 'Algorithms', 'OCaml'],
