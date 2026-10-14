@@ -7,6 +7,8 @@ export interface Education {
   school: string;
   url?: string;
   degree: string;
+  // Field of study, shown on its own line under the degree.
+  major?: string;
   detail: string;
   dates: string;
   logo: ImageMetadata;
@@ -20,7 +22,8 @@ export const education: Education[] = [
   {
     school: 'Carnegie Mellon University',
     url: 'https://www.cs.cmu.edu/',
-    degree: 'Master of Science in Computer Science',
+    degree: 'Master of Science',
+    major: 'Computer Science',
     detail: 'Thesis track · Machine Learning and Systems',
     dates: 'Aug 2026 – Dec 2027',
     logo: cmu,
@@ -40,8 +43,9 @@ export const education: Education[] = [
   {
     school: 'Cornell University',
     url: 'https://www.cs.cornell.edu/',
-    degree: 'Bachelor of Arts in Computer Science & Mathematics',
-    detail: 'GPA 4.11 / 4.3',
+    degree: 'Bachelor of Arts',
+    major: 'Computer Science & Mathematics',
+    detail: 'GPA 4.11 / 4.3 · Summa Cum Laude in Computer Science',
     dates: 'Aug 2022 – Dec 2025',
     logo: cornell,
     notes: [],

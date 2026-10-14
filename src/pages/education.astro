@@ -17,6 +17,7 @@ import { education } from '../data/education';
                 <p class="font-medium">{e.degree}</p>
                 <span class="text-sm text-fg-faint">{e.dates}</span>
               </div>
+              {e.major && <p>{e.major}</p>}
               <p class="text-fg-muted">
                 {e.url ? (
                   <a href={e.url} class="ink" target="_blank" rel="noopener">
