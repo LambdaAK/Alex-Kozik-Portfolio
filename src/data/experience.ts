@@ -73,7 +73,7 @@ export const experience: Experience[] = [
   {
     company: 'Cornell Course Management System',
     url: 'https://cmsx.cs.cornell.edu/',
-    role: 'Software Engineering Lead & President',
+    role: 'Lead',
     research: true,
     dates: 'Aug 2023 – Jan 2026',
     logo: cmsx,
