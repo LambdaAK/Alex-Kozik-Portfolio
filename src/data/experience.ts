@@ -82,7 +82,6 @@ export const experience: Experience[] = [
     company: 'Cornell Course Management System',
     url: 'https://cmsx.cs.cornell.edu/',
     role: 'Lead',
-    research: true,
     dates: 'Aug 2023 – Jan 2026',
     logo: cmsx,
     logoDark: cmsxDark,
@@ -102,7 +101,8 @@ export const experience: Experience[] = [
   },
   {
     company: 'Generative AI @ Cornell',
-    role: 'Machine Learning Engineer · Founding Member',
+    role: 'Machine Learning Engineer',
+    team: 'Founding Member',
     dates: 'Feb – Dec 2025',
     logo: genai,
     blurb: 'Built LLM agents and AI tutors.',
@@ -115,7 +115,8 @@ export const experience: Experience[] = [
   {
     company: 'Carnegie Mellon University',
     url: 'https://www.cmu.edu/',
-    role: 'Software Engineer & Research Intern · NSF REU',
+    role: 'Software Engineer & Research Intern',
+    team: 'NSF REU',
     research: true,
     dates: 'May – Aug 2024',
     logo: cmu,
