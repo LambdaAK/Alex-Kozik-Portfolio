@@ -33,14 +33,29 @@ const ext = (href: string) => (href.startsWith('http') || href.endsWith('.pdf') 
         }
       </p>
     </div>
-    <Image
-      src={portrait}
-      alt="Alex Kozik"
-      width={400}
-      height={400}
-      class="h-32 w-32 shrink-0 rounded-full object-cover sm:h-44 sm:w-44"
-      loading="eager"
-    />
+    <figure class="relative shrink-0 self-start">
+      <Image
+        src={portrait}
+        alt="Alex Kozik"
+        width={400}
+        height={400}
+        class="h-32 w-32 rounded-full object-cover sm:h-44 sm:w-44"
+        loading="eager"
+      />
+      <button
+        type="button"
+        class="peer absolute right-1 bottom-1 inline-flex h-6 w-6 items-center justify-center rounded-full border border-line bg-bg font-display text-[13px] text-fg-muted italic transition hover:text-fg sm:right-2 sm:bottom-2"
+        aria-label="About this photo"
+        aria-describedby="photo-note"
+      >i</button>
+      <figcaption
+        id="photo-note"
+        role="tooltip"
+        class="t-meta pointer-events-none absolute top-full left-0 z-10 sm:right-0 sm:left-auto mt-2 w-60 rounded-lg border border-line bg-bg-elev p-2.5 opacity-0 shadow-sm transition-opacity peer-hover:opacity-100 peer-focus:opacity-100"
+      >
+        Standing to be recognized for the Jonathan E. Marx Memorial Senior Prize at Cornell’s 2026 CS graduation.
+      </figcaption>
+    </figure>
   </section>
 
 </Page>
