@@ -1,7 +1,7 @@
 ---
 title: C-torch
 tagline: A from-scratch C++ ML library (about 13k lines in lib/, 52 passing unit tests) whose DQN agent beats a random tic-tac-toe opponent in 91% of games, averaged over 10 training seeds.
-summary: "A machine learning library written from scratch in C++, with its own linear algebra, symbolic differentiation, 15+ models, DQN and REINFORCE agents, and synchronous distributed training across processes over TCP."
+summary: "A machine learning library written from scratch in C++, with its own linear algebra, symbolic differentiation, 15+ models, a neural network API, and distributed training across processes over TCP."
 question: What does it take to build the pieces of an ML framework (matrices, layers, optimizers, RL, data-parallel training) without any ML dependencies?
 date: 2025–26
 role: Solo
