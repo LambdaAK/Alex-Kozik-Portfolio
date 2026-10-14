@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Page from '../../layouts/Page.astro';
 import { profile } from '../../data/profile';
-import { demos } from '../../data/demos';
+import { demos, listedDemos } from '../../data/demos';
 
 const all = await getCollection('projects');
 const byOrder = (g: string) => all.filter((p) => p.data.group === g).sort((a, b) => a.data.order - b.data.order);
@@ -31,7 +31,7 @@ const groups = [
                 <a href={`/projects/${p.id}/`} class="t-title ink" data-umami-event="project-open" data-umami-event-project={p.data.title}>
                   {p.data.title}
                 </a>
-                {demos[p.id] && (
+                {listedDemos.has(p.id) && (
                   <a href={`/projects/${p.id}/#demo`} class="t-meta ml-2 hover:text-fg">
                     {demos[p.id]} →
                   </a>
