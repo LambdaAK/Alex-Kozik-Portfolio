@@ -78,7 +78,7 @@ About 24k lines of OCaml, a 132-line C runtime, and a 300-line standard library 
 
 Native binaries against CPython 3.14 running the same algorithm. Median of 5 runs on an M3 Max, including process start.
 
-| program | Forge | CPython | |
+| program | Forge | CPython | speedup |
 |---|---|---|---|
 | `fib 32`, naive recursion | 8 ms | 135 ms | 16.9× |
 | map and sum a 10,000-element list, 200 times | 81 ms | 372 ms | 4.6× |
