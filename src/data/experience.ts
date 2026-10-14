@@ -65,7 +65,8 @@ export const experience: Experience[] = [
   {
     company: 'Salesforce',
     url: 'https://www.salesforce.com/',
-    role: 'Software Engineer Intern · Metadata-Driven Services',
+    role: 'Software Engineer Intern',
+    team: 'Metadata-Driven Services',
     dates: 'Jun – Aug 2025',
     logo: salesforce,
     blurb: 'Built no-code ML features in Salesforce Data Cloud.',
