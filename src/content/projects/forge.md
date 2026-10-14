@@ -1,83 +1,93 @@
 ---
 title: Forge
-tagline: A statically typed functional language in OCaml with Hindley-Milner inference, traits and macros; its compiler emits LLVM IR, and native binaries ran 2.9-17× faster than CPython on three benchmark programs. Try it in your browser.
+tagline: A statically typed functional language, written in OCaml, that compiles to native code through LLVM.
 summary: "A statically typed functional language built from scratch in OCaml, with Hindley–Milner type inference, traits, macros, and an LLVM backend whose native binaries run 3–17× faster than Python."
-question: What does it take to build a real functional language, from type inference to native code?
 date: 2023–26
-role: Solo
-description: A functional language with type inference, algebraic data types, traits (typeclasses) and Rust-style macros. One OCaml front end feeds a tree-walking interpreter, a native compiler (Min IR → LLVM IR → clang), and an in-browser playground compiled with js_of_ocaml.
 group: featured
 order: 1
-tech:
-- OCaml
-- LLVM IR
-- C
-- clang
-- js_of_ocaml
-- dune
+tech: []
 github: https://github.com/LambdaAK/Forge
 website: https://forgepl.netlify.app/
-links:
-- label: Playground
-  href: /projects/forge/#playground
 image: ../../assets/logos/forge.svg
 imageDark: ../../assets/logos/forge-dark.svg
-media: ../../assets/media/forge.svg
-mediaAlt: 'Forge''s pipeline: one OCaml front end (parsing, macros, Hindley-Milner inference) feeds an LLVM-based native compiler, a tree-walking interpreter, and a js_of_ocaml build for the browser.'
-results:
-- metric: Native vs CPython
-  value: 2.9–16.9× faster
-  baseline: CPython 3.14 running the same algorithm; 3 programs, median of 5 runs, Apple M3 Max (measured)
-- metric: Test suite
-  value: 2,776 / 2,777 pass
-  baseline: dune test, including 544 compile-run-compare cases (543 pass) (measured)
-- metric: Browser build
-  value: 88 KB gzip
-  baseline: front end + type checker + interpreter via js_of_ocaml; output matches the native interpreter on all 544 cases
-highlights:
-- Hindley-Milner type inference with algebraic data types, records, pattern matching, and higher-kinded traits (Functor, Monad, ...) compiled by dictionary passing.
-- 'Native backend: typed core → Min IR → LLVM IR → clang -O1, linked with a small C runtime.'
-- macro_rules! token-tree macros with fragment matching and repetition, expanded before type checking.
-- 544 end-to-end tests compile each program to a native binary, run it and compare stdout; 2,777 tests in all.
-- 'Runs in the browser: the OCaml front end and interpreter compile to a 339 KB JavaScript file with a step limit for runaway programs.'
 ---
 
-## How it works
+## The language
 
-A Forge program is lexed and parsed together with a 300-line standard prelude that defines
-`List`, `Option` and the trait hierarchy (Show, Eq, Ord, Functor, Applicative, Monad, Foldable,
-Semigroup, Monoid). `macro_rules!` macros and modules are expanded first, then the program is
-"condensed" into a smaller core language and type-checked with constraint-based Hindley-Milner
-inference: `let compose f g x = f (g x)` gets `(b -> c) -> (a -> b) -> a -> c` with no annotations.
-Traits, including higher-kinded ones like `Functor<f<_>>`, are resolved by passing dictionaries
-explicitly, which the elaboration step inserts at call sites.
+Types are inferred. Nothing below has an annotation.
 
-The typed core has two back ends. The interpreter evaluates it directly and powers a REPL and an
-editor hover tool. The compiler lowers it to Min IR, a small first-order IR with explicit closures,
-then emits LLVM IR, which clang turns into an arm64 executable linked against a C runtime for
-allocation, variants and strings. The same OCaml code also compiles to JavaScript, which runs the
-playground on this page.
+```
+let compose f g x = f (g x)
+// compose : (b -> c) -> (a -> b) -> a -> c
+```
 
-## Results
+Generic data types, and traits over type constructors like `Functor<f<_>>`.
 
-Measured on an Apple M3 Max under load from other jobs (load average 9-16), wall time including
-process start, median of 5 runs. Each Python program runs the same algorithm with the same data
-structures (cons cells as tuples, recursive functions).
+```
+type rec Tree<a> =
+  | Leaf
+  | Node of (Tree<a>, a, Tree<a>)
 
-| program | Forge native | CPython 3.14 | |
+impl Functor for Tree where
+  fmap f t =
+    case t do
+    | Leaf -> Leaf
+    | Node (l, x, r) -> Node (fmap f l, f x, fmap f r)
+end
+
+let t = fmap (fn x -> x * 10) (Node (Leaf, 1, Node (Leaf, 2, Leaf)))
+// t = Node (Leaf, 10, Node (Leaf, 20, Leaf)) : Tree<Int>
+```
+
+Monads. `>>=` is defined once in the standard library for every `Monad`.
+
+```
+let safe_div x y = if y == 0 then None else Some (x / y)
+
+let a = Some 100 >>= (fn x -> safe_div x 4)   // Some 25
+let b = Some 100 >>= (fn x -> safe_div x 0)   // None
+```
+
+`macro_rules!` macros with repetition, expanded before type checking.
+
+```
+macro_rules! sum_all where
+  ($($x:expr),*) => (0 $(+ $x)*)
+end
+
+let total = sum_all!(1, 2, 3, 4)   // 10
+```
+
+## How it's built
+
+```
+source
+ → lexer, parser          2.7k lines of OCaml
+ → macros, modules        1.7k
+ → core language          1.2k
+ → type inference         3.3k
+ ├→ interpreter           1.2k   REPL and the playground above
+ └→ Min IR                5.2k   SSA, basic blocks, explicit closures
+    → LLVM IR             1.6k
+    → clang + C runtime   native arm64 binary
+```
+
+About 24k lines of OCaml, a 132-line C runtime, and a 300-line standard library written in Forge.
+
+## Performance
+
+Native binaries against CPython 3.14 running the same algorithm. Median of 5 runs on an M3 Max, including process start.
+
+| program | Forge | CPython | |
 |---|---|---|---|
 | `fib 32`, naive recursion | 8 ms | 135 ms | 16.9× |
-| list of 10,000: map, sum, ×200 | 81 ms | 372 ms | 4.6× |
-| build + sum a binary tree of depth 21 | 104 ms | 302 ms | 2.9× |
+| map and sum a 10,000-element list, 200 times | 81 ms | 372 ms | 4.6× |
+| build and sum a binary tree of depth 21 | 104 ms | 302 ms | 2.9× |
 
-Caveats: `Int` is 32-bit in the native code, and the runtime allocates with `malloc` and never frees
-(there is no garbage collector), which favours short programs like these. The tree-walking
-interpreter is far slower than CPython (15-80× on smaller inputs); it is meant for the REPL and
-tooling, not speed.
+There is no garbage collector yet, and `Int` is 32-bit in native code.
 
-## Try it
+2,777 tests. 544 of them compile a program to a native binary, run it, and compare the output.
 
-```bash
-dune build && make compile-forge FILE=programs/minimal.forge && ./a.out
-dune test
-```
+## Tooling
+
+A REPL, and a VS Code extension that shows inferred types on hover.

@@ -19,13 +19,8 @@ const examples = Object.entries(files)
   });
 ---
 
-<section class="forge-playground mt-8 rounded-xl border border-line bg-bg-elev p-4 sm:p-5" aria-labelledby="forge-pg-title" id="playground">
-  <div class="flex flex-wrap items-baseline justify-between gap-2">
-    <h2 id="forge-pg-title" class="font-display text-xl font-semibold">Try Forge in your browser</h2>
-    <p class="text-xs text-fg-faint">The real type checker and interpreter, compiled from OCaml to JS (339 KB). No server.</p>
-  </div>
-
-  <div class="mt-3 flex flex-wrap gap-1.5" role="tablist" aria-label="Examples">
+<section class="forge-playground rounded-xl border border-line bg-bg-elev p-4 sm:p-5" aria-label="Forge playground" id="playground">
+  <div class="flex flex-wrap gap-x-4 gap-y-1" role="tablist" aria-label="Examples">
     {
       examples.map((ex, i) => (
         <button
@@ -33,7 +28,7 @@ const examples = Object.entries(files)
           role="tab"
           aria-selected={i === 0 ? 'true' : 'false'}
           data-example={ex.id}
-          class="rounded-full border border-line px-3 py-1 text-xs font-medium text-fg-muted transition hover:border-accent hover:text-fg aria-selected:border-accent aria-selected:bg-accent-soft aria-selected:text-fg"
+          class="t-meta transition hover:text-fg aria-selected:text-fg aria-selected:underline aria-selected:decoration-accent aria-selected:underline-offset-4"
         >
           {ex.label}
         </button>
@@ -45,32 +40,34 @@ const examples = Object.entries(files)
     <div class="flex flex-col">
       <textarea
         data-editor
+        wrap="off"
         spellcheck="false"
         autocapitalize="off"
         autocomplete="off"
         aria-label="Forge source code"
-        class="h-80 w-full resize-y rounded-lg bg-[#0b0f14] p-3 font-mono text-[12.5px] leading-relaxed text-[#e6e8eb] ring-1 ring-line outline-none focus:ring-accent"
+        class="h-80 w-full resize-y rounded-lg bg-bg p-3 font-mono text-[12.5px] leading-relaxed text-fg ring-1 ring-line outline-none focus:ring-accent"
       >{examples[0].source}</textarea>
       <div class="mt-2 flex items-center gap-3">
-        <button type="button" data-run class="rounded-full bg-fg px-5 py-1.5 text-sm font-semibold text-bg hover:opacity-85" data-umami-event="forge-playground">
+        <button type="button" data-run class="rounded-full bg-fg px-4 py-1 text-[13px] font-medium text-bg hover:opacity-85" data-umami-event="forge-playground">
           ▶ Run
         </button>
-        <span class="text-xs text-fg-faint">⌘/Ctrl + Enter</span>
-        <span class="ml-auto font-mono text-xs text-fg-faint" data-status></span>
+        <span class="t-meta">⌘/Ctrl + Enter</span>
+        <span class="t-meta ml-auto font-mono" data-status></span>
       </div>
     </div>
 
     <div class="flex min-w-0 flex-col gap-3">
       <div>
-        <p class="text-[11px] font-medium tracking-wide text-fg-faint uppercase">Output</p>
+        <p class="t-meta">output</p>
         <pre data-output class="mt-1 max-h-40 min-h-[4.5rem] overflow-auto rounded-lg bg-bg p-3 font-mono text-[12.5px] leading-relaxed whitespace-pre-wrap text-fg ring-1 ring-line">Press Run.</pre>
       </div>
       <div>
-        <p class="text-[11px] font-medium tracking-wide text-fg-faint uppercase">Inferred types</p>
+        <p class="t-meta">inferred types</p>
         <ul data-types class="mt-1 max-h-48 space-y-0.5 overflow-auto rounded-lg bg-bg p-3 font-mono text-[12px] leading-relaxed ring-1 ring-line"></ul>
       </div>
     </div>
   </div>
+  <p class="t-meta mt-3">The real parser, type checker and interpreter, compiled from OCaml to JavaScript (87 KB gzipped). Runs in your browser.</p>
 </section>
 
 <script define:vars={{ examples }} is:inline>

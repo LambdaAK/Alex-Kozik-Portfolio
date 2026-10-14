@@ -6,6 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://alexkozik.com',
   integrations: [sitemap()],
+  // Code blocks stay plain text in the page's own colors, like the rest of the type.
+  markdown: { syntaxHighlight: false },
   // Self-hosted at build time; Astro also generates metric-matched fallbacks.
   fonts: [
     {

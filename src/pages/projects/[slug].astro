@@ -53,7 +53,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
       </a>
     ))}
   </p>
-  <p class="t-meta mt-1">{tech.join(' · ')}</p>
+  {tech.length > 0 && <p class="t-meta mt-1">{tech.join(' · ')}</p>}
 
   {
     demos[project.id] && (
@@ -73,7 +73,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
     )
   }
 
-  <p class="t-desc mt-10">{description}</p>
+  {description && <p class="t-desc mt-10">{description}</p>}
 
   {
     highlights.length > 0 && (
@@ -87,7 +87,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
 
   {
     hasBody && (
-      <article class="prose mt-6">
+      <article class="prose mt-10">
         <Content />
       </article>
     )

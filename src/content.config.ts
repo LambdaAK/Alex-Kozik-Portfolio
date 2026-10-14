@@ -14,7 +14,7 @@ const projects = defineCollection({
       // The question the project answers, shown under the title.
       question: z.string().optional(),
       // 1–2 sentences shown on featured cards and the project page.
-      description: z.string(),
+      description: z.string().optional(),
       // featured: homepage top 4. ml / systems: compact homepage lists. archive: /projects only.
       group: z.enum(['featured', 'ml', 'systems', 'archive']),
       order: z.number(),
