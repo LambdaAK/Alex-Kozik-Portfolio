@@ -32,7 +32,7 @@ export const experience: Experience[] = [
   {
     company: 'Carnegie Mellon University',
     url: 'https://www.cs.cmu.edu/',
-    role: 'Machine Learning Researcher',
+    role: 'Graduate Research Assistant',
     research: true,
     dates: 'Aug 2026 – Present',
     logo: cmu,
