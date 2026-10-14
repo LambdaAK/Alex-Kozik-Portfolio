@@ -12,7 +12,7 @@ export interface Experience {
   company: string;
   url?: string;
   role: string;
-  // Team or group, shown in small text under the role.
+  // Team or group, shown on its own line under the role.
   team?: string;
   dates: string;
   logo: ImageMetadata;
