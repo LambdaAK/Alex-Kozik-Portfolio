@@ -8,7 +8,7 @@ export interface Education {
   degree: string;
   // Field of study, shown on its own line under the degree.
   major?: string;
-  detail: string;
+  detail?: string;
   dates: string;
   logo: ImageMetadata;
   // The logo has its own background, so show it as a rounded tile.
@@ -21,9 +21,8 @@ export const education: Education[] = [
   {
     school: 'Carnegie Mellon University',
     url: 'https://www.cs.cmu.edu/',
-    degree: 'Master of Science',
-    major: 'Computer Science',
-    detail: 'Thesis track, Machine Learning and Systems',
+    degree: 'Master of Science (Thesis Track)',
+    major: 'Computer Science (ML/AI)',
     dates: 'Aug 2026 – Dec 2027',
     logo: cmu,
     logoTile: true,

@@ -18,7 +18,7 @@ import { education } from '../data/education';
               <span class="t-meta">{e.dates}</span>
             </div>
             <p class="t-sub">{e.major ? `${e.degree}, ${e.major}` : e.degree}</p>
-            <p class="t-desc mt-1">{[e.detail, ...e.notes].join(' · ')}</p>
+            {(e.detail || e.notes.length > 0) && <p class="t-desc mt-1">{[e.detail, ...e.notes].filter(Boolean).join(' · ')}</p>}
             <details class="group mt-1">
               <summary class="t-toggle">
                 <span class="group-open:hidden">coursework</span>
