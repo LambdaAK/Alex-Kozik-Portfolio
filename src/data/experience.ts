@@ -47,7 +47,7 @@ export const experience: Experience[] = [
   {
     company: 'Amazon',
     url: 'https://www.amazon.com/',
-    role: 'Software Development Engineer Intern · AI for Customer Service',
+    role: 'Software Engineer Intern · AI for Customer Service',
     dates: 'Jun – Aug 2026',
     logo: amazon,
     logoDark: amazonDark,
