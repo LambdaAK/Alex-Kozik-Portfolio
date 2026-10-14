@@ -21,7 +21,7 @@ const { current, heading, ...rest } = Astro.props;
 <BaseLayout {...rest}>
   <header class="sticky top-0 z-40 border-b border-line/60 bg-bg">
     <div class="mx-auto flex h-12 max-w-[44rem] items-center gap-6 px-5 text-sm">
-      <a href="/" class="group shrink-0 font-display text-[17px] font-medium"><span class="spark mr-1" aria-hidden="true">✻</span>{profile.name.toLowerCase()}</a>
+      <a href="/" class="t-title group shrink-0 font-display"><span class="spark mr-1" aria-hidden="true">✻</span>{profile.name.toLowerCase()}</a>
       <nav class="flex min-w-0 flex-1 gap-x-5 overflow-x-auto py-2 text-fg-faint [scrollbar-width:none]" aria-label="Pages">
         {
           nav.map((n) => (
@@ -36,7 +36,7 @@ const { current, heading, ...rest } = Astro.props;
   </header>
 
   <main id="main" class="mx-auto max-w-[44rem] px-5 pt-14 pb-24 sm:pt-20">
-    {heading && <h1 class="mb-8 font-display text-3xl font-medium tracking-[-0.01em]">{heading}<span class="text-accent">.</span></h1>}
+    {heading && <h1 class="t-page mb-8">{heading}<span class="text-accent">.</span></h1>}
     <slot />
   </main>
 </BaseLayout>

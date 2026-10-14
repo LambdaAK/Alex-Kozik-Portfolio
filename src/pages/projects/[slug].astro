@@ -22,26 +22,26 @@ const hasBody = (project.body ?? '').trim().length > 0;
 
 <Page current="/projects/" title={`${title} – ${profile.name}`} description={tagline} path={`/projects/${project.id}/`} ogImage={`/og/${project.id}.png`}>
   {project.id === 'forge' && <ProjectIcon image={image} dark={imageDark} title={title} size={48} class="mb-5 h-12 w-12" />}
-  <h1 class="text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{title}</h1>
-  {question && <p class="mt-3 text-lg leading-snug text-fg-muted">{question}</p>}
-  <p class="mt-5">{tagline}</p>
-  <p class="mt-3 text-sm text-fg-faint">{[date, role].filter(Boolean).join(' · ')}</p>
+  <h1 class="t-page">{title}</h1>
+  {question && <p class="t-sub mt-2">{question}</p>}
+  <p class="t-desc mt-3">{tagline}</p>
+  <p class="t-meta mt-2">{[date, role].filter(Boolean).join(' · ')}</p>
 
   {
     results.length > 0 && (
       <dl class="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-3">
         {results.map((r) => (
           <div>
-            <dd class="font-medium">{r.value}</dd>
-            <dt class="text-sm text-fg-muted">{r.metric}</dt>
-            {r.baseline && <dd class="text-sm text-fg-faint">{r.baseline}</dd>}
+            <dd class="t-title">{r.value}</dd>
+            <dt class="t-desc">{r.metric}</dt>
+            {r.baseline && <dd class="t-meta">{r.baseline}</dd>}
           </div>
         ))}
       </dl>
     )
   }
 
-  <p class="mt-6 flex flex-wrap gap-x-5 gap-y-1 text-[15px]">
+  <p class="t-desc mt-6 flex flex-wrap gap-x-4 gap-y-1">
     {demos[project.id] && <a href="#demo" class="ink">{demos[project.id]} ↓</a>}
     {demo && <a href={demo} class="ink" target="_blank" rel="noopener">live demo</a>}
     {website && <a href={website} class="ink" target="_blank" rel="noopener">website</a>}
@@ -53,7 +53,7 @@ const hasBody = (project.body ?? '').trim().length > 0;
       </a>
     ))}
   </p>
-  <p class="mt-2 text-sm text-fg-faint">{tech.join(' · ')}</p>
+  <p class="t-meta mt-1">{tech.join(' · ')}</p>
 
   {
     demos[project.id] && (
@@ -68,16 +68,16 @@ const hasBody = (project.body ?? '').trim().length > 0;
     media && (
       <figure class="mt-10">
         <ProjectMedia media={media} video={video} alt={mediaAlt} width={1200} class="w-full rounded-xl bg-bg-elev p-2" />
-        {mediaAlt && <figcaption class="mt-2 text-sm leading-relaxed text-fg-faint">{mediaAlt}</figcaption>}
+        {mediaAlt && <figcaption class="t-meta mt-2">{mediaAlt}</figcaption>}
       </figure>
     )
   }
 
-  <p class="mt-10 leading-relaxed text-fg-muted">{description}</p>
+  <p class="t-desc mt-10">{description}</p>
 
   {
     highlights.length > 0 && (
-      <ul class="mt-5 list-disc space-y-2 pl-5 leading-relaxed text-fg-muted marker:text-fg-faint">
+      <ul class="t-desc mt-4 list-disc space-y-1.5 pl-5 marker:text-fg-faint">
         {highlights.map((h) => (
           <li>{h}</li>
         ))}
@@ -87,13 +87,13 @@ const hasBody = (project.body ?? '').trim().length > 0;
 
   {
     hasBody && (
-      <article class="prose mt-6 text-fg">
+      <article class="prose mt-6">
         <Content />
       </article>
     )
   }
 
-  <p class="mt-16 border-t border-line pt-5 text-sm">
-    <a href="/projects/" class="ink text-fg-muted">← all projects</a>
+  <p class="t-meta mt-16 border-t border-line pt-5">
+    <a href="/projects/" class="ink">← all projects</a>
   </p>
 </Page>

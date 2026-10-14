@@ -6,8 +6,8 @@ import { demos } from '../../data/demos';
 
 const all = await getCollection('projects');
 const byOrder = (g: string) => all.filter((p) => p.data.group === g).sort((a, b) => a.data.order - b.data.order);
-const featured = byOrder('featured');
-const others = [
+const groups = [
+  { label: 'Selected', items: byOrder('featured') },
   { label: 'ML / AI', items: byOrder('ml') },
   { label: 'Software engineering', items: byOrder('systems') },
 ];
@@ -15,54 +15,33 @@ const others = [
 
 <Page
   current="/projects/"
-  heading="Selected projects"
+  heading="Projects"
   title={`Projects – ${profile.name}`}
   description={`Projects by ${profile.name}: a compiler, an LLM serving stack, a C++ ML library, RL agents and more.`}
   path="/projects/"
 >
-  <ul class="space-y-6">
-    {
-      featured.map((p) => {
-        return (
-          <li>
-            <div class="flex items-baseline justify-between gap-4">
-              <p>
-                <a href={`/projects/${p.id}/`} class="ink font-medium" data-umami-event="project-open" data-umami-event-project={p.data.title}>
-                  {p.data.title}
-                </a>
-                {demos[p.id] && (
-                  <a href={`/projects/${p.id}/#demo`} class="ml-2 text-sm text-fg-faint hover:text-fg">
-                    {demos[p.id]} →
-                  </a>
-                )}
-              </p>
-              <span class="shrink-0 text-sm text-fg-faint">{p.data.date}</span>
-            </div>
-            <p class="mt-1 leading-relaxed text-fg-muted">{p.data.summary ?? p.data.description}</p>
-          </li>
-        );
-      })
-    }
-  </ul>
-
-  <h2 class="mt-16 mb-6 font-display text-2xl font-medium">More projects<span class="text-accent">.</span></h2>
   {
-    others.map((g, i) => (
-      <section class={i ? 'mt-8' : ''} aria-label={g.label}>
-        <h3 class="text-sm text-fg-faint">{g.label}</h3>
-        <ul class="mt-3 space-y-4">
+    groups.map((g, i) => (
+      <section class={i ? 'mt-12' : ''} aria-label={g.label}>
+        <h2 class="t-group mb-4">{g.label}</h2>
+        <ul class="space-y-6">
           {g.items.map((p) => (
             <li>
-              <div class="flex items-baseline justify-between gap-4">
-                <p class="min-w-0">
-                  <a href={`/projects/${p.id}/`} class="ink">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                <p>
+                  <a href={`/projects/${p.id}/`} class="t-title ink" data-umami-event="project-open" data-umami-event-project={p.data.title}>
                     {p.data.title}
                   </a>
-                  {(demos[p.id] || p.data.demo) && <span class="text-sm text-fg-faint"> · live</span>}
+                  {demos[p.id] && (
+                    <a href={`/projects/${p.id}/#demo`} class="t-meta ml-2 hover:text-fg">
+                      {demos[p.id]} →
+                    </a>
+                  )}
+                  {!demos[p.id] && p.data.demo && <span class="t-meta ml-2">live</span>}
                 </p>
-                <span class="shrink-0 text-sm text-fg-faint">{p.data.date}</span>
+                <span class="t-meta">{p.data.date}</span>
               </div>
-              {p.data.summary && <p class="mt-0.5 text-[15px] leading-snug text-fg-muted">{p.data.summary}</p>}
+              <p class="t-desc mt-1">{p.data.summary ?? p.data.description}</p>
             </li>
           ))}
         </ul>

@@ -17,25 +17,25 @@ const { items } = Astro.props;
         <Logo src={e.logo} dark={e.logoDark} tile={e.logoTile} />
         <div class="min-w-0 flex-1">
           <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-            <p class="font-medium">{e.company}</p>
-            <span class="text-sm text-fg-faint">{e.dates}</span>
+            <p class="t-title">{e.company}</p>
+            <span class="t-meta">{e.dates}</span>
           </div>
-          <p class="text-[15px] text-fg-muted">{e.role}</p>
+          <p class="t-sub">{e.role}</p>
           {e.courses && <CourseList items={e.courses} class="mt-1.5" />}
-          {e.bullets[0] && <p class="mt-1 text-sm leading-relaxed text-fg-muted">{e.bullets[0]}</p>}
+          {e.bullets[0] && <p class="t-desc mt-1">{e.bullets[0]}</p>}
           {(e.bullets.length > 1 || e.links) && (
             <details class="group mt-1">
-              <summary class="more cursor-pointer list-none text-xs hover:text-fg">
+              <summary class="t-toggle">
                 <span class="group-open:hidden">more</span>
                 <span class="hidden group-open:inline">less</span>
               </summary>
-              <ul class="mt-1.5 list-disc space-y-1 pl-5 text-sm leading-relaxed text-fg-muted marker:text-fg-faint">
+              <ul class="t-desc mt-1.5 list-disc space-y-1 pl-5 marker:text-fg-faint">
                 {e.bullets.slice(1).map((b) => (
                   <li>{b}</li>
                 ))}
               </ul>
               {e.links && (
-                <p class="mt-2 flex flex-wrap gap-x-4 text-sm">
+                <p class="t-desc mt-2 flex flex-wrap gap-x-4">
                   {e.links.map((l) => (
                     <a
                       href={l.href}

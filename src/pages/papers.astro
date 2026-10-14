@@ -9,12 +9,14 @@ import { papers } from '../data/papers';
     {
       papers.map((p) => (
         <li>
-          <a href={p.pdf} class="ink font-medium" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={p.title}>
-            {p.title}
-          </a>
-          <p class="mt-0.5 text-sm text-fg-faint">{p.venue}</p>
-          <p class="mt-2 leading-relaxed text-fg-muted">{p.summary}</p>
-          <p class="mt-2 flex flex-wrap gap-x-5 text-sm">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+            <a href={p.pdf} class="t-title ink" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={p.title}>
+              {p.title}
+            </a>
+          </div>
+          <p class="t-sub">{p.venue}</p>
+          <p class="t-desc mt-1">{p.summary}</p>
+          <p class="t-desc mt-1 flex flex-wrap gap-x-4">
             <a href={p.pdf} class="ink" target="_blank" rel="noopener">pdf</a>
             {p.code && (
               <a href={p.code} class="ink" target="_blank" rel="noopener">
