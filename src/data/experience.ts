@@ -1,5 +1,6 @@
 import type { ImageMetadata } from 'astro';
-import cmu from '../assets/logos/cmu.png';
+import cmu from '../assets/logos/cmu-wordmark.svg';
+import cmuDark from '../assets/logos/cmu-wordmark-dark.svg';
 import amazon from '../assets/logos/amazon.svg';
 import amazonDark from '../assets/logos/amazon-dark.svg';
 import salesforce from '../assets/logos/salesforce.svg';
@@ -40,7 +41,7 @@ export const experience: Experience[] = [
     research: true,
     dates: 'Aug 2026 – Present',
     logo: cmu,
-    logoTile: true,
+    logoDark: cmuDark,
     bullets: [
       "Reinforcement learning for foundation models in Prof. Andrea Zanette's group.",
     ],
@@ -118,7 +119,7 @@ export const experience: Experience[] = [
     research: true,
     dates: 'May – Aug 2024',
     logo: cmu,
-    logoTile: true,
+    logoDark: cmuDark,
     blurb: 'Built a polymorphic type system for SASyLF, a language for writing proofs.',
     bullets: [
       'Worked on the interpreter for SASyLF, a language for writing proofs, implementing core features in Java.',

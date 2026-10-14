@@ -1,5 +1,6 @@
 import type { ImageMetadata } from 'astro';
-import cmu from '../assets/logos/cmu.png';
+import cmu from '../assets/logos/cmu-wordmark.svg';
+import cmuDark from '../assets/logos/cmu-wordmark-dark.svg';
 import cornell from '../assets/logos/cornell.svg';
 
 export interface Education {
@@ -11,6 +12,8 @@ export interface Education {
   detail?: string;
   dates: string;
   logo: ImageMetadata;
+  // Variant for dark mode when the logo has dark lettering.
+  logoDark?: ImageMetadata;
   // The logo has its own background, so show it as a rounded tile.
   logoTile?: boolean;
   notes: string[];
@@ -25,7 +28,7 @@ export const education: Education[] = [
     major: 'Computer Science (ML/AI)',
     dates: 'Aug 2026 – Dec 2027',
     logo: cmu,
-    logoTile: true,
+    logoDark: cmuDark,
     notes: [],
     courses: [
       {

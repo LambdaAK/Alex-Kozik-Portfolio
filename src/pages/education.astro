@@ -11,7 +11,7 @@ import { education } from '../data/education';
     {
       education.map((e) => (
         <li class="flex gap-5">
-          <Logo src={e.logo} tile={e.logoTile} />
+          <Logo src={e.logo} dark={e.logoDark} tile={e.logoTile} />
           <div class="min-w-0 flex-1">
             <div class="flex flex-wrap items-baseline justify-between gap-x-4">
               <p class="t-title">{e.school}</p>
