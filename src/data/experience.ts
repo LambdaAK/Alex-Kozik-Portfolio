@@ -20,6 +20,8 @@ export interface Experience {
   logoTile?: boolean;
   // Courses taught or supported, shown as an aligned list.
   courses?: string[];
+  // One short line shown up front; the full bullets go under "more". Without it, the first bullet leads.
+  blurb?: string;
   bullets: string[];
   tech: string[];
   // Shown under Research instead of Experience.
@@ -49,9 +51,10 @@ export const experience: Experience[] = [
     dates: 'Jun – Aug 2026',
     logo: amazon,
     logoDark: amazonDark,
+    blurb: 'Built an ML-gated fraud check for customer damage claims.',
     bullets: [
       'Architected an ML-gated damage-claim verification feature to block fraud and reduce manual review.',
-      'Engineered a secure image-upload pipeline (S3 + virus scanning) that passes scanned images to a computer-vision service, which synchronously verifies reported damage and gates approval.',
+      'Engineered a secure image-upload pipeline (S3 + virus scanning) passing scanned images to a computer-vision service that synchronously verifies reported damage and gates approval.',
       'Built the Java/Kotlin backend orchestrating the multi-step upload-to-decision sequence across services.',
     ],
     tech: ['Java', 'Kotlin', 'AWS S3', 'Computer Vision'],
@@ -62,10 +65,11 @@ export const experience: Experience[] = [
     role: 'Software Engineer Intern · Metadata-Driven Services',
     dates: 'Jun – Aug 2025',
     logo: salesforce,
+    blurb: 'Built no-code ML features in Salesforce Data Cloud.',
     bullets: [
       'Built virtual formula fields in Salesforce Data Cloud for no-code ML features at enterprise scale.',
       'Implemented query-time computation over data objects, eliminating staleness and storage overhead.',
-      'Engineered the Java/Apache Spark layer for formula evaluation over cross-object joins and aggregations, plus the React/TypeScript UI for creating fields.',
+      'Engineered the Java/Apache Spark layer for formula evaluation over cross-object joins and aggregations.',
     ],
     tech: ['Java', 'Apache Spark', 'React', 'TypeScript'],
   },
@@ -77,11 +81,11 @@ export const experience: Experience[] = [
     dates: 'Aug 2023 – Jan 2026',
     logo: cmsx,
     logoDark: cmsxDark,
+    blurb: "Led the team behind Cornell's course management system.",
     bullets: [
-      "Led a team of 20 engineers building Cornell's CS course management system, used by 10,000+ students.",
-      'Architected the React/TypeScript student-facing frontend, reducing page load times by 90%, and led the rewrite of the legacy JSP site in React.',
-      'Migrated the app from Redux to component-level state and designed 10+ APIs with serializable data structures for secure frontend/backend communication.',
-      'Joined as a full-stack engineer (2023), became frontend lead (2024), then president (2025): ran recruiting, onboarding, code review and architecture decisions.',
+      'Led a team of 20 engineers building Cornell’s course management system, used by 10,000+ students.',
+      'Architected the React/TypeScript student-facing frontend, reducing page load times by 90%.',
+      'Implemented APIs with serializable data structures for secure frontend/backend communication.',
     ],
     tech: ['React', 'TypeScript', 'Java', 'MUI'],
     links: [
@@ -96,9 +100,10 @@ export const experience: Experience[] = [
     role: 'Machine Learning Engineer · Founding Member',
     dates: 'Feb – Dec 2025',
     logo: genai,
+    blurb: 'Built LLM agents and AI tutors for real users.',
     bullets: [
-      'Developed an AI agent for QuickFi, a commercial lending company, automating insurance-certificate validation and compliance checks and replacing a manual review step.',
-      'Built the frontend and vector database for ClassGPT, which lets professors create AI tutors for their classes.',
+      'Developed AI agent for QuickFi, a commercial lending technology company, automating insurance certificate validation and compliance verification processes, replacing a manual review step.',
+      'Built frontend and vector database for ClassGPT, enabling professors to create AI tutors for classes.',
     ],
     tech: ['LLM Agents', 'Vector Databases', 'React'],
   },
@@ -110,15 +115,12 @@ export const experience: Experience[] = [
     dates: 'May – Aug 2024',
     logo: cmu,
     logoTile: true,
+    blurb: 'Built a polymorphic type system for SASyLF, a language for writing proofs.',
     bullets: [
-      'Added parameterized (functor-style) modules to SASyLF, a proof assistant for programming-language metatheory: argument checking with specific errors, plus deep copy and substitution across the whole AST.',
-      'All 204 commits merged upstream and released as SASyLF 1.6.0, "Polymorphic modules".',
-      'Built a Python regression runner and 79 regression tests for the checker.',
+      'Worked on the interpreter for SASyLF, a language for writing proofs, implementing core features in Java.',
+      'Implemented a polymorphic type system for SASyLF, similar to Java generics, enabling type-safe code reuse and significantly reducing duplication in proofs by allowing abstraction over multiple data types.',
     ],
     tech: ['Java', 'Python', 'Programming Languages'],
-    links: [
-      { label: 'Upstream merge (PR #128)', href: 'https://github.com/boyland/sasylf/pull/128' },
-    ],
   },
   {
     company: 'Cornell Bowers CIS',

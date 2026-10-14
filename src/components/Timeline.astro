@@ -12,7 +12,10 @@ const { items } = Astro.props;
 
 <ol class="space-y-6">
   {
-    items.map((e) => (
+    items.map((e) => {
+      const lead = e.blurb ?? e.bullets[0];
+      const rest = e.blurb ? e.bullets : e.bullets.slice(1);
+      return (
       <li class="flex gap-5">
         <Logo src={e.logo} dark={e.logoDark} tile={e.logoTile} />
         <div class="min-w-0 flex-1">
@@ -22,15 +25,15 @@ const { items } = Astro.props;
           </div>
           <p class="t-sub">{e.role}</p>
           {e.courses && <CourseList items={e.courses} class="mt-1.5" />}
-          {e.bullets[0] && <p class="t-desc mt-1">{e.bullets[0]}</p>}
-          {(e.bullets.length > 1 || e.links) && (
+          {lead && <p class="t-desc mt-1">{lead}</p>}
+          {(rest.length > 0 || e.links) && (
             <details class="group mt-1">
               <summary class="t-toggle">
                 <span class="group-open:hidden">more</span>
                 <span class="hidden group-open:inline">less</span>
               </summary>
               <ul class="t-desc mt-1.5 list-disc space-y-1 pl-5 marker:text-fg-faint">
-                {e.bullets.slice(1).map((b) => (
+                {rest.map((b) => (
                   <li>{b}</li>
                 ))}
               </ul>
@@ -53,6 +56,7 @@ const { items } = Astro.props;
           )}
         </div>
       </li>
-    ))
+      );
+    })
   }
 </ol>
