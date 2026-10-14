@@ -85,7 +85,7 @@ export const experience: Experience[] = [
     dates: 'Aug 2023 – Jan 2026',
     logo: cmsx,
     logoDark: cmsxDark,
-    blurb: "Led the team behind Cornell's course management system.",
+    blurb: "Led the software engineering team behind Cornell's course management system.",
     bullets: [
       'Led a team of 20 engineers building Cornell’s course management system, used by 10,000+ students.',
       'Architected the React/TypeScript student-facing frontend, reducing page load times by 90%.',
