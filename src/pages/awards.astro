@@ -5,14 +5,17 @@ import { awards } from '../data/awards';
 ---
 
 <Page current="/awards/" heading="Awards" title={`Awards – ${profile.name}`} path="/awards/">
-    <ul class="space-y-3">
+    <ul class="space-y-4">
       {
         awards.map((a) => (
           <li class="flex items-baseline justify-between gap-4">
-            <p>
-              {a.title}
-              <span class="text-fg-muted"> · {a.org}</span>
-            </p>
+            <div>
+              <p>
+                {a.title}
+                <span class="text-fg-muted"> · {a.org}</span>
+              </p>
+              <p class="text-sm text-fg-faint">{a.brief}</p>
+            </div>
             <span class="shrink-0 text-sm text-fg-faint">{a.year}</span>
           </li>
         ))
