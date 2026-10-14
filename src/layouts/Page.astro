@@ -10,7 +10,6 @@ interface Props {
   description?: string;
   path?: string;
   ogImage?: string;
-  field?: boolean;
   /** Nav item to mark as current, by href. */
   current?: string;
   /** Small label above the content, e.g. "Experience". */
@@ -20,7 +19,7 @@ const { current, heading, ...rest } = Astro.props;
 ---
 
 <BaseLayout {...rest}>
-  <header class="sticky top-0 z-40 bg-bg/80 backdrop-blur-md">
+  <header class="sticky top-0 z-40 border-b border-line/60 bg-bg">
     <div class="mx-auto flex h-12 max-w-[44rem] items-center gap-6 px-5 text-sm">
       <a href="/" class="group shrink-0 font-display text-[17px] font-medium"><span class="spark mr-1" aria-hidden="true">✻</span>{profile.name.toLowerCase()}</a>
       <nav class="flex min-w-0 flex-1 gap-x-5 overflow-x-auto py-2 text-fg-faint [scrollbar-width:none]" aria-label="Pages">

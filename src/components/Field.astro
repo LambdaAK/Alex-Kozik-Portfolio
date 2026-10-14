@@ -24,7 +24,7 @@
   let t = Math.random() * 1000;
 
   function resize() {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
+    const dpr = Math.min(devicePixelRatio || 1, 1.5);
     w = innerWidth;
     h = canvas.clientHeight || innerHeight * 0.7;
     canvas.width = w * dpr;
@@ -122,10 +122,17 @@
     for (let i = 0; i < 400; i++) step();
     draw();
   } else {
-    raf = requestAnimationFrame(loop);
-    document.addEventListener('visibilitychange', () => {
+    // Animate only while the field is on screen and the tab is visible.
+    let onScreen = true;
+    const sync = () => {
       cancelAnimationFrame(raf);
-      if (!document.hidden) raf = requestAnimationFrame(loop);
-    });
+      if (onScreen && !document.hidden) raf = requestAnimationFrame(loop);
+    };
+    new IntersectionObserver(([e]) => {
+      onScreen = e.isIntersecting;
+      sync();
+    }).observe(canvas);
+    document.addEventListener('visibilitychange', sync);
+    sync();
   }
 </script>
