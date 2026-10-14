@@ -47,11 +47,11 @@ export const experience: Experience[] = [
   {
     company: 'Amazon',
     url: 'https://www.amazon.com/',
-    role: 'Software Engineer Intern · AI for Customer Service',
+    role: 'Software Engineer Intern',
     dates: 'Jun – Aug 2026',
     logo: amazon,
     logoDark: amazonDark,
-    blurb: 'Built an ML-gated fraud check for customer damage claims.',
+    blurb: 'Built an ML-gated fraud check for damage claims on the AI for Customer Service team.',
     bullets: [
       'Architected an ML-gated damage-claim verification feature to block fraud and reduce manual review.',
       'Engineered a secure image-upload pipeline (S3 + virus scanning) passing scanned images to a computer-vision service that synchronously verifies reported damage and gates approval.',
