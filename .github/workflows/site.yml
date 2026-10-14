@@ -20,6 +20,10 @@ jobs:
       - run: npm ci
       # Runs astro check (types, content schema) and the static build.
       - run: npm run build
+      # Every page in real Chrome: errors, crashes, broken links/images, demos, phone layout.
+      - run: node tests/site-check.mjs
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
       - name: Check links in the built site
         uses: lycheeverse/lychee-action@v2
         with:
