@@ -62,13 +62,13 @@ let total = sum_all!(1, 2, 3, 4)   // 10
 
 ```
 source
- → lexer, parser          2.7k lines of OCaml
- → macros, modules        1.7k
- → core language          1.2k
- → type inference         3.3k
- ├→ interpreter           1.2k   REPL and the playground above
- └→ Min IR                5.2k   SSA, basic blocks, explicit closures
-    → LLVM IR             1.6k
+ → lexer, parser
+ → macros, modules
+ → core language
+ → type inference
+ ├→ interpreter           REPL and the playground above
+ └→ Min IR                SSA, basic blocks, explicit closures
+    → LLVM IR
     → clang + C runtime   native arm64 binary
 ```
 
