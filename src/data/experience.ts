@@ -1,12 +1,12 @@
 import type { ImageMetadata } from 'astro';
-import cmu from '../assets/logos/cmu.svg';
+import cmu from '../assets/logos/cmu.png';
 import amazon from '../assets/logos/amazon.svg';
 import amazonDark from '../assets/logos/amazon-dark.svg';
 import salesforce from '../assets/logos/salesforce.svg';
 import cmsx from '../assets/logos/cmsx.svg';
 import cmsxDark from '../assets/logos/cmsx-dark.svg';
 import genai from '../assets/logos/genai-cornell.png';
-import cornell from '../assets/logos/cornell-tile.svg';
+import cornell from '../assets/logos/cornell.svg';
 
 export interface Experience {
   company: string;
@@ -127,7 +127,6 @@ export const experience: Experience[] = [
     role: 'Teaching Assistant',
     dates: 'Aug 2023 – Dec 2025',
     logo: cornell,
-    logoTile: true,
     bullets: [],
     courses: [
       'CS 3780/5780 Introduction to Machine Learning (2025)',
