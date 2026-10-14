@@ -10,8 +10,6 @@ github: https://github.com/LambdaAK/dX
 demo: https://dxlab.netlify.app/
 ---
 
-![The K-means lab: three clusters and their centroids](../../assets/media/dx.jpg)
-
 ## Labs
 
 | area | methods |
