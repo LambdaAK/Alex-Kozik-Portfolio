@@ -19,7 +19,7 @@ const { Content } = await render(project);
 const hasBody = (project.body ?? '').trim().length > 0;
 ---
 
-<Page current="/projects/" title={`${title} – ${profile.name}`} description={tagline} path={`/projects/${project.id}/`} ogImage={`/og/${project.id}.png`}>
+<Page current="/projects/" title={`${title} – ${profile.name}`} description={tagline} path={`/projects/${project.id}/`}>
   <h1 class="t-page">{title}</h1>
   {question && <p class="t-sub mt-2">{question}</p>}
   <p class="t-desc mt-3">{tagline}</p>
