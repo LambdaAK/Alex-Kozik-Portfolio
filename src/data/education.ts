@@ -1,7 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import cmu from '../assets/logos/cmu.png';
 import cornell from '../assets/logos/cornell.svg';
-import cbSouth from '../assets/logos/cb-south.png';
 
 export interface Education {
   school: string;
@@ -77,29 +76,6 @@ export const education: Education[] = [
           'MATH 3360 Applicable Algebra',
           'MATH 2220 Multivariable Calculus',
           'MATH 2210 Linear Algebra',
-        ],
-      },
-    ],
-  },
-  {
-    school: 'Central Bucks High School South',
-    degree: 'High School Diploma',
-    detail: 'GPA 4.32 / 4.0 · Summa Cum Laude',
-    dates: '2018 – 2022',
-    logo: cbSouth,
-    notes: [],
-    courses: [
-      {
-        group: 'AP coursework',
-        items: [
-          'AP Calculus AB',
-          'AP Calculus BC',
-          'AP Statistics',
-          'AP Physics C',
-          'AP Chemistry',
-          'AP Biology',
-          'AP Computer Science A',
-          'AP Microeconomics',
         ],
       },
     ],
