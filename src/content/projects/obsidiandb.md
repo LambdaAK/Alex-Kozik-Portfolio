@@ -1,33 +1,54 @@
 ---
 title: ObsidianDB
-tagline: An in-memory SQL engine in about 1,150 lines of dependency-free C++, covering lexer, recursive-descent parser, typed tables, WHERE with AND/OR/NOT, ORDER BY, and a REPL.
+tagline: An in-memory SQL database written in C++ with no dependencies, from the lexer to the REPL.
 summary: "A SQL database engine in dependency-free C++, with its own lexer, parser and REPL."
-question: What is the smallest complete path from a SQL string to a result table?
 date: '2026'
-role: Solo
-description: A small in-memory SQL database in C++17 with no external libraries. It tokenizes, parses into an AST, and executes CREATE TABLE, INSERT and SELECT against typed in-memory tables.
 group: systems
 order: 2
-tech:
-- C++17
-- CMake
+tech: []
 github: https://github.com/LambdaAK/ObsidianDB
-image: ../../assets/logos/obsidiandb.png
-media: ../../assets/media/obsidiandb.png
-mediaAlt: 'A real ObsidianDB REPL session: creating a table, inserting rows, and running filtered, ordered SELECTs.'
-highlights:
-- Hand-written lexer and recursive-descent parser producing a typed AST (literal, column-ref, binary and unary expressions).
-- CREATE TABLE with INT, FLOAT and STRING columns; INSERT; and SELECT with projection, WHERE (=, <>, <, <=, >, >=, AND, OR, NOT) and ORDER BY ASC/DESC.
-- Interactive REPL with colored output and the meta-commands .tables, .schema, .help and .exit. It can also run a .sql script file.
 ---
 
-## How it works
-A query goes through three stages. The **lexer** (`src/lexer.cpp`) turns the input into tokens: keywords, identifiers, numeric and string literals, and comparison operators. The **parser** (`src/parser.cpp`) is recursive descent with operator precedence for NOT > AND > OR. It builds statement nodes (`CreateTableStmt`, `InsertStmt`, `SelectStmt`) over an expression tree (`src/ast.hpp`). The **executor** (`src/execution.cpp`) keeps a catalog of tables as vectors of typed rows. It checks INSERT values against the column types, evaluates the WHERE expression per row, projects the selected columns, and sorts on the ORDER BY key.
+## Example
 
-The engine is purely in memory. There is no persistence, indexing, joins or aggregation. The point was to build the parsing and execution path end to end without a parser generator or SQL library. The code is about 870 lines of engine in `src/` plus a 283-line REPL in `main.cpp`.
+A real session.
 
-## Try it
 ```
-make && make run
-./build/obsidian_sql_main script.sql
+obsidian> CREATE TABLE planets (name STRING, moons INT, radius FLOAT);
+Created table planets.
+obsidian> INSERT INTO planets VALUES ("Mercury", 0, 2439.7);
+Inserted 1 row(s).
+obsidian> INSERT INTO planets VALUES ("Earth", 1, 6371.0);
+Inserted 1 row(s).
+obsidian> INSERT INTO planets VALUES ("Mars", 2, 3389.5);
+Inserted 1 row(s).
+obsidian> INSERT INTO planets VALUES ("Jupiter", 95, 69911.0);
+Inserted 1 row(s).
+obsidian> INSERT INTO planets VALUES ("Neptune", 16, 24622.0);
+Inserted 1 row(s).
+
+obsidian> SELECT name, moons FROM planets
+obsidian> WHERE moons > 0 AND NOT name = "Jupiter" ORDER BY moons DESC;
+name | moons
+----+----
+"Neptune" | 16
+"Mars" | 2
+"Earth" | 1
+
+obsidian> INSERT INTO planets VALUES ("Pluto", "five", 1188.3);
+Error: Type mismatch for column moons
+```
+
+## How it's built
+
+```
+SQL → lexer → recursive-descent parser → AST → executor → in-memory tables
+```
+
+```
+statements   CREATE TABLE, INSERT, SELECT
+types        INT, FLOAT, STRING, checked on INSERT
+WHERE        = <> < <= > >=, with NOT > AND > OR precedence
+ORDER BY     ASC, DESC
+REPL         .tables, .schema, .help, .exit, or run a .sql file
 ```

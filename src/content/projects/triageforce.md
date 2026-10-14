@@ -1,25 +1,21 @@
 ---
 title: TriageForce
-tagline: "Finalist, Salesforce Agentforce Virtual Hackathon: a one-weekend front end for an Agentforce disaster-relief design; I built the Cesium 3D globe with live shipment routes and the dark-mode dashboard shell."
+tagline: A 3D disaster-relief dashboard, the front end for a Salesforce Agentforce agent design, and a hackathon finalist.
 summary: "Hackathon finalist: a 3D disaster-relief dashboard for an Agentforce agent design."
 date: '2025'
-role: Team of 5 · Salesforce Agentforce Virtual Hackathon · I built the globe/map view, route and flight-path rendering, sidebar and dark mode
-description: A React dashboard prototype for routing surplus corporate donations to disaster sites, built on mock data for a hackathon prompt. The five-agent Agentforce design is described in the README but not implemented in this repo.
 group: systems
 order: 1
-tech:
-- React
-- TypeScript
-- CesiumJS
-- Leaflet
-- MUI
+tech: []
 github: https://github.com/LambdaAK/agent-hackathon
-image: ../../assets/logos/salesforce.svg
-mediaAlt: TriageForce's dark-mode globe showing relief shipment routes.
-highlights:
-- CesiumJS 3D globe with disaster markers, shipment routes and flight paths; clicking a route shows its details.
-- Dashboard views for disaster needs, inventory, shipment tracking and alerts, driven by a mock typhoon scenario.
 ---
 
-## How it works
-This is a Create React App (TypeScript, MUI) front end. CesiumJS renders a 3D globe; Leaflet is also a dependency. The views (Dashboard, DisasterNeedsView, InventoryView, ShipmentTrackingView, RouteDetailsView, AlertsPanel) read from `src/data/mockData.ts` and `typhoonGenesisScenario.ts`. There is no backend and no Salesforce or Agentforce integration in this repo. The five agents (ingestion, matching, logistics, tracking, reporting) are the team's proposed Agentforce design.
+## What's in it
+
+```
+CesiumJS globe       disaster sites, operational centers, glowing shipment routes
+views                needs, inventory, shipment tracking, route details, alerts
+scenario             mock typhoon hitting Manila, supplied from Singapore and Tokyo hubs
+stack                React · TypeScript · MUI · CesiumJS, no backend
+```
+
+Team of 5. I built the globe, the route and flight-path rendering, the sidebar and dark mode. The five Agentforce agents (ingestion, matching, logistics, tracking, reporting) are the team's design; this repo is the front end only.

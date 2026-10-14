@@ -1,15 +1,20 @@
 ---
 title: CritterWorld
-tagline: An artificial-life simulator in JavaFX with its own organism language, interpreter and A*/Dijkstra pathfinding.
+tagline: An artificial-life simulator in Java where each critter is driven by a program in a custom language.
 summary: "An artificial-life simulator where critters run programs in a custom language."
-description: A simulator in which virtual organisms evolve and interact, each driven by a program in a custom language that is parsed and interpreted at runtime. Course project; source is not public.
+date: "2022"
 group: systems
 order: 4
-date: "2022"
-role: Solo · Cornell CS 2112 course project
-tech: [Java, JavaFX, Gradle, JUnit]
-image: ../../assets/logos/critterworld.png
-highlights:
-  - Parser and interpreter for a custom organism-behavior language.
-  - A* and Dijkstra pathfinding for navigation; real-time JavaFX visualization.
+tech: []
 ---
+
+## What's in it
+
+```
+language     parser and interpreter for the critter-behavior language
+movement     A* and Dijkstra pathfinding
+view         real-time JavaFX visualization
+stack        Java · JavaFX · Gradle · JUnit
+```
+
+Solo Cornell CS 2112 course project. The source is not public.
