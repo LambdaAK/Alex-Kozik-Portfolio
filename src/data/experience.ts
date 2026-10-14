@@ -38,7 +38,7 @@ export const experience: Experience[] = [
     logo: cmu,
     logoTile: true,
     bullets: [
-      "Reinforcement learning for foundation models in Prof. Andrea Zanette's lab.",
+      "Reinforcement learning for foundation models in Prof. Andrea Zanette's group.",
     ],
     tech: ['Reinforcement Learning', 'PyTorch'],
   },
