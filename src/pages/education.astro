@@ -14,17 +14,18 @@ import { education } from '../data/education';
             <Logo src={e.logo} tile={e.logoTile} />
             <div class="min-w-0 flex-1">
               <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-                <p class="font-medium">
-                  {e.degree}{' '}
-                  <span class="font-normal text-fg-muted">
-                    at{' '}
-                    <a href={e.url} class="ink" target="_blank" rel="noopener">
-                      {e.school}
-                    </a>
-                  </span>
-                </p>
+                <p class="font-medium">{e.degree}</p>
                 <span class="text-sm text-fg-faint">{e.dates}</span>
               </div>
+              <p class="text-fg-muted">
+                {e.url ? (
+                  <a href={e.url} class="ink" target="_blank" rel="noopener">
+                    {e.school}
+                  </a>
+                ) : (
+                  e.school
+                )}
+              </p>
               <p class="mt-1 leading-relaxed text-fg-muted">{[e.detail, ...e.notes].join(' · ')}</p>
               <details class="group mt-1">
                 <summary class="more cursor-pointer list-none text-sm hover:text-fg">

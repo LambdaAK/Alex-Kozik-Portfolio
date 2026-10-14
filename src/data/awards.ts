@@ -64,4 +64,11 @@ export const awards: Award[] = [
     year: '2022 – 2025',
     note: 'Every eligible semester.',
   },
+  {
+    title: 'Boomerang Youth Recognition Award',
+    org: 'Central Bucks School District',
+    year: '2022',
+    note: 'Recognized for outstanding volunteer work promoting equality and social justice through community organizations.',
+    brief: 'Recognized for volunteer work promoting equality and social justice through community organizations.',
+  },
 ];

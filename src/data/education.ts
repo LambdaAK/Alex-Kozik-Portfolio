@@ -1,10 +1,11 @@
 import type { ImageMetadata } from 'astro';
 import cmu from '../assets/logos/cmu.png';
 import cornell from '../assets/logos/cornell.svg';
+import cbSouth from '../assets/logos/cb-south.png';
 
 export interface Education {
   school: string;
-  url: string;
+  url?: string;
   degree: string;
   detail: string;
   dates: string;
@@ -19,7 +20,7 @@ export const education: Education[] = [
   {
     school: 'Carnegie Mellon University',
     url: 'https://www.cs.cmu.edu/',
-    degree: 'M.S. in Computer Science',
+    degree: 'Master of Science in Computer Science',
     detail: 'Thesis track · Machine Learning and Systems',
     dates: 'Aug 2026 – Dec 2027',
     logo: cmu,
@@ -39,7 +40,7 @@ export const education: Education[] = [
   {
     school: 'Cornell University',
     url: 'https://www.cs.cornell.edu/',
-    degree: 'B.A. in Computer Science & Mathematics',
+    degree: 'Bachelor of Arts in Computer Science & Mathematics',
     detail: 'GPA 4.11 / 4.3',
     dates: 'Aug 2022 – Dec 2025',
     logo: cornell,
@@ -72,6 +73,29 @@ export const education: Education[] = [
           'MATH 3360 Applicable Algebra',
           'MATH 2220 Multivariable Calculus',
           'MATH 2210 Linear Algebra',
+        ],
+      },
+    ],
+  },
+  {
+    school: 'Central Bucks High School South',
+    degree: 'High School Diploma',
+    detail: 'GPA 4.32 / 4.0 · Summa Cum Laude',
+    dates: '2018 – 2022',
+    logo: cbSouth,
+    notes: [],
+    courses: [
+      {
+        group: 'AP coursework',
+        items: [
+          'AP Calculus AB',
+          'AP Calculus BC',
+          'AP Statistics',
+          'AP Physics C',
+          'AP Chemistry',
+          'AP Biology',
+          'AP Computer Science A',
+          'AP Microeconomics',
         ],
       },
     ],
