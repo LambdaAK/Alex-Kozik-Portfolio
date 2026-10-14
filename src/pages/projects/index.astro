@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import { profile } from '../../data/profile';
+import { demos } from '../../data/demos';
+
+const all = await getCollection('projects');
+const byOrder = (g: string) => all.filter((p) => p.data.group === g).sort((a, b) => a.data.order - b.data.order);
+const groups = [
+  { label: 'Selected projects', items: byOrder('featured') },
+  { label: 'ML / AI', items: byOrder('ml') },
+  { label: 'Software engineering', items: byOrder('systems') },
+];
+---
+
+<Page
+  current="/projects/"
+  heading="Projects"
+  title={`Projects – ${profile.name}`}
+  description={`Projects by ${profile.name}: a compiler, an LLM serving stack, a C++ ML library, RL agents and more.`}
+  path="/projects/"
+>
+  {
+    groups.map((g, i) => (
+      <section class={i ? 'mt-12' : ''} aria-label={g.label}>
+        <h2 class="t-group mb-4">{g.label}</h2>
+        <ul class="space-y-6">
+          {g.items.map((p) => (
+            <li>
+              <p>
+                <a href={`/projects/${p.id}/`} class="t-title ink" data-umami-event="project-open" data-umami-event-project={p.data.title}>
+                  {p.data.title}
+                </a>
+                {demos[p.id] && (
+                  <a href={`/projects/${p.id}/#demo`} class="t-meta ml-2 hover:text-fg">
+                    {demos[p.id]} →
+                  </a>
+                )}
+                {!demos[p.id] && p.data.demo && <span class="t-meta ml-2">live</span>}
+                {p.data.github && (
+                  <a href={p.data.github} class="t-meta ml-2 hover:text-fg" target="_blank" rel="noopener" data-umami-event="source" data-umami-event-project={p.data.title}>
+                    github ↗
+                  </a>
+                )}
+              </p>
+              <p class="t-desc mt-1">{p.data.summary ?? p.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Page>

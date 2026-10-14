@@ -1,0 +1,31 @@
+---
+// Courses as an aligned list: code in a column sized to the longest code, then the name,
+// then a small tag from a trailing "(…)" such as "grad" or "Fall 2024".
+interface Props {
+  items: string[];
+  class?: string;
+}
+const { items, class: className = '' } = Astro.props;
+
+const split = (c: string) => {
+  const m = c.match(/^([A-Z]+ \d{4}(?:\/\d{4})?|\d{2}-\d{3})\s+(.*?)(?:\s+\((.+)\))?$/);
+  return m ? { code: m[1], name: m[2], tag: m[3] } : { code: '', name: c, tag: undefined };
+};
+---
+
+<ul class={`t-desc grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 ${className}`}>
+  {
+    items.map((c) => {
+      const { code, name, tag } = split(c);
+      return (
+        <li class="contents">
+          <span class="whitespace-nowrap text-fg-faint tabular-nums">{code}</span>
+          <span>
+            {name}
+            {tag && <span class="t-meta ml-1.5 whitespace-nowrap">{tag}</span>}
+          </span>
+        </li>
+      );
+    })
+  }
+</ul>

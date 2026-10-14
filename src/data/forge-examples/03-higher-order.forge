@@ -1,0 +1,19 @@
+// Higher-order functions and folds over a polymorphic list.
+let rec foldl f acc xs =
+  case xs do
+  | [] -> acc
+  | h :: t -> foldl f (f acc h) t
+
+let rec filter p xs =
+  case xs do
+  | [] -> []
+  | h :: t -> if p h then h :: filter p t else filter p t
+
+let rec range a b = if a > b then [] else a :: range (a + 1) b
+
+let sum xs = foldl (fn acc -> fn x -> acc + x) 0 xs
+let count xs = foldl (fn acc -> fn _ -> acc + 1) 0 xs
+
+let evens = filter (fn n -> n % 2 == 0) (range 1 100)
+let () = print_string (str_concat "count: " (int_to_str (count evens)))
+let () = print_string (str_concat "sum:   " (int_to_str (sum evens)))

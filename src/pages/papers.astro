@@ -1,0 +1,36 @@
+---
+import Page from '../layouts/Page.astro';
+import { profile } from '../data/profile';
+import { papers } from '../data/papers';
+---
+
+<Page current="/papers/" heading="Papers" title={`Papers – ${profile.name}`} path="/papers/">
+  <ul class="space-y-6">
+    {
+      papers.map((p) => (
+        <li>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+            <a href={p.pdf} class="t-title ink" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={p.title}>
+              {p.title}
+            </a>
+          </div>
+          <p class="t-sub">{p.venue}</p>
+          <p class="t-desc mt-1">{p.summary}</p>
+          <p class="t-desc mt-1 flex flex-wrap gap-x-4">
+            <a href={p.pdf} class="ink" target="_blank" rel="noopener">pdf</a>
+            {p.code && (
+              <a href={p.code} class="ink" target="_blank" rel="noopener">
+                code
+              </a>
+            )}
+            {p.project && (
+              <a href={p.project} class="ink">
+                project
+              </a>
+            )}
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+</Page>

@@ -1,0 +1,17 @@
+---
+// A quiet section: small lowercase heading, then content.
+interface Props {
+  id: string;
+  title: string;
+  subtitle?: string;
+}
+const { id, title, subtitle } = Astro.props;
+---
+
+<section id={id} class="scroll-mt-16 pt-14" aria-labelledby={`${id}-title`}>
+  <h2 id={`${id}-title`} class="text-[15px] font-medium text-fg-faint">{title}</h2>
+  {subtitle && <p class="mt-1 text-fg-muted">{subtitle}</p>}
+  <div class="mt-4">
+    <slot />
+  </div>
+</section>

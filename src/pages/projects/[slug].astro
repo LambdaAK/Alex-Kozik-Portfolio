@@ -1,0 +1,97 @@
+---
+import ProjectMedia from '../../components/ProjectMedia.astro';
+import { getCollection, render } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import SnakeDemo from '../../components/SnakeDemo.astro';
+import ForgePlayground from '../../components/ForgePlayground.astro';
+import { profile } from '../../data/profile';
+import { demos } from '../../data/demos';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+const { title, tagline, question, description, role, tech, github, demo, website, paper, links, media, mediaAlt, video, results, highlights } =
+  project.data;
+const { Content } = await render(project);
+const hasBody = (project.body ?? '').trim().length > 0;
+---
+
+<Page current="/projects/" title={`${title} – ${profile.name}`} description={tagline} path={`/projects/${project.id}/`}>
+  <h1 class="t-page">{title}</h1>
+  {question && <p class="t-sub mt-2">{question}</p>}
+  <p class="t-desc mt-3">{tagline}</p>
+  {role && <p class="t-meta mt-2">{role}</p>}
+
+  {
+    results.length > 0 && (
+      <dl class="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-3">
+        {results.map((r) => (
+          <div>
+            <dd class="t-title">{r.value}</dd>
+            <dt class="t-desc">{r.metric}</dt>
+            {r.baseline && <dd class="t-meta">{r.baseline}</dd>}
+          </div>
+        ))}
+      </dl>
+    )
+  }
+
+  <p class="t-desc mt-6 flex flex-wrap gap-x-4 gap-y-1">
+    {demos[project.id] && <a href="#demo" class="ink">{demos[project.id]} ↓</a>}
+    {demo && <a href={demo} class="ink" target="_blank" rel="noopener">live demo</a>}
+    {website && <a href={website} class="ink" target="_blank" rel="noopener">website</a>}
+    {github && <a href={github} class="ink" target="_blank" rel="noopener" data-umami-event="source" data-umami-event-project={title}>source</a>}
+    {paper && <a href={paper} class="ink" target="_blank" rel="noopener" data-umami-event="report" data-umami-event-project={title}>report (pdf)</a>}
+    {links.filter((l) => !l.href.includes('#playground')).map((l) => (
+      <a href={l.href} class="ink" {...(l.href.startsWith('/') && !l.href.endsWith('.pdf') ? {} : { target: '_blank', rel: 'noopener' })}>
+        {l.label}
+      </a>
+    ))}
+  </p>
+  {tech.length > 0 && <p class="t-meta mt-1">{tech.join(' · ')}</p>}
+
+  {
+    demos[project.id] && (
+      <div id="demo" class="mt-10 scroll-mt-8">
+        {project.id === 'snake-dqn' && <SnakeDemo />}
+        {project.id === 'forge' && <ForgePlayground />}
+      </div>
+    )
+  }
+
+  {
+    media && (
+      <figure class="mt-10">
+        <ProjectMedia media={media} video={video} alt={mediaAlt} width={1200} class="w-full rounded-xl bg-bg-elev p-2" />
+        {mediaAlt && <figcaption class="t-meta mt-2">{mediaAlt}</figcaption>}
+      </figure>
+    )
+  }
+
+  {description && <p class="t-desc mt-10">{description}</p>}
+
+  {
+    highlights.length > 0 && (
+      <ul class="t-desc mt-4 list-disc space-y-1.5 pl-5 marker:text-fg-faint">
+        {highlights.map((h) => (
+          <li>{h}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    hasBody && (
+      <article class="prose mt-10">
+        <Content />
+      </article>
+    )
+  }
+
+  <p class="t-meta mt-16 border-t border-line pt-5">
+    <a href="/projects/" class="ink">← all projects</a>
+  </p>
+</Page>

@@ -1,0 +1,41 @@
+---
+import Page from '../layouts/Page.astro';
+import Logo from '../components/Logo.astro';
+import CourseList from '../components/CourseList.astro';
+import { profile } from '../data/profile';
+import { education } from '../data/education';
+---
+
+<Page current="/education/" heading="Education" title={`Education – ${profile.name}`} path="/education/">
+  <ol class="space-y-6">
+    {
+      education.map((e) => (
+        <li class="flex gap-5">
+          <Logo src={e.logo} dark={e.logoDark} tile={e.logoTile} />
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <p class="t-title">{e.school}</p>
+              <span class="t-meta">{e.dates}</span>
+            </div>
+            <p class="t-sub">{e.major ? `${e.degree}, ${e.major}` : e.degree}</p>
+            {(e.detail || e.notes.length > 0) && <p class="t-desc mt-1">{[e.detail, ...e.notes].filter(Boolean).join(' · ')}</p>}
+            <details class="group mt-1">
+              <summary class="t-toggle">
+                <span class="group-open:hidden">coursework</span>
+                <span class="hidden group-open:inline">hide coursework</span>
+              </summary>
+              <div class="mt-1.5 space-y-3">
+                {e.courses.map((g) => (
+                  <div>
+                    {e.courses.length > 1 && <p class="t-meta mb-1">{g.group}</p>}
+                    <CourseList items={g.items} />
+                  </div>
+                ))}
+              </div>
+            </details>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</Page>

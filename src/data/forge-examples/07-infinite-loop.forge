@@ -1,0 +1,4 @@
+// The playground stops runaway programs with an evaluation step limit.
+let rec spin n = spin (n + 1)
+let () = print_string "spinning..."
+let () = spin 0

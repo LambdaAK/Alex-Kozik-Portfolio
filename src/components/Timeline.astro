@@ -1,0 +1,63 @@
+---
+// Plain rows: logo, role at company, dates; one line of what I did, the rest on click.
+import Logo from './Logo.astro';
+import CourseList from './CourseList.astro';
+import type { Experience } from '../data/experience';
+
+interface Props {
+  items: Experience[];
+}
+const { items } = Astro.props;
+---
+
+<ol class="space-y-6">
+  {
+    items.map((e) => {
+      const lead = e.blurb ?? e.bullets[0];
+      const rest = e.blurb ? e.bullets : e.bullets.slice(1);
+      return (
+      <li class="flex gap-5">
+        <Logo src={e.logo} dark={e.logoDark} tile={e.logoTile} />
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+            <p class="t-title">{e.company}</p>
+            <span class="t-meta">{e.dates}</span>
+          </div>
+          <p class="t-sub">{e.role}</p>
+          {e.team && <p class="t-sub">{e.team}</p>}
+          {e.courses && <CourseList items={e.courses} class="mt-1.5" />}
+          {lead && <p class="t-desc mt-1">{lead}</p>}
+          {(rest.length > 0 || e.links) && (
+            <details class="group mt-1">
+              <summary class="t-toggle">
+                <span class="group-open:hidden">more</span>
+                <span class="hidden group-open:inline">less</span>
+              </summary>
+              <ul class="t-desc mt-1.5 list-disc space-y-1 pl-5 marker:text-fg-faint">
+                {rest.map((b) => (
+                  <li>{b}</li>
+                ))}
+              </ul>
+              {e.links && (
+                <p class="t-desc mt-2 flex flex-wrap gap-x-4">
+                  {e.links.map((l) => (
+                    <a
+                      href={l.href}
+                      class="ink"
+                      {...(l.href.startsWith('/projects/') ? {} : { target: '_blank', rel: 'noopener' })}
+                      data-umami-event="link"
+                      data-umami-event-project={e.company}
+                    >
+                      {l.label}
+                    </a>
+                  ))}
+                </p>
+              )}
+            </details>
+          )}
+        </div>
+      </li>
+      );
+    })
+  }
+</ol>

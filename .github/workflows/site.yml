@@ -1,0 +1,37 @@
+name: Site checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 13 * * 1' # Mondays: catch links that rot between deploys
+  workflow_dispatch:
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      # Runs astro check (types, content schema) and the static build.
+      - run: npm run build
+      # Every page in real Chrome: errors, crashes, broken links/images, demos, phone layout.
+      - run: node tests/site-check.mjs
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+      - name: Check links in the built site
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --root-dir "$(pwd)/dist"
+            --exclude 'linkedin\.com'
+            --exclude 'cloud\.umami\.is'
+            --max-retries 3
+            --no-progress
+            'dist/**/*.html'
+          fail: true

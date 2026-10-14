@@ -1,0 +1,10 @@
+---
+import Page from '../layouts/Page.astro';
+import Timeline from '../components/Timeline.astro';
+import { profile } from '../data/profile';
+import { experience } from '../data/experience';
+---
+
+<Page current="/experience/" heading="Experience" title={`Experience – ${profile.name}`} path="/experience/">
+  <Timeline items={experience} />
+</Page>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Forge</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 16 Q30.5 16.5 35 28 L49 54" stroke="#f5f5f7" stroke-width="7.5"/>
+    <path d="M36.5 33 L20 54" stroke="#f5f5f7" stroke-width="7.5"/>
+    <path d="M15.5 12.5 L9 7" stroke="#EA580C" stroke-width="3.6"/>
+    <path d="M21.5 9 L20.5 2.8" stroke="#F59E0B" stroke-width="3.6"/>
+    <path d="M13 19 L6 18.2" stroke="#F59E0B" stroke-width="3.6"/>
+  </g>
+</svg>

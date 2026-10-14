@@ -1,0 +1,43 @@
+---
+// A project's hero: a muted looping clip (with `media` as its poster) or a still image.
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  media: ImageMetadata;
+  video?: string;
+  alt?: string;
+  width: number;
+  class?: string;
+}
+const { media, video, alt = '', width, class: className = '' } = Astro.props;
+const poster = video ? await getImage({ src: media, width, format: 'webp' }) : null;
+---
+
+{
+  video && poster ? (
+    <video
+      class={className}
+      src={video}
+      poster={poster.src}
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="none"
+      aria-label={alt}
+    />
+  ) : (
+    <Image src={media} alt={alt} width={width} class={className} />
+  )
+}
+
+<script>
+  // Respect reduced motion: show the poster frame instead of playing.
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLVideoElement>('video[autoplay]').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+    });
+  }
+</script>

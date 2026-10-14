@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/profile';
+import ogImage from '../assets/alex.jpeg';
+import { getImage, Font } from 'astro:assets';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Path of this page, used for the canonical URL. */
+  path?: string;
+  /** Site-relative path of a 1200×630 share image. Defaults to the portrait. */
+  ogImage?: string;
+}
+const {
+  title = profile.name,
+  description = profile.metaDescription,
+  path = '/',
+  ogImage: ogPath,
+} = Astro.props;
+
+const canonical = new URL(path, profile.site).href;
+const og = await getImage({ src: ogImage, width: 1200, height: 630, format: 'jpeg', fit: 'cover' });
+const ogUrl = new URL(ogPath ?? og.src, profile.site).href;
+// Umami analytics; set PUBLIC_UMAMI_WEBSITE_ID in Netlify to turn it on.
+const umamiId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.fullName,
+  alternateName: profile.name,
+  url: profile.site,
+  email: `mailto:${profile.email}`,
+  jobTitle: 'Machine Learning Research Engineer',
+  affiliation: { '@type': 'CollegeOrUniversity', name: 'Carnegie Mellon University' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Cornell University' },
+  sameAs: [profile.github, profile.linkedin],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogUrl} />
+
+    <Font cssVariable="--font-inter" />
+    <Font cssVariable="--font-newsreader" preload={[{ weight: '400 600', style: 'normal' }]} />
+    {
+      umamiId && (
+        <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id={umamiId} />
+      )
+    }
+
+    <script is:inline>
+      // Apply the saved theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var dark = saved === 'dark'; // light unless the visitor chose dark
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="min-h-screen">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-bg"
+    >
+      Skip to content
+    </a>
+    <slot />
+    <script>
+      // Card spotlight: feed the pointer position to .frame as --mx/--my.
+      if (matchMedia('(hover: hover)').matches) {
+        document.addEventListener('pointermove', (e) => {
+          const card = (e.target as Element | null)?.closest?.<HTMLElement>('.frame');
+          if (!card) return;
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+          card.style.setProperty('--my', `${e.clientY - r.top}px`);
+        });
+      }
+    </script>
+  </body>
+</html>

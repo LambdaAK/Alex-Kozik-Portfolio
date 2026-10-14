@@ -1,0 +1,13 @@
+// macro_rules!: token-tree macros expand before type checking.
+macro_rules! square where
+  ($x:expr) => ($x * $x)
+end
+
+// Repetition: sum_all!(1, 2, 3) expands to (0 + 1 + 2 + 3)
+macro_rules! sum_all where
+  ($($x:expr),*) => (0 $(+ $x)*)
+end
+
+let () = println (square!(7))
+let () = println (sum_all!(1, 2, 3, 4))
+let () = println (count_args!(a, b, c))
