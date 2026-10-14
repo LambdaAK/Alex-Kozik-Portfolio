@@ -105,7 +105,7 @@ export const experience: Experience[] = [
     role: 'Machine Learning Engineer · Founding Member',
     dates: 'Feb – Dec 2025',
     logo: genai,
-    blurb: 'Built LLM agents and AI tutors for real users.',
+    blurb: 'Built LLM agents and AI tutors.',
     bullets: [
       'Developed AI agent for QuickFi, a commercial lending technology company, automating insurance certificate validation and compliance verification processes, replacing a manual review step.',
       'Built frontend and vector database for ClassGPT, enabling professors to create AI tutors for classes.',
