@@ -1,5 +1,5 @@
 ---
-title: C-torch
+title: C-Torch
 tagline: A machine learning library written from scratch in C++, from the matrix class up to data-parallel training over TCP.
 summary: "A machine learning library written from scratch in C++, with its own linear algebra, symbolic differentiation, 15+ models, a neural network API, and distributed training across processes over TCP."
 date: 2025–26
