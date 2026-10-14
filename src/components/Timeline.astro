@@ -10,37 +10,26 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ol class="space-y-7">
+<ol class="space-y-6">
   {
     items.map((e) => (
       <li class="flex gap-5">
         <Logo src={e.logo} dark={e.logoDark} tile={e.logoTile} />
         <div class="min-w-0 flex-1">
           <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-            <p class="font-medium">
-              {e.role}{' '}
-              <span class="font-normal text-fg-muted">
-                at{' '}
-                {e.url ? (
-                  <a href={e.url} class="ink" target="_blank" rel="noopener">
-                    {e.company}
-                  </a>
-                ) : (
-                  e.company
-                )}
-              </span>
-            </p>
+            <p class="font-medium">{e.company}</p>
             <span class="text-sm text-fg-faint">{e.dates}</span>
           </div>
-          {e.courses && <CourseList items={e.courses} class="mt-2" />}
-          {e.bullets[0] && <p class="mt-1 leading-relaxed text-fg-muted">{e.bullets[0]}</p>}
+          <p class="text-[15px] text-fg-muted">{e.role}</p>
+          {e.courses && <CourseList items={e.courses} class="mt-1.5" />}
+          {e.bullets[0] && <p class="mt-1 text-sm leading-relaxed text-fg-muted">{e.bullets[0]}</p>}
           {(e.bullets.length > 1 || e.links) && (
             <details class="group mt-1">
-              <summary class="more cursor-pointer list-none text-sm hover:text-fg">
+              <summary class="more cursor-pointer list-none text-xs hover:text-fg">
                 <span class="group-open:hidden">more</span>
                 <span class="hidden group-open:inline">less</span>
               </summary>
-              <ul class="mt-1.5 list-disc space-y-1 pl-5 leading-relaxed text-fg-muted marker:text-fg-faint">
+              <ul class="mt-1.5 list-disc space-y-1 pl-5 text-sm leading-relaxed text-fg-muted marker:text-fg-faint">
                 {e.bullets.slice(1).map((b) => (
                   <li>{b}</li>
                 ))}

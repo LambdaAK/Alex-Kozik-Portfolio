@@ -17,10 +17,10 @@ import { education } from '../data/education';
                 <p class="font-medium">{e.school}</p>
                 <span class="text-sm text-fg-faint">{e.dates}</span>
               </div>
-              <p class="text-fg-muted">{e.major ? `${e.degree}, ${e.major}` : e.degree}</p>
+              <p class="text-[15px] text-fg-muted">{e.major ? `${e.degree}, ${e.major}` : e.degree}</p>
               <p class="text-sm text-fg-faint">{[e.detail, ...e.notes].join(' · ')}</p>
               <details class="group mt-1">
-                <summary class="more cursor-pointer list-none text-sm hover:text-fg">
+                <summary class="more cursor-pointer list-none text-xs hover:text-fg">
                   <span class="group-open:hidden">coursework</span>
                   <span class="hidden group-open:inline">hide coursework</span>
                 </summary>

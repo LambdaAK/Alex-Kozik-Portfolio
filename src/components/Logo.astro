@@ -11,7 +11,7 @@ interface Props {
   tile?: boolean;
 }
 const { src, dark, tile } = Astro.props;
-const cls = `h-12 w-12 shrink-0 object-contain${tile ? ' rounded-xl' : ''}`;
+const cls = `mt-0.5 h-10 w-10 shrink-0 object-contain${tile ? ' rounded-xl' : ''}`;
 ---
 
 <Image src={src} alt="" width={96} height={96} class={dark ? `${cls} dark:hidden` : cls} />
