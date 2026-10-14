@@ -7,7 +7,7 @@ import { demos } from '../../data/demos';
 const all = await getCollection('projects');
 const byOrder = (g: string) => all.filter((p) => p.data.group === g).sort((a, b) => a.data.order - b.data.order);
 const groups = [
-  { label: 'Selected', items: byOrder('featured') },
+  { label: 'Selected projects', items: byOrder('featured') },
   { label: 'ML / AI', items: byOrder('ml') },
   { label: 'Software engineering', items: byOrder('systems') },
 ];
