@@ -7,7 +7,7 @@ import { demos } from '../../data/demos';
 const all = await getCollection('projects');
 const byOrder = (g: string) => all.filter((p) => p.data.group === g).sort((a, b) => a.data.order - b.data.order);
 const groups = [
-  { label: 'Selected', note: 'The ones I’d show first. Each is built from scratch.', items: byOrder('featured') },
+  { label: 'Selected', items: byOrder('featured') },
   { label: 'ML / AI', items: byOrder('ml') },
   { label: 'Software engineering', items: byOrder('systems') },
 ];
@@ -23,8 +23,7 @@ const groups = [
   {
     groups.map((g, i) => (
       <section class={i ? 'mt-12' : ''} aria-label={g.label}>
-        <h2 class={`t-group ${g.note ? '' : 'mb-4'}`}>{g.label}</h2>
-        {g.note && <p class="t-meta mb-4">{g.note}</p>}
+        <h2 class="t-group mb-4">{g.label}</h2>
         <ul class="space-y-6">
           {g.items.map((p) => (
             <li>
