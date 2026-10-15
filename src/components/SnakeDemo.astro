@@ -1,16 +1,22 @@
 ---
 // Live demo: self-play Battlesnake agents, running entirely in the browser (rules in JS,
-// networks via ONNX Runtime Web). The 8 MB network loads on click.
+// networks via ONNX Runtime Web). By default the 8 MB network loads on click.
 // Component code is copied from github.com/LambdaAK/SnakeDQN (web/snake-demo.js).
 import '../scripts/snake-selfplay/snake-demo.css';
+
+interface Props {
+  /** Download the network and start playing right away instead of waiting for a click. */
+  autoLoad?: boolean;
+}
+const { autoLoad = false } = Astro.props;
 ---
 
-<section class="snake-selfplay" data-snake-selfplay aria-label="Snake self-play demo"></section>
+<section class="snake-selfplay" data-snake-selfplay data-autoload={autoLoad ? 'true' : undefined} aria-label="Snake self-play demo"></section>
 
 <script>
   import { mountSnakeDemo } from '../scripts/snake-selfplay/snake-demo.js';
 
   for (const root of document.querySelectorAll<HTMLElement>('[data-snake-selfplay]')) {
-    mountSnakeDemo(root, { base: '/models/snake-selfplay/', autoLoad: false });
+    mountSnakeDemo(root, { base: '/models/snake-selfplay/', autoLoad: root.dataset.autoload === 'true' });
   }
 </script>

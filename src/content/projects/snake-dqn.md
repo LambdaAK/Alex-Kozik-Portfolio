@@ -11,6 +11,9 @@ role: Solo
 tech: [PyTorch, PPO, NumPy, ONNX Runtime Web]
 github: https://github.com/LambdaAK/SnakeDQN
 paper: /papers/snake-selfplay-report.pdf
+links:
+  - label: full-page demo
+    href: /snake/
 results:
   - value: '91%'
     metric: wins vs the strongest scripted bot
