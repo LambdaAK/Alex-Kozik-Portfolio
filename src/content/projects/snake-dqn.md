@@ -10,7 +10,6 @@ order: 1
 role: Solo
 tech: [PyTorch, PPO, NumPy, ONNX Runtime Web]
 github: https://github.com/LambdaAK/SnakeDQN
-paper: /papers/snake-selfplay-report.pdf
 links:
   - label: full-page demo
     href: /snake/
@@ -51,5 +50,3 @@ training   PPO self-play vs itself and a pool of past selves · reward +1 win, �
            · 33.6M turns, 2.5 h on an M3 Max GPU
 browser    rules ported to JS (parity-tested) · ONNX Runtime Web · no server
 ```
-
-The full write-up is in the report linked above.
