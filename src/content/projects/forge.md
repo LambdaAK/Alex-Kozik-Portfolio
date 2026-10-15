@@ -8,6 +8,7 @@ order: 1
 tech: []
 github: https://github.com/LambdaAK/Forge
 website: https://forgepl.netlify.app/
+pageArchived: true
 image: ../../assets/logos/forge.svg
 imageDark: ../../assets/logos/forge-dark.svg
 ---
