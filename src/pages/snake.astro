@@ -1,13 +1,36 @@
 ---
 // Full-page version of the Snake self-play demo (mirrors github.com/LambdaAK/SnakeDQN web/).
 // Equations are rendered to HTML at build time, so the page ships no math JavaScript.
+// Each paragraph is one HTML string: Astro trims whitespace between text and components at
+// line breaks, which would glue the math to the surrounding words.
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import Page from '../layouts/Page.astro';
 import SnakeDemo from '../components/SnakeDemo.astro';
 import { profile } from '../data/profile';
 
-const tex = (src: string, displayMode = false) => katex.renderToString(src, { displayMode, throwOnError: true });
+const m = (src: string) => katex.renderToString(src, { throwOnError: true });
+const dm = (src: string) => katex.renderToString(src, { displayMode: true, throwOnError: true });
+
+const how = [
+  `<span class="t-title">The game.</span> Each turn every snake sees the board ${m('s_t')} and picks a move
+   ${m('a_t \\in \\{\\uparrow, \\downarrow, \\leftarrow, \\rightarrow\\}')}. The only reward is the outcome:
+   ${m('r = +1')} for winning, ${m('-1')} for dying.`,
+  `<span class="t-title">The network.</span> One small CNN reads 8 planes centred on its own snake (bodies, heads,
+   food, health) and outputs a policy and a value:
+   ${dm('\\pi_\\theta(a \\mid s), \\qquad V_\\theta(s) \\approx \\mathbb{E}\\Big[\\textstyle\\sum_k \\gamma^k r_{t+k}\\Big].')}`,
+  `<span class="t-title">Learning.</span> PPO nudges the policy toward moves that turned out better than expected,
+   but never too far in one update:
+   ${dm(
+     'L(\\theta) = \\mathbb{E}_t\\Big[\\min\\big(\\rho_t \\hat A_t,\\ \\operatorname{clip}(\\rho_t, 1-\\epsilon, 1+\\epsilon)\\, \\hat A_t\\big)\\Big],' +
+       '\\qquad \\rho_t = \\frac{\\pi_\\theta(a_t \\mid s_t)}{\\pi_{\\theta_\\text{old}}(a_t \\mid s_t)},',
+   )}
+   where the advantage ${m('\\hat A_t = \\sum_l (\\gamma\\lambda)^l \\delta_{t+l}')}, with
+   ${m('\\delta_t = r_t + \\gamma V(s_{t+1}) - V(s_t)')}, says how much better a move was than the network expected.`,
+  `<span class="t-title">Self-play.</span> Every snake is the same network, so it learns by playing copies of
+   itself (and older versions of itself). After 2.5 hours on a laptop it beats the best hand-written bot in 91%
+   of games.`,
+];
 ---
 
 <Page
@@ -23,43 +46,11 @@ const tex = (src: string, displayMode = false) => katex.renderToString(src, { di
 
   <section class="snake-how t-desc mt-12">
     <h2 class="t-group mb-3">How it works</h2>
-
-    <p>
-      <span class="t-title">The game.</span> Each turn every snake sees the board <Fragment set:html={tex('s_t')} /> and picks a move
-      <Fragment set:html={tex('a_t \\in \\{\\uparrow, \\downarrow, \\leftarrow, \\rightarrow\\}')} />. The only reward is the outcome:
-      <Fragment set:html={tex('r = +1')} /> for winning, <Fragment set:html={tex('-1')} /> for dying.
-    </p>
-
-    <p>
-      <span class="t-title">The network.</span> One small CNN reads 8 planes centred on its own snake (bodies, heads, food, health) and
-      outputs a policy and a value:
-      <Fragment set:html={tex('\\pi_\\theta(a \\mid s), \\qquad V_\\theta(s) \\approx \\mathbb{E}\\Big[\\textstyle\\sum_k \\gamma^k r_{t+k}\\Big].', true)} />
-    </p>
-
-    <p>
-      <span class="t-title">Learning.</span> PPO nudges the policy toward moves that turned out better than expected, but never too far in one
-      update:
-      <Fragment
-        set:html={tex(
-          'L(\\theta) = \\mathbb{E}_t\\Big[\\min\\big(\\rho_t \\hat A_t,\\ \\operatorname{clip}(\\rho_t, 1-\\epsilon, 1+\\epsilon)\\, \\hat A_t\\big)\\Big],' +
-            '\\qquad \\rho_t = \\frac{\\pi_\\theta(a_t \\mid s_t)}{\\pi_{\\theta_\\text{old}}(a_t \\mid s_t)},',
-          true,
-        )}
-      />
-      where the advantage <Fragment set:html={tex('\\hat A_t = \\sum_l (\\gamma\\lambda)^l \\delta_{t+l}')} />, with
-      <Fragment set:html={tex('\\delta_t = r_t + \\gamma V(s_{t+1}) - V(s_t)')} />, says how much better a move was than the network expected.
-    </p>
-
-    <p>
-      <span class="t-title">Self-play.</span> Every snake is the same network, so it learns by playing copies of itself (and older versions of
-      itself). After 2.5 hours on a laptop it beats the best hand-written bot in 91% of games.
-    </p>
-
-    <p class="t-meta mt-6">
-      <a href="/projects/snake-dqn/" class="ink">write-up</a> ·
-      <a href="/papers/snake-selfplay-report.pdf" class="ink" target="_blank" rel="noopener">report (pdf)</a> ·
-      <a href="https://github.com/LambdaAK/SnakeDQN" class="ink" target="_blank" rel="noopener">source</a>
-    </p>
+    {how.map((html) => <p set:html={html} />)}
+    <p
+      class="t-meta mt-6"
+      set:html={`<a href="/projects/snake-dqn/" class="ink">write-up</a> · <a href="/papers/snake-selfplay-report.pdf" class="ink" target="_blank" rel="noopener">report (pdf)</a> · <a href="https://github.com/LambdaAK/SnakeDQN" class="ink" target="_blank" rel="noopener">source</a>`}
+    />
   </section>
 </Page>
 
