@@ -161,12 +161,12 @@ async function main() {
     if (!/step limit|Stopped/.test(await page.textContent('[data-output]'))) fail(current, 'infinite loop was not stopped');
     flush();
 
-    // 5. Snake demo loads the network and plays: its confidence reading appears.
+    // 5. Snake demo loads the network and plays: some snake grows past its start length.
     current = 'snake demo';
     await page.goto(BASE + '/projects/snake-dqn/', { waitUntil: 'load' });
     await page.click('.snake-demo .sd-start');
     await page
-      .waitForFunction(() => /\d/.test(document.querySelector('.snake-demo [data-sd="value-text"]')?.textContent ?? ''), null, { timeout: 30000 })
+      .waitForFunction(() => [...document.querySelectorAll('.snake-demo .sd-len')].some((el) => Number(el.textContent) > 3), null, { timeout: 30000 })
       .catch(() => fail(current, 'network did not load or play'));
     flush();
 
