@@ -161,14 +161,13 @@ async function main() {
     if (!/step limit|Stopped/.test(await page.textContent('[data-output]'))) fail(current, 'infinite loop was not stopped');
     flush();
 
-    // 5. Snake demo loads the weights and plays.
+    // 5. Snake demo loads the network and plays: some snake grows past its start length.
     current = 'snake demo';
     await page.goto(BASE + '/projects/snake-dqn/', { waitUntil: 'load' });
-    await page.click('.snake-demo [data-start]');
-    await page.waitForTimeout(3000);
-    const games = await page.textContent('.snake-demo [data-games]');
-    const score = await page.textContent('.snake-demo [data-score]');
-    if (games === '0 · 0' && score === '0') fail(current, 'agent did not move');
+    // The Snake page loads its network on its own (no load button).
+    await page
+      .waitForFunction(() => [...document.querySelectorAll('.snake-demo .sd-len')].some((el) => Number(el.textContent) > 3), null, { timeout: 30000 })
+      .catch(() => fail(current, 'network did not load or play'));
     flush();
 
     // 6. Phone width: nothing scrolls sideways.
