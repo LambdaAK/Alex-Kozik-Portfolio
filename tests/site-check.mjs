@@ -164,7 +164,7 @@ async function main() {
     // 5. Snake demo loads the network and plays: some snake grows past its start length.
     current = 'snake demo';
     await page.goto(BASE + '/projects/snake-dqn/', { waitUntil: 'load' });
-    await page.click('.snake-demo .sd-start');
+    // The Snake page loads its network on its own (no load button).
     await page
       .waitForFunction(() => [...document.querySelectorAll('.snake-demo .sd-len')].some((el) => Number(el.textContent) > 3), null, { timeout: 30000 })
       .catch(() => fail(current, 'network did not load or play'));
