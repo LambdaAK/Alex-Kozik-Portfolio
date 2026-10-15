@@ -27,6 +27,9 @@ const projects = defineCollection({
       demo: z.url().optional(),
       // Project's own website (docs, landing page).
       website: z.url().optional(),
+      // The project page is kept as an archive but no longer linked: the projects
+      // list sends visitors to `website` instead.
+      pageArchived: z.boolean().default(false),
       paper: z.string().optional(),
       // Extra links (second repo, notebook, …).
       links: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
