@@ -9,3 +9,25 @@
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Old PDF URLs from the pre-Astro site. Google Scholar indexed these, so they
+# keep serving the files at the original address (200 rewrite, not a redirect).
+[[redirects]]
+  from = "/ShowAttendTell%20Report.pdf"
+  to = "/papers/show-attend-tell.pdf"
+  status = 200
+
+[[redirects]]
+  from = "/Voting-Based%20Multi-Agent%20Bandits.pdf"
+  to = "/papers/voting-based-multi-agent-bandits.pdf"
+  status = 200
+
+[[redirects]]
+  from = "/Low-Level%20Learning.pdf"
+  to = "/papers/low-level-learning.pdf"
+  status = 200
+
+[[redirects]]
+  from = "/From%20Redux%20to%20Component-level%20State%20Modernizing%20CMSX%20Architecture.pdf"
+  to = "/papers/cmsx-redux-to-component-state.pdf"
+  status = 200
